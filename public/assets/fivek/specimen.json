@@ -1,0 +1,209 @@
+{
+  "id": "a0412-_DGW6297",
+  "preprocessing": "Project loader: DNG camera WB, 8-bit RGB, TIFF PIL RGB; max side 500; calculations 256 square. No additional ICC transform.",
+  "files": {
+    "original": {
+      "url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0412-_DGW6297.dng",
+      "sha256": "d1ae18b871d3e440ffba09c48e8b35c850bc5c52bb49ed35c692e423957ea472",
+      "size": [
+        500,
+        332
+      ]
+    },
+    "expert-A": {
+      "url": "https://data.csail.mit.edu/graphics/fivek/img/tiff16_a/a0412-_DGW6297.tif",
+      "sha256": "3cd5d98354c93af3f667db5860a7ed82c07bd0a98df0904594184f0e96dc50e6",
+      "size": [
+        500,
+        333
+      ]
+    },
+    "expert-B": {
+      "url": "https://data.csail.mit.edu/graphics/fivek/img/tiff16_b/a0412-_DGW6297.tif",
+      "sha256": "eb2c657b0d5c1faf65f3c3cf5f2e57c9d3832a820eaf47eb9a95b672149fc67d",
+      "size": [
+        500,
+        333
+      ]
+    },
+    "expert-C": {
+      "url": "https://data.csail.mit.edu/graphics/fivek/img/tiff16_c/a0412-_DGW6297.tif",
+      "sha256": "78b14b1f54c522e6d4b1ed584593baabb5cc4c87ab99dc62a0d7cf8bfe880624",
+      "size": [
+        500,
+        333
+      ]
+    },
+    "expert-D": {
+      "url": "https://data.csail.mit.edu/graphics/fivek/img/tiff16_d/a0412-_DGW6297.tif",
+      "sha256": "297f9a069fff8671cde7c113d8578820c3d0d487d5f3653dc5d82b8a708af0b9",
+      "size": [
+        500,
+        333
+      ]
+    },
+    "expert-E": {
+      "url": "https://data.csail.mit.edu/graphics/fivek/img/tiff16_e/a0412-_DGW6297.tif",
+      "sha256": "13d7b5b32459561de9122ee0ca82f93ebeac748f2390284228ea758032cf96de",
+      "size": [
+        500,
+        333
+      ]
+    }
+  },
+  "limits": [
+    0.5613945126533508,
+    1.0,
+    2.0
+  ],
+  "experts": [
+    {
+      "expert": "A",
+      "mean_delta": {
+        "red": -0.10641508549451828,
+        "green": -0.012354839593172073,
+        "blue": 0.03640765696763992,
+        "luminance": -0.0288323312997818,
+        "saturation": -0.17646345496177673,
+        "warmth": -0.19829991459846497
+      }
+    },
+    {
+      "expert": "B",
+      "mean_delta": {
+        "red": -0.06750784069299698,
+        "green": 0.005170173477381468,
+        "blue": 0.010726586915552616,
+        "luminance": -0.009879191406071186,
+        "saturation": -0.046054907143116,
+        "warmth": -0.04740559309720993
+      }
+    },
+    {
+      "expert": "C",
+      "mean_delta": {
+        "red": 0.0018190277041867375,
+        "green": 0.09176644682884216,
+        "blue": 0.09374955296516418,
+        "luminance": 0.0727880597114563,
+        "saturation": -0.2586999535560608,
+        "warmth": -0.21506378054618835
+      }
+    },
+    {
+      "expert": "D",
+      "mean_delta": {
+        "red": 0.11495101451873779,
+        "green": 0.2070215791463852,
+        "blue": 0.14622952044010162,
+        "luminance": 0.18307729065418243,
+        "saturation": -0.17640987038612366,
+        "warmth": -0.19330531358718872
+      }
+    },
+    {
+      "expert": "E",
+      "mean_delta": {
+        "red": 0.06719993054866791,
+        "green": 0.19093845784664154,
+        "blue": 0.0962572991847992,
+        "luminance": 0.15779735147953033,
+        "saturation": -0.07683293521404266,
+        "warmth": -0.19278189539909363
+      }
+    }
+  ],
+  "checkpoint_run": {
+    "source_revision": "575cf72",
+    "checkpoint_sha256": "4b2aba3f17496882c47b11340fabc30ffb93d97672b6c41a7e99dcd7ff734cb4",
+    "device": "CPU",
+    "image_shape": [
+      1,
+      3,
+      256,
+      256
+    ],
+    "map_shape": [
+      1,
+      4,
+      256,
+      256
+    ],
+    "checkpoint_loaded_strictly": true,
+    "runs": [
+      {
+        "name": "zero",
+        "controls": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "seconds": 0.118,
+        "min": 0.0,
+        "max": 0.9110519886016846,
+        "finite": true,
+        "mean_absolute_edit": 0.027538985013961792
+      },
+      {
+        "name": "warm",
+        "controls": [
+          0.1,
+          0,
+          -0.1,
+          0
+        ],
+        "seconds": 0.074,
+        "min": 0.0,
+        "max": 0.9912779331207275,
+        "finite": true,
+        "mean_absolute_edit": 0.03539163991808891
+      },
+      {
+        "name": "cool",
+        "controls": [
+          -0.1,
+          0,
+          0.1,
+          0
+        ],
+        "seconds": 0.072,
+        "min": 0.0,
+        "max": 0.8160808682441711,
+        "finite": true,
+        "mean_absolute_edit": 0.06694575399160385
+      },
+      {
+        "name": "reference",
+        "controls": [
+          0.10980392247438431,
+          0.15921568870544434,
+          0.09882353246212006,
+          0.17192165553569794
+        ],
+        "adapter": {
+          "mode_used": "global-fallback",
+          "matched_regions": [],
+          "global_adjustments": {
+            "red": 0.1568627506494522,
+            "green": 0.22745098173618317,
+            "blue": 0.1411764770746231,
+            "contrast": 0.24560236930847168
+          },
+          "final_global_adjustments": {
+            "red": 0.10980392247438431,
+            "green": 0.15921568870544434,
+            "blue": 0.09882353246212006,
+            "contrast": 0.17192165553569794
+          },
+          "strength": 0.7
+        },
+        "min": 0.0,
+        "max": 1.0,
+        "finite": true,
+        "mean_absolute_edit": 0.1460420936346054
+      }
+    ],
+    "scope": "Demonstration of conditioning with one known image. No held-out performance claim. Reference run uses the expert-D rendition of the same image as an oracle reference."
+  }
+}

@@ -1,0 +1,6 @@
+<script setup>
+const rows=[{label:'Full model',value:26.7,delta:'',color:'#437da0'},{label:'Random references',value:21.9,delta:'−4.8',color:'#aab4b8'},{label:'Equal reference weights',value:25.4,delta:'−1.3',color:'#aab4b8'},{label:'CNN instead of attention',value:24.5,delta:'−2.2',color:'#aab4b8'}]
+</script>
+<template>
+  <figure class="metric-chart"><svg viewBox="0 0 1120 330" role="img" aria-label="Reported PSNR ablation chart. Full model 26.7 dB; random references 21.9; equal weights 25.4; CNN fusion 24.5."><g v-for="tick in [0,5,10,15,20,25,30]" :key="tick"><line :x1="300+tick*23" y1="22" :x2="300+tick*23" y2="287" stroke="#dce1e3"/><text :x="300+tick*23" y="313" text-anchor="middle" class="chart-axis">{{tick}}</text></g><g v-for="(row,i) in rows" :key="row.label"><text x="0" :y="58+i*65" class="chart-label">{{row.label}}</text><rect x="300" :y="30+i*65" :width="row.value*23" height="40" :fill="row.color"/><text :x="310+row.value*23" :y="57+i*65" class="chart-value">{{row.value.toFixed(2)}}</text><text x="1080" :y="57+i*65" text-anchor="end" class="chart-delta">{{row.delta}}</text></g><text x="992" y="313" class="chart-axis">PSNR / dB</text><text x="1080" y="17" text-anchor="end" class="chart-axis">Δ dB</text></svg><figcaption>Run settings and repeated-run uncertainty are not archived.</figcaption></figure>
+</template>

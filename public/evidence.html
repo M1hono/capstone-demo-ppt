@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Preference Enhancement Engine · Evidence companion</title>
+  <style>
+    :root{color-scheme:light;--paper:#f4f6f7;--ink:#1f2a30;--muted:#4a5962;--line:#bcc6cc;--blue:#246389}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 Arial,Helvetica,sans-serif}
+    nav{max-width:1120px;margin:auto;display:flex;gap:28px;padding:24px 32px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+    a{color:var(--blue);text-underline-offset:4px}a:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
+    main{max-width:1120px;margin:auto;padding:0 32px}section{padding:48px 0;border-bottom:1px solid var(--line)}
+    h1{font-size:42px;line-height:1.15;font-weight:500;letter-spacing:-1px;margin:0 0 22px}h2{font-size:29px;line-height:1.2;font-weight:500;margin:0 0 16px}
+    h3{font-size:20px;margin:25px 0 14px}p{max-width:850px;margin:14px 0}.scope{color:var(--muted);font-size:15px}
+    .dataset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:26px 0}figure{margin:0}figure img{display:block;width:100%;height:auto}figcaption{font-size:15px;margin-top:8px}
+    table{border-collapse:collapse;width:100%;font-size:15px;margin:20px 0}th,td{text-align:left;border-bottom:1px solid var(--line);padding:11px 10px}th:first-child,td:first-child{padding-left:0}th{font-weight:600}
+    .full-panel{max-width:720px;margin:24px auto 0}.full-panel img{border:1px solid var(--line)}.wide-panel{margin:28px auto;max-width:1000px}
+    .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px}.facts p{font-size:16px}.facts b{display:block}
+    @media(max-width:700px){main{padding:0 20px}nav{padding:20px}h1{font-size:34px}.dataset-grid{grid-template-columns:repeat(2,1fr)}.facts{grid-template-columns:1fr}table{font-size:12px}th,td{padding:8px 5px}}
+    @page{size:A4 portrait;margin:15mm}
+    @media print{
+      body{background:#fff;font-size:10pt;line-height:1.4;-webkit-print-color-adjust:exact;print-color-adjust:exact}nav{display:none}main{max-width:none;padding:0}
+      section{padding:0;border:0;break-after:page}section:last-child{break-after:auto}h1{font-size:25pt;margin-bottom:5mm}h2{font-size:19pt;margin-bottom:3mm}h3{font-size:12pt;margin:4mm 0 2mm}
+      p{margin:2mm 0}.scope{font-size:9pt}.dataset-grid{gap:3mm;margin:4mm 0}.dataset-grid figcaption{font-size:9pt;margin-top:1mm}
+      table{font-size:9pt;margin:4mm 0}th,td{padding:2mm 1mm}.full-panel{margin:4mm auto 0}.full-panel img{height:230mm;width:auto;max-width:100%;margin:auto;object-fit:contain}
+      .wide-panel{margin:7mm auto}.wide-panel img{max-height:160mm;object-fit:contain}.facts{gap:0 5mm}.facts p{font-size:10pt}a{color:inherit}
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Evidence navigation"><a href="./#/1">Return to the 13-slide presentation</a><a href="./downloads/Evidence-Companion-v4.pdf">Download evidence PDF</a><a href="#flowers">Flowers</a><a href="#dog">Dog</a><a href="#books">Books</a><a href="#comparison">Ablations</a></nav>
+  <main>
+    <section id="dataset">
+      <h1>Preference Enhancement Engine<br>Evidence companion</h1>
+      <p>The full specimens behind the presentation: actual FiveK renditions, newly executed Gen 1 checkpoint outputs, and the team's recorded research figures.</p>
+      <h3>FiveK 0412 · one original, five expert renditions</h3>
+      <div class="dataset-grid">
+        <figure><img src="./assets/fivek/original.png" alt="FiveK flower original"><figcaption>Original · a0412-_DGW6297</figcaption></figure>
+        <figure><img src="./assets/fivek/expert-A.png" alt="Actual Expert A rendition"><figcaption>Expert A</figcaption></figure>
+        <figure><img src="./assets/fivek/expert-B.png" alt="Actual Expert B rendition"><figcaption>Expert B</figcaption></figure>
+        <figure><img src="./assets/fivek/expert-C.png" alt="Actual Expert C rendition"><figcaption>Expert C</figcaption></figure>
+        <figure><img src="./assets/fivek/expert-D.png" alt="Actual Expert D rendition"><figcaption>Expert D</figcaption></figure>
+        <figure><img src="./assets/fivek/expert-E.png" alt="Actual Expert E rendition"><figcaption>Expert E</figcaption></figure>
+      </div>
+      <p class="scope">Original DNG and expert TIFFs from <a href="https://data.csail.mit.edu/graphics/fivek/">MIT–Adobe FiveK</a>. Bychkovsky, Paris, Chan & Durand, CVPR 2011. These expert images are dataset targets.</p>
+      <h3>Actual Gen 1 checkpoint executions · CPU · 256 × 256</h3>
+      <table><thead><tr><th>Control</th><th>RGBC condition</th><th>Output range</th><th>Mean absolute edit</th></tr></thead><tbody>
+        <tr><td>Zero</td><td>0, 0, 0, 0</td><td>0–0.911</td><td>0.027539</td></tr>
+        <tr><td>Warm</td><td>+0.10, 0, −0.10, 0</td><td>0–0.991</td><td>0.035392</td></tr>
+        <tr><td>Cool</td><td>−0.10, 0, +0.10, 0</td><td>0–0.816</td><td>0.066946</td></tr>
+        <tr><td>Expert D reference</td><td>+0.110, +0.159, +0.099, +0.172</td><td>0–1</td><td>0.146042</td></tr>
+      </tbody></table>
+      <p class="scope">All four runs loaded the supplied weights strictly and produced finite outputs. The reference run uses same-scene Expert D with adapter strength 0.7. It illustrates an oracle control, without measuring unrelated-image transfer.</p>
+      <p class="scope">Processing matches the project loader: camera white balance for DNG, 8-bit RGB, Pillow TIFF conversion, 256-square model input. No additional ICC conversion was applied. The TIFF colour profiles and DNG rendering need standardisation before a colour-managed reproduction.</p>
+    </section>
+    <section id="flowers">
+      <h2>Flowers · full recorded diagnostic</h2>
+      <p>PSNR 26.496 dB · SSIM 0.7949. Reference selection shares: 51.17%, 48.83%, 0%.</p>
+      <p class="scope">Shares count query regions selecting a reference. Matching colours and IDs show connected groups of strong attention links. The full supplied figure is unchanged.</p>
+      <figure class="full-panel"><img src="./assets/flowers.jpg" alt="Unmodified flower result, reference attention groups and change diagnostics"></figure>
+    </section>
+    <section id="dog">
+      <h2>Dog · full recorded diagnostic</h2>
+      <p>PSNR 32.761 dB · SSIM 0.9531. Reference selection shares: 0%, 34.38%, 65.62%.</p>
+      <p class="scope">Two references are the same leaf scene with different edits; the third is a lily. This observation motivates testing correspondence across scene categories.</p>
+      <figure class="full-panel"><img src="./assets/dog.jpg" alt="Unmodified dog result with leaf and lily reference diagnostics"></figure>
+    </section>
+    <section id="books">
+      <h2>Books · full recorded diagnostic</h2>
+      <p>PSNR 27.242 dB · SSIM 0.8946. Reference selection shares: 45.61%, 51.95%, 2.44%.</p>
+      <p class="scope">The recorded checkpoint and raw attention tensors are unavailable. Metrics are transcribed from the original figure, with no recalculation from compressed images.</p>
+      <figure class="full-panel"><img src="./assets/books.jpg" alt="Unmodified books result, reference attention groups and change diagnostics"></figure>
+    </section>
+    <section id="comparison">
+      <h2>Reported comparison · original chart</h2>
+      <p>The core deck focuses on the team's three ablations. The original chart is retained here for inspection.</p>
+      <figure class="wide-panel"><img src="./assets/reported-comparison.png" alt="Original team comparison chart with full model, ablations and external methods"></figure>
+      <div class="facts">
+        <p><b>Within-project results</b>Full: 26.70 dB. Random references: 21.90. Equal weights: 25.40. CNN fusion: 24.50.</p>
+        <p><b>Comparison scope</b>Matching training splits, run configurations and random-seed uncertainty are not documented alongside the chart. The external-method entries do not establish a controlled ranking.</p>
+        <p><b>Separate milestone</b>The earlier 26.6 dB / 0.88 SSIM report concerns a separate evaluation scope. It is not the average of the three example panels.</p>
+        <p><b>Reproduction requirement</b>Archive weights, source revision, candidate-pool policy, split IDs and per-image metrics together for the next comparison.</p>
+      </div>
+    </section>
+    <section id="architecture">
+      <h2>Architecture · historical diagram and current contract</h2>
+      <p>The supplied diagram records the team's architecture explanation. The core slides use the currently inspected code where the implementation differs.</p>
+      <figure class="wide-panel"><img src="./assets/architecture.jpg" alt="Unmodified supplied architecture diagram, retained as historical reference"></figure>
+      <div class="facts">
+        <p><b>Paired-edit retrieval</b>Original, expert target and their difference form a nine-channel input. A pooled 64-dimensional descriptor retrieves three pairs and excludes the same original.</p>
+        <p><b>Attention contract</b>At 256 × 256 input, Q/K scoring uses a 32 × 32 grid. Value features retain 64 × 64 resolution. Each query region chooses one reference; spatial correspondence inside a reference remains soft.</p>
+        <p><b>Training objective</b>Supervised RGB L1 plus a 0.001 residual penalty. Candidate embeddings refresh per training chunk. This code does not implement a reinforcement-learning objective.</p>
+        <p><b>Deployment boundary</b>Query expert information still enters retrieval. A persistent user-history store and query-only selection are future integration work. The current web demo uses the separate Gen 1 control network.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
