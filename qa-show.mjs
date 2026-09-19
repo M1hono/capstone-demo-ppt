@@ -21,6 +21,10 @@ for (let i = 1; i <= total; i++) {
   errors.length = 0
   await page.goto(pageUrl(i), { waitUntil: 'networkidle' })
   await page.waitForTimeout(450)
+  await page.waitForFunction(pageNumber => {
+    const slide = document.querySelector(`.slidev-page-${pageNumber} .show-slide`)
+    return slide && [...slide.querySelectorAll('img')].every(image => image.complete)
+  }, i)
   const result = await page.evaluate(async (pageNumber) => {
     const slide = document.querySelector(`.slidev-page-${pageNumber} .show-slide`)
     if (!slide)
