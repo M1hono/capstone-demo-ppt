@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Preference Enhancement Engine · Evidence companion</title>
+  <title>Reference-Guided Retouching · Evidence companion</title>
   <style>
     :root{color-scheme:light;--paper:#f4f6f7;--ink:#1f2a30;--muted:#4a5962;--line:#bcc6cc;--blue:#246389}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 Arial,Helvetica,sans-serif}
@@ -28,11 +28,11 @@
   </style>
 </head>
 <body>
-  <nav aria-label="Evidence navigation"><a href="./#/1">Return to the 13-slide presentation</a><a href="./downloads/Evidence-Companion-v5.pdf">Download evidence PDF</a><a href="#flowers">Flowers</a><a href="#dog">Dog</a><a href="#books">Books</a><a href="#comparison">Ablations</a></nav>
+  <nav aria-label="Evidence navigation"><a href="./#/1">Return to the 13-slide presentation</a><a href="./downloads/Evidence-Companion-v6.pdf">Download evidence PDF</a><a href="#flowers">Flowers</a><a href="#dog">Dog</a><a href="#books">Books</a><a href="#comparison">Ablations</a></nav>
   <main>
     <section id="dataset">
-      <h1>Preference Enhancement Engine<br>Evidence companion</h1>
-      <p>The full specimens behind the presentation: actual FiveK renditions, newly executed Gen 1 checkpoint outputs, and the team's recorded research figures.</p>
+      <h1>Reference-Guided Retouching<br>Evidence companion</h1>
+      <p>The specimens behind the presentation: FiveK editing targets, checkpoint outputs from the control demo, and recorded reference-model experiments.</p>
       <h3>FiveK 0412 · one original, five expert renditions</h3>
       <div class="dataset-grid">
         <figure><img src="./assets/fivek/original.png" alt="FiveK flower original"><figcaption>Original · a0412-_DGW6297</figcaption></figure>
@@ -56,13 +56,13 @@
     <section id="flowers">
       <h2>Flowers · full recorded diagnostic</h2>
       <p>PSNR 26.496 dB · SSIM 0.7949. Reference selection shares: 51.17%, 48.83%, 0%.</p>
-      <p class="scope">Shares count query regions selecting a reference. Matching colours and IDs show connected groups of strong attention links. The full supplied figure is unchanged.</p>
+      <p class="scope">Shares count query regions selecting a reference. Matching colours and IDs show connected groups of strong attention links. This record has no archived checkpoint or run version.</p>
       <figure class="full-panel"><img src="./assets/flowers.jpg" alt="Unmodified flower result, reference attention groups and change diagnostics"></figure>
     </section>
     <section id="dog">
       <h2>Dog · full recorded diagnostic</h2>
       <p>PSNR 32.761 dB · SSIM 0.9531. Reference selection shares: 0%, 34.38%, 65.62%.</p>
-      <p class="scope">Two references are the same leaf scene with different edits; the third is a lily. This observation motivates testing correspondence across scene categories.</p>
+      <p class="scope">Two references show the same leaves with different edits; the third is a lily. The record illustrates correspondence across scenes; its checkpoint and run version are unarchived.</p>
       <figure class="full-panel"><img src="./assets/dog.jpg" alt="Unmodified dog result with leaf and lily reference diagnostics"></figure>
     </section>
     <section id="books">

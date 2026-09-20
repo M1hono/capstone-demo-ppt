@@ -1,6 +1,6 @@
 ---
 theme: default
-title: Preference Enhancement Engine
+title: Reference-Guided Retouching
 info: SOFT3888 client deployment review, September 2026
 author: SOFT3888 project team
 aspectRatio: 16/9
@@ -15,24 +15,24 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Preference-Enhancement-Engine-v8
+exportFilename: Reference-Guided-Retouching-v9
 ---
 
 <section class="show-slide cover-slide">
-  <div class="cover-copy"><h1>Preference<br>Enhancement<br>Engine</h1><p>From editing preferences<br>to an inspectable result.</p><div class="identity"><b>Client deployment review</b><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
-  <div class="cover-object"><Scene :act="0"/><p class="object-caption"><b>How it works · What the evidence shows</b></p></div>
+  <div class="cover-copy"><h1>Reference<br>Guided<br>Retouching</h1><p>Learn from original–edited pairs.<br>Select references. Transfer edits.</p><div class="identity"><b>Client deployment review</b><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
+  <div class="cover-object"><Scene :act="0"/><p class="object-caption"><b>Current editor · reference research · recorded results</b></p></div>
   <div class="cover-names">Yuchen Deng · Gary Xu · Sihan Fang · Yiming Chen · Yiheng Guo<br>Lunyan Wang · Weishao Su · XingTang Chen · Zihao Zhang</div>
   <DeckFooter :page="1" :active="0" scope="Client review"/>
 </section>
 
 <!--
-Open with the engineering object. The deployed editor takes explicit controls; the research cartridge learns which reference edit information is relevant. This presentation uses the full-edit research baseline at 767cae8; partial-edit conditioning is reserved for the next-step slide. These are related implementations, not a claim that cross-attention is already connected to the current web demo. The 13-slide core is followed by a separate evidence companion.
+Open with the engineering object. The deployed editor takes explicit controls; the research cartridge learns which reference edit information is relevant. This presentation uses the full-edit research baseline at 767cae8; partial-edit conditioning is reserved for the next-step slide. These are related implementations, not a claim that cross-attention is already connected to the current web demo. The cover presents reference-guided retouching as the current research task. The 3D anatomy depicts the existing control editor; it does not imply that a personal history agent is integrated. Pages 3–5 demonstrate that editor, pages 6–9 explain the research baseline, pages 8 and 10 inspect records of unarchived run versions, and page 13 contains the new proposal. The 13-slide core is followed by a separate evidence companion.
 -->
 
 ---
 
 <section class="show-slide">
-  <h2>One image. Five expert edits.</h2><p class="subtitle">FiveK holds the scene constant and varies the editing target.</p>
+  <h2>The same photo has five editing targets.</h2><p class="subtitle">FiveK supplies paired examples of how the same image can be edited.</p>
   <ExpertStudy/>
   <p class="slide-note">MIT–Adobe FiveK · Bychkovsky et al., CVPR 2011</p>
   <DeckFooter :page="2" :active="0" scope="FiveK · original + experts"/>
@@ -45,11 +45,11 @@ All six photos are fetched from the official MIT–Adobe FiveK dataset. This is 
 ---
 
 <section class="show-slide">
-  <h2>Three controls. One DiffMap.</h2><p class="subtitle">Each request becomes spatial controls for red, green, blue and contrast.</p>
-  <div class="input-routes"><div><b>Text preference</b><span>Regions + language labels<br>→ numeric edits</span></div><div><b>Reference image <em>Experimental</em></b><span>RGB + contrast statistics<br>→ bounded edits</span></div><div><b>Region fine tune</b><span>Region mask + RGBC sliders<br>→ feathered edits</span></div></div>
+  <h2>The current editor follows explicit controls.</h2><p class="subtitle">Text, a reference image or region sliders produce a four-channel DiffMap.</p>
+  <div class="input-routes"><div><b>Text request</b><span>Regions + language labels<br>→ numeric edits</span></div><div><b>Reference image <em>Experimental</em></b><span>RGB + contrast statistics<br>→ bounded edits</span></div><div><b>Region fine tune</b><span>Region mask + RGBC sliders<br>→ feathered edits</span></div></div>
   <Scene :act="2" class="wide-engine"/>
   <div class="contract-line"><b>RGB input</b><span>+</span><b>P = [ΔR, ΔG, ΔB, ΔContrast]</b><span>→</span><b>7-channel residual CNN</b><span>→</span><b>Output</b></div>
-  <DeckFooter :page="3" :active="1" scope="Gen 1 · current demo"/>
+  <DeckFooter :page="3" :active="1" scope="Current demo · explicit controls"/>
 </section>
 
 <!--
@@ -59,9 +59,9 @@ Text uses semantic segmentation plus constrained label generation and determinis
 ---
 
 <section class="show-slide">
-  <h2>See what the controls change.</h2><p class="subtitle">One FiveK image and one checkpoint, replayed with four control settings.</p>
+  <h2>Inspect the current editor’s output.</h2><p class="subtitle">Saved checkpoint runs show what four explicit control settings change.</p>
   <Workbench initial="warm"/>
-  <DeckFooter :page="4" :active="2" scope="Gen 1 · checkpoint replay"/>
+  <DeckFooter :page="4" :active="1" scope="Current demo · checkpoint replay"/>
 </section>
 
 <!--
@@ -71,10 +71,10 @@ This workbench replays newly executed CPU inference using the exact repository P
 ---
 
 <section class="show-slide">
-  <h2>Select a region. Refine the edit.</h2><p class="subtitle">The current demo exposes the plan before the next render.</p>
+  <h2>The editor exposes each requested adjustment.</h2><p class="subtitle">This is the current demo; learned reference retrieval is a separate research model.</p>
   <div class="app-evidence"><img src="/assets/web-demo.jpg" alt="Supplied web demo screenshot, person region selected, red plus 0.08 and blue minus 0.08"/><aside><h3>Person region</h3><dl class="spec-list"><dt>Red / Blue</dt><dd>+0.08 / −0.08</dd><dt>Green / Contrast</dt><dd>0.00 / 0.00</dd></dl><p>Adjust → render → compare</p></aside></div>
   <div class="acceptance-row"><span><b>US01–04</b> Upload & controls</span><span><b>US05 · 08</b> Region edits</span><span><b>US06–07</b> Compare & download</span><span><b>US09–10</b> Quality: open</span></div>
-  <DeckFooter :page="5" :active="2" scope="Gen 1 · demo capture"/>
+  <DeckFooter :page="5" :active="1" scope="Current demo · interface capture"/>
 </section>
 
 <!--
@@ -84,9 +84,9 @@ This is an actual supplied demo screenshot, not the separate Retouch Lab UX mock
 ---
 
 <section class="show-slide">
-  <h2>Learn which reference edits to retrieve.</h2><p class="subtitle">The full target edit guides retrieval; training updates the descriptors.</p>
+  <h2>Retrieve references from the full edit.</h2><p class="subtitle">Use the original and its full expert target to find similar editing examples.</p>
   <LearningMechanism/>
-  <DeckFooter :page="6" :active="1" scope="Gen 3 · baseline training"/>
+  <DeckFooter :page="6" :active="2" scope="Research · full-target retrieval"/>
 </section>
 
 <!--
@@ -98,9 +98,9 @@ The animation illustrates the source retrieval rule using the flower example’s
 ---
 
 <section class="show-slide">
-  <h2>Choose a reference. Then transfer its edit.</h2><p class="subtitle">Choose one reference per region; softly match positions within it.</p>
+  <h2>Match the original to the selected references.</h2><p class="subtitle">The image encoder sees RGB; reference pairs supply the edits to transfer.</p>
   <DecisionMechanism/>
-  <DeckFooter :page="7" :active="1" scope="Gen 3 · baseline mechanism"/>
+  <DeckFooter :page="7" :active="3" scope="Research · RGB + reference pairs"/>
 </section>
 
 <!--
@@ -110,13 +110,13 @@ The supplied dyNAmic Transfer Touch architecture diagram is the conceptual refer
 ---
 
 <section class="show-slide">
-  <h2>Find useful edits across different scenes.</h2><p class="subtitle">Recorded attention links query regions to reference edit pairs.</p>
+  <h2>Find useful edits across different scenes.</h2><p class="subtitle">Recorded correspondences; the experiment version is unarchived.</p>
   <AttentionWorkbench sample="dog" :initial="2"/>
-  <DeckFooter :page="8" :active="1" scope="Gen 3 · recorded attention"/>
+  <DeckFooter :page="8" :active="3" scope="Recorded diagnostic · version unconfirmed"/>
 </section>
 
 <!--
-The dog scene is FiveK 0407. Two references show the same leaves (0476) with different expert edits; shares are 0% and 34.38%. The lily (0417) receives 65.62%. These observations motivate soft retouching-role correspondence: useful edits need not come from identical object categories. They do not prove that the model understands roles or outperforms semantic matching. That needs a controlled comparison. The 767cae8 baseline computes absolute scaled QK logits, chooses each region's reference using max over reference positions of head-mean logits, and uses per-head softmax over positions within that chosen reference. Hard reference selection and soft correspondence coexist.
+The experiment version for this supplied diagnostic is unarchived. It cannot be labelled a verified run of the 767cae8 baseline or the newer partial-edit model. It is used here to inspect recorded correspondences. The dog scene is FiveK 0407. Two references show the same leaves (0476) with different expert edits; shares are 0% and 34.38%. The lily (0417) receives 65.62%. These observations motivate soft retouching-role correspondence: useful edits need not come from identical object categories. They do not prove that the model understands roles or outperforms semantic matching. That needs a controlled comparison. The 767cae8 baseline computes absolute scaled QK logits, chooses each region's reference using max over reference positions of head-mean logits, and uses per-head softmax over positions within that chosen reference. Hard reference selection and soft correspondence coexist.
 
 The flower record is now available through the Flowers tab on the following evidence slide. Query 0412 matches the flower scene; references 0406, 0426 and 0490 were visually matched to official FiveK thumbnails. The reported shares are 51.17%, 48.83%, and 0%. These are the mean one-hot reference selections across query positions, not global mixture weights, attention probabilities, semantic coverage, or confidence scores. The red overlays are connected groups of strong attention links. They are not the hard selection masks. The original diagnostic uses matching colours and IDs; cropping retains the unmodified overlay. The raw tensor and original checkpoint are unavailable, so the browser does not invent spatial attention values.
 
@@ -126,9 +126,9 @@ The reference expert panel wipes between the actual recorded reference original 
 ---
 
 <section class="show-slide">
-  <h2>Assemble local edits. Learn from the result.</h2><p class="subtitle">The loss updates the network before references are retrieved again.</p>
+  <h2>Fit the complete expert edit.</h2><p class="subtitle">Whole-image supervision trains the renderer, attention and encoders.</p>
   <RenderMechanism/>
-  <DeckFooter :page="9" :active="3" scope="Gen 3 · baseline + recorded maps"/>
+  <DeckFooter :page="9" :active="3" scope="Research · whole-image training"/>
 </section>
 
 <!--
@@ -138,10 +138,10 @@ The 767cae8 baseline uses 32×32 Q/K scoring with a 256×256 input, while encode
 ---
 
 <section class="show-slide">
-  <h2>Compare the image and the score.</h2><p class="subtitle">Three recorded examples, each with its own editing target.</p>
+  <h2>What the recorded outputs show.</h2><p class="subtitle">Compare saved experimental outputs with their expert targets.</p>
   <ResultsGallery/>
-  <div class="metric-context"><div><b>Metric scope</b><p>Expert-target similarity.<br>Each score describes one image.</p></div><div><b>Earlier milestone</b><p><strong>26.6 dB · 0.88 SSIM</strong><br>Separate evaluation subset.</p></div><div><b>Next evaluation</b><p>Archive checkpoints and splits.<br>Repeat the comparison.</p></div></div>
-  <DeckFooter :page="10" :active="4" scope="Gen 3 · recorded samples"/>
+  <div class="metric-context"><div><b>Recorded result scope</b><p>Per-image target similarity.<br>Run versions are not archived.</p></div><div><b>Earlier milestone</b><p><strong>26.6 dB · 0.88 SSIM</strong><br>Separate evaluation subset.</p></div><div><b>Next evaluation</b><p>Archive checkpoints and splits.<br>Repeat the comparison.</p></div></div>
+  <DeckFooter :page="10" :active="4" scope="Recorded samples · version unconfirmed"/>
 </section>
 
 <!--
@@ -151,10 +151,10 @@ Flowers: 26.496 dB / 0.7949. Dog: 32.761 / 0.9531. Books: 27.242 / 0.8946. Value
 ---
 
 <section class="show-slide">
-  <h2>Random references show the largest drop.</h2><p class="subtitle">Earlier team-reported ablations, measured in PSNR.</p>
+  <h2>Which parts improved the reported score?</h2><p class="subtitle">Chart archived 17 September · team-reported ablations.</p>
   <MetricChart/>
   <div class="ablation-reading"><p><b>Retrieve</b><span>Choose relevant reference edits.</span></p><p><b>Select</b><span>Choose a reference per region.</span></p><p><b>Transfer</b><span>Align useful editing features.</span></p></div>
-  <DeckFooter :page="11" :active="4" scope="Gen 3 · reported ablations"/>
+  <DeckFooter :page="11" :active="4" scope="Earlier experiment · reported ablations"/>
 </section>
 
 <!--
@@ -164,10 +164,10 @@ Transcribed from the research branch comparison figure: full 26.70; random group
 ---
 
 <section class="show-slide">
-  <h2>Two limits define the next tests.</h2><p class="subtitle">The current demo and the full-edit research baseline each expose a limit.</p>
-  <div class="boundary-layout"><div class="zero-observation"><div class="boundary-heading"><b>Zero control still changes pixels</b><span>Measured</span></div><div class="zero-pair"><figure><img src="/assets/fivek/cnn-input.png" alt="Actual FiveK input"/><figcaption>Original</figcaption></figure><figure><img src="/assets/fivek/cnn-zero.png" alt="Actual zero conditioning output"/><figcaption>Zero RGBC output</figcaption></figure></div><p>Mean absolute edit: <b>0.0275</b> on [0, 1].<br>Next: identity and protected-region tests.</p></div><div class="retrieval-boundary"><h3>Retrieval uses the full target</h3><div class="leakage-flow"><span>Query original + <b>full expert target</b></span><i>↓</i><span>Retrieval descriptor → top 3 pairs</span><i>↓</i><span>Original + reference pairs → renderer</span></div><p>Next: retrieve from partial edits<br>and a user’s own history.</p><p class="small">Validate the new route separately from this baseline.</p></div></div>
+  <h2>What this version still cannot establish.</h2><p class="subtitle">The editor and the research model have different remaining tests.</p>
+  <div class="boundary-layout"><div class="zero-observation"><div class="boundary-heading"><b>Zero control still changes pixels</b><span>Measured</span></div><div class="zero-pair"><figure><img src="/assets/fivek/cnn-input.png" alt="Actual FiveK input"/><figcaption>Original</figcaption></figure><figure><img src="/assets/fivek/cnn-zero.png" alt="Actual zero conditioning output"/><figcaption>Zero RGBC output</figcaption></figure></div><p>Mean absolute edit: <b>0.0275</b> on [0, 1].<br>Next: identity and protected-region tests.</p></div><div class="retrieval-boundary"><h3>Full target required for retrieval</h3><div class="leakage-flow"><span>Query original + <b>full expert target</b></span><i>↓</i><span>Retrieval descriptor → top 3 pairs</span><i>↓</i><span>Original + reference pairs → renderer</span></div><p>Test retrieval with information<br>available at deployment.</p><p class="small">The recorded result figures do not resolve this dependency.</p></div></div>
   <div class="verification-strip"><b>Verified here</b><span>Checkpoint load · finite output</span><b>Demo-day checks</b><span>API · text · reference · region</span></div>
-  <DeckFooter :page="12" :active="4" scope="Gen 1 test · Gen 3 baseline"/>
+  <DeckFooter :page="12" :active="4" scope="Current demo · research limits"/>
 </section>
 
 <!--
@@ -177,10 +177,10 @@ New CPU run measured mean absolute edit 0.027538985 under a zero conditioning ma
 ---
 
 <section class="show-slide closing-slide">
-  <h2>Next: complete edits from user history.</h2><p class="subtitle">Partial-edit prototype; user-history validation and demo integration are next.</p>
-  <div class="next-layout"><div><Scene :act="12"/><p class="object-caption">Partial edits + reference retrieval<br><b>Integration and validation next.</b></p></div><div class="decision-sequence"><div><span>01</span><p><b>Keep the requested edit</b>Use local edits as the retrieval clue.</p></div><div><span>02</span><p><b>Complete the other regions</b>Retrieve examples from one user’s history.</p></div><div><span>03</span><p><b>Test the history contribution</b>Compare matched, shuffled and no-history inputs.</p></div></div></div>
+  <h2>Next: use partial edits to guide completion.</h2><p class="subtitle">Partial edits + user history: a prototype for the next phase.</p>
+  <div class="next-layout"><div><Scene :act="12"/><p class="object-caption">Connect the editor and reference model<br><b>Next-phase integration.</b></p></div><div class="decision-sequence"><div><span>01</span><p><b>Preserve the specified edit</b>Use explicit edits as retrieval clues.</p></div><div><span>02</span><p><b>Complete unspecified regions</b>Reuse relevant edits from this user’s history.</p></div><div><span>03</span><p><b>Prove the history helps</b>Compare correct, shuffled and no-history inputs.</p></div></div></div>
   <div class="client-decision"><b>Next checks</b><span>Completion quality</span><span>Edit preservation</span><span>History contribution</span></div>
-  <DeckFooter :page="13" :active="4" scope="Next step · partial-edit prototype"/>
+  <DeckFooter :page="13" :active="4" scope="Next phase · partial-edit prototype"/>
 </section>
 
 <!--

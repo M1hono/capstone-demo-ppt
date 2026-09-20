@@ -2,20 +2,13 @@
 import { usePresentationPlayback } from '../composables/usePresentationPlayback'
 const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume,seek}=usePresentationPlayback([300,1400,2800,4100,5500])
 const base=import.meta.env.BASE_URL
-const captions=[
-  'Start with the current image and a retrieved original–expert pair.',
-  'Compare the query features with the editing features of each reference.',
-  'For each query region, give every reference a relevance score.',
-  'The highest score selects one reference for this region.',
-  'Within that reference, softly combine editing features across positions.',
-  'Repeat for every reference and query region to assemble F.',
-]
+const captions=['After retrieval, encode the original RGB and each reference edit pair.','Compare image features with reference edit features through Q and K.','Score every reference at each query position.','Select one reference per position with the highest score.','Within that reference, softly combine edits from matching positions.','Assemble the selected editing features into a local field F.']
 </script>
 <template>
   <div class="decision-mechanism motion-scene" :data-stage="stage" :data-playing="playing" :data-run="runId">
     <svg viewBox="0 0 1168 440" role="img" aria-label="Source-defined attention: score each reference per query region, select the strongest reference, and use spatial softmax to combine its editing features.">
       <defs><marker id="decision-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path pathLength="1" d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs>
-      <g class="decision-photo"><text x="82" y="20" text-anchor="middle">Current image</text><image :href="`${base}assets/evidence/flowers-original.png`" x="0" y="37" width="164" height="164"/><text x="82" y="225" text-anchor="middle" class="diagram-small">Image encoder → Q</text></g>
+      <g class="decision-photo"><text x="82" y="20" text-anchor="middle">Current image</text><image :href="`${base}assets/evidence/flowers-original.png`" x="0" y="37" width="164" height="164"/><text x="82" y="225" text-anchor="middle" class="diagram-small">RGB encoder → Q</text></g>
       <g class="decision-photo"><text x="1011" y="20" text-anchor="middle">Retrieved reference pair</text><image :href="`${base}assets/evidence/flowers-ref1-original.png`" x="864" y="37" width="142" height="142"/><image :href="`${base}assets/evidence/flowers-ref1-expert.png`" x="1020" y="37" width="142" height="142"/><text x="935" y="200" text-anchor="middle" class="diagram-small">Original</text><text x="1091" y="200" text-anchor="middle" class="diagram-small">Expert edit</text><text x="1011" y="229" text-anchor="middle" class="diagram-small">Edit encoder → K, V</text></g>
       <g class="logic-path" :class="{'is-on':stage>=1}"><path pathLength="1" d="M180 119 H380"/><path pathLength="1" d="M848 119 H668"/><text x="275" y="104" text-anchor="middle">Q</text><text x="758" y="104" text-anchor="middle">Kᵣ</text></g>
       <g class="attention-matrix" :class="{'is-on':stage>=1}"><rect x="392" y="33" width="258" height="180" rx="2"/><text x="521" y="59" text-anchor="middle">Attention for reference r</text><g v-for="row in 5" :key="row"><rect v-for="column in 8" :key="column" :x="424+(column-1)*24" :y="76+(row-1)*18" width="21" height="15" class="matrix-cell" :class="{'query-row':row===3 && stage>=2}"/></g><text x="411" y="122" text-anchor="middle" class="query-symbol" :class="{'is-on':stage>=2}">q</text><text x="521" y="191" text-anchor="middle" class="diagram-small">Lᵣ = |QKᵣᵀ / √d|</text></g>
@@ -26,6 +19,6 @@ const captions=[
       <g class="logic-path" :class="{'is-on':stage>=5}"><path pathLength="1" d="M311 393 V416 H488"/><path pathLength="1" d="M827 393 V416 H648"/></g><g class="local-feature" :class="{'is-on':stage>=5}"><rect x="493" y="393" width="150" height="43" rx="2"/><text x="568" y="421" text-anchor="middle">Local edit F(q)</text></g>
     </svg>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>
-    <p class="mechanism-provenance">Baseline mechanism · symbolic matrix · photos from the recorded flower example</p>
+    <p class="mechanism-provenance">Baseline inputs: original RGB + retrieved pairs · attention matrix is schematic</p>
   </div>
 </template>

@@ -36,7 +36,7 @@ function createEngine() {
   for (const x of [-5.3, 5.3]) for (const z of [-1.3, 1.3]) box(.38, .2, .36, palette.graphite, product, x, -.4, z)
   // Directional signal bus is functional geometry, not an animated particle field.
   box(10.6, .025, .07, palette.blue, product, 0, .035, 1.24)
-  const labels = ['INPUT', 'PREFERENCE', 'DIFFMAP', 'RESIDUAL CNN', 'OUTPUT']
+  const labels = ['INPUT', 'CONTROLS', 'DIFFMAP', 'RESIDUAL CNN', 'OUTPUT']
   const positions = [-4.65, -2.35, 0, 2.35, 4.65]
   function label(text, group, y=.18) {
     const canvas = document.createElement('canvas'); canvas.width=512; canvas.height=80
