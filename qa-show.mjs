@@ -3,7 +3,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 
 const base = process.env.SHOW_BASE ?? 'http://localhost:18335'
 const pageUrl = slide => `${base}/${process.env.SHOW_ROUTER === 'hash' ? '#/' : ''}${slide}`
-const total = 9
+const total = 8
 const output = new URL('./exports/previews/', import.meta.url)
 await mkdir(output, { recursive: true })
 const browser = await chromium.launch({ headless: true })
@@ -76,9 +76,6 @@ await page.goto(pageUrl(5), { waitUntil: 'networkidle' })
 await page.locator('.slidev-page-5').getByRole('button', { name: 'Flowers', exact: true }).click()
 await page.locator('.slidev-page-5').getByRole('button', { name: /0490/ }).click()
 if (!await page.locator('.slidev-page-5 .attention-images img').first().getAttribute('src').then(src=>src.includes('ref3'))) throw new Error('Attention reference switch failed')
-await page.goto(pageUrl(7), { waitUntil: 'networkidle' })
-await page.locator('.slidev-page-7').getByRole('button', { name: /Dog/ }).click()
-if (!await page.locator('.slidev-page-7 .evidence-plate figcaption').textContent().then(text=>text.includes('32.761'))) throw new Error('Sample metric switch failed')
 await writeFile(new URL('./exports/qa.json', import.meta.url), JSON.stringify(report, null, 2))
 
 await browser.close()

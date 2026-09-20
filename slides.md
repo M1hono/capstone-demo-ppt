@@ -1,7 +1,7 @@
 ---
 theme: default
 title: Reference-Guided Retouching
-info: SOFT3888 client deployment review, September 2026
+info: SOFT3888 technical walkthrough, September 2026
 author: SOFT3888 project team
 aspectRatio: 16/9
 canvasWidth: 1280
@@ -15,28 +15,28 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v15
+exportFilename: Reference-Guided-Retouching-v16
 ---
 
 <section class="show-slide cover-slide">
-  <div class="cover-copy"><h1>Reference<br>Guided<br>Retouching</h1><p>Learn from original–edited pairs.<br>Select references. Transfer edits.</p><div class="identity"><b>Client deployment review</b><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
-  <div class="cover-object"><Scene :act="0"/><p class="object-caption"><b>Reference retrieval · regional transfer · recorded results</b></p></div>
+  <div class="cover-copy"><h1>Reference<br>Guided<br>Retouching</h1><p>Dynamic grouping → regional attention<br>→ residual enhancement.</p><div class="identity"><b>Technical walkthrough</b><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
+  <div class="cover-object"><Scene :act="0"/><p class="object-caption"><b>Paired edits · reference selection · residual prediction</b></p></div>
   <div class="cover-names">Yuchen Deng · Gary Xu · Sihan Fang · Yiming Chen · Yiheng Guo<br>Lunyan Wang · Weishao Su · XingTang Chen · Zihao Zhang</div>
-  <DeckFooter :page="1" :active="0" scope="Client review"/>
+  <DeckFooter :page="1" :active="0" scope="Technical walkthrough"/>
 </section>
 
 <!--
 Open with the reference-guided research system: original–edited pairs provide editing evidence, retrieval forms a reference group, cross-attention finds useful regional changes, and the CNN produces the output. The cover is a conceptual physical cutaway, not an exact tensor or layer-count diagram. This presentation uses the full-edit research baseline at 767cae8. The old task setting uses one shared network to group examples; one group simulates one user.
 
-Page 2 establishes this grouping task, page 3 introduces the paired FiveK data, and pages 4–6 explain regional transfer and training. Pages 5 and 7 inspect recorded experiments with unarchived run versions; page 8 shows the earlier reported ablations. Page 9 reserves text-guided partial edits and history-based completion for the next phase. The core contains nine slides, with a separate research evidence companion. The control-demo architecture, interface, checkpoint replay and zero-control observation are outside this presentation.
+Page 2 establishes grouping, page 3 introduces paired FiveK data, and pages 4–6 explain regional transfer and supervision. Page 5 inspects recorded reference choices and attention links with an unarchived run version; page 7 shows the earlier reported ablations. Page 8 reserves text-guided partial edits and history-based completion for the next phase. The technical walkthrough contains eight slides, with full recorded outputs in the separate research evidence companion. The control-demo architecture, interface, checkpoint replay and zero-control observation are outside this presentation.
 -->
 
 ---
 
 <section class="show-slide">
-  <h2>Group editing examples to simulate users.</h2><p class="subtitle">The same network forms groups and learns how to edit within them.</p>
+  <h2>Dynamic grouping from paired edits.</h2><p class="subtitle">Shared edit encoder → mean pooling → Euclidean top-3.</p>
   <LearningMechanism/>
-  <DeckFooter :page="2" :active="0" scope="Old approach · dynamic user groups"/>
+  <DeckFooter :page="2" :active="0" scope="Grouping · one group simulates one user"/>
 </section>
 
 <!--
@@ -48,7 +48,7 @@ The animation illustrates the source retrieval rule using the flower example’s
 ---
 
 <section class="show-slide">
-  <h2>The same photo has five editing targets.</h2><p class="subtitle">FiveK supplies paired examples of how the same image can be edited.</p>
+  <h2>FiveK: one original, five expert targets.</h2><p class="subtitle">Paired samples (I, T) provide supervised edits.</p>
   <ExpertStudy/>
   <p class="slide-note">MIT–Adobe FiveK · Bychkovsky et al., CVPR 2011</p>
   <DeckFooter :page="3" :active="1" scope="FiveK · original + experts"/>
@@ -61,9 +61,9 @@ All six photos are fetched from the official MIT–Adobe FiveK dataset. This is 
 ---
 
 <section class="show-slide">
-  <h2>Learn regional edits within a group.</h2><p class="subtitle">Cross-attention finds how the group’s reference edits can guide each input region.</p>
+  <h2>Regional reference selection and transfer.</h2><p class="subtitle">Hard reference selection; soft spatial correspondence.</p>
   <DecisionMechanism/>
-  <DeckFooter :page="4" :active="2" scope="Old approach · regional cross-attention"/>
+  <DeckFooter :page="4" :active="2" scope="Regional cross-attention"/>
 </section>
 
 <!--
@@ -73,9 +73,9 @@ The supplied dyNAmic Transfer Touch architecture diagram is the conceptual refer
 ---
 
 <section class="show-slide">
-  <h2>Find useful edits across different scenes.</h2><p class="subtitle">Recorded correspondences; the experiment version is unarchived.</p>
+  <h2>Different regions select different references.</h2><p class="subtitle">Recorded reference choices and attention links.</p>
   <AttentionWorkbench sample="dog" :initial="2"/>
-  <DeckFooter :page="5" :active="2" scope="Recorded diagnostic · version unconfirmed"/>
+  <DeckFooter :page="5" :active="2" scope="Recorded diagnostic · run unarchived"/>
 </section>
 
 <!--
@@ -89,9 +89,9 @@ The reference expert panel wipes between the actual recorded reference original 
 ---
 
 <section class="show-slide">
-  <h2>Train grouping and enhancement together.</h2><p class="subtitle">The editing loss updates the network that also forms the groups.</p>
+  <h2>Residual enhancement and training.</h2><p class="subtitle">RGB + edit features → bounded residual → full-image loss.</p>
   <RenderMechanism/>
-  <DeckFooter :page="6" :active="2" scope="Research · whole-image training"/>
+  <DeckFooter :page="6" :active="2" scope="Residual prediction · full-image supervision"/>
 </section>
 
 <!--
@@ -101,23 +101,10 @@ The 767cae8 baseline uses 32×32 Q/K scoring with a 256×256 input, while encode
 ---
 
 <section class="show-slide">
-  <h2>What the recorded outputs show.</h2><p class="subtitle">Compare saved experimental outputs with their expert targets.</p>
-  <ResultsGallery/>
-  <div class="metric-context"><div><b>Recorded result scope</b><p>Per-image target similarity.<br>Run versions are not archived.</p></div><div><b>Earlier milestone</b><p><strong>26.6 dB · 0.88 SSIM</strong><br>Separate evaluation subset.</p></div><div><b>Reading the evidence</b><p>Compare the saved outputs.<br>Keep each score in context.</p></div></div>
-  <DeckFooter :page="7" :active="3" scope="Recorded samples · version unconfirmed"/>
-</section>
-
-<!--
-Flowers: 26.496 dB / 0.7949. Dog: 32.761 / 0.9531. Books: 27.242 / 0.8946. Values are transcribed from the team's unmodified example panels, not recalculated from JPEGs. The supplied panels do not establish sample count, model checkpoint or aggregate evaluation protocol. Their scores are not evidence for the new partial-edit training setup or for long-term user preference learning. The earlier report's 26.6 / 0.88 is separate from the Gen 3 comparison chart's 26.70; never average or conflate these records. No claims about dataset-wide performance or new controlled experiments are made.
--->
-
----
-
-<section class="show-slide">
-  <h2>Which parts improved the reported score?</h2><p class="subtitle">Chart archived 17 September · team-reported ablations.</p>
+  <h2>Component ablations.</h2><p class="subtitle">Reported PSNR · chart archived 17 September.</p>
   <MetricChart/>
-  <div class="ablation-reading"><p><b>Group</b><span>Group similar editing examples.</span></p><p><b>Select</b><span>Choose a reference per region.</span></p><p><b>Transfer</b><span>Align useful editing features.</span></p></div>
-  <DeckFooter :page="8" :active="3" scope="Earlier experiment · reported ablations"/>
+  <div class="ablation-reading"><p><b>Group</b><span>Nearest-reference retrieval.</span></p><p><b>Select</b><span>One reference per query position.</span></p><p><b>Transfer</b><span>Spatial attention over edit features.</span></p></div>
+  <DeckFooter :page="7" :active="3" scope="Earlier experiment · reported ablations"/>
 </section>
 
 <!--
@@ -127,9 +114,9 @@ Transcribed from the research branch comparison figure: full 26.70; random group
 ---
 
 <section class="show-slide closing-slide">
-  <h2>Next: text requests and partial edits.</h2><p class="subtitle">Specify part of the edit. Use history to complete the rest.</p>
+  <h2>Next: text-guided partial edits.</h2><p class="subtitle">Partial edit → retrieve similar edits → complete unspecified regions.</p>
   <NextStepMechanism/>
-  <DeckFooter :page="9" :active="4" scope="Next phase · text + partial edits"/>
+  <DeckFooter :page="8" :active="4" scope="Next phase · text + partial edits"/>
 </section>
 
 <!--

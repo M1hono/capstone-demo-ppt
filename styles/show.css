@@ -290,8 +290,6 @@ html,body,#app { background:var(--paper); color:var(--ink); font-family:Arial,He
 .attention-workbench[data-stage="0"] :is(.attention-original,.attention-expert) { opacity:.18; transform:translateX(13px) rotateY(-8deg); }
 .attention-workbench[data-stage="1"] :is(.attention-original,.attention-expert) { transform:translateY(-5px) rotateY(-3deg); }
 .attention-workbench[data-stage="2"] .attention-query { transform:translateY(-5px); }
-.attention-workbench[data-stage="2"] .attention-explanation { opacity:.2; }
-.attention-workbench[data-stage="0"] .attention-explanation,.attention-workbench[data-stage="1"] .attention-explanation { opacity:0; }
 .attention-explanation { transition:opacity 220ms var(--ease); }
 .correspondence-bracket { height:11px; margin:9px 12% -15px; border:1px solid var(--blue); border-top:0; transform:scaleX(0); opacity:0; transform-origin:center; transition:transform 260ms var(--ease),opacity 180ms var(--ease); }
 .attention-workbench:is([data-stage="3"],[data-stage="4"]) .correspondence-bracket { transform:scaleX(1); opacity:.65; }

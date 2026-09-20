@@ -3,7 +3,7 @@ import { usePresentationPlayback } from '../composables/usePresentationPlayback'
 const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume}=usePresentationPlayback([350,1450,2600,3750,5100])
 const base=import.meta.env.BASE_URL
 const asset=name=>`${base}assets/${name}`
-const captions=['Start with the image and the user’s text request.','Apply the requested change to part of the image.','Find historical edits that made similar changes.','Cross-attention finds which historical regions can guide each input region.','Keep the modifications the user specified.','Use the selected history to complete the parts the user did not specify.']
+const captions=['Input: image I and a text request.','Construct partial edit P and a mask of specified pixels.','Retrieve history pairs with similar edit descriptors.','Cross-attention transfers regional edit features.','Copy the specified pixels into the output.','Predict the remaining regions from the selected history.']
 </script>
 <template>
   <div class="next-mechanism motion-scene" :data-stage="stage" :data-playing="playing" :data-run="runId">
@@ -34,8 +34,8 @@ const captions=['Start with the image and the user’s text request.','Apply the
     </svg>
     <div class="next-workflow" :class="{'is-on':stage>=5}">
       <div><span class="region-swatch specified"/><p><b>Text request</b><span>Specify a regional change</span></p></div>
-      <div><span class="region-swatch unknown"/><p><b>History guides</b><span>Find how to edit the rest</span></p></div>
-      <div><span class="completion-arrow" aria-hidden="true">→</span><p><b>Complete the image</b><span>Fill in what the user left unspecified</span></p></div>
+      <div><span class="region-swatch unknown"/><p><b>History retrieval</b><span>Retrieve similar paired edits</span></p></div>
+      <div><span class="completion-arrow" aria-hidden="true">→</span><p><b>Regional completion</b><span>Predict unspecified regions</span></p></div>
     </div>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>
     <p class="mechanism-provenance">FiveK pixels simulate the edit. Text handling, mask and history selection are illustrative.</p>

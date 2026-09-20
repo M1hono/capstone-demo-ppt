@@ -11,7 +11,7 @@ const page=await browser.newPage({viewport:{width:1280,height:720}})
 const errors=[]
 page.on('pageerror',e=>errors.push(e.message))
 const report=[]
-const scenes=[[2,5],[4,5],[5,4],[6,5],[7,4],[9,5]]
+const scenes=[[2,5],[4,5],[5,4],[6,5],[8,5]]
 
 for (const [slide,final] of scenes) {
   await page.goto(pageUrl(slide,true),{waitUntil:'networkidle'})
@@ -66,7 +66,7 @@ for (const [slide,final] of scenes) {
     if (step) await next.click()
     assert.equal(await scene.getAttribute('data-stage'),String(step))
     assert.equal(await root.locator('.playback-position').getAttribute('aria-label'),`Step ${step+1} of ${final+1}`)
-    const caption=scene.locator('.mechanism-reading>p')
+    const caption=scene.locator('.mechanism-reading>p,.attention-explanation>p')
     if (await caption.count()) captions.push(await caption.textContent())
     const overflow=await root.locator('.show-slide').evaluate(el=>[...el.querySelectorAll('*')].filter(node=>{
       const box=node.getBoundingClientRect()
@@ -107,8 +107,8 @@ for (const [slide,final] of scenes) {
     await scene.getByRole('button',{name:'Explain spatial transfer',exact:true}).press('Enter')
     assert.equal(await scene.getAttribute('data-stage'),'4')
   }
-  if (slide===5 || slide===7) {
-    const name=slide===5?/Lily/:/Dog/
+  if (slide===5) {
+    const name=/Lily/
     await root.getByRole('button',{name,exact:typeof name==='string'}).click()
     assert.equal(await scene.getAttribute('data-stage'),'0')
     assert.ok(Number(await scene.getAttribute('data-run'))>run,'Changing evidence should restart the sequence')
@@ -123,12 +123,12 @@ for (const [slide,final] of scenes) {
 // Keep the deck within the team-confirmed old/new descriptions.
 await page.goto(pageUrl(2),{waitUntil:'networkidle'})
 assert.match(await page.locator('.slidev-page-2 .show-slide').textContent(),/One group → one simulated user/)
-assert.match(await page.locator('.slidev-page-2 h2').textContent(),/Group editing examples/)
-await page.goto(pageUrl(9),{waitUntil:'networkidle'})
-assert.equal(await page.locator('.slidev-page-9 .history-experiment').count(),0)
-assert.equal(await page.locator('.slidev-page-9').getByRole('button',{name:'History test',exact:true}).count(),0)
-assert.match(await page.locator('.slidev-page-9 .next-workflow').textContent(),/Fill in what the user left unspecified/)
-assert.match(await page.locator('.slidev-page-9 .next-toolbar').textContent(),/Text request → partial edit/)
+assert.match(await page.locator('.slidev-page-2 h2').textContent(),/Dynamic grouping from paired edits/)
+await page.goto(pageUrl(8),{waitUntil:'networkidle'})
+assert.equal(await page.locator('.slidev-page-8 .history-experiment').count(),0)
+assert.equal(await page.locator('.slidev-page-8').getByRole('button',{name:'History test',exact:true}).count(),0)
+assert.match(await page.locator('.slidev-page-8 .next-workflow').textContent(),/Predict unspecified regions/)
+assert.match(await page.locator('.slidev-page-8 .next-toolbar').textContent(),/Text request → partial edit/)
 
 // The instances survive slide navigation; leaving must cancel pending cues.
 await page.goto(pageUrl(4,true),{waitUntil:'networkidle'})
@@ -136,7 +136,7 @@ await page.locator('.slidev-page-4').getByRole('button',{name:'Replay mechanism'
 await page.evaluate(()=>{window.__departedScene=document.querySelector('.slidev-page-4 .motion-scene');document.activeElement?.blur()})
 await page.keyboard.press('ArrowRight')
 await page.waitForTimeout(350)
-assert.match(await page.locator('.slidev-page-5 .show-slide h2').textContent(),/Find useful edits/)
+assert.match(await page.locator('.slidev-page-5 .show-slide h2').textContent(),/Different regions select different references/)
 assert.equal(await page.evaluate(()=>window.__departedScene.dataset.playing),'false')
 assert.equal(await page.evaluate(()=>window.__departedScene.dataset.stage),'5')
 await page.keyboard.press('ArrowLeft')
@@ -159,6 +159,6 @@ await page.emulateMedia({reducedMotion:'no-preference'})
 await page.goto(pageUrl(4),{waitUntil:'networkidle'})
 assert.equal(await page.locator('.slidev-page-4 .motion-scene').getAttribute('data-stage'),'5','Headless export shows final evidence')
 assert.deepEqual(errors,[])
-await writeFile(new URL('../exports/motion-qa-v15.json',import.meta.url),JSON.stringify({scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
+await writeFile(new URL('../exports/motion-qa-v16.json',import.meta.url),JSON.stringify({scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
 await browser.close()
 console.log('MOTION ALL CLEAR')
