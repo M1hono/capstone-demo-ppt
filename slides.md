@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Preference-Enhancement-Engine-v7
+exportFilename: Preference-Enhancement-Engine-v8
 ---
 
 <section class="show-slide cover-slide">
@@ -26,7 +26,7 @@ exportFilename: Preference-Enhancement-Engine-v7
 </section>
 
 <!--
-Open with the engineering object. The deployed editor takes explicit controls; the research cartridge learns which historical edit information is relevant. These are related implementations, not a claim that cross-attention is already connected to the current web demo. The 13-slide core is followed by a separate evidence companion.
+Open with the engineering object. The deployed editor takes explicit controls; the research cartridge learns which reference edit information is relevant. This presentation uses the full-edit research baseline at 767cae8; partial-edit conditioning is reserved for the next-step slide. These are related implementations, not a claim that cross-attention is already connected to the current web demo. The 13-slide core is followed by a separate evidence companion.
 -->
 
 ---
@@ -84,13 +84,13 @@ This is an actual supplied demo screenshot, not the separate Retouch Lab UX mock
 ---
 
 <section class="show-slide">
-  <h2>Learn which editing history to retrieve.</h2><p class="subtitle">Training updates the edit encoder; the next search uses its updated descriptors.</p>
+  <h2>Learn which reference edits to retrieve.</h2><p class="subtitle">The full target edit guides retrieval; training updates the descriptors.</p>
   <LearningMechanism/>
-  <DeckFooter :page="6" :active="1" scope="Gen 3 · training"/>
+  <DeckFooter :page="6" :active="1" scope="Gen 3 · baseline training"/>
 </section>
 
 <!--
-Source inspected at cross-attention revision 767cae8. Grouping uses model.b([I,E,E−I]) and global average pooling; distances are Euclidean, and candidates sharing the original scene are excluded. It recomputes candidate embeddings with current weights each chunk. This is supervised training with refreshed discrete retrieval, not reinforcement learning. Current config: train originals 1–400, validation 401–500; the downloader prepares up to 800, with remaining originals available for test. For testing, candidate references come from the training set; validation currently retrieves within validation. The supplied figure's actual run configuration and weights are not archived, so do not assign these defaults retrospectively to its metrics.
+Presentation baseline: cross-attention revision 767cae8, 19 September. The query descriptor uses the full expert target. The separate partial-query evaluation script in this same commit is exploratory and is not the training flow illustrated here. Grouping uses model.b([I,E,E−I]) and global average pooling; distances are Euclidean, and candidates sharing the original scene are excluded. It recomputes candidate embeddings with current weights each chunk. This is supervised training with refreshed discrete retrieval, not reinforcement learning. Baseline config: train originals 1–400, validation 401–500; the downloader prepares up to 800, with remaining originals available for test. For testing, candidate references come from the training set; validation currently retrieves within validation. The supplied figure's actual run configuration and weights are not archived, so do not assign these defaults retrospectively to its metrics.
 
 The animation illustrates the source retrieval rule using the flower example’s recorded reference set. The query target and reference images are from that same recorded panel. The excluded same-scene rendition is an actual FiveK Expert D asset. Exact candidate-pool contents, descriptor distances and the original retrieval execution were not archived; the animation does not recreate that execution or claim those three references were freshly retrieved.
 -->
@@ -100,27 +100,27 @@ The animation illustrates the source retrieval rule using the flower example’s
 <section class="show-slide">
   <h2>Choose a reference. Then transfer its edit.</h2><p class="subtitle">Choose one reference per region; softly match positions within it.</p>
   <DecisionMechanism/>
-  <DeckFooter :page="7" :active="1" scope="Gen 3 · decision mechanism"/>
+  <DeckFooter :page="7" :active="1" scope="Gen 3 · baseline mechanism"/>
 </section>
 
 <!--
-The supplied dyNAmic Transfer Touch architecture diagram is the conceptual reference for retrieval, scoring, transfer, fusion and learning. It depicts an earlier version with two independent attention branches and temperature-based global reference weights. Current source at 767cae8 uses one cross-attention result per reference for two operations: absolute scaled QK logits give each query position a score (maximum over reference positions after averaging heads), and per-head spatial softmax supplies editing context. An argmax across references selects one context per query position. This is a hard reference decision and soft correspondence within the selected reference; the displayed matrix and score symbols are an explanatory diagram, not measured attention or reconstructed tensors. No numeric embeddings, attention weights or selection masks are fabricated. The displayed flower and Colosseum images are unchanged crops from the recorded example. Click either decision node to hold that stage. The implementation computes all reference contexts before the hard gate; the presentation explains the dependencies in sequence. Hard selection has no gradient, while the encoder and spatial transfer still receive the output-loss gradient.
+The supplied dyNAmic Transfer Touch architecture diagram is the conceptual reference for retrieval, scoring, transfer, fusion and learning. It depicts an earlier version with two independent attention branches and temperature-based global reference weights. The presentation baseline at 767cae8 uses one cross-attention result per reference for two operations: absolute scaled QK logits give each query position a score (maximum over reference positions after averaging heads), and per-head spatial softmax supplies editing context. An argmax across references selects one context per query position. This is a hard reference decision and soft correspondence within the selected reference; the displayed matrix and score symbols are an explanatory diagram, not measured attention or reconstructed tensors. No numeric embeddings, attention weights or selection masks are fabricated. The displayed flower and Colosseum images are unchanged crops from the recorded example. Click either decision node to hold that stage. The implementation computes all reference contexts before the hard gate; the presentation explains the dependencies in sequence. Hard selection has no gradient, while the encoder and spatial transfer still receive the output-loss gradient.
 -->
 
 ---
 
 <section class="show-slide">
-  <h2>Find useful edits across different scenes.</h2><p class="subtitle">Recorded groups connect query regions to historical editing evidence.</p>
+  <h2>Find useful edits across different scenes.</h2><p class="subtitle">Recorded attention links query regions to reference edit pairs.</p>
   <AttentionWorkbench sample="dog" :initial="2"/>
   <DeckFooter :page="8" :active="1" scope="Gen 3 · recorded attention"/>
 </section>
 
 <!--
-The dog scene is FiveK 0407. Two references show the same leaves (0476) with different expert edits; shares are 0% and 34.38%. The lily (0417) receives 65.62%. These observations motivate soft retouching-role correspondence: useful edits need not come from identical object categories. They do not prove that the model understands roles or outperforms semantic matching. That needs a controlled comparison. Current source computes absolute scaled QK logits, chooses each region's reference using max over reference positions of head-mean logits, and uses per-head softmax over positions within that chosen reference. Hard reference selection and soft correspondence coexist.
+The dog scene is FiveK 0407. Two references show the same leaves (0476) with different expert edits; shares are 0% and 34.38%. The lily (0417) receives 65.62%. These observations motivate soft retouching-role correspondence: useful edits need not come from identical object categories. They do not prove that the model understands roles or outperforms semantic matching. That needs a controlled comparison. The 767cae8 baseline computes absolute scaled QK logits, chooses each region's reference using max over reference positions of head-mean logits, and uses per-head softmax over positions within that chosen reference. Hard reference selection and soft correspondence coexist.
 
 The flower record is now available through the Flowers tab on the following evidence slide. Query 0412 matches the flower scene; references 0406, 0426 and 0490 were visually matched to official FiveK thumbnails. The reported shares are 51.17%, 48.83%, and 0%. These are the mean one-hot reference selections across query positions, not global mixture weights, attention probabilities, semantic coverage, or confidence scores. The red overlays are connected groups of strong attention links. They are not the hard selection masks. The original diagnostic uses matching colours and IDs; cropping retains the unmodified overlay. The raw tensor and original checkpoint are unavailable, so the browser does not invent spatial attention values.
 
-The historical expert panel wipes between the actual recorded reference original and expert edit. Both retain the original diagnostic overlays; no covered pixels were reconstructed. The image wipe explains that reference pairs provide editing evidence. It does not depict new inference.
+The reference expert panel wipes between the actual recorded reference original and expert edit. Both retain the original diagnostic overlays; no covered pixels were reconstructed. The image wipe explains that reference pairs provide editing evidence. It does not depict new inference.
 -->
 
 ---
@@ -128,11 +128,11 @@ The historical expert panel wipes between the actual recorded reference original
 <section class="show-slide">
   <h2>Assemble local edits. Learn from the result.</h2><p class="subtitle">The loss updates the network before references are retrieved again.</p>
   <RenderMechanism/>
-  <DeckFooter :page="9" :active="3" scope="Gen 3 · source + recorded maps"/>
+  <DeckFooter :page="9" :active="3" scope="Gen 3 · baseline + recorded maps"/>
 </section>
 
 <!--
-Current code uses 32×32 Q/K scoring with a 256×256 input, while encoders produce 64×64 feature grids. Each head's attention is bilinearly lifted and renormalised over the reference value grid, then context is restored to the query grid. Current edit_dim is 64, attention_dim 128. The renderer concatenates RGB plus 64 editing features; it is not the Gen 1 seven-channel CNN. Current default lambda_ssim is zero, so the displayed loss is RGB L1 plus the 0.001 residual regulariser. Heatmaps are directly cropped from the supplied experiment panel, retaining the reported colour limits. They show output-minus-original diagnostics, not the four-channel DiffMap. The recorded panel predates the current source; its weights and configuration are not available. No reconstructed attention, metrics or raw prediction values are implied. The residual structure does not guarantee unchanged structure or perfectly local edits; these acceptance tests are on slide 12.
+The 767cae8 baseline uses 32×32 Q/K scoring with a 256×256 input, while encoders produce 64×64 feature grids. Each head's attention is bilinearly lifted and renormalised over the reference value grid, then context is restored to the query grid. Baseline edit_dim is 64, attention_dim 128. The renderer concatenates RGB plus 64 editing features; it is not the Gen 1 seven-channel CNN. Baseline default lambda_ssim is zero, so the displayed loss is RGB L1 plus the 0.001 residual regulariser. Heatmaps are directly cropped from the supplied experiment panel, retaining the reported colour limits. They show output-minus-original diagnostics, not the four-channel DiffMap. The recorded panel has no archived checkpoint or run configuration; it cannot be assigned to the newer partial-edit experiment. No reconstructed attention, metrics or raw prediction values are implied. The residual structure does not guarantee unchanged structure or perfectly local edits; these acceptance tests are on slide 12.
 -->
 
 ---
@@ -140,49 +140,55 @@ Current code uses 32×32 Q/K scoring with a 256×256 input, while encoders produ
 <section class="show-slide">
   <h2>Compare the image and the score.</h2><p class="subtitle">Three recorded examples, each with its own editing target.</p>
   <ResultsGallery/>
-  <div class="metric-context"><div><b>Metric scope</b><p>Expert-target similarity.<br>Each score describes one image.</p></div><div><b>Earlier milestone</b><p><strong>26.6 dB · 0.88 SSIM</strong><br>Separate evaluation subset.</p></div><div><b>Next evaluation</b><p>Unseen users and histories.<br>Client preference judgements.</p></div></div>
+  <div class="metric-context"><div><b>Metric scope</b><p>Expert-target similarity.<br>Each score describes one image.</p></div><div><b>Earlier milestone</b><p><strong>26.6 dB · 0.88 SSIM</strong><br>Separate evaluation subset.</p></div><div><b>Next evaluation</b><p>Archive checkpoints and splits.<br>Repeat the comparison.</p></div></div>
   <DeckFooter :page="10" :active="4" scope="Gen 3 · recorded samples"/>
 </section>
 
 <!--
-Flowers: 26.496 dB / 0.7949. Dog: 32.761 / 0.9531. Books: 27.242 / 0.8946. Values are transcribed from the team's unmodified example panels, not recalculated from JPEGs. The supplied panels do not establish sample count, model checkpoint or aggregate evaluation protocol. The earlier report's 26.6 / 0.88 is separate from the Gen 3 comparison chart's 26.70; never average or conflate these records. No claims about dataset-wide performance or new controlled experiments are made.
+Flowers: 26.496 dB / 0.7949. Dog: 32.761 / 0.9531. Books: 27.242 / 0.8946. Values are transcribed from the team's unmodified example panels, not recalculated from JPEGs. The supplied panels do not establish sample count, model checkpoint or aggregate evaluation protocol. Their scores are not evidence for the new partial-edit training setup or for long-term user preference learning. The earlier report's 26.6 / 0.88 is separate from the Gen 3 comparison chart's 26.70; never average or conflate these records. No claims about dataset-wide performance or new controlled experiments are made.
 -->
 
 ---
 
 <section class="show-slide">
-  <h2>Random references show the largest drop.</h2><p class="subtitle">Team-reported ablations, measured in PSNR.</p>
+  <h2>Random references show the largest drop.</h2><p class="subtitle">Earlier team-reported ablations, measured in PSNR.</p>
   <MetricChart/>
-  <div class="ablation-reading"><p><b>Retrieve</b><span>Choose relevant editing history.</span></p><p><b>Select</b><span>Choose a reference per region.</span></p><p><b>Transfer</b><span>Align useful editing features.</span></p></div>
+  <div class="ablation-reading"><p><b>Retrieve</b><span>Choose relevant reference edits.</span></p><p><b>Select</b><span>Choose a reference per region.</span></p><p><b>Transfer</b><span>Align useful editing features.</span></p></div>
   <DeckFooter :page="11" :active="4" scope="Gen 3 · reported ablations"/>
 </section>
 
 <!--
-Transcribed from the research branch comparison figure: full 26.70; random grouping 21.90; equal weights 25.40; 12-channel CNN fusion 24.50. The full chart also lists PerTouch 26.20, InstantRetouch 23.34 and DiffRetouch 25.20. Those external comparisons remain in the attachment because matched training splits and evaluation protocols are not documented. These within-project ablations motivate causal tests, but the figure alone lacks random-seed uncertainty and run configuration; avoid claiming statistical significance. Source current toggles implement the named interventions. Do not imply that all displayed values belong to the current revision.
+Transcribed from the research branch comparison figure: full 26.70; random grouping 21.90; equal weights 25.40; 12-channel CNN fusion 24.50. The full chart also lists PerTouch 26.20, InstantRetouch 23.34 and DiffRetouch 25.20. Those external comparisons remain in the attachment because matched training splits and evaluation protocols are not documented. These within-project ablations motivate causal tests, but the figure alone lacks random-seed uncertainty and run configuration; avoid claiming statistical significance. The 767cae8 baseline toggles implement the named interventions. The displayed comparison image is byte-identical to the figure committed at 26a883d on 17 September, before the partial-edit experiment. Do not imply that all displayed values belong to the current revision.
 -->
 
 ---
 
 <section class="show-slide">
-  <h2>Two limits define the next tests.</h2><p class="subtitle">A measured rendering behaviour and an unresolved retrieval dependency.</p>
-  <div class="boundary-layout"><div class="zero-observation"><div class="boundary-heading"><b>Zero control still changes pixels</b><span>Measured</span></div><div class="zero-pair"><figure><img src="/assets/fivek/cnn-input.png" alt="Actual FiveK input"/><figcaption>Original</figcaption></figure><figure><img src="/assets/fivek/cnn-zero.png" alt="Actual zero conditioning output"/><figcaption>Zero RGBC output</figcaption></figure></div><p>Mean absolute edit: <b>0.0275</b> on [0, 1].<br>Next: identity and protected-region tests.</p></div><div class="retrieval-boundary"><h3>Retrieval still uses the target</h3><div class="leakage-flow"><span>Query original + <b>query expert</b></span><i>↓</i><span>Retrieval descriptor → top 3 pairs</span><i>↓</i><span>Original + reference pairs → renderer</span></div><p>Remove the query expert<br>from reference selection.</p><p class="small">Use only the request image and available user history.</p></div></div>
+  <h2>Two limits define the next tests.</h2><p class="subtitle">The current demo and the full-edit research baseline each expose a limit.</p>
+  <div class="boundary-layout"><div class="zero-observation"><div class="boundary-heading"><b>Zero control still changes pixels</b><span>Measured</span></div><div class="zero-pair"><figure><img src="/assets/fivek/cnn-input.png" alt="Actual FiveK input"/><figcaption>Original</figcaption></figure><figure><img src="/assets/fivek/cnn-zero.png" alt="Actual zero conditioning output"/><figcaption>Zero RGBC output</figcaption></figure></div><p>Mean absolute edit: <b>0.0275</b> on [0, 1].<br>Next: identity and protected-region tests.</p></div><div class="retrieval-boundary"><h3>Retrieval uses the full target</h3><div class="leakage-flow"><span>Query original + <b>full expert target</b></span><i>↓</i><span>Retrieval descriptor → top 3 pairs</span><i>↓</i><span>Original + reference pairs → renderer</span></div><p>Next: retrieve from partial edits<br>and a user’s own history.</p><p class="small">Validate the new route separately from this baseline.</p></div></div>
   <div class="verification-strip"><b>Verified here</b><span>Checkpoint load · finite output</span><b>Demo-day checks</b><span>API · text · reference · region</span></div>
-  <DeckFooter :page="12" :active="4" scope="Gen 1 test · Gen 3 source"/>
+  <DeckFooter :page="12" :active="4" scope="Gen 1 test · Gen 3 baseline"/>
 </section>
 
 <!--
-New CPU run measured mean absolute edit 0.027538985 under a zero conditioning map. This is a factual counterexample to an identity guarantee, not a full failure-rate estimate. No full Text/Qwen/Mask2Former runtime has been run here; testing scripts existing in the repository do not imply passing results. Current research forward ignores current_expert, but grouping_embedding(original,expert) still uses it upstream. A deployment-safe evaluation must remove target-derived query retrieval and split by original and user history. Explicit source-ID ranges keep same-scene expert variants within a split, whereas the unused random split path divides pair IDs and needs care.
+New CPU run measured mean absolute edit 0.027538985 under a zero conditioning map. This is a factual counterexample to an identity guarantee, not a full failure-rate estimate. No full Text/Qwen/Mask2Former runtime has been run here; testing scripts existing in the repository do not imply passing results. In the 767cae8 full-edit baseline, forward ignores current_expert, but grouping_embedding(original,expert) uses the complete target upstream. This is the baseline limitation shown here, not a claim about the latest partial-edit implementation. Revision 3c1dadc uses a partial target composite as a simulated request and keeps the unknown-region target out of retrieval and generation. It still needs separate evaluation with real requests and user histories. Explicit source-ID ranges keep same-scene expert variants within a split, whereas the unused random split path divides pair IDs and needs care.
 -->
 
 ---
 
 <section class="show-slide closing-slide">
-  <h2>Let user history guide the next edit.</h2><p class="subtitle">The next integration step makes reference choice personal and inspectable.</p>
-  <div class="next-layout"><div><Scene :act="12"/><p class="object-caption">Current demo + research module<br><b>Integration is the next step.</b></p></div><div class="decision-sequence"><div><span>01</span><p><b>Use one user's history</b>Restrict candidates to that user's past edits.</p></div><div><span>02</span><p><b>Show the decision</b>Expose selected references, region matches and the result.</p></div><div><span>03</span><p><b>Evaluate without the target</b>Test query-only retrieval on held-out histories.</p></div></div></div>
-  <div class="client-decision"><b>Client review</b><span>Which decisions to show?</span><span>Which regions to protect?</span><span>Which histories to test?</span></div>
-  <DeckFooter :page="13" :active="4" scope="Next integration"/>
+  <h2>Next: complete edits from user history.</h2><p class="subtitle">Partial-edit prototype; user-history validation and demo integration are next.</p>
+  <div class="next-layout"><div><Scene :act="12"/><p class="object-caption">Partial edits + reference retrieval<br><b>Integration and validation next.</b></p></div><div class="decision-sequence"><div><span>01</span><p><b>Keep the requested edit</b>Use local edits as the retrieval clue.</p></div><div><span>02</span><p><b>Complete the other regions</b>Retrieve examples from one user’s history.</p></div><div><span>03</span><p><b>Test the history contribution</b>Compare matched, shuffled and no-history inputs.</p></div></div></div>
+  <div class="client-decision"><b>Next checks</b><span>Completion quality</span><span>Edit preservation</span><span>History contribution</span></div>
+  <DeckFooter :page="13" :active="4" scope="Next step · partial-edit prototype"/>
 </section>
 
 <!--
-Link directly to the client's feedback: user history as candidate pool; soft retouching-role correspondence rather than rigid semantic alignment; separate observable decision stages; optional explicit instructions and protected masks. Persistent history and an integrated planner are not implemented in the current research source. Do not relabel learned attention as an LLM agent or reinforcement learner. Record feedback as a user story plus acceptance condition, assign an owner, and bring the resulting evidence back to the next review. Live demo and full evidence panels remain separate from the 13-page core. Team name TH18_04 versus repository TU18_04 still requires group confirmation before submission; avoid asserting either on the cover.
+This is the next phase, separate from the full-edit baseline demonstrated earlier. The intended task is to honour explicit edits, retrieve examples from that user’s own original–edited history, and complete unspecified regions. Observable reference choices and region correspondences remain useful; language execution and explicit do-not-change constraints need integration.
+
+Git scope: 767cae8 (19 September) adds an exploratory partial-query evaluation script while retaining full-edit training. Revision 3c1dadc (20 September) integrates partial edits into training: original RGB, partial-edit RGB and the specified-region mask condition the query encoder and renderer. Selected target pixels simulate the requested edit; the output copies those regions exactly. L1 and residual regularisation are computed on unspecified regions, and checkpoint selection uses unknown_psnr. The architecture changes require new weights. These code changes do not establish a deployed language planner or persistent personalised history store.
+
+No recorded score in this deck is assigned to the new partial-edit experiment. To test whether history contributes, hold query clues and masks fixed, compare the intended user’s history against shuffled or other-user histories and a no-history baseline, and measure unspecified-region quality alongside edit preservation and client preference judgements. Keep originals disjoint across query and reference splits. Recovering a target from partial target pixels alone does not demonstrate long-term preference learning.
+
+Live demo and full evidence panels remain separate from the 13-page core. Team name TH18_04 versus repository TU18_04 still requires group confirmation before submission; avoid asserting either on the cover.
 -->

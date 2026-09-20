@@ -28,7 +28,7 @@
   </style>
 </head>
 <body>
-  <nav aria-label="Evidence navigation"><a href="./#/1">Return to the 13-slide presentation</a><a href="./downloads/Evidence-Companion-v4.pdf">Download evidence PDF</a><a href="#flowers">Flowers</a><a href="#dog">Dog</a><a href="#books">Books</a><a href="#comparison">Ablations</a></nav>
+  <nav aria-label="Evidence navigation"><a href="./#/1">Return to the 13-slide presentation</a><a href="./downloads/Evidence-Companion-v5.pdf">Download evidence PDF</a><a href="#flowers">Flowers</a><a href="#dog">Dog</a><a href="#books">Books</a><a href="#comparison">Ablations</a></nav>
   <main>
     <section id="dataset">
       <h1>Preference Enhancement Engine<br>Evidence companion</h1>
@@ -83,14 +83,14 @@
       </div>
     </section>
     <section id="architecture">
-      <h2>Architecture · historical diagram and current contract</h2>
-      <p>The supplied diagram records the team's architecture explanation. The core slides use the currently inspected code where the implementation differs.</p>
+      <h2>Architecture · historical diagram and baseline contract</h2>
+      <p>The diagram records an earlier architecture. The core slides explain the 19 September full-edit baseline; partial-edit training belongs to the next phase.</p>
       <figure class="wide-panel"><img src="./assets/architecture.jpg" alt="Unmodified supplied architecture diagram, retained as historical reference"></figure>
       <div class="facts">
         <p><b>Paired-edit retrieval</b>Original, expert target and their difference form a nine-channel input. A pooled 64-dimensional descriptor retrieves three pairs and excludes the same original.</p>
         <p><b>Attention contract</b>At 256 × 256 input, Q/K scoring uses a 32 × 32 grid. Value features retain 64 × 64 resolution. Each query region chooses one reference; spatial correspondence inside a reference remains soft.</p>
         <p><b>Training objective</b>Supervised RGB L1 plus a 0.001 residual penalty. Candidate embeddings refresh per training chunk. This code does not implement a reinforcement-learning objective.</p>
-        <p><b>Deployment boundary</b>Query expert information still enters retrieval. A persistent user-history store and query-only selection are future integration work. The current web demo uses the separate Gen 1 control network.</p>
+        <p><b>Deployment boundary</b>The full target edit guides query retrieval in this baseline. The newer partial-edit prototype requires separate evaluation and demo integration. The current web demo uses the separate Gen 1 control network.</p>
       </div>
     </section>
   </main>
