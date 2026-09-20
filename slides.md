@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v13
+exportFilename: Reference-Guided-Retouching-v14
 ---
 
 <section class="show-slide cover-slide">
@@ -42,7 +42,7 @@ Page 2 establishes this grouping task, page 3 introduces the paired FiveK data, 
 <!--
 Presentation baseline: cross-attention revision 767cae8, 19 September. The team leader confirms the old task setting: the same network forms editing groups, each group simulates one user, and cross-attention learns regional changes from references in that group. In this implementation the groups are refreshed per-query nearest-reference neighbourhoods; do not invent fixed global user IDs or separate networks per user. The query descriptor uses the full expert target. The separate partial-query evaluation script in this same commit is exploratory and is not the training flow illustrated here. Grouping uses model.b([I,E,E−I]) and global average pooling; distances are Euclidean, and candidates sharing the original scene are excluded. It recomputes candidate embeddings with current weights each chunk. This is supervised training with refreshed discrete retrieval, not reinforcement learning. Baseline config: train originals 1–400, validation 401–500; the downloader prepares up to 800, with remaining originals available for test. For testing, candidate references come from the training set; validation currently retrieves within validation. The supplied figure's actual run configuration and weights are not archived, so do not assign these defaults retrospectively to its metrics.
 
-The animation illustrates the source retrieval rule using the flower example’s recorded reference set. The query target and reference images are from that same recorded panel. The excluded same-scene rendition is an actual FiveK Expert D asset. Exact candidate-pool contents, descriptor distances and the original retrieval execution were not archived; the animation does not recreate that execution or claim those three references were freshly retrieved.
+The animation illustrates the source retrieval rule using the flower example’s recorded reference set. The query target is from that recorded panel. The right-hand group shows clean original images decoded from the official FiveK DNGs for 0406, 0426 and 0490, with camera white balance and max side 500. Those scene IDs were visually matched to the recorded references; no attention overlays or expert renditions appear in the displayed original-image group. The excluded same-scene rendition is an actual FiveK Expert D asset. Exact candidate-pool contents, descriptor distances and the original retrieval execution were not archived; the animation does not recreate that execution or claim those three references were freshly retrieved.
 -->
 
 ---
