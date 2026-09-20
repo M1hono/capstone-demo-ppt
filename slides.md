@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v20
+exportFilename: Reference-Guided-Retouching-v21
 ---
 
 <section class="show-slide cover-slide">

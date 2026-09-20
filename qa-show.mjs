@@ -55,7 +55,7 @@ for (let i = 1; i <= total; i++) {
     const footerTop=slide.querySelector('.deck-footer').getBoundingClientRect().top
     const footerCollisions=[...slide.children].filter(el=>!el.matches('.deck-footer') && el.getBoundingClientRect().bottom>footerTop-5).map(el=>el.className)
     const coverCollision=slide.classList.contains('cover-slide') && slide.querySelector('.identity').getBoundingClientRect().bottom>slide.querySelector('.cover-names').getBoundingClientRect().top-12
-    const emptyMechanism = [2,4,5,6,7,8,9,11,12,13,14].includes(pageNumber) && !slide.querySelector('.motion-scene')
+    const emptyMechanism = [2,4,6,8,9,13,14].includes(pageNumber) && !slide.querySelector('.motion-scene')
     const svgImageChecks=await Promise.all([...slide.querySelectorAll('svg image')].map(async element=>{
       const src=element.getAttribute('href')
       const response=await fetch(src,{cache:'force-cache'})

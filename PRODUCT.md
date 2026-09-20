@@ -28,7 +28,7 @@ Readable at 1280 × 720, labels accompany colour, keyboard controls for interact
 
 ## Current validation
 
-All fifteen pages must have actual body content, not unresolved Vue components. Check SVG text collisions, footer clearance and cover identity spacing as well as viewport overflow and image loading. Each of the eleven mechanism sequences supports forward/backward navigation, pause, continue, replay and reduced motion. Restart the preview service when adding auto-registered components, then check the rendered pages before exposing a partially integrated state.
+All fifteen pages must have actual body content, not unresolved Vue components. Check SVG text collisions, footer clearance and cover identity spacing as well as viewport overflow and image loading. Slides 5, 7, 11 and 12 show complete static diagrams without playback controls. Each of the seven remaining mechanism sequences supports forward/backward navigation, pause, continue, replay and reduced motion. Restart the preview service when adding auto-registered components, then check the rendered pages before exposing a partially integrated state.
 
 ## Manuscript fidelity
 

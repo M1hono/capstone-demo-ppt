@@ -1,4 +1,4 @@
-# Reference-Guided Retouching · v20 design contract
+# Reference-Guided Retouching · v21 design contract
 
 Updated: 2026-09-20. The current deck has 15 pages: an independent cover followed by the 14 sections of the supplied manuscript. This section supersedes earlier scope and page-number records below.
 
@@ -28,7 +28,7 @@ Use the approved neutral colours, thin rules and real FiveK specimens. No eyebro
 
 ## Purpose-built components
 
-`PreferenceDefinition` illustrates explicit instructions taking priority and historical behavior completing unspecified regions. `AchievementSummary` uses three compact diagrams for personalization, reconstructed data and quantitative performance. `AblationExperiment` is a simple static four-row comparison on the right; do not restore the rejected complex animated comparison there. `HistoryDependence` animates partial edit → historical-image search → reference selection → cross-attention, showing that preference is still carried by image pairs. `PreferenceMemory` remains future work. All diagrams are symbolic where measured tensors are unavailable.
+`PreferenceDefinition` illustrates explicit instructions taking priority and historical behavior completing unspecified regions. `AchievementSummary` uses three compact diagrams for personalization, reconstructed data and quantitative performance. `AblationExperiment` is a simple static four-row comparison on the right; do not restore the rejected complex animated comparison there. `HistoryDependence` shows partial edit → historical-image search → reference selection → cross-attention, showing that preference is still carried by image pairs. `PreferenceMemory` remains future work. All diagrams are symbolic where measured tensors are unavailable.
 
 ## Evidence boundaries
 
@@ -36,7 +36,7 @@ The N→20→3 history construction is from the current manuscript. Archived rev
 
 ## Playback and verification
 
-Animated pages: 2, 4, 5, 6, 7, 8, 9, 11, 12, 13 and 14. Each supports previous/next, pause, continue, replay and reduced motion. Effects settle within 260 ms. Cue spacing is narration timing, not inference latency. Verify all fifteen pages, exact titles, all three achievements and four PSNR values, unresolved components, text collisions, footer clearance, image loading and scaled exports. Preserve backups and earlier deliverables.
+Pages 5, 7, 11 and 12 are fully visible static diagrams without playback controls or progressive reveals. Animated pages: 2, 4, 6, 8, 9, 13 and 14. Each supports previous/next, pause, continue, replay and reduced motion. Effects settle within 260 ms. Cue spacing is narration timing, not inference latency. Verify all fifteen pages, exact titles, all three achievements and four PSNR values, unresolved components, text collisions, footer clearance, image loading and scaled exports. Preserve backups and earlier deliverables.
 
 ---
 

@@ -11,7 +11,25 @@ const page=await browser.newPage({viewport:{width:1280,height:720}})
 const errors=[]
 page.on('pageerror',e=>errors.push(e.message))
 const report=[]
-const scenes=[[2,4],[4,4],[5,4],[6,4],[7,4],[8,5],[9,5],[11,3],[12,4],[13,4],[14,4]]
+const scenes=[[2,4],[4,4],[6,4],[8,5],[9,5],[13,4],[14,4]]
+const staticSlides=[5,7,11,12]
+
+// These diagrams are immediately complete even when the rest of the deck plays.
+for (const slide of staticSlides) {
+  await page.goto(pageUrl(slide,true),{waitUntil:'networkidle'})
+  const root=page.locator(`.slidev-page-${slide}`)
+  const diagram=root.locator('.history-scene,.achievement-summary,.history-dependence')
+  assert.equal(await root.locator('.motion-scene,.playback-controls,[role="button"]').count(),0,`Slide ${slide} has no staged playback`)
+  const state=await diagram.evaluate(el=>({
+    animations:el.getAnimations({subtree:true}).length,
+    faded:[...el.querySelectorAll('*')].filter(n=>Number(getComputedStyle(n).opacity)<1).map(n=>n.tagName),
+  }))
+  assert.deepEqual(state,{animations:0,faded:[]},`Slide ${slide} is fully visible immediately`)
+  const content=await diagram.innerHTML()
+  await page.waitForTimeout(750)
+  assert.equal(await diagram.innerHTML(),content,`Slide ${slide} does not advance itself`)
+  console.log(`Static ${slide}: passed`)
+}
 
 for (const [slide,final] of scenes) {
   await page.goto(pageUrl(slide,true),{waitUntil:'networkidle'})
@@ -111,15 +129,6 @@ for (const [slide,final] of scenes) {
     await scene.getByRole('button',{name:'Explain spatial transfer',exact:true}).press('Enter')
     assert.equal(await scene.getAttribute('data-stage'),'4')
   }
-  if (slide===11) {
-    for (const [name,step] of [['Explain clearer personalization',1],['Explain dynamic FiveK reconstruction',2],['Explain quantitative performance',3]]) {
-      await scene.getByRole('button',{name,exact:true}).click()
-      assert.equal(await scene.getAttribute('data-stage'),String(step))
-      assert.equal(await scene.getAttribute('data-playing'),'false')
-    }
-    await scene.getByRole('button',{name:'Explain clearer personalization',exact:true}).press('Enter')
-    assert.equal(await scene.getAttribute('data-stage'),'1')
-  }
   await root.getByRole('button',{name:'Replay mechanism',exact:true}).click()
   assert.ok(Number(await scene.getAttribute('data-run'))>run,'Replay starts a new explanation')
   await root.getByRole('button',{name:'Show final evidence',exact:true}).click()
@@ -167,6 +176,6 @@ await page.emulateMedia({reducedMotion:'no-preference'})
 await page.goto(pageUrl(8),{waitUntil:'networkidle'})
 assert.equal(await page.locator('.slidev-page-8 .motion-scene').getAttribute('data-stage'),'5','Headless export shows final evidence')
 assert.deepEqual(errors,[])
-await writeFile(new URL('../exports/motion-qa-v20.json',import.meta.url),JSON.stringify({scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
+await writeFile(new URL('../exports/motion-qa-v21.json',import.meta.url),JSON.stringify({staticSlides,scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
 await browser.close()
 console.log('MOTION ALL CLEAR')
