@@ -2,14 +2,21 @@
 import { usePresentationPlayback } from '../composables/usePresentationPlayback'
 const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume,seek}=usePresentationPlayback([300,1400,2800,4100,5500])
 const base=import.meta.env.BASE_URL
-const captions=['Encode RGB and paired edits into [64,64,64] feature grids.','Resize to 32×32, flatten 1,024 positions, then project Q and K to 128 channels.','QKᵀ gives [1024,1024] logits; reduce each row to one reference score.','Argmax across 3 references gives one index for each of 1,024 query positions.','Lift spatial weights to 4,096 value positions, then mix 128-channel V features.','Resize to 64×64 and project 128 → 64 channels: the local field F [64,64,64].']
+const captions=[
+  "After retrieving the three most relevant historical references, we do not directly copy the editing parameters from any single reference image.",
+  "The current image provides the query information, while the historical references provide visual features together with corresponding editing information.",
+  "Cross-Attention allows the network to learn correspondences between regions based on their learned visual representations rather than their absolute positions.",
+  "The attention weights identify which historical information is relevant to each part of the current image.",
+  "The corresponding historical editing features are aggregated according to these weights.",
+  "Information from multiple references is therefore compressed into a modification representation specifically conditioned on the current image."
+]
 </script>
 <template>
   <div class="decision-mechanism motion-scene" :data-stage="stage" :data-playing="playing" :data-run="runId">
     <svg viewBox="0 0 1168 440" role="img" aria-label="Source-defined attention: score each reference per query region, select the strongest reference, and use spatial softmax to combine its editing features.">
       <defs><marker id="decision-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path pathLength="1" d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs>
-      <g class="decision-photo"><text x="82" y="20" text-anchor="middle">Current image</text><image :href="`${base}assets/evidence/flowers-original.png`" x="0" y="37" width="164" height="164"/><text x="82" y="225" text-anchor="middle" class="diagram-shape">RGB [3,256,256]</text></g>
-      <g class="decision-photo"><text x="1011" y="20" text-anchor="middle">Reference pair from the group</text><image :href="`${base}assets/evidence/flowers-ref1-original.png`" x="864" y="37" width="142" height="142"/><image :href="`${base}assets/evidence/flowers-ref1-expert.png`" x="1020" y="37" width="142" height="142"/><text x="935" y="200" text-anchor="middle" class="diagram-small">Original</text><text x="1091" y="200" text-anchor="middle" class="diagram-small">Expert edit</text><text x="1011" y="229" text-anchor="middle" class="diagram-shape">Stack [I,T,T−I]: [9,256,256]</text></g>
+      <g class="decision-photo"><text x="82" y="20" text-anchor="middle">Current query</text><image :href="`${base}assets/evidence/flowers-original.png`" x="0" y="37" width="164" height="164"/><text x="82" y="225" text-anchor="middle" class="diagram-shape">[I,P,M]: [7,256,256]</text></g>
+      <g class="decision-photo"><text x="1011" y="20" text-anchor="middle">Historical reference pair</text><image :href="`${base}assets/evidence/flowers-ref1-original.png`" x="864" y="37" width="142" height="142"/><image :href="`${base}assets/evidence/flowers-ref1-expert.png`" x="1020" y="37" width="142" height="142"/><text x="935" y="200" text-anchor="middle" class="diagram-small">Original</text><text x="1091" y="200" text-anchor="middle" class="diagram-small">Expert edit</text><text x="1011" y="229" text-anchor="middle" class="diagram-shape">[Iᵣ,Gᵣ,Gᵣ−Iᵣ]: [9,256,256]</text></g>
       <g class="logic-path" :class="{'is-on':stage>=1}"><path pathLength="1" d="M180 119 H380"/><path pathLength="1" d="M848 119 H668"/><text x="275" y="79" text-anchor="middle" class="diagram-shape">Encode: [64,64,64]</text><text x="275" y="104" text-anchor="middle" class="diagram-small">Resize → project Q</text><text x="275" y="143" text-anchor="middle" class="diagram-shape">Q [1024,128]</text><text x="758" y="79" text-anchor="middle" class="diagram-shape">Encode: [64,64,64]</text><text x="758" y="104" text-anchor="middle" class="diagram-small">Resize → project K</text><text x="758" y="143" text-anchor="middle" class="diagram-shape">Kᵣ [1024,128]</text></g>
       <g class="attention-matrix" :class="{'is-on':stage>=1}"><rect x="392" y="33" width="258" height="180" rx="2"/><text x="521" y="59" text-anchor="middle" class="diagram-shape">Logits Lᵣ [1024,1024]</text><g v-for="row in 5" :key="row"><rect v-for="column in 8" :key="column" :x="424+(column-1)*24" :y="76+(row-1)*18" width="21" height="15" class="matrix-cell" :class="{'query-row':row===3 && stage>=2}"/></g><text x="411" y="122" text-anchor="middle" class="query-symbol" :class="{'is-on':stage>=2}">q</text><text x="521" y="191" text-anchor="middle" class="diagram-small">Lᵣ = |QKᵣᵀ / √d|</text></g>
       <g class="logic-path" :class="{'is-on':stage>=2}"><path pathLength="1" d="M464 218 V248 H310 V278"/><text x="310" y="244" text-anchor="end" class="diagram-small">Strongest match</text></g>
@@ -19,6 +26,6 @@ const captions=['Encode RGB and paired edits into [64,64,64] feature grids.','Re
       <g class="logic-path" :class="{'is-on':stage>=5}"><path pathLength="1" d="M311 393 V416 H488"/><path pathLength="1" d="M827 393 V416 H648"/></g><g class="local-feature" :class="{'is-on':stage>=5}"><rect x="493" y="393" width="150" height="43" rx="2"/><text x="568" y="410" text-anchor="middle" class="diagram-shape">Resize + 128 → 64</text><text x="568" y="429" text-anchor="middle" class="diagram-shape">F [64,64,64]</text></g>
     </svg>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>
-    <p class="mechanism-provenance">Batch omitted · Q/K: 32×32 positions · V: 64×64 positions · attention grid is schematic</p>
+    <p class="mechanism-provenance">Tensor example at 256 × 256 · archived reference pair illustrates input type · attention grid is schematic</p>
   </div>
 </template>

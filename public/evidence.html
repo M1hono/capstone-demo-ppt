@@ -28,11 +28,11 @@
   </style>
 </head>
 <body>
-  <nav aria-label="Evidence navigation"><a href="./#/1">Return to the 9-slide presentation</a><a href="./downloads/Evidence-Companion-v8.pdf">Download evidence PDF</a><a href="#flowers">Flowers</a><a href="#dog">Dog</a><a href="#books">Books</a><a href="#comparison">Ablations</a></nav>
+  <nav aria-label="Evidence navigation"><a href="./#/1">Return to the 15-slide presentation</a><a href="./downloads/Evidence-Companion-v8.pdf">Download evidence PDF</a><a href="#flowers">Flowers</a><a href="#dog">Dog</a><a href="#books">Books</a><a href="#comparison">Ablations</a></nav>
   <main>
     <section id="dataset">
-      <h1>Reference-Guided Retouching<br>Evidence companion</h1>
-      <p>The specimens behind the presentation: FiveK editing targets and recorded reference-model experiments.</p>
+      <h1>Reference-Guided Retouching<br>Archived evidence companion</h1>
+      <p>Official FiveK specimens and archived experiments from earlier task formulations. These recorded predictions and metrics are separate from the current 27.2 dB / 0.90 results.</p>
       <h3>FiveK 0412 · one original, five expert renditions</h3>
       <div class="dataset-grid">
         <figure><img src="./assets/fivek/original.png" alt="FiveK flower original"><figcaption>Original · a0412-_DGW6297</figcaption></figure>
@@ -65,7 +65,7 @@
     </section>
     <section id="comparison">
       <h2>Reported comparison · original chart</h2>
-      <p>The core deck focuses on the team's three ablations. The original chart is retained here for inspection.</p>
+      <p>This earlier comparison chart is retained for inspection. The current presentation reports a different experiment and a new set of ablations.</p>
       <figure class="wide-panel"><img src="./assets/reported-comparison.png" alt="Original team comparison chart with full model, ablations and external methods"></figure>
       <div class="facts">
         <p><b>Within-project results</b>Full: 26.70 dB. Random references: 21.90. Equal weights: 25.40. CNN fusion: 24.50.</p>
@@ -76,13 +76,13 @@
     </section>
     <section id="architecture">
       <h2>Architecture · historical diagram and baseline contract</h2>
-      <p>The diagram records an earlier architecture. The core slides explain the 19 September full-edit baseline; partial-edit training belongs to the next phase.</p>
+      <p>The diagram records an earlier architecture. The current core slides follow the newer partial-edit formulation; this diagram and the baseline contract below remain historical.</p>
       <figure class="wide-panel"><img src="./assets/architecture.jpg" alt="Unmodified supplied architecture diagram, retained as historical reference"></figure>
       <div class="facts">
         <p><b>Paired-edit retrieval</b>Original, expert target and their difference form a nine-channel input. A pooled 64-dimensional descriptor retrieves three pairs and excludes the same original.</p>
         <p><b>Attention contract</b>At 256 × 256 input, Q/K scoring uses a 32 × 32 grid. Value features retain 64 × 64 resolution. Each query region chooses one reference; spatial correspondence inside a reference remains soft.</p>
         <p><b>Training objective</b>Supervised RGB L1 plus a 0.001 residual penalty. Candidate embeddings refresh per training chunk. This code does not implement a reinforcement-learning objective.</p>
-        <p><b>Next phase</b>The full target edit guides query retrieval in this baseline. Text requests and partial edits belong to the planned extension; the recorded figures do not establish its performance.</p>
+        <p><b>Historical scope</b>The full target edit guides query retrieval in this baseline. Text requests and partial edits belong to the planned extension; the recorded figures do not establish its performance.</p>
       </div>
     </section>
   </main>

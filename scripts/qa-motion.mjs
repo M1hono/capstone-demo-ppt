@@ -11,7 +11,7 @@ const page=await browser.newPage({viewport:{width:1280,height:720}})
 const errors=[]
 page.on('pageerror',e=>errors.push(e.message))
 const report=[]
-const scenes=[[2,5],[4,5],[5,4],[6,5],[8,5]]
+const scenes=[[2,4],[4,4],[5,4],[6,4],[7,4],[8,5],[9,5],[11,3],[12,4],[13,4],[14,4]]
 
 for (const [slide,final] of scenes) {
   await page.goto(pageUrl(slide,true),{waitUntil:'networkidle'})
@@ -28,7 +28,7 @@ for (const [slide,final] of scenes) {
   await page.waitForFunction(slide=>document.querySelector(`.slidev-page-${slide} .motion-scene`)?.dataset.stage==='2',slide)
   await page.waitForTimeout(300)
   await page.screenshot({path:new URL(`slide-${slide}-during.png`,out).pathname})
-  if (slide===4) {
+  if (slide===8) {
     assert.equal(await scene.locator('.reference-decision').evaluate(el=>el.classList.contains('is-on')),true)
     assert.equal(await scene.locator('.spatial-decision').evaluate(el=>el.classList.contains('is-on')),false)
   }
@@ -53,9 +53,13 @@ for (const [slide,final] of scenes) {
   await next.click()
   await root.getByRole('button',{name:'Continue mechanism',exact:true}).click()
   assert.equal(await scene.getAttribute('data-stage'),'2','Continue must not restart the sequence')
-  await page.waitForFunction(slide=>document.querySelector(`.slidev-page-${slide} .motion-scene`).dataset.stage==='3',slide)
   await root.getByRole('button',{name:'Pause mechanism',exact:true}).click()
   assert.equal(await scene.getAttribute('data-playing'),'false')
+  assert.equal(await scene.getAttribute('data-stage'),'2')
+  await root.getByRole('button',{name:'Continue mechanism',exact:true}).click()
+  await page.waitForFunction(slide=>document.querySelector(`.slidev-page-${slide} .motion-scene`).dataset.stage==='3',slide)
+  if(final>3) await root.getByRole('button',{name:'Pause mechanism',exact:true}).click()
+  else await page.waitForFunction(slide=>document.querySelector(`.slidev-page-${slide} .motion-scene`).dataset.playing==='false',slide)
   const captions=[]
   for (let step=2;step>=0;step--) {
     await previous.click()
@@ -98,7 +102,7 @@ for (const [slide,final] of scenes) {
     await page.mouse.up()
     assert.ok(Math.abs(Number(await compare.getAttribute('data-reveal'))-70)<2,'Pointer comparison tracks the image')
   }
-  if (slide===4) {
+  if (slide===8) {
     await scene.getByRole('button',{name:'Explain reference choice',exact:true}).click()
     assert.equal(await scene.getAttribute('data-stage'),'3')
     assert.equal(await scene.getAttribute('data-playing'),'false')
@@ -107,12 +111,17 @@ for (const [slide,final] of scenes) {
     await scene.getByRole('button',{name:'Explain spatial transfer',exact:true}).press('Enter')
     assert.equal(await scene.getAttribute('data-stage'),'4')
   }
-  if (slide===5) {
-    const name=/Lily/
-    await root.getByRole('button',{name,exact:typeof name==='string'}).click()
-    assert.equal(await scene.getAttribute('data-stage'),'0')
-    assert.ok(Number(await scene.getAttribute('data-run'))>run,'Changing evidence should restart the sequence')
-  } else await root.getByRole('button',{name:'Replay mechanism',exact:true}).click()
+  if (slide===11) {
+    for (const [name,step] of [['Explain clearer personalization',1],['Explain dynamic FiveK reconstruction',2],['Explain quantitative performance',3]]) {
+      await scene.getByRole('button',{name,exact:true}).click()
+      assert.equal(await scene.getAttribute('data-stage'),String(step))
+      assert.equal(await scene.getAttribute('data-playing'),'false')
+    }
+    await scene.getByRole('button',{name:'Explain clearer personalization',exact:true}).press('Enter')
+    assert.equal(await scene.getAttribute('data-stage'),'1')
+  }
+  await root.getByRole('button',{name:'Replay mechanism',exact:true}).click()
+  assert.ok(Number(await scene.getAttribute('data-run'))>run,'Replay starts a new explanation')
   await root.getByRole('button',{name:'Show final evidence',exact:true}).click()
   assert.equal(await scene.getAttribute('data-stage'),String(final))
   assert.equal(await scene.getAttribute('data-playing'),'false')
@@ -120,32 +129,31 @@ for (const [slide,final] of scenes) {
   console.log(`Motion ${slide}: passed`)
 }
 
-// Keep the deck within the team-confirmed old/new descriptions.
-await page.goto(pageUrl(2),{waitUntil:'networkidle'})
-assert.match(await page.locator('.slidev-page-2 .show-slide').textContent(),/One group → one simulated user/)
-assert.match(await page.locator('.slidev-page-2 h2').textContent(),/Dynamic grouping from paired edits/)
-await page.goto(pageUrl(8),{waitUntil:'networkidle'})
-assert.equal(await page.locator('.slidev-page-8 .history-experiment').count(),0)
-assert.equal(await page.locator('.slidev-page-8').getByRole('button',{name:'History test',exact:true}).count(),0)
-assert.match(await page.locator('.slidev-page-8 .next-workflow').textContent(),/Predict unspecified regions/)
-assert.match(await page.locator('.slidev-page-8 .next-toolbar').textContent(),/Text request → partial edit/)
+// Current two-stage retrieval and generation must not display the older pipeline.
+await page.goto(pageUrl(5),{waitUntil:'networkidle'})
+assert.match(await page.locator('.slidev-page-5 .history-count').textContent(),/N → 20/)
+await page.goto(pageUrl(7),{waitUntil:'networkidle'})
+assert.match(await page.locator('.slidev-page-7 .history-count').textContent(),/20 → 3/)
+await page.goto(pageUrl(9),{waitUntil:'networkidle'})
+assert.match(await page.locator('.slidev-page-9 .render-mechanism').textContent(),/71,H,W/)
+assert.doesNotMatch(await page.locator('.slidev-page-9 .render-mechanism').textContent(),/Recorded output|67,256/)
 
 // The instances survive slide navigation; leaving must cancel pending cues.
-await page.goto(pageUrl(4,true),{waitUntil:'networkidle'})
-await page.locator('.slidev-page-4').getByRole('button',{name:'Replay mechanism',exact:true}).click()
-await page.evaluate(()=>{window.__departedScene=document.querySelector('.slidev-page-4 .motion-scene');document.activeElement?.blur()})
+await page.goto(pageUrl(8,true),{waitUntil:'networkidle'})
+await page.locator('.slidev-page-8').getByRole('button',{name:'Replay mechanism',exact:true}).click()
+await page.evaluate(()=>{window.__departedScene=document.querySelector('.slidev-page-8 .motion-scene');document.activeElement?.blur()})
 await page.keyboard.press('ArrowRight')
 await page.waitForTimeout(350)
-assert.match(await page.locator('.slidev-page-5 .show-slide h2').textContent(),/Different regions select different references/)
+assert.match(await page.locator('.slidev-page-9 .show-slide h2').textContent(),/Stage Six: Spatial Reconstruction and Final Image Generation/)
 assert.equal(await page.evaluate(()=>window.__departedScene.dataset.playing),'false')
 assert.equal(await page.evaluate(()=>window.__departedScene.dataset.stage),'5')
 await page.keyboard.press('ArrowLeft')
 await page.waitForTimeout(400)
-assert.equal(await page.locator('.slidev-page-4 .motion-scene').getAttribute('data-playing'),'true','Entering the slide replays it')
+assert.equal(await page.locator('.slidev-page-8 .motion-scene').getAttribute('data-playing'),'true','Entering the slide replays it')
 
 await page.emulateMedia({reducedMotion:'reduce'})
-await page.waitForFunction(()=>document.querySelector('.slidev-page-4 .motion-scene').dataset.playing==='false')
-assert.equal(await page.locator('.slidev-page-4 .motion-scene').getAttribute('data-playing'),'false')
+await page.waitForFunction(()=>document.querySelector('.slidev-page-8 .motion-scene').dataset.playing==='false')
+assert.equal(await page.locator('.slidev-page-8 .motion-scene').getAttribute('data-playing'),'false')
 for (const [slide,final] of scenes) {
   await page.goto(pageUrl(slide,true),{waitUntil:'networkidle'})
   assert.equal(await page.locator(`.slidev-page-${slide} .motion-scene`).getAttribute('data-stage'),String(final))
@@ -156,9 +164,9 @@ for (const [slide,final] of scenes) {
   assert.equal(await page.locator(`.slidev-page-${slide} .motion-scene`).getAttribute('data-playing'),'false')
 }
 await page.emulateMedia({reducedMotion:'no-preference'})
-await page.goto(pageUrl(4),{waitUntil:'networkidle'})
-assert.equal(await page.locator('.slidev-page-4 .motion-scene').getAttribute('data-stage'),'5','Headless export shows final evidence')
+await page.goto(pageUrl(8),{waitUntil:'networkidle'})
+assert.equal(await page.locator('.slidev-page-8 .motion-scene').getAttribute('data-stage'),'5','Headless export shows final evidence')
 assert.deepEqual(errors,[])
-await writeFile(new URL('../exports/motion-qa-v17.json',import.meta.url),JSON.stringify({scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
+await writeFile(new URL('../exports/motion-qa-v20.json',import.meta.url),JSON.stringify({scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
 await browser.close()
 console.log('MOTION ALL CLEAR')

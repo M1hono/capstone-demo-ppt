@@ -1,30 +1,39 @@
 <script setup>
 import { usePresentationPlayback } from '../composables/usePresentationPlayback'
-const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume}=usePresentationPlayback([300,1400,2600,3850,5100])
+const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume}=usePresentationPlayback([400,1550,2850,4100,5400])
 const base=import.meta.env.BASE_URL
-const captions=['Upsample F to [64,256,256] and concatenate RGB: the CNN receives [67,256,256].','The CNN predicts 3 channels; 0.25 × tanh bounds the RGB residual.','Add ΔI to the original and clamp: output [3,256,256].','Compare output and full target, both [3,256,256], to produce a scalar loss.','Backpropagate that loss through the renderer, attention and encoders.','Refresh the groups using the same updated network.']
+const captions=[
+  "To control computational cost, Cross-Attention is performed in a lower-resolution feature space.",
+  "After Cross-Attention, the modification features are interpolated back to the original image resolution.",
+  "The final enhancement network then receives four major sources of information.",
+  "These features are jointly processed by the final enhancement network to generate the complete enhanced image.",
+  "During training, the final output is still compared against the complete FiveK expert-retouched image.",
+  "It must also reproduce the detailed editing operations and their magnitude closely enough to match the complete expert target."
+]
 </script>
 <template>
   <div class="render-mechanism motion-scene" :data-stage="stage" :data-playing="playing" :data-run="runId">
-    <svg viewBox="0 0 1168 334" role="img" aria-label="Local edit features and the original feed a CNN. Add its bounded correction to the original, compare the result with the target, and update the network before refreshing references.">
-      <defs><marker id="render-flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path pathLength="1" d="M0 0 L10 5 L0 10z" fill="currentColor"/></marker></defs>
-      <g class="render-original"><text x="80" y="21" text-anchor="middle">Original I</text><image :href="`${base}assets/evidence/flowers-original.png`" x="0" y="38" width="160" height="160"/></g>
-      <g class="render-edit-field"><rect x="204" y="38" width="225" height="57"/><text x="316" y="61" text-anchor="middle" class="diagram-title">Upsample edit field F</text><text x="316" y="82" text-anchor="middle" class="diagram-shape">[64,64,64] → [64,256,256]</text></g>
-      <g class="logic-path" :class="{'is-on':stage>=1}"><path pathLength="1" d="M173 154 H205"/><path pathLength="1" d="M316 100 V108 H281 V119"/><path pathLength="1" d="M357 154 H413"/></g>
-      <g class="logic-node" :class="{'is-on':stage>=1,'is-focused':stage===1}"><rect x="204" y="122" width="153" height="68"/><text x="280" y="149" text-anchor="middle" class="diagram-title">Concat → CNN</text><text x="280" y="174" text-anchor="middle" class="diagram-shape">[67,256,256]</text></g>
-      <g class="delta-correction" :class="{'is-on':stage>=1}"><text x="445" y="146" text-anchor="middle" class="delta-symbol">ΔI</text><text x="445" y="176" text-anchor="middle" class="diagram-small">0.25 · tanh(…)</text><text x="445" y="202" text-anchor="middle" class="diagram-shape">[3,256,256]</text></g>
-      <g class="logic-path original-bypass" :class="{'is-on':stage>=2}"><path pathLength="1" d="M80 226 V249 H555 V180"/><path pathLength="1" d="M480 154 H532"/><path pathLength="1" d="M582 154 H648"/><text x="430" y="242" text-anchor="middle" class="diagram-small">Add a residual to the whole image.</text></g>
-      <g class="residual-add" :class="{'is-on':stage>=2}"><circle cx="556" cy="154" r="23"/><path pathLength="1" d="M544 154 H568 M556 142 V166"/></g>
-      <g><text x="740" y="21" text-anchor="middle">Recorded output</text><text x="1085" y="21" text-anchor="middle">Full expert target</text></g>
-      <foreignObject x="660" y="38" width="160" height="160"><ImageComparison :before="`${base}assets/evidence/flowers-original.png`" :after="`${base}assets/evidence/flowers-output.png`" label="recorded flower output" :reveal="stage<2?0:100"/></foreignObject>
-      <image :href="`${base}assets/evidence/flowers-target.png`" x="1005" y="38" width="160" height="160" :opacity="stage>=3?1:.22"/>
-      <g class="logic-path" :class="{'is-on':stage>=3}"><path pathLength="1" d="M828 120 H854"/><path pathLength="1" d="M997 120 H974"/></g>
-      <g class="logic-node loss-node" :class="{'is-on':stage>=3,'is-focused':stage===3}"><rect x="861" y="88" width="107" height="67"/><text x="914" y="116" text-anchor="middle" class="diagram-title">Loss</text><text x="914" y="141" text-anchor="middle" class="diagram-small">L1 → scalar</text></g>
-      <text x="80" y="216" text-anchor="middle" class="diagram-shape">[3,256,256]</text><text x="740" y="222" text-anchor="middle" class="diagram-shape">[3,256,256]</text><text x="1085" y="222" text-anchor="middle" class="diagram-shape">[3,256,256]</text>
-      <g class="logic-path learning-feedback" :class="{'is-on':stage>=4}"><path pathLength="1" d="M915 166 V300 H280 V204"/><text x="658" y="291" text-anchor="middle">Update encoders · attention · CNN</text></g>
-      <g class="retrieval-refresh" :class="{'is-on':stage>=5}"><text x="657" y="328" text-anchor="middle" class="diagram-small">Next chunk: use the shared encoder to refresh the groups.</text></g>
+    <svg viewBox="0 0 1168 424" role="img" aria-label="I, P, mask M and interpolated historical features are concatenated into 71 channels. The CNN predicts a residual. The final output preserves explicit edits and is supervised against G.">
+      <defs><marker id="render-flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="currentColor"/></marker></defs>
+      <g>
+        <image :href="`${base}assets/fivek/cnn-input.png`" x="0" y="44" width="58" height="58"/><text x="74" y="63">Original I</text><text x="74" y="89" class="diagram-shape">[3,H,W]</text>
+        <image :href="`${base}assets/next-step/partial-clue.png`" x="0" y="127" width="58" height="58"/><text x="74" y="147">Partial edit P</text><text x="74" y="173" class="diagram-shape">[3,H,W]</text>
+        <image :href="`${base}assets/next-step/illustrative-mask.png`" x="0" y="210" width="58" height="58"/><text x="74" y="230">Explicit mask M</text><text x="74" y="256" class="diagram-shape">[1,H,W]</text>
+        <g class="render-edit-field"><rect x="0" y="293" width="254" height="76"/><text x="127" y="322" text-anchor="middle" class="diagram-title">Interpolate history F</text><text x="127" y="351" text-anchor="middle" class="diagram-shape">[64,64,64] → [64,H,W]</text></g>
+      </g>
+      <g class="logic-path" :class="{'is-on':stage>=1}"><path pathLength="1" d="M240 75 H280 V206 H328"/><path pathLength="1" d="M240 157 H280"/><path pathLength="1" d="M240 240 H280 V206"/><path pathLength="1" d="M265 332 H280 V240"/></g>
+      <g class="logic-node" :class="{'is-on':stage>=1,'is-focused':stage===1}"><rect x="341" y="164" width="185" height="85"/><text x="433" y="199" text-anchor="middle" class="diagram-title">Concat → CNN</text><text x="433" y="228" text-anchor="middle" class="diagram-shape">[71,H,W]</text></g>
+      <g class="logic-path" :class="{'is-on':stage>=2}"><path pathLength="1" d="M538 206 H562"/><path pathLength="1" d="M137 35 V17 H698 V152"/><text x="479" y="42" text-anchor="middle" class="diagram-small">Original I · residual connection</text></g>
+      <g class="logic-node" :class="{'is-on':stage>=2,'is-focused':stage===2}"><rect x="575" y="164" width="242" height="85"/><text x="696" y="199" text-anchor="middle" class="diagram-title">B = clamp(I + ΔI)</text><text x="696" y="228" text-anchor="middle" class="diagram-shape">[3,H,W]</text></g>
+      <g class="delta-correction" :class="{'is-on':stage>=2}"><text x="696" y="285" text-anchor="middle" class="diagram-shape">ΔI = 0.25 · tanh(CNN(…))</text></g>
+      <g class="logic-path" :class="{'is-on':stage>=3}"><path pathLength="1" d="M829 206 H871"/><path pathLength="1" d="M1021 108 V152"/><text x="1021" y="67" text-anchor="middle">Explicit edit P + M</text><text x="1021" y="93" text-anchor="middle" class="diagram-small">Preserve specified pixels</text></g>
+      <g class="logic-node" :class="{'is-on':stage>=3,'is-focused':stage===3}"><rect x="884" y="164" width="274" height="85"/><text x="1021" y="199" text-anchor="middle" class="diagram-title">Ŷ = M⊙P + (1−M)⊙B</text><text x="1021" y="228" text-anchor="middle" class="diagram-shape">[3,H,W]</text></g>
+      <g class="logic-path" :class="{'is-on':stage>=4}"><path pathLength="1" d="M1021 261 V305"/><path pathLength="1" d="M1157 336 H1093"/></g>
+      <g class="logic-node" :class="{'is-on':stage>=4,'is-focused':stage===4}"><rect x="947" y="317" width="135" height="55"/><text x="1014" y="350" text-anchor="middle" class="diagram-title">Loss (Ŷ, G)</text></g>
+      <text x="1122" y="315" text-anchor="middle" class="diagram-small">Target G</text>
+      <g class="logic-path" :class="{'is-on':stage>=5}"><path pathLength="1" d="M1014 383 V414 H433 V261"/><text x="694" y="405" text-anchor="middle" class="diagram-small">Update encoders · attention · CNN</text></g>
     </svg>
-    <div class="render-diagnostics"><strong>Recorded changes<small>Blue − · red +</small></strong><figure v-for="[kind,label,limit] in [['brightness','Brightness','0.0748'],['saturation','Saturation','1'],['warmth','Warmth proxy','2']]" :key="kind"><img :src="`${base}assets/evidence/flowers-recorded-${kind}.png`" :alt="`Recorded ${label} diagnostic`"/><figcaption>{{label}}<small>±{{limit}} · separate scale</small></figcaption></figure><p>Full-image loss<br><span>L1 + 0.001 · mean |output − input|</span></p></div>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>
+    <p class="mechanism-provenance">Illustrative I/P/M inputs · Ŷ is symbolic, not a recorded prediction · tensor example omits batch.</p>
   </div>
 </template>

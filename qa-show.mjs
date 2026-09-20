@@ -1,9 +1,10 @@
 import { chromium } from 'playwright-chromium'
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const base = process.env.SHOW_BASE ?? 'http://localhost:18335'
 const pageUrl = slide => `${base}/${process.env.SHOW_ROUTER === 'hash' ? '#/' : ''}${slide}`
-const total = 8
+const manuscriptTitles=['ReferenceGuidedRetouching',...JSON.parse(await readFile(new URL('./evidence/manuscript-section-titles.json',import.meta.url),'utf8'))]
+const total = manuscriptTitles.length
 const output = new URL('./exports/previews/', import.meta.url)
 await mkdir(output, { recursive: true })
 const browser = await chromium.launch({ headless: true })
@@ -11,7 +12,7 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, dev
 const errors = []
 page.on('pageerror', error => errors.push(`pageerror: ${error.message}`))
 page.on('console', message => {
-  if (message.type() === 'error')
+  if (message.type() === 'error' || /Failed to resolve component/.test(message.text()))
     errors.push(`console: ${message.text()}`)
 })
 
@@ -43,12 +44,25 @@ for (let i = 1; i <= total; i++) {
         })
       }
     }
+    const unknownElements=[...slide.querySelectorAll('*')].filter(el=>el instanceof HTMLUnknownElement).map(el=>el.tagName)
+    const overlaps=[]
+    const diagramTexts=[...slide.querySelectorAll('svg text')].filter(el=>getComputedStyle(el).visibility!=='hidden')
+    for(let a=0;a<diagramTexts.length;a++) for(let b=a+1;b<diagramTexts.length;b++) {
+      const x=diagramTexts[a].getBoundingClientRect(),y=diagramTexts[b].getBoundingClientRect()
+      const w=Math.min(x.right,y.right)-Math.max(x.left,y.left),h=Math.min(x.bottom,y.bottom)-Math.max(x.top,y.top)
+      if(w>3 && h>3) overlaps.push([diagramTexts[a].textContent,diagramTexts[b].textContent])
+    }
+    const footerTop=slide.querySelector('.deck-footer').getBoundingClientRect().top
+    const footerCollisions=[...slide.children].filter(el=>!el.matches('.deck-footer') && el.getBoundingClientRect().bottom>footerTop-5).map(el=>el.className)
+    const coverCollision=slide.classList.contains('cover-slide') && slide.querySelector('.identity').getBoundingClientRect().bottom>slide.querySelector('.cover-names').getBoundingClientRect().top-12
+    const emptyMechanism = [2,4,5,6,7,8,9,11,12,13,14].includes(pageNumber) && !slide.querySelector('.motion-scene')
     const svgImageChecks=await Promise.all([...slide.querySelectorAll('svg image')].map(async element=>{
       const src=element.getAttribute('href')
       const response=await fetch(src,{cache:'force-cache'})
       return response.ok?null:src
     }))
     return {
+      unknownElements, textOverlaps:overlaps, footerCollisions, coverCollision, emptyMechanism,
       slideRect: [Math.round(rect.width), Math.round(rect.height)],
       overflowCount: overflows.length,
       overflows: overflows.slice(0, 6),
@@ -60,7 +74,8 @@ for (let i = 1; i <= total; i++) {
       words: slide.innerText.match(/\b[\w’'-]+\b/g)?.length ?? 0,
     }
   }, i)
-  const failed = result.error || result.overflowCount > 0 || result.missingImages.length > 0 || errors.length > 0
+  result.manuscriptTitleMatches=result.title===manuscriptTitles[i-1]
+  const failed = !result.manuscriptTitleMatches || result.error || result.overflowCount > 0 || result.unknownElements.length || result.textOverlaps.length || result.footerCollisions.length || result.coverCollision || result.emptyMechanism || result.missingImages.length > 0 || errors.length > 0
   await page.screenshot({ path: new URL(`slide-${String(i).padStart(2,'0')}.png`, output).pathname })
   report.push({ page: i, ...result, errors: [...errors] })
   console.log(`slide ${String(i).padStart(2, '0')}:`, JSON.stringify({ ...result, errors: errors.slice(0, 4) }), failed ? '  <-- CHECK' : '')
@@ -72,10 +87,14 @@ for (let i = 1; i <= total; i++) {
 await page.goto(pageUrl(3), { waitUntil: 'networkidle' })
 await page.locator('.slidev-page-3').getByRole('button', { name: 'Expert D', exact: false }).click()
 if (!await page.locator('.slidev-page-3 .expert-measures img').first().getAttribute('src').then(src=>src.includes('expert-D'))) throw new Error('Expert switch failed')
-await page.goto(pageUrl(5), { waitUntil: 'networkidle' })
-await page.locator('.slidev-page-5').getByRole('button', { name: 'Flowers', exact: true }).click()
-await page.locator('.slidev-page-5').getByRole('button', { name: /0490/ }).click()
-if (!await page.locator('.slidev-page-5 .attention-images img').first().getAttribute('src').then(src=>src.includes('ref3'))) throw new Error('Attention reference switch failed')
+// The manuscript's achievements must survive visual restructuring.
+await page.goto(pageUrl(11), { waitUntil: 'networkidle' })
+const achievements=await page.locator('.slidev-page-11 .show-slide').innerText()
+for(const phrase of ['clearer definition of personalization','dynamically reconstruct FiveK','strong quantitative performance','27.2','22.1','24.5','23.1']) {
+  if(!achievements.toLowerCase().includes(phrase.toLowerCase())) throw new Error(`Missing manuscript achievement or ablation: ${phrase}`)
+}
+await page.goto(pageUrl(1), { waitUntil: 'networkidle' })
+if(await page.locator('.slidev-page-1 .cover-kicker,.slidev-page-1 .preference-definition,.footer-scope').count()) throw new Error('Decorative label or rejected cover banner returned')
 await writeFile(new URL('./exports/qa.json', import.meta.url), JSON.stringify(report, null, 2))
 
 await browser.close()
