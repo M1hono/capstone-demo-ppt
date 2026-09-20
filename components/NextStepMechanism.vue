@@ -3,17 +3,17 @@ import { usePresentationPlayback } from '../composables/usePresentationPlayback'
 const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume}=usePresentationPlayback([350,1450,2600,3750,5100])
 const base=import.meta.env.BASE_URL
 const asset=name=>`${base}assets/${name}`
-const captions=['Start with the image the user wants to edit.','The user specifies how part of the image should change.','Find historical edits that made similar changes.','Cross-attention finds which historical regions can guide each input region.','Keep the modifications the user specified.','Use the selected history to complete the parts the user did not specify.']
+const captions=['Start with the image and the user’s text request.','Apply the requested change to part of the image.','Find historical edits that made similar changes.','Cross-attention finds which historical regions can guide each input region.','Keep the modifications the user specified.','Use the selected history to complete the parts the user did not specify.']
 </script>
 <template>
   <div class="next-mechanism motion-scene" :data-stage="stage" :data-playing="playing" :data-run="runId">
-    <div class="next-toolbar"><b>User edit → history → completion</b><span>Next-phase schematic · simulated edit clue</span></div>
-    <svg class="completion-diagram" viewBox="0 0 1168 338" role="img" aria-label="An illustrative partial edit is composed with the original, used to retrieve reference pairs and passed to cross-attention. Specified pixels are copied; cross-attention guides completion of the regions the user did not specify.">
+    <div class="next-toolbar"><b>Text request → partial edit → history → completion</b><span>Next-phase schematic · simulated edit clue</span></div>
+    <svg class="completion-diagram" viewBox="0 0 1168 338" role="img" aria-label="In the proposed flow a text request specifies a partial edit, which is composed with the original, used to retrieve reference pairs and passed to cross-attention. Specified pixels are copied; cross-attention guides completion of the regions the user did not specify.">
       <defs>
         <marker id="completion-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="currentColor"/></marker>
         <pattern id="completion-unknown" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="10" height="10" fill="#e2e8e7"/><line x1="0" y1="0" x2="0" y2="10" stroke="#becbc9" stroke-width="2"/></pattern>
       </defs>
-      <text x="127" y="33" text-anchor="middle" class="section-label">{{stage<2?'User specifies an edit':'Partial edit clue P'}}</text>
+      <text x="127" y="33" text-anchor="middle" class="section-label">{{stage<2?'Text-guided partial edit':'Partial edit clue P'}}</text>
       <image :href="asset('fivek/cnn-input.png')" x="20" y="65" width="214" height="214"/>
       <g class="edit-plane" :class="{'is-visible':stage>=1,'is-lifted':stage===1}"><image :href="asset('next-step/specified-edit.png')" x="20" y="65" width="214" height="214"/><rect x="113.625" y="105.125" width="100.3125" height="113.6875" class="specified-outline"/></g>
       <text x="127" y="301" text-anchor="middle" class="small">Original + specified edit + mask</text>
@@ -33,12 +33,12 @@ const captions=['Start with the image the user wants to edit.','The user specifi
       <text x="1006" y="303" text-anchor="middle" class="small">Rule shown · no new output</text>
     </svg>
     <div class="next-workflow" :class="{'is-on':stage>=5}">
-      <div><span class="region-swatch specified"/><p><b>User specifies</b><span>Preserve those modifications</span></p></div>
+      <div><span class="region-swatch specified"/><p><b>Text request</b><span>Specify a regional change</span></p></div>
       <div><span class="region-swatch unknown"/><p><b>History guides</b><span>Find how to edit the rest</span></p></div>
       <div><span class="completion-arrow" aria-hidden="true">→</span><p><b>Complete the image</b><span>Fill in what the user left unspecified</span></p></div>
     </div>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>
-    <p class="mechanism-provenance">FiveK expert pixels simulate the edit; mask and history selection are illustrative.</p>
+    <p class="mechanism-provenance">FiveK pixels simulate the edit. Text handling, mask and history selection are illustrative.</p>
   </div>
 </template>
 <style scoped>

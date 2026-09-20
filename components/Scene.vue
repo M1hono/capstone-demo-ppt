@@ -20,7 +20,7 @@ onMounted(show)
 watch(()=>$nav.value.currentSlideNo,n=>{if(n===$page.value)show()})
 </script>
 <template>
-  <div ref="root" class="engine-view" role="img" aria-label="Exploded editor anatomy: input, edit controls, DiffMap, residual CNN, output">
+  <div ref="root" class="engine-view" role="img" aria-label="Conceptual reference-guided retouching anatomy: input, edit pairs, cross-attention, CNN, output">
     <img v-if="snapshot" class="scene-snapshot" :src="snapshot" alt="" />
   </div>
 </template>
