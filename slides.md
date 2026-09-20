@@ -15,14 +15,14 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v16
+exportFilename: Reference-Guided-Retouching-v17
 ---
 
 <section class="show-slide cover-slide">
-  <div class="cover-copy"><h1>Reference<br>Guided<br>Retouching</h1><p>Paired edit descriptors · top-3 retrieval<br>Q/K/V regional transfer · CNN residual.</p><div class="identity"><b>Technical walkthrough</b><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
-  <div class="cover-object"><Scene :act="0"/><p class="object-caption"><b>Paired edits · reference selection · residual prediction</b></p></div>
+  <div class="cover-copy"><h1>Reference<br>Guided<br>Retouching</h1><div class="identity"><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
+  <div class="cover-object"><Scene :act="0"/></div>
   <div class="cover-names">Yuchen Deng · Gary Xu · Sihan Fang · Yiming Chen · Yiheng Guo<br>Lunyan Wang · Weishao Su · XingTang Chen · Zihao Zhang</div>
-  <DeckFooter :page="1" :active="0" scope="Technical walkthrough"/>
+  <DeckFooter :page="1" :active="0"/>
 </section>
 
 <!--
