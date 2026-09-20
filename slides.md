@@ -19,7 +19,7 @@ exportFilename: Reference-Guided-Retouching-v16
 ---
 
 <section class="show-slide cover-slide">
-  <div class="cover-copy"><h1>Reference<br>Guided<br>Retouching</h1><p>Dynamic grouping → regional attention<br>→ residual enhancement.</p><div class="identity"><b>Technical walkthrough</b><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
+  <div class="cover-copy"><h1>Reference<br>Guided<br>Retouching</h1><p>Paired edit descriptors · top-3 retrieval<br>Q/K/V regional transfer · CNN residual.</p><div class="identity"><b>Technical walkthrough</b><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div></div>
   <div class="cover-object"><Scene :act="0"/><p class="object-caption"><b>Paired edits · reference selection · residual prediction</b></p></div>
   <div class="cover-names">Yuchen Deng · Gary Xu · Sihan Fang · Yiming Chen · Yiheng Guo<br>Lunyan Wang · Weishao Su · XingTang Chen · Zihao Zhang</div>
   <DeckFooter :page="1" :active="0" scope="Technical walkthrough"/>
