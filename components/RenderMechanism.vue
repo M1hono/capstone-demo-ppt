@@ -2,7 +2,7 @@
 import { usePresentationPlayback } from '../composables/usePresentationPlayback'
 const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume}=usePresentationPlayback([300,1400,2600,3850,5100])
 const base=import.meta.env.BASE_URL
-const captions=['The renderer receives the original RGB and transferred edit features.','Predict a bounded RGB residual for the whole image.','Add the residual to the original and clamp the output.','Compare every output pixel with the full expert target.','Backpropagate the full-image loss through the renderer and attention.','Refresh the retrieval descriptors with the updated encoder.']
+const captions=['The renderer receives the original RGB and transferred edit features.','Predict a bounded RGB residual for the whole image.','Add the residual to the original and clamp the output.','Compare every output pixel with the full expert target.','Backpropagate the full-image loss through the renderer and attention.','Refresh the groups using the same updated network.']
 </script>
 <template>
   <div class="render-mechanism motion-scene" :data-stage="stage" :data-playing="playing" :data-run="runId">
@@ -21,7 +21,7 @@ const captions=['The renderer receives the original RGB and transferred edit fea
       <g class="logic-path" :class="{'is-on':stage>=3}"><path pathLength="1" d="M828 120 H854"/><path pathLength="1" d="M997 120 H974"/></g>
       <g class="logic-node loss-node" :class="{'is-on':stage>=3,'is-focused':stage===3}"><rect x="861" y="88" width="107" height="67"/><text x="914" y="116" text-anchor="middle" class="diagram-title">Loss</text><text x="914" y="141" text-anchor="middle" class="diagram-small">Full-image L1</text></g>
       <g class="logic-path learning-feedback" :class="{'is-on':stage>=4}"><path pathLength="1" d="M915 166 V300 H280 V204"/><text x="658" y="291" text-anchor="middle">Update encoders · attention · CNN</text></g>
-      <g class="retrieval-refresh" :class="{'is-on':stage>=5}"><text x="657" y="328" text-anchor="middle" class="diagram-small">Next chunk: re-encode the candidate pool and retrieve again.</text></g>
+      <g class="retrieval-refresh" :class="{'is-on':stage>=5}"><text x="657" y="328" text-anchor="middle" class="diagram-small">Next chunk: use the shared encoder to refresh the groups.</text></g>
     </svg>
     <div class="render-diagnostics"><strong>Recorded changes<small>Blue − · red +</small></strong><figure v-for="[kind,label,limit] in [['brightness','Brightness','0.0748'],['saturation','Saturation','1'],['warmth','Warmth proxy','2']]" :key="kind"><img :src="`${base}assets/evidence/flowers-recorded-${kind}.png`" :alt="`Recorded ${label} diagnostic`"/><figcaption>{{label}}<small>±{{limit}} · separate scale</small></figcaption></figure><p>Full-image loss<br><span>L1 + 0.001 · mean |output − input|</span></p></div>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>

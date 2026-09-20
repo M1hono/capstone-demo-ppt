@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v10
+exportFilename: Reference-Guided-Retouching-v11
 ---
 
 <section class="show-slide cover-slide">
@@ -84,13 +84,13 @@ This is an actual supplied demo screenshot, not the separate Retouch Lab UX mock
 ---
 
 <section class="show-slide">
-  <h2>Retrieve references from the full edit.</h2><p class="subtitle">Use the original and its full expert target to find similar editing examples.</p>
+  <h2>Group editing examples to simulate users.</h2><p class="subtitle">The same network forms groups and learns how to edit within them.</p>
   <LearningMechanism/>
-  <DeckFooter :page="6" :active="2" scope="Research · full-target retrieval"/>
+  <DeckFooter :page="6" :active="2" scope="Old approach · dynamic user groups"/>
 </section>
 
 <!--
-Presentation baseline: cross-attention revision 767cae8, 19 September. The query descriptor uses the full expert target. The separate partial-query evaluation script in this same commit is exploratory and is not the training flow illustrated here. Grouping uses model.b([I,E,E−I]) and global average pooling; distances are Euclidean, and candidates sharing the original scene are excluded. It recomputes candidate embeddings with current weights each chunk. This is supervised training with refreshed discrete retrieval, not reinforcement learning. Baseline config: train originals 1–400, validation 401–500; the downloader prepares up to 800, with remaining originals available for test. For testing, candidate references come from the training set; validation currently retrieves within validation. The supplied figure's actual run configuration and weights are not archived, so do not assign these defaults retrospectively to its metrics.
+Presentation baseline: cross-attention revision 767cae8, 19 September. The team leader confirms the old task setting: the same network forms editing groups, each group simulates one user, and cross-attention learns regional changes from references in that group. In this implementation the groups are refreshed per-query nearest-reference neighbourhoods; do not invent fixed global user IDs or separate networks per user. The query descriptor uses the full expert target. The separate partial-query evaluation script in this same commit is exploratory and is not the training flow illustrated here. Grouping uses model.b([I,E,E−I]) and global average pooling; distances are Euclidean, and candidates sharing the original scene are excluded. It recomputes candidate embeddings with current weights each chunk. This is supervised training with refreshed discrete retrieval, not reinforcement learning. Baseline config: train originals 1–400, validation 401–500; the downloader prepares up to 800, with remaining originals available for test. For testing, candidate references come from the training set; validation currently retrieves within validation. The supplied figure's actual run configuration and weights are not archived, so do not assign these defaults retrospectively to its metrics.
 
 The animation illustrates the source retrieval rule using the flower example’s recorded reference set. The query target and reference images are from that same recorded panel. The excluded same-scene rendition is an actual FiveK Expert D asset. Exact candidate-pool contents, descriptor distances and the original retrieval execution were not archived; the animation does not recreate that execution or claim those three references were freshly retrieved.
 -->
@@ -98,9 +98,9 @@ The animation illustrates the source retrieval rule using the flower example’s
 ---
 
 <section class="show-slide">
-  <h2>Match the original to the selected references.</h2><p class="subtitle">The image encoder sees RGB; reference pairs supply the edits to transfer.</p>
+  <h2>Learn regional edits within a group.</h2><p class="subtitle">Cross-attention finds how the group’s reference edits can guide each input region.</p>
   <DecisionMechanism/>
-  <DeckFooter :page="7" :active="3" scope="Research · RGB + reference pairs"/>
+  <DeckFooter :page="7" :active="3" scope="Old approach · regional cross-attention"/>
 </section>
 
 <!--
@@ -126,7 +126,7 @@ The reference expert panel wipes between the actual recorded reference original 
 ---
 
 <section class="show-slide">
-  <h2>Fit the complete expert edit.</h2><p class="subtitle">Whole-image supervision trains the renderer, attention and encoders.</p>
+  <h2>Train grouping and enhancement together.</h2><p class="subtitle">The editing loss updates the network that also forms the groups.</p>
   <RenderMechanism/>
   <DeckFooter :page="9" :active="3" scope="Research · whole-image training"/>
 </section>
@@ -140,7 +140,7 @@ The 767cae8 baseline uses 32×32 Q/K scoring with a 256×256 input, while encode
 <section class="show-slide">
   <h2>What the recorded outputs show.</h2><p class="subtitle">Compare saved experimental outputs with their expert targets.</p>
   <ResultsGallery/>
-  <div class="metric-context"><div><b>Recorded result scope</b><p>Per-image target similarity.<br>Run versions are not archived.</p></div><div><b>Earlier milestone</b><p><strong>26.6 dB · 0.88 SSIM</strong><br>Separate evaluation subset.</p></div><div><b>Next evaluation</b><p>Archive checkpoints and splits.<br>Repeat the comparison.</p></div></div>
+  <div class="metric-context"><div><b>Recorded result scope</b><p>Per-image target similarity.<br>Run versions are not archived.</p></div><div><b>Earlier milestone</b><p><strong>26.6 dB · 0.88 SSIM</strong><br>Separate evaluation subset.</p></div><div><b>Reading the evidence</b><p>Compare the saved outputs.<br>Keep each score in context.</p></div></div>
   <DeckFooter :page="10" :active="4" scope="Recorded samples · version unconfirmed"/>
 </section>
 
@@ -153,7 +153,7 @@ Flowers: 26.496 dB / 0.7949. Dog: 32.761 / 0.9531. Books: 27.242 / 0.8946. Value
 <section class="show-slide">
   <h2>Which parts improved the reported score?</h2><p class="subtitle">Chart archived 17 September · team-reported ablations.</p>
   <MetricChart/>
-  <div class="ablation-reading"><p><b>Retrieve</b><span>Choose relevant reference edits.</span></p><p><b>Select</b><span>Choose a reference per region.</span></p><p><b>Transfer</b><span>Align useful editing features.</span></p></div>
+  <div class="ablation-reading"><p><b>Group</b><span>Group similar editing examples.</span></p><p><b>Select</b><span>Choose a reference per region.</span></p><p><b>Transfer</b><span>Align useful editing features.</span></p></div>
   <DeckFooter :page="11" :active="4" scope="Earlier experiment · reported ablations"/>
 </section>
 
@@ -164,35 +164,29 @@ Transcribed from the research branch comparison figure: full 26.70; random group
 ---
 
 <section class="show-slide">
-  <h2>What happens when the target is unavailable.</h2><p class="subtitle">Remove a dependency. Inspect a real zero-control result.</p>
+  <h2>Inspect the old inputs and a saved output.</h2><p class="subtitle">Follow the grouping input, then inspect the earlier editor’s zero-control output.</p>
   <BoundaryWorkbench/>
-  <DeckFooter :page="12" :active="4" scope="Current demo · research limits"/>
+  <DeckFooter :page="12" :active="4" scope="Old grouping · recorded editor output"/>
 </section>
 
 <!--
-New CPU run measured mean absolute edit 0.027538985 under a zero conditioning map. This is a factual counterexample to an identity guarantee, not a full failure-rate estimate. No full Text/Qwen/Mask2Former runtime has been run here; testing scripts existing in the repository do not imply passing results. In the 767cae8 full-edit baseline, forward ignores current_expert, but grouping_embedding(original,expert) uses the complete target upstream. This is the baseline limitation shown here, not a claim about the latest partial-edit implementation. Revision 3c1dadc uses a partial target composite as a simulated request and keeps the unknown-region target out of retrieval and generation. It still needs separate evaluation with real requests and user histories. The Target access tab animates a conceptual removal of the full target; it does not execute a new retrieval or claim that the model cannot run. The reference thumbnails illustrate the dependency using recorded pairs; selection after the intervention is unvalidated. The Zero control tab replays the actual saved output and a four-times amplified absolute RGB difference computed from the 8-bit PNGs. The displayed 0.0275 metric is rounded from the original floating-point inference record, not measured from the displayed difference. Both sequences support manual stepping and settle without continuous motion.
+The Grouping input mode summarises the old approach confirmed by the team: a shared network groups complete original–expert edits, a group simulates one user, and regional cross-attention uses references from that group. The 767cae8 README and code use the same model.b encoder for grouping descriptors and reference editing features. Full query targets enter grouping; original RGB enters regional generation. The displayed pairs are recorded illustrations, not a newly executed group assignment.
 
-Explicit source-ID ranges keep same-scene expert variants within a split, whereas the unused random split path divides pair IDs and needs care.
+The Zero control mode retains an actual saved run of the earlier explicit-control editor. Mean absolute edit was 0.027538985 under zero conditioning, demonstrating a nonzero edit for this checkpoint and input. The difference image is an absolute RGB difference of saved 8-bit PNGs amplified four times; the metric is from the original float-tensor run. This is separate from the grouped cross-attention model. No extra deployment experiment or future test programme is proposed on this page.
 -->
 
 ---
 
 <section class="show-slide closing-slide">
-  <h2>Next: use partial edits to guide completion.</h2><p class="subtitle">Preserve the specified edit. Learn how to complete the rest.</p>
+  <h2>Next: use partial edits to guide completion.</h2><p class="subtitle">Find similar past modifications, then fill in what the user left unspecified.</p>
   <NextStepMechanism/>
   <DeckFooter :page="13" :active="4" scope="Next phase · partial-edit prototype"/>
 </section>
 
 <!--
-This is the next phase, separate from the full-edit baseline demonstrated earlier. The intended task is to honour explicit edits, retrieve examples from that user’s own original–edited history, and complete unspecified regions. Observable reference choices and region correspondences remain useful; language execution and explicit do-not-change constraints need integration.
+This next-phase slide follows the team leader’s description only: the user specifies changes for part of an image; the system searches that user’s historical original–edited pairs for similar modifications; cross-attention determines which historical regions can guide each current region and completes the parts the user did not specify.
 
-Git scope: 767cae8 (19 September) adds an exploratory partial-query evaluation script while retaining full-edit training. Revision 3c1dadc (20 September) integrates partial edits into training: original RGB, partial-edit RGB and the specified-region mask condition the query encoder and renderer. Selected target pixels simulate the requested edit; the output copies those regions exactly. L1 and residual regularisation are computed on unspecified regions, and checkpoint selection uses unknown_psnr. The architecture changes require new weights. These code changes do not establish a deployed language planner or persistent personalised history store.
+The flow is supported by the 3c1dadc changes: grouping queries use original RGB, partial-edit RGB and their difference; historical candidates retain full paired edits. The current-image encoder and renderer also receive the partial edit and mask, and specified pixels are copied into the final composition. Code availability is not a recorded successful run of this new flow.
 
-No recorded score in this deck is assigned to the new partial-edit experiment. To test whether history contributes, hold query clues and masks fixed, compare the intended user’s history against other-user histories and a no-history baseline, and measure unspecified-region quality alongside edit preservation and client preference judgements. Keep originals disjoint across query and reference splits. Recovering a target from partial target pixels alone does not demonstrate long-term preference learning.
-
-The animated partial clue is a presentation composite derived from the existing FiveK 0412 input and resized Expert D. A fixed illustrative rectangular mask selects expert pixels; it is not a learned or semantic segmentation mask. The image plane lifts and recombines to explain P = M·T + (1−M)·I. Reference selection and the shown pool are schematic. The final composition retains specified pixels while hatching the unknown region; no expert target is presented as a predicted output. The top copy path explains exact preservation, while attention and CNN information serves completion. The complete target is used only for training or evaluation, not passed as a full query.
-
-The History test tab holds original, clue and mask fixed and changes only the proposed history condition. Recorded flower and dog reference pairs serve as illustrative thumbnails, not attributed user identities. All scores remain unmeasured. The no-history branch is a separately implemented ablation: the current model requires at least one reference, so passing an empty list is not a valid baseline. Simply shuffling the same pool order would not establish a preference effect. Unknown-region metrics, preservation checks and client judgements are the proposed next evidence.
-
-Live demo and full evidence panels remain separate from the 13-page core. Team name TH18_04 versus repository TU18_04 still requires group confirmation before submission; avoid asserting either on the cover.
+The example is a schematic composed from real FiveK 0412 input pixels and Expert D pixels selected by an illustrative rectangle. It is not a semantic segmentation result or new model output. The reference thumbnails illustrate selection from history without attributing an actual user identity or inventing attention scores. Hatching marks the regions to be completed; the supplied expert target is never presented as a generated completion. Keep this boundary in the presentation, without adding new experiment plans, other-user or no-history trials, client preference tests, or product integration commitments.
 -->

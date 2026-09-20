@@ -1,6 +1,6 @@
 <script setup>
 defineProps({page:Number,active:{type:Number,default:0},scope:{type:String,default:''}})
-const steps=['Data','Control demo','Retrieval','Transfer + training','Evidence & next steps']
+const steps=['Data','Control demo','Grouping','Transfer + training','Evidence & next steps']
 </script>
 <template>
   <footer class="deck-footer">

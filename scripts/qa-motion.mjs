@@ -120,8 +120,8 @@ for (const [slide,final] of scenes) {
   console.log(`Motion ${slide}: passed`)
 }
 
-// Closing workbenches have a second experiment, with independently inspectable steps.
-for (const [slide,name,mode] of [[12,'Zero control','zero'],[13,'History test','history']]) {
+// The saved zero-control result remains independently inspectable.
+for (const [slide,name,mode] of [[12,'Zero control','zero']]) {
   await page.goto(pageUrl(slide,true),{waitUntil:'networkidle'})
   const root=page.locator(`.slidev-page-${slide}`)
   const scene=root.locator('.motion-scene')
@@ -140,7 +140,6 @@ for (const [slide,name,mode] of [[12,'Zero control','zero'],[13,'History test','
     assert.ok(contentBottom<footerTop,`Slide ${slide} mode ${mode} must stay above the footer`)
     const clipped=await scene.evaluate(el=>[...el.querySelectorAll('*')].filter(n=>{const b=n.getBoundingClientRect();return b.width>0 && (b.right>1280.5 || b.left<-.5 || b.bottom>720.5)}).map(n=>n.tagName))
     assert.deepEqual(clipped,[])
-    if (slide===13 && step<4) assert.equal(await scene.locator('.history-trial.is-on').count(),step)
   }
   await page.waitForFunction(slide=>[...document.querySelectorAll(`.slidev-page-${slide} img`)].every(img=>img.complete && img.naturalWidth),slide)
   if (slide===12) {
@@ -150,13 +149,18 @@ for (const [slide,name,mode] of [[12,'Zero control','zero'],[13,'History test','
     assert.equal(await comparison.getAttribute('data-reveal'),'0')
     await comparison.locator('input').press('End')
     assert.equal(await comparison.getAttribute('data-reveal'),'100')
-  } else {
-    assert.equal(await scene.locator('.trial-score').count(),3)
-    for (const label of await scene.locator('.trial-score').allTextContents()) assert.match(label,/—To measure/)
-    assert.equal(new Set(await scene.locator('.trial-output img').evaluateAll(imgs=>imgs.map(i=>i.src))).size,1,'Specified pixels must stay fixed across comparisons')
   }
   await page.screenshot({path:new URL(`slide-${slide}-${mode}.png`,out).pathname})
 }
+
+// Keep the deck within the team-confirmed old/new descriptions.
+await page.goto(pageUrl(6),{waitUntil:'networkidle'})
+assert.match(await page.locator('.slidev-page-6 .show-slide').textContent(),/One group → one simulated user/)
+assert.match(await page.locator('.slidev-page-6 h2').textContent(),/Group editing examples/)
+await page.goto(pageUrl(13),{waitUntil:'networkidle'})
+assert.equal(await page.locator('.slidev-page-13 .history-experiment').count(),0)
+assert.equal(await page.locator('.slidev-page-13').getByRole('button',{name:'History test',exact:true}).count(),0)
+assert.match(await page.locator('.slidev-page-13 .next-workflow').textContent(),/Fill in what the user left unspecified/)
 
 // The instances survive slide navigation; leaving must cancel pending cues.
 await page.goto(pageUrl(7,true),{waitUntil:'networkidle'})
@@ -187,6 +191,6 @@ await page.emulateMedia({reducedMotion:'no-preference'})
 await page.goto(pageUrl(7),{waitUntil:'networkidle'})
 assert.equal(await page.locator('.slidev-page-7 .motion-scene').getAttribute('data-stage'),'5','Headless export shows final evidence')
 assert.deepEqual(errors,[])
-await writeFile(new URL('../exports/motion-qa-v10.json',import.meta.url),JSON.stringify({scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
+await writeFile(new URL('../exports/motion-qa-v11.json',import.meta.url),JSON.stringify({scenes:report,leaveCancels:true,reentry:true,reducedMotion:true,headlessFinal:true,errors},null,2))
 await browser.close()
 console.log('MOTION ALL CLEAR')
