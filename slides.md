@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v21
+exportFilename: Reference-Guided-Retouching-v22
 ---
 
 <section class="show-slide cover-slide">
@@ -42,6 +42,8 @@ Presentation cover. Keep the project title, approved conceptual 3D anatomy and t
 
 <!--
 Primary source: the team's current research writeup, chapter 1. User preference is defined by two routes: explicit instructions are followed directly; unspecified or incomplete regions are completed from the user's historical editing behaviour. This definition drives both the dataset reconstruction (pages 5–6) and the forward pass (pages 7–9). The cover object is a conceptual cutaway, not a tensor diagram. Manuscript definition: Final Desired Edit = Explicit User Edit + Preference-Based Completion of Unspecified Regions. The user explicitly rejected a cover equation banner; the definition is explained by the original prose instead.
+
+The history photographs are real original/Expert C pairs from FiveK scenes 0001, 0006 and 0016. They illustrate the input type, not a measured user history or reference retrieval. The centre region grid is a schematic, not a generated image.
 -->
 
 ---
@@ -79,6 +81,8 @@ Primary source: writeup chapter 3. Every original–expert pair is encoded into 
 
 <!--
 Primary source: writeup chapter 4. For each training sample the 20 most similar complete editing representations are retrieved and treated as one simulated user's editing history; the assumption is that similar editing decisions across different visual content reflect one underlying preference. The grouping is refreshed during training as the encoder improves, so the dataset structure adapts with the model instead of relying on manual groups. Auxiliary evidence: the archived code (3c1dadc) refreshes embeddings with the current network every training chunk and tracks grouping stability between refreshes. Presentation boundary: in the archived implementation the top-3 references are selected directly from the candidate pool by descriptor distance; the 20-sample history pool is the team's described design for the simulated user. Present the writeup formulation; do not add fixed user identities.
+
+The twenty displayed pairs are official FiveK scenes 0001–0020 with Expert C edits. Their membership is illustrative: no run has identified these photographs as the twenty nearest neighbours. Originals are camera-white-balanced DNG renders; the edits are official gallery thumbnails. Asset sources and hashes are archived separately.
 -->
 
 ---
@@ -103,6 +107,8 @@ Primary source: writeup chapter 5. The current image is semantically segmented; 
 
 <!--
 Primary source: writeup chapter 6. The second retrieval uses only the partial modification — the model knows the original, which regions were explicitly modified, and how they changed — and searches within the 20-sample simulated history for the three most relevant references. This is what makes the mechanism applicable at inference: complete ground-truth edits are unavailable outside training, but the partial edit comes from the user's actual explicit requirements. Auxiliary evidence (3c1dadc): grouping queries are embedded from the partial edit while candidates keep full expert pairs; same-scene pairs are excluded; num_reference = 3 with selection temperature 0.01. Archived code ranks candidates from the full pool directly; the writeup describes the search within the constructed 20-sample history — present the writeup's two-stage formulation as the design.
+
+The three photographed references are FiveK scenes 0001, 0006 and 0016, matching H1, H6 and H16 in the illustrated pool. These are real original/Expert C pairs selected to explain the diagram, not a recorded retrieval or ranked result.
 -->
 
 ---
@@ -158,6 +164,8 @@ Primary source: writeup chapter 9. The current model reports PSNR 27.2 dB and SS
 
 <!--
 Primary source: writeup chapter 10. Three achievements: a clearer definition of personalization; a method to dynamically reconstruct FiveK into simulated intent plus history without user labels; and strong quantitative performance under the new formulation. The three ablations isolate the contributions: replacing the constructed user history with random samples drops PSNR from 27.2 to 22.1; keeping the history but selecting references randomly within it drops to 24.5; removing cross-attention and feeding reference and current images directly into the CNN drops to 23.1. Provenance boundary: these values are from the team's current writeup; no archived run configurations accompany them yet, and no seed-level uncertainty is reported — avoid claiming statistical significance. The earlier 17 September figure reported different values under the previous formulation; that figure stays out of this deck.
+
+The small I/G pair in the reconstruction diagram uses real FiveK flower scene 0412 and Expert D. It illustrates the paired training data; it is not an output associated with the reported metrics.
 -->
 
 ---
@@ -170,6 +178,8 @@ Primary source: writeup chapter 10. Three achievements: a clearer definition of 
 
 <!--
 Primary source: writeup chapter 11. The honest limitation: the system uses user history but does not yet build an independent, persistent representation of the user. Inference still performs partial edit → search historical images → select references → cross-attention, so the accurate description is history-conditioned personalized image enhancement rather than a complete latent user modelling framework — the preference remains distributed across the historical database. This framing sets up the future work on the next two pages.
+
+The partial edit is the existing illustrative rectangle composite from scene 0412 and Expert D. Historical and selected-reference photographs are real original/Expert C pairs; database membership and reference selection remain illustrative.
 -->
 
 ---
@@ -182,6 +192,8 @@ Primary source: writeup chapter 11. The honest limitation: the system uses user 
 
 <!--
 Primary source: writeup chapter 12. Next step: transform the large collection of historical image–edit pairs into a compact latent user preference memory — K latent memory slots, each a D-dimensional dense representation. The slots need no manually assigned semantic labels; the model should learn representations of the form "when the image is in a particular visual situation, this user tends to edit it a particular way". This is future design, not an implemented or recorded capability of the current system — present it as the plan, without promising timelines.
+
+The four historical examples are real FiveK original/Expert C pairs (0001, 0006, 0016 and 0020). Only the image inputs are photographic evidence; the learned compression and latent slots remain a proposed mechanism.
 -->
 
 ---
@@ -194,6 +206,8 @@ Primary source: writeup chapter 12. Next step: transform the large collection of
 
 <!--
 Primary source: writeup chapter 13. In the future architecture the complete historical collection is required only to construct the User Preference Memory; once built, inference no longer searches the database. For unspecified regions the model extracts query features of the current visual situation; the memory provides latent keys and values; cross-attention performs query × preference memory → relevant historical preference, which is combined with the user's explicit current edit to produce the personalized result. This moves the system from retrieving historical images toward querying a compact latent model. Future design — no recorded run exists.
+
+The unspecified-region image uses original pixels from FiveK scene 0412 with a translucent overlay on the specified region of the existing illustrative rectangle mask. It is not semantic segmentation or a predicted result; the mask covers roughly 24.9%, separate from the manuscript training target of approximately 40%.
 -->
 
 ---

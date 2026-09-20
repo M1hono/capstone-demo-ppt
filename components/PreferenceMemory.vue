@@ -1,6 +1,8 @@
 <script setup>
 import { computed } from 'vue'
+import { memoryPairs } from '../data/history-examples'
 import { usePresentationPlayback } from '../composables/usePresentationPlayback'
+const base=import.meta.env.BASE_URL
 const props=defineProps({mode:{type:String,default:'compress'}})
 const query=computed(()=>props.mode==='query')
 const arrowId=computed(()=>`memory-${props.mode}-arrow`)
@@ -13,11 +15,11 @@ const captions=computed(()=>query.value?["For regions that the user has not expl
       <defs><marker :id="arrowId" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#437a95"/></marker></defs>
       <g class="compress-history memory-group reached">
         <text x="145" y="25" text-anchor="middle" class="memory-label">User editing history</text>
-        <g v-for="n in 4" :key="n" :transform="`translate(${10+(n-1)%2*149},${60+Math.floor((n-1)/2)*108})`">
-          <rect class="memory-unit" width="127" height="88"/>
-          <rect class="memory-cell" x="10" y="12" width="50" height="50"/><rect class="memory-cell" x="67" y="12" width="50" height="50"/>
-          <text x="34" y="44" text-anchor="middle">I{{n}}</text><text x="93" y="44" text-anchor="middle">G{{n}}</text>
-          <text x="63" y="78" text-anchor="middle" class="memory-small">paired edit</text>
+        <g v-for="(pair,i) in memoryPairs" :key="pair.id" :transform="`translate(${10+i%2*149},${60+Math.floor(i/2)*108})`">
+          <rect class="memory-unit" width="137" height="88"/>
+          <image :href="`${base}${pair.original}`" x="5" y="9" width="61" height="49" preserveAspectRatio="xMidYMid meet"/>
+          <image :href="`${base}${pair.edited}`" x="72" y="9" width="61" height="49" preserveAspectRatio="xMidYMid meet"/>
+          <text x="35" y="77" text-anchor="middle" class="memory-small">I{{i+1}}</text><text x="102" y="77" text-anchor="middle" class="memory-small">G{{i+1}}</text>
         </g>
         <text x="145" y="291" text-anchor="middle" class="memory-shape">⋯ (Iₙ, Gₙ)</text>
         <text x="145" y="333" text-anchor="middle" class="memory-small">Complete historical collection</text>
@@ -55,8 +57,9 @@ const captions=computed(()=>query.value?["For regions that the user has not expl
       <g>
         <text x="127" y="24" text-anchor="middle" class="memory-label">Unspecified regions</text>
         <rect x="13" y="54" width="228" height="151" class="memory-unit"/>
-        <g v-for="row in 4" :key="row"><rect v-for="col in 6" :key="col" :x="26+(col-1)*35" :y="68+(row-1)*31" width="31" height="27" class="memory-cell" :style="{fill:row===2 && col===3?'#7899aa':undefined}"/></g>
+        <image :href="`${base}assets/history-pairs/unspecified-query.png`" x="51" y="54" width="151" height="151" preserveAspectRatio="xMidYMid meet"/>
         <text x="127" y="236" text-anchor="middle" class="memory-shape">M = 0 → Q</text>
+        <text x="127" y="265" text-anchor="middle" class="memory-small">Shaded: specified region</text>
         <path class="memory-edge" d="M253 125 H420"/><text x="335" y="105" text-anchor="middle" class="memory-shape">Query features</text>
       </g>
       <g class="memory-group" :class="{'reached':stage>=1}">
@@ -87,6 +90,6 @@ const captions=computed(()=>query.value?["For regions that the user has not expl
       </g>
     </svg>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>
-    <p class="mechanism-provenance">Proposed architecture · symbolic slots and attention · no experimental memory results yet.</p>
+    <p class="mechanism-provenance">{{query?'Illustrative query mask · proposed memory query, no experimental memory results yet.':'Original I → Expert C G · real FiveK examples; memory construction is proposed.'}}</p>
   </div>
 </template>

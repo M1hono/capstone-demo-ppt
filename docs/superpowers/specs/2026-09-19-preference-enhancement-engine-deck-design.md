@@ -1,4 +1,4 @@
-# Reference-Guided Retouching · v21 design contract
+# Reference-Guided Retouching · v22 design contract
 
 Updated: 2026-09-20. The current deck has 15 pages: an independent cover followed by the 14 sections of the supplied manuscript. This section supersedes earlier scope and page-number records below.
 
@@ -33,6 +33,10 @@ Use the approved neutral colours, thin rules and real FiveK specimens. No eyebro
 ## Evidence boundaries
 
 The N→20→3 history construction is from the current manuscript. Archived revision 3c1dadc provides the shown encoder, attention and renderer dimensions but retrieves top-3 directly; this distinction stays in notes. Current values are 27.2 dB / 0.90, with ablations 22.1, 24.5 and 23.1 dB. Run configuration and checkpoint are unarchived. Never attach old predictions or defaults to these values. The rectangle composite is illustrative (~24.9%); training uses semantic regions covering approximately 40%. Preference-memory slots and attention diagrams do not contain measured values. No new experiment is proposed beyond the manuscript hypotheses.
+
+## Real photographic inputs · v22
+
+Photo placeholders on pages 2, 5, 7, 11, 12, 13 and 14 use official FiveK assets or explicitly labelled partial-edit/mask composites from those pixels. Twenty original/Expert C pairs illustrate the history pool; selection of scenes 0001, 0006 and 0016 is not a recorded nearest-neighbour result. Preserve image aspect ratios. Page 13 retains its existing compression animation; pages 5, 7, 11 and 12 remain static. Latent features and unrecorded model outputs stay symbolic.
 
 ## Playback and verification
 

@@ -1,0 +1,318 @@
+{
+  "scope": "Real FiveK original / Expert C pairs. Pool membership and reference selection are illustrative, not a measured retrieval or a real user history.",
+  "preprocessing": "Original DNG: camera white balance, 8-bit RGB, maximum side 320. Edited image: official Expert C gallery thumbnail. No synthetic edits or model predictions.",
+  "illustrative_reference_ids": [
+    "0001",
+    "0006",
+    "0016"
+  ],
+  "pairs": [
+    {
+      "id": "0001",
+      "scene": "a0001-jmac_DSC1459",
+      "expert": "C",
+      "original": "assets/history-pairs/0001-original.jpg",
+      "edited": "assets/history-pairs/0001-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0001-jmac_DSC1459.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0001-jmac_DSC1459.jpg",
+      "original_source_sha256": "1278ecfc122f08a26943cf57b6aea32dd889af5a8d59378ed1ed0730387cab1f",
+      "expert_source_sha256": "f1dc48154fe6f2971473907c4a089426a61ac5a49e90ee284d4c3c63c7d686f1",
+      "asset_sha256": {
+        "original": "941d5c5a2c0dbbd5349b05fb5755bd47d763fda6ad5cba2ebf1e9914b953c6f3",
+        "edited": "57882b89afe37cafb92794705c882b4883fc111f474d48f4f3731aa252e9d77e"
+      }
+    },
+    {
+      "id": "0002",
+      "scene": "a0002-dgw_005",
+      "expert": "C",
+      "original": "assets/history-pairs/0002-original.jpg",
+      "edited": "assets/history-pairs/0002-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0002-dgw_005.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0002-dgw_005.jpg",
+      "original_source_sha256": "c35b85c7ec7acede39e51cd72a349740a04d37d9f7a244e2f27b2ac6bc15b15c",
+      "expert_source_sha256": "c43bb2cfde031268676a430c5c34bf6a008a4061bdef5c2ce26564129c3dd329",
+      "asset_sha256": {
+        "original": "526cc2f9006cae081bd6b9ffb6089d5e943ecf443dd517ea5d60dc097041d0da",
+        "edited": "bc529201e55c76f69024811a2747b8383a6ca3f0ff8a1ca4d80fd2b5e70559ef"
+      }
+    },
+    {
+      "id": "0003",
+      "scene": "a0003-NKIM_MG_8178",
+      "expert": "C",
+      "original": "assets/history-pairs/0003-original.jpg",
+      "edited": "assets/history-pairs/0003-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0003-NKIM_MG_8178.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0003-NKIM_MG_8178.jpg",
+      "original_source_sha256": "79f9fdf0b70f178cf972ecf3d32609c2d58cc40f1d9ca9dd9623a05e2265859d",
+      "expert_source_sha256": "c7ed97c4f7d088265dcfe6ccc50cbd61d2d80ed942d5bef5585680afe767e4b4",
+      "asset_sha256": {
+        "original": "9de858fdf3a3c4b4212e16d63595a1fb7679902817dea0916f255a109d05c376",
+        "edited": "6694707868a499d2f49e6eac4f2e61a186c4baf3a773a0c36594d9ea5ecd95f1"
+      }
+    },
+    {
+      "id": "0004",
+      "scene": "a0004-jmac_MG_1384",
+      "expert": "C",
+      "original": "assets/history-pairs/0004-original.jpg",
+      "edited": "assets/history-pairs/0004-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0004-jmac_MG_1384.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0004-jmac_MG_1384.jpg",
+      "original_source_sha256": "4cc7ba4a155b4f400ae4c0e7bd71ea39e2c08da02b1f584b08dfecefc91088dd",
+      "expert_source_sha256": "7795b2c0b496e09094d11ebf379e098038dbef31b22e68820c7906f8fad142fd",
+      "asset_sha256": {
+        "original": "7f840553a3369c9e8a71db692c4374642e381c91ec0af8f4e8bc81c5a922ac03",
+        "edited": "c11398e59f729230ef1c81a05da89524cad01f125cce94076a2009284ae61885"
+      }
+    },
+    {
+      "id": "0005",
+      "scene": "a0005-jn_2007_05_10__564",
+      "expert": "C",
+      "original": "assets/history-pairs/0005-original.jpg",
+      "edited": "assets/history-pairs/0005-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0005-jn_2007_05_10__564.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0005-jn_2007_05_10__564.jpg",
+      "original_source_sha256": "585986c44427917d54f47abc5b870abd819809f073d17baa075fd0aabf315ac4",
+      "expert_source_sha256": "6b914c7757e3c724ff35b1e2a7a492937938cba8149ebe4513f0e0cc13036d25",
+      "asset_sha256": {
+        "original": "667c5606f3553002c7a4095b5da1e264f39d58ad80dd70f1cfcd13f0db1638c2",
+        "edited": "4e131b797708b42de02321b4ddc3e0892a84f0569b24efbc63d758c9c3dbf990"
+      }
+    },
+    {
+      "id": "0006",
+      "scene": "a0006-IMG_2787",
+      "expert": "C",
+      "original": "assets/history-pairs/0006-original.jpg",
+      "edited": "assets/history-pairs/0006-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0006-IMG_2787.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0006-IMG_2787.jpg",
+      "original_source_sha256": "33d09d58db182cb1124397c9634e08d6a294018a4d0597d8b8304a8db6abc3e9",
+      "expert_source_sha256": "bd3e012b99e50d376801be4953a608cb305f0a430d4d588b915f64a27ac1f336",
+      "asset_sha256": {
+        "original": "61ebfbcca5905ee74aa4db719e3a26402593bc5ca5a31651b94a560b0dc72c16",
+        "edited": "f21e3a6209fb81693dcdb1b680cb32cf0750e802029121b01bee130a5c229f42"
+      }
+    },
+    {
+      "id": "0007",
+      "scene": "a0007-IMG_2480",
+      "expert": "C",
+      "original": "assets/history-pairs/0007-original.jpg",
+      "edited": "assets/history-pairs/0007-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0007-IMG_2480.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0007-IMG_2480.jpg",
+      "original_source_sha256": "a444dfda99bc9f664cdf96c009eeb94904efa2a771540ddb4074e92a2b1429a1",
+      "expert_source_sha256": "4a3f9ad3d221be8be83565ead85a84903c9a42bef15be134d2d90804422b2de7",
+      "asset_sha256": {
+        "original": "78124e0259b75eff8b7b0967963ac6fb97fe5c9405d7ecc90d6bcb86b4bd2c4c",
+        "edited": "7b6f4fa027898f8a971df671db612a32deff817164e1d2c2357a09311829fcc9"
+      }
+    },
+    {
+      "id": "0008",
+      "scene": "a0008-WP_CRW_3959",
+      "expert": "C",
+      "original": "assets/history-pairs/0008-original.jpg",
+      "edited": "assets/history-pairs/0008-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0008-WP_CRW_3959.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0008-WP_CRW_3959.jpg",
+      "original_source_sha256": "72222a4a8b37e24d16570fe750cc55ff4a00a00a02598646106154812514db19",
+      "expert_source_sha256": "b4c798805afb5d20769500b63e756fdd79434f2c0dd1be139265bc7fb01ebc3b",
+      "asset_sha256": {
+        "original": "cf316b2a4eb7de7832b45f927d1ff2a747f292f7069144d50a46ce810dfc61a6",
+        "edited": "75b2a49c94c707c67d51bb2034b03d81643addeb7f293a8ec0ee739e62b74485"
+      }
+    },
+    {
+      "id": "0009",
+      "scene": "a0009-kme_372",
+      "expert": "C",
+      "original": "assets/history-pairs/0009-original.jpg",
+      "edited": "assets/history-pairs/0009-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0009-kme_372.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0009-kme_372.jpg",
+      "original_source_sha256": "4376cab172168f154ba4e24f2a77855d553d92ef2404edeae6c04653f75e80ab",
+      "expert_source_sha256": "c8274d59dd5c13b2ec1e58ef4020f3fc6037f7db0f0ed47b8bc1a624ee78415f",
+      "asset_sha256": {
+        "original": "c74bc266bb8499c83528a4b686dca433b07320beacedb4d31da9da4813faea67",
+        "edited": "1184ce986030f49f6697211c8fb71767ca2580d7c917a926859b1a61947d97d4"
+      }
+    },
+    {
+      "id": "0010",
+      "scene": "a0010-jmac_MG_4807",
+      "expert": "C",
+      "original": "assets/history-pairs/0010-original.jpg",
+      "edited": "assets/history-pairs/0010-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0010-jmac_MG_4807.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0010-jmac_MG_4807.jpg",
+      "original_source_sha256": "12a5641ba0afe2305077cb30d25858adc4e399844966f0447774b2b0b8d83a3d",
+      "expert_source_sha256": "86cb8218971c4a690ff7bf90c576cec1fd9cb8be588e80a1c949899d59d4d745",
+      "asset_sha256": {
+        "original": "8a75edf5f5e0aeecf7f23cdbc41eba4bf22747f2386adec85268f9d9a0e93fbc",
+        "edited": "9eb4737777b3e555c003c65c0de87f2fe3e39ee9cfc0185d368bb08dc421a9a6"
+      }
+    },
+    {
+      "id": "0011",
+      "scene": "a0011-DSC_0082",
+      "expert": "C",
+      "original": "assets/history-pairs/0011-original.jpg",
+      "edited": "assets/history-pairs/0011-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0011-DSC_0082.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0011-DSC_0082.jpg",
+      "original_source_sha256": "25ef8cad7474b994f60bca07a4f41c2be1592cf8c91da30e3648bd2b1013d609",
+      "expert_source_sha256": "a5e6b1308a3b58c514f65eb2f17fc9bfa8cef966a02786c6c5597e576355f25e",
+      "asset_sha256": {
+        "original": "28d9c55abc74f0810c7d832db385970427cbcbdfab5bc4d7884a5c187ecb7cab",
+        "edited": "e50e91df51413e13b692dc9d911cfd51589f58f281a4236b7ff97a58edd65021"
+      }
+    },
+    {
+      "id": "0012",
+      "scene": "a0012-kme_143",
+      "expert": "C",
+      "original": "assets/history-pairs/0012-original.jpg",
+      "edited": "assets/history-pairs/0012-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0012-kme_143.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0012-kme_143.jpg",
+      "original_source_sha256": "329a5bc32d2567a7c38792b21a09a755409b4bfaf0eceadeb040a31c56aec87f",
+      "expert_source_sha256": "6f9d7e491a15ae8bb11e2c349555ba870af55a9feb9a6097e35f0d634fb086c3",
+      "asset_sha256": {
+        "original": "a999f66c47a08368126ac60b737372032802589e2966f04f0cb88bbdf61c7c02",
+        "edited": "3c27ae167e7545c6bc4bd6e6ca148c9c882ba022eb02108e2f31c1c009e7d096"
+      }
+    },
+    {
+      "id": "0013",
+      "scene": "a0013-MB_20030906_001",
+      "expert": "C",
+      "original": "assets/history-pairs/0013-original.jpg",
+      "edited": "assets/history-pairs/0013-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0013-MB_20030906_001.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0013-MB_20030906_001.jpg",
+      "original_source_sha256": "1942e3aaf2bdeafdced4d34989c5fcc6c24bdad3fb45c4b5cb832be792d39b44",
+      "expert_source_sha256": "d4a7c9b34a767c1fb4cdcea6cb972a59eb025155135a7b1798bff96521d20b9c",
+      "asset_sha256": {
+        "original": "a5ad90f25257306fbde0d2fd1d3e5f08662070cdb69995a7721814489894a813",
+        "edited": "e22714f7ff28f014c2562b56ea6ad3ce0b8bab407860eeeaa37138ef51984ded"
+      }
+    },
+    {
+      "id": "0014",
+      "scene": "a0014-WP_CRW_6320",
+      "expert": "C",
+      "original": "assets/history-pairs/0014-original.jpg",
+      "edited": "assets/history-pairs/0014-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0014-WP_CRW_6320.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0014-WP_CRW_6320.jpg",
+      "original_source_sha256": "c2772e294b83c7b9e912f1a1072959cdeb492595498e5d0601426555a54ff60c",
+      "expert_source_sha256": "e81f5a3a0f1e99612c4f88261ce979c85cb2b2d0a2a36bf4d3fa9f7dc5523c92",
+      "asset_sha256": {
+        "original": "920cc15b67d1590876f714f459bd8285a9fe3707a89d913563300ab106e4ab2c",
+        "edited": "42444e6114a8ab75ab9c13f89030adce91e15aedf1cc8998b342e3f19ad103dd"
+      }
+    },
+    {
+      "id": "0015",
+      "scene": "a0015-DSC_0081",
+      "expert": "C",
+      "original": "assets/history-pairs/0015-original.jpg",
+      "edited": "assets/history-pairs/0015-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0015-DSC_0081.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0015-DSC_0081.jpg",
+      "original_source_sha256": "03c2c648acdd29750965661ebdeefafc6e9be4c804b823b0f6f41335b1c44db5",
+      "expert_source_sha256": "577336936c4da9ec13175d1ec38c72badb3530eca9aed97cc378ef4b3344ceaa",
+      "asset_sha256": {
+        "original": "bf465a44328e41a237f2f30674e9082f8b4e3f8c96d1bce3b6d6c213a9de1b1f",
+        "edited": "ed5c0adb8d1bb1c37cb025f2bc9fdd436022366f2fd1494135483463b5705145"
+      }
+    },
+    {
+      "id": "0016",
+      "scene": "a0016-jmac_MG_0795",
+      "expert": "C",
+      "original": "assets/history-pairs/0016-original.jpg",
+      "edited": "assets/history-pairs/0016-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0016-jmac_MG_0795.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0016-jmac_MG_0795.jpg",
+      "original_source_sha256": "004d7f09c75f43f37cd7d9e79ae02e18daa89e534a8e5b4fb97d209e8cbc29df",
+      "expert_source_sha256": "eb68ba66a36ead3078768bbcefa5a175295181b8207f6c794d29a51477d8fff2",
+      "asset_sha256": {
+        "original": "434bc68f0450410bdce1ee10263995d3aa6638873e8390735b8a3c1550e78f2e",
+        "edited": "5381df7acb7212f17cf0d650ae0369a20d183d7156cada033ca43d369fcd5f08"
+      }
+    },
+    {
+      "id": "0017",
+      "scene": "a0017-050710_031618__MG_3496",
+      "expert": "C",
+      "original": "assets/history-pairs/0017-original.jpg",
+      "edited": "assets/history-pairs/0017-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0017-050710_031618__MG_3496.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0017-050710_031618__MG_3496.jpg",
+      "original_source_sha256": "b175e9de12929c35cc01dfccfe032bee7dadf184fb66afb59dda444b9d5ccef4",
+      "expert_source_sha256": "6aaf2540a01bab0afb52ff48939f11d3159b495a260bf223c0f37db63fd068b3",
+      "asset_sha256": {
+        "original": "c4efe195bb07702a47d277acfdf3b8c301d943199b26e18c308efc18e0286d8a",
+        "edited": "74cf7ff324a0cc1ea1368e486d37e8301cfa6297291bc0838b9f4def66cb4c11"
+      }
+    },
+    {
+      "id": "0018",
+      "scene": "a0018-kme_234",
+      "expert": "C",
+      "original": "assets/history-pairs/0018-original.jpg",
+      "edited": "assets/history-pairs/0018-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0018-kme_234.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0018-kme_234.jpg",
+      "original_source_sha256": "e7456a4b90a9f79a6cb9b3293cbf5e5d8e5b3da37227a340f68f453e0798e7a2",
+      "expert_source_sha256": "7b0c4b04947d9cbdf2423b666b4164084b687c5406b74c9ac84d510bdc6cbf8b",
+      "asset_sha256": {
+        "original": "0ab333e7557162f68d1473d3b889c04f80175508e2abbf7fba16c18f9cb40458",
+        "edited": "4207a9e0a955e0aecc403683e4fa2d4260f991780274624cb57c73fb5ab3e67f"
+      }
+    },
+    {
+      "id": "0019",
+      "scene": "a0019-jmac_MG_0653",
+      "expert": "C",
+      "original": "assets/history-pairs/0019-original.jpg",
+      "edited": "assets/history-pairs/0019-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0019-jmac_MG_0653.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0019-jmac_MG_0653.jpg",
+      "original_source_sha256": "98c5a3e6cca23e87e422d8f327491cfe1be9e15d568fc70ec03594ba35337282",
+      "expert_source_sha256": "dc73a0c7440343d2c2a35287b092e39d6a7678c99b740762bdd5f126748a7b1a",
+      "asset_sha256": {
+        "original": "f676b00e32f1bd02a3e355c85171687dcec7f83e7869fd6613ffc70106b3791e",
+        "edited": "177142186de7ae304afc20b576c8b80d4318746ca426ce8c8fcde2118f6570f3"
+      }
+    },
+    {
+      "id": "0020",
+      "scene": "a0020-jmac_MG_6225",
+      "expert": "C",
+      "original": "assets/history-pairs/0020-original.jpg",
+      "edited": "assets/history-pairs/0020-edited.jpg",
+      "original_url": "https://data.csail.mit.edu/graphics/fivek/img/dng/a0020-jmac_MG_6225.dng",
+      "expert_url": "https://data.csail.mit.edu/graphics/fivek/img/thmb_c/a0020-jmac_MG_6225.jpg",
+      "original_source_sha256": "0f0c2a29777b2f759ba416d7839c5b0397fe6a970cbc2ef99b007054b4894920",
+      "expert_source_sha256": "62babc1c8817a4c92d72955a1c4f97bedf48e55fa3dbef900c2a2c01a8a8cfe0",
+      "asset_sha256": {
+        "original": "aa8e923dbb66b976b23390da16f93924e25df9e1ca2488dd1ab58ff5f39ebb5a",
+        "edited": "4baa5bbe73ab919b75992d81396a9433b6014c7b6f8b463c254b24e8307a4643"
+      }
+    }
+  ],
+  "unspecified_query": {
+    "source": "assets/fivek/cnn-input.png",
+    "explicit_mask": "assets/next-step/illustrative-mask.png",
+    "asset": "assets/history-pairs/unspecified-query.png",
+    "operation": "Original RGB with translucent blue overlay on M = 1; remaining pixels unchanged. Illustrative rectangle mask, not a semantic segmentation output.",
+    "sha256": "5676887b270951ed5098c683dacddb599ca1245a6aab2b36d0bb0ec4d65796b5"
+  }
+}

@@ -33,3 +33,7 @@ All fifteen pages must have actual body content, not unresolved Vue components. 
 ## Manuscript fidelity
 
 Use the fourteen section titles verbatim, as recorded in `evidence/manuscript-section-titles.json`. Do not rename a section to suit the visual design or delete its argument. The achievements section includes all three developments and all three ablations. Body arguments and playback captions are extracted from the manuscript. Technical tensor details remain auxiliary source evidence; no new experiments, metrics or conclusions may be added. Dedicated components on pages 2, 11 and 12 explain the preference definition, the three achievements and dependence on the historical image collection. On page 11, the left side uses compact mechanism diagrams; the right side remains a simple static ablation table.
+
+## Photographic history examples · v22
+
+Use real FiveK original/Expert C pairs wherever a diagram represents photographs: pages 2, 5, 7, 12 and 13, plus the real FiveK 0412 pair on page 11. Page 14 retains the complete original photograph and marks the specified region with a translucent illustrative mask. History pool membership and reference selection are illustrative, not measured retrievals; note that briefly on the affected slides. Keep feature tensors, attention weights, future latent slots and unrecorded outputs symbolic. Asset provenance is recorded in `evidence/history-pairs.json`; never publish cached DNGs.

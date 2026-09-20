@@ -1,5 +1,7 @@
 <script setup>
 import { usePresentationPlayback } from '../composables/usePresentationPlayback'
+import { referencePairs } from '../data/history-examples'
+const base=import.meta.env.BASE_URL
 const {stage,total,playing,runId,reduced,staticMode,play,finish,previous,next,pause,resume,seek}=usePresentationPlayback([400,1600,3000,4400])
 const cells=Array.from({length:48},(_,i)=>({x:i%8,y:Math.floor(i/8),specified:[10,11,12,18,19,20,26,27,28].includes(i)}))
 const captions=[
@@ -34,16 +36,17 @@ const captions=[
       <g class="definition-connection history-connection" :class="{'reached':stage>=3}"><path d="M882 188 H756" marker-end="url(#definition-green-arrow)"/><text x="819" y="164" text-anchor="middle">Infer</text></g>
       <g class="preference-route" role="button" tabindex="0" aria-label="Explain preference-based completion" @click.stop="seek(4)" @keydown.enter.stop.prevent="seek(4)" @keydown.space.stop.prevent="seek(4)">
         <text x="1022" y="30" text-anchor="middle" class="definition-title">Historical Editing Behavior</text>
-        <g v-for="n in 3" :key="n" :transform="`translate(${904+(n-1)*86},75)`" class="definition-history-pair" :class="{'reached':stage>=3}">
-          <rect x="-4" y="-4" width="72" height="83" class="definition-history-back"/><rect width="72" height="83" class="definition-panel"/>
-          <rect x="9" y="14" width="23" height="29" class="definition-pair-original"/><rect x="39" y="14" width="23" height="29" class="definition-pair-edit"/>
-          <path d="M10 58 H60 M10 67 H45" class="definition-rule"/>
+        <text x="958" y="52" text-anchor="middle" class="definition-photo-label">Original</text><text x="1094" y="52" text-anchor="middle" class="definition-photo-label">Expert C</text>
+        <g v-for="(pair,i) in referencePairs" :key="pair.id" :transform="`translate(900,${64+i*51})`" class="definition-history-pair" :class="{'reached':stage>=3}">
+          <rect x="-3" y="-2" width="267" height="46" class="definition-pair-frame"/>
+          <image :href="`${base}${pair.original}`" width="124" height="42" preserveAspectRatio="xMidYMid meet"/>
+          <image :href="`${base}${pair.edited}`" x="137" width="124" height="42" preserveAspectRatio="xMidYMid meet"/>
         </g>
-        <text x="1022" y="214" text-anchor="middle" class="definition-rule-text">No instruction / incomplete instruction</text>
-        <text x="1022" y="255" text-anchor="middle" class="definition-rule-text">Infer how unspecified regions</text><text x="1022" y="279" text-anchor="middle" class="definition-rule-text">should be processed</text>
+        <text x="1022" y="234" text-anchor="middle" class="definition-rule-text">No instruction / incomplete instruction</text>
+        <text x="1022" y="269" text-anchor="middle" class="definition-rule-text">Infer how unspecified regions</text><text x="1022" y="293" text-anchor="middle" class="definition-rule-text">should be processed</text>
       </g>
     </svg>
     <div class="mechanism-reading"><p :key="stage">{{captions[stage]}}</p><PlaybackControls v-if="!staticMode" :stage="stage" :total="total" :playing="playing" :reduced="reduced" @previous="previous" @next="next" @pause="pause" @resume="resume" @replay="play" @finish="finish"/></div>
-    <p class="mechanism-provenance">Region diagram illustrates the preference definition; it is not a model prediction.</p>
+    <p class="mechanism-provenance">Real FiveK history examples · region diagram is schematic, not a model prediction.</p>
   </div>
 </template>
