@@ -1,0 +1,29 @@
+{
+  "purpose": "Slide schematics only; no model prediction or learned mask.",
+  "size": [
+    256,
+    256
+  ],
+  "source": "Existing FiveK 0412 input and Expert D; existing zero-control checkpoint output.",
+  "derived_colour_space": "All derived layers use the same untagged project RGB values; no inherited expert ICC profile.",
+  "expert_resize": "PIL bicubic, 500x333 to 256x256; existing project colour conversion retained.",
+  "mask": {
+    "kind": "illustrative rectangle; not semantic segmentation",
+    "xyxy_exclusive": [
+      112,
+      48,
+      232,
+      184
+    ]
+  },
+  "partial_clue": "where(mask, expert_D, original); simulated explicit edit from target pixels.",
+  "zero_difference": "clip(4 * abs(saved_8bit_zero_output - saved_8bit_input), 0, 255); RGB display difference.",
+  "metric_scope": "The 0.027538985 mean absolute edit is from the original float tensor run, not recomputed from PNGs.",
+  "sha256": {
+    "expert-target.png": "0c242536622e366eac18f698b411b558007afa7cf0b056b06cf88f1b6e6b62ed",
+    "illustrative-mask.png": "2272818b28f8a6eb71e6de5eea866681459706c62b9a1903a96f1f68b2ae3351",
+    "partial-clue.png": "5ae2fc50f4de5f673f92babf6e0a4c04ed601fe269f5beff19fd1760b2c5fbe1",
+    "specified-edit.png": "4b407e83cc4a2a66a9601276faa4f24ce5e595cfa3802af33210f73a64bed002",
+    "zero-difference-x4.png": "ba172bdfd5c7eea8d510a50313109148908d4a0573a8db4d89cb9298f4876e12"
+  }
+}

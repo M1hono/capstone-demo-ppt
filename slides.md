@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v9
+exportFilename: Reference-Guided-Retouching-v10
 ---
 
 <section class="show-slide cover-slide">
@@ -164,22 +164,22 @@ Transcribed from the research branch comparison figure: full 26.70; random group
 ---
 
 <section class="show-slide">
-  <h2>What this version still cannot establish.</h2><p class="subtitle">The editor and the research model have different remaining tests.</p>
-  <div class="boundary-layout"><div class="zero-observation"><div class="boundary-heading"><b>Zero control still changes pixels</b><span>Measured</span></div><div class="zero-pair"><figure><img src="/assets/fivek/cnn-input.png" alt="Actual FiveK input"/><figcaption>Original</figcaption></figure><figure><img src="/assets/fivek/cnn-zero.png" alt="Actual zero conditioning output"/><figcaption>Zero RGBC output</figcaption></figure></div><p>Mean absolute edit: <b>0.0275</b> on [0, 1].<br>Next: identity and protected-region tests.</p></div><div class="retrieval-boundary"><h3>Full target required for retrieval</h3><div class="leakage-flow"><span>Query original + <b>full expert target</b></span><i>↓</i><span>Retrieval descriptor → top 3 pairs</span><i>↓</i><span>Original + reference pairs → renderer</span></div><p>Test retrieval with information<br>available at deployment.</p><p class="small">The recorded result figures do not resolve this dependency.</p></div></div>
-  <div class="verification-strip"><b>Verified here</b><span>Checkpoint load · finite output</span><b>Demo-day checks</b><span>API · text · reference · region</span></div>
+  <h2>What happens when the target is unavailable.</h2><p class="subtitle">Remove a dependency. Inspect a real zero-control result.</p>
+  <BoundaryWorkbench/>
   <DeckFooter :page="12" :active="4" scope="Current demo · research limits"/>
 </section>
 
 <!--
-New CPU run measured mean absolute edit 0.027538985 under a zero conditioning map. This is a factual counterexample to an identity guarantee, not a full failure-rate estimate. No full Text/Qwen/Mask2Former runtime has been run here; testing scripts existing in the repository do not imply passing results. In the 767cae8 full-edit baseline, forward ignores current_expert, but grouping_embedding(original,expert) uses the complete target upstream. This is the baseline limitation shown here, not a claim about the latest partial-edit implementation. Revision 3c1dadc uses a partial target composite as a simulated request and keeps the unknown-region target out of retrieval and generation. It still needs separate evaluation with real requests and user histories. Explicit source-ID ranges keep same-scene expert variants within a split, whereas the unused random split path divides pair IDs and needs care.
+New CPU run measured mean absolute edit 0.027538985 under a zero conditioning map. This is a factual counterexample to an identity guarantee, not a full failure-rate estimate. No full Text/Qwen/Mask2Former runtime has been run here; testing scripts existing in the repository do not imply passing results. In the 767cae8 full-edit baseline, forward ignores current_expert, but grouping_embedding(original,expert) uses the complete target upstream. This is the baseline limitation shown here, not a claim about the latest partial-edit implementation. Revision 3c1dadc uses a partial target composite as a simulated request and keeps the unknown-region target out of retrieval and generation. It still needs separate evaluation with real requests and user histories. The Target access tab animates a conceptual removal of the full target; it does not execute a new retrieval or claim that the model cannot run. The reference thumbnails illustrate the dependency using recorded pairs; selection after the intervention is unvalidated. The Zero control tab replays the actual saved output and a four-times amplified absolute RGB difference computed from the 8-bit PNGs. The displayed 0.0275 metric is rounded from the original floating-point inference record, not measured from the displayed difference. Both sequences support manual stepping and settle without continuous motion.
+
+Explicit source-ID ranges keep same-scene expert variants within a split, whereas the unused random split path divides pair IDs and needs care.
 -->
 
 ---
 
 <section class="show-slide closing-slide">
-  <h2>Next: use partial edits to guide completion.</h2><p class="subtitle">Partial edits + user history: a prototype for the next phase.</p>
-  <div class="next-layout"><div><Scene :act="12"/><p class="object-caption">Connect the editor and reference model<br><b>Next-phase integration.</b></p></div><div class="decision-sequence"><div><span>01</span><p><b>Preserve the specified edit</b>Use explicit edits as retrieval clues.</p></div><div><span>02</span><p><b>Complete unspecified regions</b>Reuse relevant edits from this user’s history.</p></div><div><span>03</span><p><b>Prove the history helps</b>Compare correct, shuffled and no-history inputs.</p></div></div></div>
-  <div class="client-decision"><b>Next checks</b><span>Completion quality</span><span>Edit preservation</span><span>History contribution</span></div>
+  <h2>Next: use partial edits to guide completion.</h2><p class="subtitle">Preserve the specified edit. Learn how to complete the rest.</p>
+  <NextStepMechanism/>
   <DeckFooter :page="13" :active="4" scope="Next phase · partial-edit prototype"/>
 </section>
 
@@ -188,7 +188,11 @@ This is the next phase, separate from the full-edit baseline demonstrated earlie
 
 Git scope: 767cae8 (19 September) adds an exploratory partial-query evaluation script while retaining full-edit training. Revision 3c1dadc (20 September) integrates partial edits into training: original RGB, partial-edit RGB and the specified-region mask condition the query encoder and renderer. Selected target pixels simulate the requested edit; the output copies those regions exactly. L1 and residual regularisation are computed on unspecified regions, and checkpoint selection uses unknown_psnr. The architecture changes require new weights. These code changes do not establish a deployed language planner or persistent personalised history store.
 
-No recorded score in this deck is assigned to the new partial-edit experiment. To test whether history contributes, hold query clues and masks fixed, compare the intended user’s history against shuffled or other-user histories and a no-history baseline, and measure unspecified-region quality alongside edit preservation and client preference judgements. Keep originals disjoint across query and reference splits. Recovering a target from partial target pixels alone does not demonstrate long-term preference learning.
+No recorded score in this deck is assigned to the new partial-edit experiment. To test whether history contributes, hold query clues and masks fixed, compare the intended user’s history against other-user histories and a no-history baseline, and measure unspecified-region quality alongside edit preservation and client preference judgements. Keep originals disjoint across query and reference splits. Recovering a target from partial target pixels alone does not demonstrate long-term preference learning.
+
+The animated partial clue is a presentation composite derived from the existing FiveK 0412 input and resized Expert D. A fixed illustrative rectangular mask selects expert pixels; it is not a learned or semantic segmentation mask. The image plane lifts and recombines to explain P = M·T + (1−M)·I. Reference selection and the shown pool are schematic. The final composition retains specified pixels while hatching the unknown region; no expert target is presented as a predicted output. The top copy path explains exact preservation, while attention and CNN information serves completion. The complete target is used only for training or evaluation, not passed as a full query.
+
+The History test tab holds original, clue and mask fixed and changes only the proposed history condition. Recorded flower and dog reference pairs serve as illustrative thumbnails, not attributed user identities. All scores remain unmeasured. The no-history branch is a separately implemented ablation: the current model requires at least one reference, so passing an empty list is not a valid baseline. Simply shuffling the same pool order would not establish a preference effect. Unknown-region metrics, preservation checks and client judgements are the proposed next evidence.
 
 Live demo and full evidence panels remain separate from the 13-page core. Team name TH18_04 versus repository TU18_04 still requires group confirmation before submission; avoid asserting either on the cover.
 -->
