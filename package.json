@@ -1,15 +1,8 @@
 {
-  "name": "slidev-show",
-  "version": "1.0.0",
+  "name": "final-presentation-slidev",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "dev": "slidev slides.md",
-    "build": "slidev build slides.md",
-    "preview": "vite preview --host 127.0.0.1 --strictPort",
-    "test:slides": "node qa-show.mjs",
-    "test:motion": "node scripts/qa-motion.mjs"
-  },
   "overrides": {
     "floating-vue": "5.2.2"
   },
@@ -19,5 +12,12 @@
     "three": "^0.180.0",
     "pptxgenjs": "4.0.1",
     "playwright-chromium": "1.63.0"
+  },
+  "scripts": {
+    "dev": "slidev --port 18340",
+    "build": "slidev build",
+    "preview": "vite preview --host 127.0.0.1 --strictPort",
+    "qa": "node qa-show.mjs",
+    "test:slides": "node qa-show.mjs"
   }
 }

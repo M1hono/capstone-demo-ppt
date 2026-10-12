@@ -1,6 +1,27 @@
 <script setup>
-const rows=[{label:'Full model',value:26.7,delta:'',color:'#437da0'},{label:'Random references',value:21.9,delta:'−4.8',color:'#aab4b8'},{label:'Equal reference weights',value:25.4,delta:'−1.3',color:'#aab4b8'},{label:'CNN instead of attention',value:24.5,delta:'−2.2',color:'#aab4b8'}]
+const rows = [
+  { condition: 'Full model', change: 'Top-3 retrieval + regional cross-attention', psnr: '26.70', delta: '—' },
+  { condition: 'Random references', change: 'Nearest-neighbour retrieval replaced by random selection', psnr: '21.90', delta: '−4.80' },
+  { condition: 'Equal reference weights', change: 'Attention scoring disabled; references averaged', psnr: '25.40', delta: '−1.30' },
+  { condition: 'CNN fusion', change: 'Attention transfer replaced by CNN feature fusion', psnr: '24.50', delta: '−2.20' },
+]
+const protocol = [
+  { k: 'Metric', v: 'PSNR = −10·log₁₀ MSE per (original, expert) pair, mean over split' },
+  { k: 'Data', v: 'FiveK originals 1–400 train · 401–500 val · five expert targets each' },
+  { k: 'Selection', v: 'Best validation-PSNR checkpoint' },
+  { k: 'Loss', v: 'RGB L1 + 0.001 · mean |output − input| · λ SSIM = 0' },
+  { k: 'Setup', v: 'AdamW 2e-4 · batch 4 · T 0.01 · top-3 refs · seed 1337' },
+]
 </script>
 <template>
-  <figure class="metric-chart"><svg viewBox="0 0 1120 330" role="img" aria-label="Reported PSNR ablation chart. Full model 26.7 dB; random references 21.9; equal weights 25.4; CNN fusion 24.5."><g v-for="tick in [0,5,10,15,20,25,30]" :key="tick"><line :x1="300+tick*23" y1="22" :x2="300+tick*23" y2="287" stroke="#dce1e3"/><text :x="300+tick*23" y="313" text-anchor="middle" class="chart-axis">{{tick}}</text></g><g v-for="(row,i) in rows" :key="row.label"><text x="0" :y="58+i*65" class="chart-label">{{row.label}}</text><rect x="300" :y="30+i*65" :width="row.value*23" height="40" :fill="row.color"/><text :x="310+row.value*23" :y="57+i*65" class="chart-value">{{row.value.toFixed(2)}}</text><text x="1080" :y="57+i*65" text-anchor="end" class="chart-delta">{{row.delta}}</text></g><text x="992" y="313" class="chart-axis">PSNR / dB</text><text x="1080" y="17" text-anchor="end" class="chart-axis">Δ dB</text></svg><figcaption>Run settings and repeated-run uncertainty are not archived.</figcaption></figure>
+  <figure class="metric-chart">
+    <table class="ablation-table">
+      <thead><tr><th>Condition</th><th>Change vs full model</th><th class="num">PSNR dB</th><th class="num">Δ dB</th></tr></thead>
+      <tbody><tr v-for="row in rows" :key="row.condition"><td>{{ row.condition }}</td><td>{{ row.change }}</td><td class="num">{{ row.psnr }}</td><td class="num dim">{{ row.delta }}</td></tr></tbody>
+    </table>
+    <aside class="eval-protocol">
+      <p v-for="item in protocol" :key="item.k"><b>{{ item.k }}</b><span>{{ item.v }}</span></p>
+    </aside>
+    <figcaption>Values transcribed from the archived comparison figure (17 September); its run configuration, seeds and repeated-run uncertainty are not archived. Protocol describes the baseline source at 767cae8.</figcaption>
+  </figure>
 </template>

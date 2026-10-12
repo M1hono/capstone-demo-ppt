@@ -28,5 +28,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <span class="counter">{{ shown.toFixed(decimals) }}{{ suffix }}</span>
+  <span class="counter" aria-live="polite">{{ shown.toFixed(decimals) }}{{ suffix }}</span>
 </template>

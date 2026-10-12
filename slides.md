@@ -1,8 +1,7 @@
 ---
 theme: default
-routerMode: hash
-title: Reference-Guided Retouching
-info: SOFT3888 research walkthrough · preference-completion formulation, September 2026
+title: Final Presentation Workbench
+info: SOFT3888 final presentation component workbench · visualization support for the preference-modelling architecture, October 2026
 author: SOFT3888 project team
 aspectRatio: 16/9
 canvasWidth: 1280
@@ -15,214 +14,367 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Reference-Guided-Retouching-v22
+exportFilename: Final-Presentation-Workbench-v0
 ---
 
-<section class="show-slide cover-slide">
-  <div class="cover-copy">
-    <h1>Reference<br>Guided<br>Retouching</h1>
-    <div class="identity"><span>SOFT3888 · September 2026</span><span>Client: Marvin Tao · Tutor: Chuanzhi Xu</span></div>
+<section class="fp-slide fp-cover">
+  <div class="fp-cover-copy">
+    <h1>Preference<br>Modelling</h1>
+    <p class="fp-cover-sub">Final presentation · component workbench</p>
+    <p class="fp-cover-note">P(Retouching&nbsp;|&nbsp;Current&nbsp;Image,&nbsp;User&nbsp;History) — conditional density over a 3-D retouching space</p>
   </div>
-  <div class="cover-object"><Scene :act="0"/></div>
-  <div class="cover-names">Yuchen Deng · Gary Xu · Sihan Fang · Yiming Chen · Yiheng Guo<br>Lunyan Wang · Weishao Su · XingTang Chen · Zihao Zhang</div>
-  <DeckFooter :page="1"/>
-</section>
-
-<!--
-Presentation cover. Keep the project title, approved conceptual 3D anatomy and team identity. The research objective and preference definition begin on the next page. No eyebrow label or equation banner.
--->
-
----
-
-<section class="show-slide source-slide objective-slide">
-  <h2>Current Research Objective and Definition of User Preference</h2>
-  <PreferenceDefinition/>
-  <DeckFooter :page="2"/>
-</section>
-
-<!--
-Primary source: the team's current research writeup, chapter 1. User preference is defined by two routes: explicit instructions are followed directly; unspecified or incomplete regions are completed from the user's historical editing behaviour. This definition drives both the dataset reconstruction (pages 5–6) and the forward pass (pages 7–9). The cover object is a conceptual cutaway, not a tensor diagram. Manuscript definition: Final Desired Edit = Explicit User Edit + Preference-Based Completion of Unspecified Regions. The user explicitly rejected a cover equation banner; the definition is explained by the original prose instead.
-
-The history photographs are real original/Expert C pairs from FiveK scenes 0001, 0006 and 0016. They illustrate the input type, not a measured user history or reference retrieval. The centre region grid is a schematic, not a generated image.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Reconstruction of the FiveK Dataset</h2>
-  <ExpertStudy/>
-  <p class="slide-note">MIT–Adobe FiveK · Bychkovsky et al., CVPR 2011</p>
-  <DeckFooter :page="3"/>
-</section>
-
-<!--
-Primary source: writeup chapter 2. FiveK supplies original photographs plus expert-retouched versions, so the basic pair is I + G. It provides no real user editing histories and no instructions such as "make the sky darker", so the two variables we need — current explicit intent and historical preference — must be reconstructed. Click experts A–E to compare edit differences on the same scene. Auxiliary evidence: all six photos come from the official dataset (flower scene a0412-_DGW6297); preprocessing is DNG camera WB, 8-bit RGB, max side 500, calculation at 256 square. Five experts are retouchers providing paired targets, not five persistent user profiles — which is exactly why the reconstruction on the next pages is needed.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Stage One: Encoding Complete Editing Information</h2>
-  <EditEncoding/>
-  <DeckFooter :page="4"/>
-</section>
-
-<!--
-Primary source: writeup chapter 3. Every original–expert pair is encoded into a latent editing representation describing what transformation turned I into G — a dense learned vector, not a hand-defined list of brightness or saturation statistics. Auxiliary evidence from the archived code (3c1dadc): the inputs I, G, G − I are stacked as a 9-channel tensor, encoded, then globally average-pooled into a 64-dimensional descriptor; distances between descriptors are Euclidean. Every pair in FiveK obtains its own descriptor this way. Only encoding and spatial pooling are shown here. Dimensions are an architecture example from the archived implementation, not the unarchived metric run configuration.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Stage Two: Dynamic Construction of Simulated User History</h2>
-  <HistoryRetrieval mode="history"/>
-  <DeckFooter :page="5"/>
-</section>
-
-<!--
-Primary source: writeup chapter 4. For each training sample the 20 most similar complete editing representations are retrieved and treated as one simulated user's editing history; the assumption is that similar editing decisions across different visual content reflect one underlying preference. The grouping is refreshed during training as the encoder improves, so the dataset structure adapts with the model instead of relying on manual groups. Auxiliary evidence: the archived code (3c1dadc) refreshes embeddings with the current network every training chunk and tracks grouping stability between refreshes. Presentation boundary: in the archived implementation the top-3 references are selected directly from the candidate pool by descriptor distance; the 20-sample history pool is the team's described design for the simulated user. Present the writeup formulation; do not add fixed user identities.
-
-The twenty displayed pairs are official FiveK scenes 0001–0020 with Expert C edits. Their membership is illustrative: no run has identified these photographs as the twenty nearest neighbours. Originals are camera-white-balanced DNG renders; the edits are official gallery thumbnails. Asset sources and hashes are archived separately.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Stage Three: Constructing Partial Edits to Simulate Explicit User Requirements</h2>
-  <PartialEdit/>
-  <DeckFooter :page="6"/>
-</section>
-
-<!--
-Primary source: writeup chapter 5. The current image is semantically segmented; regions covering roughly 40% of pixels are selected; their pixels are replaced by the expert target while the rest stay original. The partial edit represents the user's current explicit intent, and the complete expert image is the final result the user wants — so the task changes from I → G to I + partial edit + history → G. Auxiliary evidence, verified in the archived code (3c1dadc): segmentation is Mask2Former panoptic (facebook/mask2former-swin-small-coco-panoptic, threshold 0.5) cached per original; the kept-unspecified target ratio is 0.6, so the edited area is ≈40%; the composite is exactly where(mask, expert, original). The three displayed images are an illustrative rectangle composite from FiveK 0412 and Expert D — not a Mask2Former output and not a model prediction; say so if asked.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Stage Four: Retrieving Historical Preference Using the Partial Edit</h2>
-  <HistoryRetrieval mode="query"/>
-  <DeckFooter :page="7"/>
-</section>
-
-<!--
-Primary source: writeup chapter 6. The second retrieval uses only the partial modification — the model knows the original, which regions were explicitly modified, and how they changed — and searches within the 20-sample simulated history for the three most relevant references. This is what makes the mechanism applicable at inference: complete ground-truth edits are unavailable outside training, but the partial edit comes from the user's actual explicit requirements. Auxiliary evidence (3c1dadc): grouping queries are embedded from the partial edit while candidates keep full expert pairs; same-scene pairs are excluded; num_reference = 3 with selection temperature 0.01. Archived code ranks candidates from the full pool directly; the writeup describes the search within the constructed 20-sample history — present the writeup's two-stage formulation as the design.
-
-The three photographed references are FiveK scenes 0001, 0006 and 0016, matching H1, H6 and H16 in the illustrated pool. These are real original/Expert C pairs selected to explain the diagram, not a recorded retrieval or ranked result.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Stage Five: Cross-Attention-Based Transfer of Historical Editing Information</h2>
-  <DecisionMechanism/>
-  <DeckFooter :page="8"/>
-</section>
-
-<!--
-Primary source: writeup chapter 7. Retrieved references are not copied — cross-attention runs between the current image and the three references. Because a person may sit left in the current image and centre in a reference, the same coordinates cannot assume the same edit; correspondences are learned from visual content. The current image provides queries; references provide features plus editing information; attention weights aggregate relevant historical editing features into one modification representation conditioned on the current image — a dynamic combination of multiple references, not the edit of a single photograph. Auxiliary evidence (3c1dadc): one attention head, attention_dim 128, edit_dim 64; Q/K scoring on a 32×32 grid with a 64×64 value grid. Click the decision nodes to hold a stage. The query encoder takes [I,P,M] (7 channels), while the reference edit encoder takes [Iᵣ,Gᵣ,Gᵣ−Iᵣ] (9 channels). Reference keys and values both derive from edit encoding. The per-position hard reference gate is distinct from spatial softmax. The reference photograph is an archived pair illustrating the input type, not a measured retrieval in the current experiment. The diagram is explanatory, not measured tensors.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Stage Six: Spatial Reconstruction and Final Image Generation</h2>
-  <RenderMechanism/>
-  <DeckFooter :page="9"/>
-</section>
-
-<!--
-Primary source: writeup chapter 8. Cross-attention runs in a lower-resolution feature space to control cost; the modification features are interpolated back to full resolution. The enhancement network then receives four inputs: the original image (RGB content and structure), the partial user edit (explicit operations), the explicit-region mask (which regions still need completion), and the historical modification features (from retrieval and cross-attention). Training still compares the output against the complete expert-retouched image, so the model must reproduce detailed edits and their magnitudes, not just a general stylistic direction. Auxiliary evidence (3c1dadc): scoring grid 32×32 lifted to the 64×64 value grid, renderer concatenates RGB with 64 edit-feature channels plus the partial edit and mask (architecture version 2), supervised by L1 with the 0.001 residual regulariser; the specified pixels are then copied from P via where(mask, P, prediction). The 71-channel tensor is 3 original + 3 partial + 1 mask + 64 history features. The output shown is symbolic, not an old prediction relabelled as the new model. These are archived architectural details; the present metric run configuration is not archived.
--->
-
----
-
-<section class="show-slide source-slide">
-  <h2>Current Quantitative Results</h2>
-  <div class="evaluation-layout">
-    <table class="metric-table"><thead><tr><th>Metric</th><th>Current model</th></tr></thead><tbody><tr><td>PSNR</td><td>27.2 <small>dB</small></td></tr><tr><td>SSIM</td><td>0.90</td></tr></tbody></table>
-    <div class="source-results-flow"><div><span>Partial Edit Clue</span><i>+</i><span>History Retrieval</span><i>+</i><span>Cross-Attention Transfer</span></div><i>↓</i><b>Complete Edit Reconstruction</b></div>
+  <div class="fp-cover-status">
+    <p>No rubric or script yet — this deck only hosts and tests presentation components. Content pages come after the rubric arrives.</p>
   </div>
-  <div class="result-conclusion"><p>Even when only partial editing information is explicitly provided, historical retrieval and Cross-Attention can provide additional information for completing the missing edits.</p><p>It is capable of reconstructing a result that is quantitatively close to the complete expert-retouched target.</p></div>
-  <DeckFooter :page="10"/>
 </section>
 
 <!--
-Primary source: writeup chapter 9. The current model reports PSNR 27.2 dB and SSIM 0.90. The significance is not only the absolute values: the results support the hypothesis that partial editing information plus historical retrieval and cross-attention can complete the unspecified edits. Provenance boundary: these values come from the team's current writeup; the research repositories do not yet archive the run configuration or checkpoint behind them, and an earlier figure (17 September, previous formulation) reported different values — do not mix those numbers into this deck. The current run configuration, split and checkpoint are not archived with these results. Do not assign older evaluation defaults to this run. The evaluation diagram is symbolic; no old output image is presented as evidence for the current metrics.
+Workbench cover. The final narrative follows the W13 final group report:
+preference = conditional probability density, not a single output.
 -->
 
 ---
 
-<section class="show-slide source-slide">
-  <h2>Main Achievements at the Current Stage</h2>
-  <div class="achievements-layout">
-    <AchievementSummary/>
-    <AblationExperiment/>
-  </div>
-  <DeckFooter :page="11"/>
+<section class="fp-slide">
+  <h2>Phase 2 viewer: conditional retouching distribution</h2>
+  <PreferenceSphere/>
+  <p class="fp-provenance"><code>z ∈ R³</code> · 256 MC samples · 14° local density cells · 24×48 flow-probability grid · Top-K cells ranked by log P</p>
 </section>
 
 <!--
-Primary source: writeup chapter 10. Three achievements: a clearer definition of personalization; a method to dynamically reconstruct FiveK into simulated intent plus history without user labels; and strong quantitative performance under the new formulation. The three ablations isolate the contributions: replacing the constructed user history with random samples drops PSNR from 27.2 to 22.1; keeping the history but selecting references randomly within it drops to 24.5; removing cross-attention and feeding reference and current images directly into the CNN drops to 23.1. Provenance boundary: these values are from the team's current writeup; no archived run configurations accompany them yet, and no seed-level uncertainty is reported — avoid claiming statistical significance. The earlier 17 September figure reported different values under the previous formulation; that figure stays out of this deck.
-
-The small I/G pair in the reconstruction diagram uses real FiveK flower scene 0412 and Expert D. It illustrates the paired training data; it is not an output associated with the reported metrics.
+The visual is a browser version of phase2/visual3.py: switch image/expert,
+inspect MC samples, local direction density, discrete flow probability, and
+the selected candidate cells against the recorded GT vector.
 -->
 
 ---
 
-<section class="show-slide source-slide">
-  <h2>Current Limitation</h2>
-  <HistoryDependence/>
-  <DeckFooter :page="12"/>
+<section class="fp-slide">
+  <h2>Visualization Coverage Plan</h2>
+  <table class="fp-table">
+    <thead><tr><th>Evidence (W13 report)</th><th>Planned visual</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Preference = conditional, multimodal density (§1.1, §2.2)</td><td>3-D rotating preference sphere, MC samples + density + Top-K + GT</td><td>Component ready (synthetic data)</td></tr>
+      <tr><td>Same image, different experts → different spheres (§2.5 figure)</td><td>Sphere Compare mode: two experts side by side + mean-direction separation angle; expert switching</td><td>Component ready; report figure script pending</td></tr>
+      <tr><td>z: direction = style, |z| = strength (§2.3)</td><td>DirectionMagnitudeGrid: rows = Top-K/GT directions, cols = |z| multipliers</td><td>Component ready · awaits GPU renders</td></tr>
+      <tr><td>Image similarity retrieval only ~30% (§2.2)</td><td>MotivationStat: big number + 100-dot grid (3 in 10 highlighted)</td><td>Component ready (report number)</td></tr>
+      <tr><td>FiveK 23.8 · PPSD 24.5 · strict 23.5 vs PieNet 20.8 / RefRetouch 21.3 (§1.3)</td><td>MetricBars animated bars (slides) + static figure via make_figures.py (report)</td><td>Both ready</td></tr>
+      <tr><td>Ablations: wrong history / wrong image (§1.3)</td><td>AblationBars — delta rows render as TBD until run CSVs archived</td><td>Component ready · awaits numbers</td></tr>
+      <tr><td>Phase-1 reconstruction 29.3 dB (§2.3)</td><td>ReconstructionStrip: original | reconstruction | counter (images slot in after export)</td><td>Component ready · awaits images</td></tr>
+      <tr><td>Five-stage architecture evolution (§2.7)</td><td>EvolutionTimeline (interactive) · ArchFlow pipeline for the current stage</td><td>Both ready</td></tr>
+      <tr><td>Reusable visual language from the client deck</td><td>42 component pages: mechanisms, workbenches, comparisons, evidence, terminals, memory, counters…</td><td>Carried over · QA clear</td></tr>
+    </tbody>
+  </table>
 </section>
-
-<!--
-Primary source: writeup chapter 11. The honest limitation: the system uses user history but does not yet build an independent, persistent representation of the user. Inference still performs partial edit → search historical images → select references → cross-attention, so the accurate description is history-conditioned personalized image enhancement rather than a complete latent user modelling framework — the preference remains distributed across the historical database. This framing sets up the future work on the next two pages.
-
-The partial edit is the existing illustrative rectangle composite from scene 0412 and Expert D. Historical and selected-reference photographs are real original/Expert C pairs; database membership and reference selection remain illustrative.
--->
 
 ---
 
-<section class="show-slide source-slide">
-  <h2>Future Work: Latent Memory Slots for Implicit User Modeling</h2>
-  <PreferenceMemory mode="compress"/>
-  <DeckFooter :page="13"/>
+<section class="show-slide gallery-slide">
+  <h2>Scene</h2>
+  <p class="gallery-usage"><code>&lt;Scene :act="0" /&gt;</code><span>Saved/WebGL product anatomy for the cover.</span></p>
+  <div class="gallery-body"><div class="gallery-scene"><Scene :act="0"/></div></div>
 </section>
-
-<!--
-Primary source: writeup chapter 12. Next step: transform the large collection of historical image–edit pairs into a compact latent user preference memory — K latent memory slots, each a D-dimensional dense representation. The slots need no manually assigned semantic labels; the model should learn representations of the form "when the image is in a particular visual situation, this user tends to edit it a particular way". This is future design, not an implemented or recorded capability of the current system — present it as the plan, without promising timelines.
-
-The four historical examples are real FiveK original/Expert C pairs (0001, 0006, 0016 and 0020). Only the image inputs are photographic evidence; the learned compression and latent slots remain a proposed mechanism.
--->
 
 ---
 
-<section class="show-slide source-slide">
-  <h2>Future Preference-Memory Query Process</h2>
-  <PreferenceMemory mode="query"/>
-  <DeckFooter :page="14"/>
+<section class="show-slide gallery-slide">
+  <h2>PreferenceDefinition</h2>
+  <p class="gallery-usage"><code>&lt;PreferenceDefinition /&gt;</code><span>Routes explicit edits and unspecified regions.</span></p>
+  <div class="gallery-body"><PreferenceDefinition/></div>
 </section>
-
-<!--
-Primary source: writeup chapter 13. In the future architecture the complete historical collection is required only to construct the User Preference Memory; once built, inference no longer searches the database. For unspecified regions the model extracts query features of the current visual situation; the memory provides latent keys and values; cross-attention performs query × preference memory → relevant historical preference, which is combined with the user's explicit current edit to produce the personalized result. This moves the system from retrieving historical images toward querying a compact latent model. Future design — no recorded run exists.
-
-The unspecified-region image uses original pixels from FiveK scene 0412 with a translucent overlay on the specified region of the existing illustrative rectangle mask. It is not semantic segmentation or a predicted result; the mask covers roughly 24.9%, separate from the manuscript training target of approximately 40%.
--->
 
 ---
 
-<section class="show-slide source-slide closing-slide">
-  <h2>Final Research Hypotheses</h2>
-  <div class="source-hypotheses">
-    <div><span>1</span><p>Can historical editing behavior help reconstruct the complete desired result when the user provides only partial editing information?</p><small>Our current results already provide initial evidence supporting this hypothesis.</small></div>
-    <div><span>2</span><p>Can the complete editing history be compressed into a small latent preference memory without significantly reducing PSNR and SSIM?</p></div>
-    <div><span>3</span><p>If the input image and explicit user instruction remain unchanged, but the User Preference Memory is replaced with the memory of another user, does the output change toward the corresponding user’s target editing behavior?</p></div>
-  </div>
-  <p class="source-next-step">The next major step is to compress the historical editing behavior into a queryable Latent User Preference Model, while preserving the strong reconstruction performance of the current system.</p>
-  <DeckFooter :page="15"/>
+<section class="show-slide gallery-slide">
+  <h2>ExpertStudy</h2>
+  <p class="gallery-usage"><code>&lt;ExpertStudy /&gt;</code><span>FiveK original, expert targets, and edit diagnostics.</span></p>
+  <div class="gallery-body"><ExpertStudy/></div>
 </section>
 
-<!--
-Primary source: writeup chapter 14. Three hypotheses close the talk. H1 — can historical behaviour help reconstruct the complete desired result from partial information — has initial supporting evidence (page 10). H2 — can the complete history be compressed into a small latent preference memory without significant PSNR/SSIM loss — is untested. H3 — with input and explicit instruction unchanged, swapping the preference memory should move the output toward the corresponding user's editing behaviour, evidence that the memory holds personalized decisions rather than generic image features — is untested. Overall arc: reference-based enhancement evolving into explicit intent + historical behaviour + cross-attention preference transfer. Next major step: the queryable latent user preference model, preserving strong reconstruction performance. Do not add new experiment plans beyond these hypotheses.
--->
+---
+
+<section class="show-slide gallery-slide">
+  <h2>EditEncoding</h2>
+  <p class="gallery-usage"><code>&lt;EditEncoding /&gt;</code><span>I, G, G−I → 9 channels → pooled edit descriptor.</span></p>
+  <div class="gallery-body"><EditEncoding/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>HistoryRetrieval · history</h2>
+  <p class="gallery-usage"><code>&lt;HistoryRetrieval mode="history" /&gt;</code><span>Complete edit descriptor → simulated history pool.</span></p>
+  <div class="gallery-body"><HistoryRetrieval mode="history"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>PartialEdit</h2>
+  <p class="gallery-usage"><code>&lt;PartialEdit /&gt;</code><span>Partial edit clue and explicit-region mask.</span></p>
+  <div class="gallery-body"><PartialEdit/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>HistoryRetrieval · query</h2>
+  <p class="gallery-usage"><code>&lt;HistoryRetrieval mode="query" /&gt;</code><span>Partial edit clue → three reference pairs.</span></p>
+  <div class="gallery-body"><HistoryRetrieval mode="query"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>DecisionMechanism</h2>
+  <p class="gallery-usage"><code>&lt;DecisionMechanism /&gt;</code><span>Q/K logits, reference gate, and spatial value mix.</span></p>
+  <div class="gallery-body"><DecisionMechanism/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>RenderMechanism</h2>
+  <p class="gallery-usage"><code>&lt;RenderMechanism /&gt;</code><span>71-channel concat → residual CNN → masked output → loss.</span></p>
+  <div class="gallery-body"><RenderMechanism/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>AttentionWorkbench</h2>
+  <p class="gallery-usage"><code>&lt;AttentionWorkbench sample="flowers" /&gt;</code><span>Recorded attention overlays and reference shares.</span></p>
+  <div class="gallery-body"><AttentionWorkbench/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>BoundaryWorkbench</h2>
+  <p class="gallery-usage"><code>&lt;BoundaryWorkbench /&gt;</code><span>Old grouping path and zero-control replay.</span></p>
+  <div class="gallery-body"><BoundaryWorkbench/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>Workbench</h2>
+  <p class="gallery-usage"><code>&lt;Workbench /&gt;</code><span>Saved checkpoint controls and measured output.</span></p>
+  <div class="gallery-body"><Workbench/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>ChangeMaps</h2>
+  <p class="gallery-usage"><code>&lt;ChangeMaps /&gt;</code><span>Recorded brightness, saturation, and warmth maps.</span></p>
+  <div class="gallery-body"><ChangeMaps/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>ImageComparison</h2>
+  <p class="gallery-usage"><code>&lt;ImageComparison :before="before" :after="after" /&gt;</code><span>Keyboard/pointer reveal between two images.</span></p>
+  <div class="gallery-body"><ImageComparison before="/assets/evidence/flowers-original.png" after="/assets/evidence/flowers-ref1-expert.png" label="expert retouch vs original"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>EvidencePlate</h2>
+  <p class="gallery-usage"><code>&lt;EvidencePlate sample="flowers" /&gt;</code><span>Original, model output, target, PSNR, and SSIM.</span></p>
+  <div class="gallery-body"><EvidencePlate/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>MetricChart</h2>
+  <p class="gallery-usage"><code>&lt;MetricChart /&gt;</code><span>Archived comparison table with protocol boundary.</span></p>
+  <div class="gallery-body"><MetricChart/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>MetricBars</h2>
+  <p class="gallery-usage"><code>&lt;MetricBars /&gt;</code><span>Report-level PSNR comparisons.</span></p>
+  <div class="gallery-body"><MetricBars/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>MetricEvidenceCard</h2>
+  <p class="gallery-usage"><code>&lt;MetricEvidenceCard /&gt;</code><span>Report values kept separate by dataset and phase.</span></p>
+  <div class="gallery-body"><MetricEvidenceCard/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>ResultsGallery</h2>
+  <p class="gallery-usage"><code>&lt;ResultsGallery /&gt;</code><span>Recorded Flowers, Dog, and Books examples.</span></p>
+  <div class="gallery-body"><ResultsGallery/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>HistoryDependence</h2>
+  <p class="gallery-usage"><code>&lt;HistoryDependence /&gt;</code><span>Current limitation: preference remains in history.</span></p>
+  <div class="gallery-body"><HistoryDependence/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>AchievementSummary</h2>
+  <p class="gallery-usage"><code>&lt;AchievementSummary /&gt;</code><span>Three current achievements as one visual.</span></p>
+  <div class="gallery-body"><AchievementSummary/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>AblationExperiment</h2>
+  <p class="gallery-usage"><code>&lt;AblationExperiment /&gt;</code><span>Current writeup ablations: 27.2 / 22.1 / 24.5 / 23.1 dB.</span></p>
+  <div class="gallery-body"><AblationExperiment/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>AblationBars</h2>
+  <p class="gallery-usage"><code>&lt;AblationBars /&gt;</code><span>Run-level ablation slot; unknown values remain blank.</span></p>
+  <div class="gallery-body"><AblationBars/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>PreferenceMemory · compress</h2>
+  <p class="gallery-usage"><code>&lt;PreferenceMemory mode="compress" /&gt;</code><span>Future K×D latent memory construction.</span></p>
+  <div class="gallery-body"><PreferenceMemory mode="compress"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>PreferenceMemory · query</h2>
+  <p class="gallery-usage"><code>&lt;PreferenceMemory mode="query" /&gt;</code><span>Future query × preference-memory path.</span></p>
+  <div class="gallery-body"><PreferenceMemory mode="query"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>ArchFlow</h2>
+  <p class="gallery-usage"><code>&lt;ArchFlow /&gt;</code><span>Current phase-2 conditional multimodal pipeline.</span></p>
+  <div class="gallery-body"><ArchFlow/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>DirectionMagnitudeGrid</h2>
+  <p class="gallery-usage"><code>&lt;DirectionMagnitudeGrid /&gt;</code><span>Direction as style; magnitude as edit strength.</span></p>
+  <div class="gallery-body"><DirectionMagnitudeGrid/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>EvolutionTimeline</h2>
+  <p class="gallery-usage"><code>&lt;EvolutionTimeline /&gt;</code><span>Architecture evolution with current flow5 stage.</span></p>
+  <div class="gallery-body"><EvolutionTimeline/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>LearningMechanism</h2>
+  <p class="gallery-usage"><code>&lt;LearningMechanism /&gt;</code><span>Tensor shapes and dynamic grouping refresh.</span></p>
+  <div class="gallery-body"><LearningMechanism/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>MotivationStat</h2>
+  <p class="gallery-usage"><code>&lt;MotivationStat /&gt;</code><span>Report motivation: image similarity ≈30% top-1.</span></p>
+  <div class="gallery-body"><MotivationStat/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>ReconstructionStrip</h2>
+  <p class="gallery-usage"><code>&lt;ReconstructionStrip /&gt;</code><span>Phase-1 reconstruction slot and PSNR counter.</span></p>
+  <div class="gallery-body"><ReconstructionStrip/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>NextStepMechanism</h2>
+  <p class="gallery-usage"><code>&lt;NextStepMechanism /&gt;</code><span>Future text-guided partial-edit schematic.</span></p>
+  <div class="gallery-body"><NextStepMechanism/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>FlowSamplingWorkbench</h2>
+  <p class="gallery-usage"><code>&lt;FlowSamplingWorkbench :samples="256" /&gt;</code><span>Conditional flow: training z↔u and inference samples.</span></p>
+  <div class="gallery-body"><FlowSamplingWorkbench :samples="256"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>TransformerConditionWorkbench</h2>
+  <p class="gallery-usage"><code>&lt;TransformerConditionWorkbench :layers="4" /&gt;</code><span>Current image + history → condition vector c.</span></p>
+  <div class="gallery-body"><TransformerConditionWorkbench :layers="4"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>CandidateClusterWorkbench</h2>
+  <p class="gallery-usage"><code>&lt;CandidateClusterWorkbench :clusters="5" /&gt;</code><span>MC samples → clusters → Top-K representatives.</span></p>
+  <div class="gallery-body"><CandidateClusterWorkbench :clusters="5"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>LUTBasisAssembly</h2>
+  <p class="gallery-usage"><code>&lt;LUTBasisAssembly :basis-count="8" /&gt;</code><span>z → coefficients → learnable LUT basis mixture.</span></p>
+  <div class="gallery-body"><LUTBasisAssembly :basis-count="8"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>PlaybackControls</h2>
+  <p class="gallery-usage"><code>&lt;PlaybackControls :stage="2" :total="5" /&gt;</code><span>Manual previous/next plus timed playback controls.</span></p>
+  <div class="gallery-body"><PlaybackControls :stage="2" :total="5" :playing="true" :reduced="false"/></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>Counter</h2>
+  <p class="gallery-usage"><code>&lt;Counter :value="27.2" suffix=" dB" /&gt;</code><span>Animated numeric evidence primitive.</span></p>
+  <div class="gallery-body"><div class="gallery-primitive"><Counter :value="27.2" :decimals="1" suffix=" dB"/></div></div>
+</section>
+
+---
+
+<section class="show-slide gallery-slide">
+  <h2>Terminal</h2>
+  <p class="gallery-usage"><code>&lt;Terminal :lines="lines" /&gt;</code><span>Compact request/output trace for a live demo.</span></p>
+  <div class="gallery-body"><Terminal title="REQUEST TRACE" :lines="['query=0001A', 'history=16', 'candidates=3', 'render=ready']"/></div>
+</section>

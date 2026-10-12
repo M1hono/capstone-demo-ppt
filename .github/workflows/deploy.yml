@@ -37,10 +37,9 @@ jobs:
         run: npm run build -- --base "${{ steps.pages.outputs.base_path }}/"
       - name: Install Chromium for presentation checks
         run: npx playwright install --with-deps chromium
-      - name: Verify slides and playback
+      - name: Verify presentation pages
         env:
           SHOW_BASE: http://127.0.0.1:4173${{ steps.pages.outputs.base_path }}
-          SHOW_ROUTER: hash
         run: |
           npm run preview -- --port 4173 --base "${{ steps.pages.outputs.base_path }}/" > /tmp/capstone-preview.log 2>&1 &
           preview_pid=$!
@@ -51,7 +50,6 @@ jobs:
           done
           curl --silent --fail "$SHOW_BASE/" > /dev/null
           npm run test:slides
-          npm run test:motion
       - name: Preserve browser verification
         if: always()
         uses: actions/upload-artifact@v4
