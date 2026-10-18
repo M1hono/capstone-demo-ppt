@@ -1,5 +1,5 @@
 {
-  "name": "final-presentation-slidev",
+  "name": "flow5-final-presentation-components",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -14,10 +14,15 @@
     "playwright-chromium": "1.63.0"
   },
   "scripts": {
-    "dev": "slidev --port 18340",
+    "dev": "slidev --port 18341",
     "build": "slidev build",
     "preview": "vite preview --host 127.0.0.1 --strictPort",
     "qa": "node qa-show.mjs",
-    "test:slides": "node qa-show.mjs"
+    "test:slides": "node qa-show.mjs",
+    "prebuild": "node scripts/sync-evidence.mjs && node scripts/validate-evidence.mjs",
+    "test:data": "node scripts/validate-evidence.mjs",
+    "figures": "python3 scripts/make-figures.py",
+    "export": "slidev export --format pdf",
+    "export:png": "slidev export --format png"
   }
 }

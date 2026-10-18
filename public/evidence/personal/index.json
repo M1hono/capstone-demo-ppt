@@ -1,0 +1,54 @@
+[
+  {
+    "commit": "b93dc1254cc787867559c3f23a3b6fa005953af0",
+    "short": "b93dc12",
+    "path": "components/TransformerConditionWorkbench.vue",
+    "author": "M1hono",
+    "date": "2026-10-13",
+    "start": 4,
+    "end": 11,
+    "excerpt": "const props = defineProps({\n  historyCount: { type: Number, default: 8 },\n  layers: { type: Number, default: 4 },\n  heads: { type: Number, default: 4 },\n})\nconst focused = ref('condition')\nconst base = import.meta.env.BASE_URL\nconst tokens = computed(() => Array.from({ length: props.historyCount }, (_, index) => ({ image: `E${index + 1}`, edit: `z${index + 1}` })).concat([{ image: 'E\u2080', edit: null }]))",
+    "sha256": "a6e63d4b265000ea4b24365127b72816762d2be16137c6fbf3d60a0f2158396c",
+    "asset": "evidence/personal/b93dc12-TransformerConditionWorkbench.vue.txt",
+    "url": "https://github.com/M1hono/capstone-demo-ppt/blob/b93dc1254cc787867559c3f23a3b6fa005953af0/components/TransformerConditionWorkbench.vue#L4"
+  },
+  {
+    "commit": "43cb672089b441f66120ef55c15078da18302d3f",
+    "short": "43cb672",
+    "path": "data/history-pairs.json",
+    "author": "M1hono",
+    "date": "2026-09-20",
+    "start": 1,
+    "end": 15,
+    "excerpt": "[\n  {\n    \"id\": \"0001\",\n    \"scene\": \"a0001-jmac_DSC1459\",\n    \"expert\": \"C\",\n    \"original\": \"assets/history-pairs/0001-original.jpg\",\n    \"edited\": \"assets/history-pairs/0001-edited.jpg\"\n  },\n  {\n    \"id\": \"0002\",\n    \"scene\": \"a0002-dgw_005\",\n    \"expert\": \"C\",\n    \"original\": \"assets/history-pairs/0002-original.jpg\",\n    \"edited\": \"assets/history-pairs/0002-edited.jpg\"\n  },",
+    "sha256": "5a8e0c2a8ad6a33d698086f9b3fddc91bc4097831eb8472a27a856a7ed2efa7f",
+    "asset": "evidence/personal/43cb672-history-pairs.json.txt",
+    "url": "https://github.com/M1hono/capstone-demo-ppt/blob/43cb672089b441f66120ef55c15078da18302d3f/data/history-pairs.json#L1"
+  },
+  {
+    "commit": "ea58847de017b4d532416e056c15fbfba6b5dd73",
+    "short": "ea58847",
+    "path": "evidence/tensor-flow.json",
+    "author": "M1hono",
+    "date": "2026-09-20",
+    "start": 1,
+    "end": 14,
+    "excerpt": "{\n  \"revision\": \"767cae8\",\n  \"scope\": \"Tensor-shape check only, using default configuration, synthetic zero inputs and an untrained model. No image-quality or retrieval result. Batch size 1.\",\n  \"group_descriptor\": [\n    1,\n    64\n  ],\n  \"output\": [\n    1,\n    3,\n    256,\n    256\n  ],\n  \"reference_scores\": [",
+    "sha256": "5d767fba290296c7da055b2635d590d0b8ec132e15df088539f4ab38a323da4f",
+    "asset": "evidence/personal/ea58847-tensor-flow.json.txt",
+    "url": "https://github.com/M1hono/capstone-demo-ppt/blob/ea58847de017b4d532416e056c15fbfba6b5dd73/evidence/tensor-flow.json#L1"
+  },
+  {
+    "commit": "db72d886635cff572eb32a091cf7c31195996d54",
+    "short": "db72d88",
+    "path": "qa-show.mjs",
+    "author": "M1hono",
+    "date": "2026-09-20",
+    "start": 24,
+    "end": 29,
+    "excerpt": "  await page.waitForFunction(pageNumber => {\n    const slide = document.querySelector(`.slidev-page-${pageNumber} .show-slide`)\n    return slide && [...slide.querySelectorAll('img')].every(image => image.complete)\n  }, i)\n  const result = await page.evaluate(async (pageNumber) => {\n    const slide = document.querySelector(`.slidev-page-${pageNumber} .show-slide`)",
+    "sha256": "817d0a78dbd6644ddd9f44134f9f3ccf73cc84cb689834d32cb5ccf501cdfa7a",
+    "asset": "evidence/personal/db72d88-qa-show.mjs.txt",
+    "url": "https://github.com/M1hono/capstone-demo-ppt/blob/db72d886635cff572eb32a091cf7c31195996d54/qa-show.mjs#L24"
+  }
+]

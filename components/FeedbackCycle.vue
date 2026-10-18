@@ -1,0 +1,7 @@
+<script setup>
+import {useSequence} from '../composables/useSequence'
+const labels=['Propose an approach','Discuss with the client','Implement and evaluate','Review progress and revise'];const sequence=useSequence(labels)
+const details=['The team proposes research approaches and technical options.','Weekly Zoom meetings and between-meeting WeChat communication are described in the report.','Experimental results and feasibility inform the next implementation.','The team presents progress, considers feedback and adjusts priorities.']
+</script>
+<template><div class="stack feedback-cycle"><div class="flow"><template v-for="(label,i) in labels" :key="label"><div class="node" :class="{active:sequence.step.value===i}"><p class="symbol">0{{i+1}}</p><h3>{{label}}</h3><p>{{details[i]}}</p></div><span v-if="i<3" class="arrow">→</span></template></div><SequenceControls :sequence="sequence"/><div class="split"><p class="statement">Client feedback guided priorities; experimental evidence guided architecture choices.</p><div class="note"><h3>Evidence available</h3><p>This process is reported in the client-feedback section. Specific quotations, dates and review screenshots have not been supplied, so no individual architectural change is attributed to a particular client instruction.</p></div></div></div></template>
+<style scoped>.feedback-cycle>.flow{flex:0 0 230px}.feedback-cycle>.split{height:auto;flex:1;min-height:0}.feedback-cycle .statement{font-size:27px}</style>

@@ -1,39 +1,33 @@
-# Preference Enhancement Engine presentation
+# Presentation component library
 
 ## Register
 
 product
 
-## Users and purpose
+## Users
 
-The SOFT3888 client and tutor inspect the team's current image enhancement prototype in a recorded client demonstration. This is a 15-slide English presentation (a separate cover plus the 14 manuscript sections), with a local browser companion, a static PDF and a PPTX with embedded mechanism films. The product is the presentation itself; it is not a replacement application or a report.
+The SOFT3888 presentation team uses these components during a live technical presentation to the client, tutor and assessors. The audience must be able to follow mechanisms and inspect supporting evidence without reading the full report on screen.
 
-## Confirmed direction
+## Product Purpose
 
-The approved deck specification and the user's follow-up instructions establish a continuous product anatomy: input, paired edit evidence, cross-attention, CNN and evidence output. A neutral engineering workbench exposes the data and decisions. Real FiveK pairs illustrate data and partial-edit composition. The current metrics and ablations are team-reported; older recorded predictions must not be relabelled as current results. The current 14-section team manuscript defines the scope: complete-edit encoding, dynamic 20-pair simulated histories, partial edits, 20→3 reference retrieval, cross-attention and reconstruction. Latent preference memory remains future work. Earlier scope restrictions are superseded; control-demo material stays archived.
+An English Slidev/Vue library for the final flow5 report. The first 25 pages follow the supplied outline; supporting pages explain mechanisms and expose evidence. Each page presents one principal reusable component under a title-only header. Usage descriptions remain in the component metadata. Source: README.md, DESIGN.md, data/component-index.json and docs/ACHIEVEMENTS.md.
+
+## Brand Personality
+
+Technical, precise and explanatory. Preserve the report's meaning while making the model, experiments and individual contribution understandable in a projected presentation.
 
 ## Anti-references
 
-No eyebrow headings, decorative corner labels, cover slogans or definition banners, particle fields, neon, floating widgets, generic card grids, source-path lists or README summaries. The cover contains only its title, approved 3D anatomy and team identity. The research objective is a separate page with a purpose-built region diagram; it does not repeat the cover image. Pagination is centred at the bottom. Do not use generated photographs as experimental evidence. Do not change the source repositories.
+Avoid commercial landing pages, slogans, decorative badges, repetitive card grids, small documentation tables and animations that merely highlight containers. Do not imply that illustrative distributions or expert targets are actual model outputs.
 
-## Design principles
+## Design Principles
 
-Show the same specimen through a mechanism. Put measured data beside the operation that produced it. Distinguish recorded results from a newly run demonstration. Use animation only to reveal dependency, selection or correspondence. Keep detailed provenance behind the slides.
+- Explain mechanisms through visible transformations and real image context.
+- Let one visual argument dominate each slide.
+- Keep exact metrics and provenance inspectable without overwhelming the explanation.
+- Preserve the 25-topic outline and the attribution of individual contributions.
+- Offer manual sequencing and useful static final states.
 
-The supplied dyNAmic Transfer Touch architecture diagram establishes the explanatory priorities: retrieve useful editing history, choose references, transfer editing features, assemble the output and learn from its loss. The current source determines the implementation details. Do not make channel stacking or generic element reveals the main animation. Follow one query-region decision, preserve symbolic treatment where model tensors are unavailable, and let recorded image pairs explain the actual historical edit.
+## Accessibility & Inclusion
 
-## Accessibility and delivery
-
-Readable at 1280 × 720, labels accompany colour, keyboard controls for interactive evidence, reduced-motion terminal states, and deterministic static exports. These requirements are already recorded in the approved deck specification.
-
-## Current validation
-
-All fifteen pages must have actual body content, not unresolved Vue components. Check SVG text collisions, footer clearance and cover identity spacing as well as viewport overflow and image loading. Slides 5, 7, 11 and 12 show complete static diagrams without playback controls. Each of the seven remaining mechanism sequences supports forward/backward navigation, pause, continue, replay and reduced motion. Restart the preview service when adding auto-registered components, then check the rendered pages before exposing a partially integrated state.
-
-## Manuscript fidelity
-
-Use the fourteen section titles verbatim, as recorded in `evidence/manuscript-section-titles.json`. Do not rename a section to suit the visual design or delete its argument. The achievements section includes all three developments and all three ablations. Body arguments and playback captions are extracted from the manuscript. Technical tensor details remain auxiliary source evidence; no new experiments, metrics or conclusions may be added. Dedicated components on pages 2, 11 and 12 explain the preference definition, the three achievements and dependence on the historical image collection. On page 11, the left side uses compact mechanism diagrams; the right side remains a simple static ablation table.
-
-## Photographic history examples · v22
-
-Use real FiveK original/Expert C pairs wherever a diagram represents photographs: pages 2, 5, 7, 12 and 13, plus the real FiveK 0412 pair on page 11. Page 14 retains the complete original photograph and marks the specified region with a translucent illustrative mask. History pool membership and reference selection are illustrative, not measured retrievals; note that briefly on the affected slides. Keep feature tensors, attention weights, future latent slots and unrecorded outputs symbolic. Asset provenance is recorded in `evidence/history-pairs.json`; never publish cached DNGs.
+Existing controls support keyboard navigation, reduced motion and explicit labels. Keep those behaviours. Charts need visible labels and shapes as well as colour. Slides use a fixed 16:9 canvas that scales to the viewing area. English is required throughout.
