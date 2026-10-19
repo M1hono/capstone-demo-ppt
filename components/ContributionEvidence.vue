@@ -1,31 +1,54 @@
 <script setup>
-import { computed, ref } from 'vue'
 import e from '../data/report-evidence.json'
-import artifacts from '../data/personal-artifacts.json'
-const view = ref('personal')
-const selected = ref(0)
-const artifact = computed(() => artifacts[selected.value])
+
 const base = import.meta.env.BASE_URL
+const members = e.contributions.map((member, index) => ({
+  ...member,
+  number: String(index + 1).padStart(2, '0'),
+}))
+
+function evidenceLabel(status) {
+  if (/awaiting|role only/i.test(status)) return 'Role recorded · evidence pending'
+  if (/source/i.test(status)) return 'Report + source history'
+  return 'Report-supported record'
+}
+
+function evidenceTone(status) {
+  return /awaiting|role only/i.test(status) ? 'pending' : 'supported'
+}
 </script>
+
 <template>
-  <div class="stack contributions">
-    <div class="row spread"><div class="tabs"><button :aria-pressed="view==='personal'" @click.stop="view='personal'">XingTang Chen</button><button :aria-pressed="view==='team'" @click.stop="view='team'">All nine members</button></div><span class="small muted">Presentation engineering · xche0557 / M1hono</span></div>
-    <template v-if="view==='personal'">
-      <div class="contribution-layout grow">
-        <div class="contribution-list"><button v-for="(item, i) in e.personalEvidence" :key="item.hash" :aria-pressed="selected===i" @click.stop="selected=i"><span class="contribution-number">0{{i+1}}</span><span><strong>{{item.title}}</strong><small>{{item.description}}</small></span></button></div>
-        <article class="source-document">
-          <div class="source-document-header"><span>Original source artifact</span><a :href="artifact.url" target="_blank" rel="noopener">{{artifact.short}} ↗</a></div>
-          <h3>{{artifact.path}}</h3><p class="small muted">{{artifact.author}} · {{artifact.date}} · lines {{artifact.start}}–{{artifact.end}}</p>
-          <pre><code><span v-for="(line, i) in artifact.excerpt.split('\n')" :key="i"><b>{{artifact.start+i}}</b>{{line}}<br/></span></code></pre>
-          <div class="source-links"><a :href="base+artifact.asset" target="_blank" rel="noopener">Open complete file</a><a :href="base+'evidence/personal/index.json'" target="_blank" rel="noopener">Source hashes</a></div>
-          <p v-if="selected===2" class="source-caption">Earlier architecture: evidence of tensor-flow documentation, not the final flow5 model.</p>
-        </article>
+  <div class="team-contributions">
+    <div class="contribution-intro">
+      <div>
+        <p class="lead">Nine contributors, one delivery chain.</p>
+        <p class="small muted">The report-backed map keeps research, application, presentation and coordination roles visible at the same scale.</p>
       </div>
-      <p class="contribution-scope">The report records PPT ownership, report assistance and Week 2 minute-taking. Lunyan Wang reviewed research content. Model development and training remain team research contributions.</p>
-    </template>
-    <table v-else class="evidence-table compact"><thead><tr><th>Member</th><th>Supported contribution</th><th>Evidence status</th></tr></thead><tbody><tr v-for="member in e.contributions" :key="member.name" :class="{highlight:member.name==='XingTang Chen'}"><td style="white-space:nowrap">{{member.name}}</td><td>{{member.work}}</td><td>{{member.status}}</td></tr></tbody></table>
+      <div class="contribution-count"><strong>09</strong><span>members</span></div>
+    </div>
+
+    <div class="member-grid" role="list" aria-label="Team contribution summary">
+      <article v-for="member in members" :key="member.name" class="member-card" role="listitem">
+        <div class="member-top"><span class="member-number">{{ member.number }}</span><span class="member-status" :class="evidenceTone(member.status)">{{ evidenceLabel(member.status) }}</span></div>
+        <h3>{{ member.name }}</h3>
+        <p class="member-work">{{ member.work }}</p>
+        <p class="member-source">{{ member.status }}</p>
+      </article>
+    </div>
+
+    <div class="contribution-foot">
+      <p>Detailed contribution statements, source records and evidence boundaries are maintained in the submission Markdown files.</p>
+      <div class="link-row">
+        <a :href="base + 'evidence/TEAM-CONTRIBUTIONS.md'" target="_blank" rel="noopener">Open team contribution record ↗</a>
+        <a :href="base + 'evidence/XINGTANG-CHEN-EVIDENCE.md'" target="_blank" rel="noopener">Open detailed evidence portfolio ↗</a>
+      </div>
+    </div>
   </div>
 </template>
+
 <style scoped>
-.contributions{gap:20px}.contribution-layout{display:grid;grid-template-columns:1fr 1.35fr;gap:38px;min-height:0}.contribution-list{display:flex;flex-direction:column;justify-content:center}.contribution-list button{display:flex;gap:18px;padding:17px 0;border:0;border-bottom:1px solid var(--line);background:none!important;color:var(--ink)!important;text-align:left}.contribution-list button[aria-pressed=true] strong{color:var(--blue)}.contribution-number{font-size:25px;font-weight:300;color:var(--muted)}.contribution-list strong{display:block;font-size:20px;font-weight:500}.contribution-list small{display:block;font-size:14px;line-height:1.45;color:var(--muted);margin-top:7px}.source-document{display:flex;flex-direction:column;gap:10px;background:var(--surface);padding:21px 24px;min-width:0;min-height:0}.source-document-header{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;color:var(--muted)}.source-document h3{font-size:19px;overflow-wrap:anywhere;margin:0}.source-document pre{flex:1;min-height:0;font:12px/1.7 Menlo,monospace;white-space:pre-wrap;overflow:auto;margin:8px 0;background:transparent!important;padding:0!important}.source-document code{padding:0!important;background:none!important}.source-document code b{display:inline-block;width:28px;color:#788493;font-weight:400;user-select:none}.source-document .source-links{padding-top:8px;border-top:1px solid var(--line)}.contribution-scope{font-size:15px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.team-contributions{height:100%;display:flex;flex-direction:column;gap:14px}.contribution-intro{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:13px}.contribution-intro .lead{font-size:23px;line-height:1.2;margin:0 0 5px}.contribution-intro .small{margin:0;max-width:780px}.contribution-count{display:flex;align-items:baseline;gap:7px;color:var(--blue);white-space:nowrap}.contribution-count strong{font-size:42px;font-weight:300;letter-spacing:-2px}.contribution-count span{font-size:13px;color:var(--muted)}.member-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,minmax(0,1fr));gap:10px;flex:1;min-height:0}.member-card{display:flex;flex-direction:column;min-height:0;overflow:hidden;border:1px solid var(--line);background:var(--surface);padding:12px 14px}.member-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.member-number{font:300 22px/1 Menlo,monospace;color:var(--blue)}.member-status{font-size:10px;line-height:1.2;letter-spacing:.02em;text-align:right;color:var(--blue);max-width:140px}.member-status.pending{color:var(--muted)}.member-card h3{font-size:17px;line-height:1.2;font-weight:500;margin:8px 0 5px}.member-work{font-size:13px;line-height:1.32;margin:0;flex:1;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.member-source{font-size:11px;line-height:1.25;color:var(--muted);border-top:1px solid var(--line);padding-top:7px;margin:9px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.contribution-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--ink);padding-top:10px}.contribution-foot p{font-size:12px;color:var(--muted);margin:0}.link-row{display:flex;gap:18px;white-space:nowrap}.link-row a{font-size:12px;color:var(--blue)}
+.member-work{font-size:12.5px;line-height:1.3;-webkit-line-clamp:2}.member-source{font-size:10.5px;line-height:1.2;min-height:25px;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.member-card{padding:9px 12px}.member-number{font-size:20px}.member-status{font-size:9.5px;max-width:125px}.member-card h3{font-size:16px;margin:5px 0 3px}.member-work{font-size:12px;line-height:1.25;min-height:30px;flex:none}.member-source{font-size:10px;line-height:1.15;min-height:18px;margin:4px 0 0;padding-top:5px;-webkit-line-clamp:1}
 </style>

@@ -39,7 +39,7 @@ function keepControlKeys(event) {
 }
 </script>
 <template>
-  <section ref="pageRoot" class="workbench" :data-topic="number" @keydown="keepControlKeys" @keyup="keepControlKeys">
+  <section ref="pageRoot" class="workbench" :data-topic="number" :data-section="number <= 25 ? 'report' : 'lab'" @keydown="keepControlKeys" @keyup="keepControlKeys">
     <header><h1>{{ title || topic?.title }}</h1></header>
     <main class="workbench-body"><slot /></main>
     <footer><span>{{ section || `Report ${topic?.section}` }}</span><span><a :href="base+'evidence/index.html'" target="_blank" rel="noopener">Evidence index</a> · {{ String(number).padStart(2,'0') }}</span></footer>
