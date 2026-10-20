@@ -1,0 +1,16 @@
+[
+  "Current Research Objective and Definition of User Preference",
+  "Reconstruction of the FiveK Dataset",
+  "Stage One: Encoding Complete Editing Information",
+  "Stage Two: Dynamic Construction of Simulated User History",
+  "Stage Three: Constructing Partial Edits to Simulate Explicit User Requirements",
+  "Stage Four: Retrieving Historical Preference Using the Partial Edit",
+  "Stage Five: Cross-Attention-Based Transfer of Historical Editing Information",
+  "Stage Six: Spatial Reconstruction and Final Image Generation",
+  "Current Quantitative Results",
+  "Main Achievements at the Current Stage",
+  "Current Limitation",
+  "Future Work: Latent Memory Slots for Implicit User Modeling",
+  "Future Preference-Memory Query Process",
+  "Final Research Hypotheses"
+]

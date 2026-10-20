@@ -1,7 +1,0 @@
-<script setup>
-import {computed,ref} from 'vue';import e from '../data/report-evidence.json'
-const metric=ref('mean');const labels={mean:'Mean ms / batch',p95:'P95 ms / batch',throughput:'Images / second',memory:'Peak allocated MiB'}
-const max=computed(()=>Math.max(...e.benchmark.rows.map(r=>r[metric.value]))*1.12)
-</script>
-<template><div class="stack"><div class="row spread"><div class="tabs"><button v-for="(label,key) in labels" :key="key" :aria-pressed="metric===key" @click.stop="metric=key">{{label}}</button></div><span class="small">RTX 4060 Laptop GPU</span></div><div class="runtime-chart"><div v-for="(r,i) in e.benchmark.rows" :key="i" class="bar-row"><span>B{{r.batch}} · {{r.mode}} · {{r.history}}</span><div class="bar-track"><div class="bar-value" :style="{width:`${r[metric]/max*100}%`,background:r.batch===8?'var(--teal)':'var(--blue)'}"/></div><span class="bar-number">{{r[metric].toFixed(metric==='memory'?1:metric==='throughput'?2:3)}}</span></div></div><div class="chips"><span>256 × 256 RGB</span><span>8 history pairs</span><span>256 samples → 5 candidates</span><span>3 warm-ups / 10 repetitions</span><span>14.84M parameters</span></div><p class="small muted">Phase 2: FP32 · Decoder: BF16 AMP · PyTorch 2.8.0 / CUDA 12.6 · Fixed Expert A inputs · Bars start at zero.</p><p class="note">{{e.benchmark.scope}}</p></div></template>
-<style scoped>.runtime-chart{display:grid;gap:14px;padding:10px 0}.bar-row{grid-template-columns:245px 1fr 85px}</style>
