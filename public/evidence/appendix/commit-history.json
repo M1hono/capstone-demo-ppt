@@ -1,0 +1,233 @@
+{
+  "generatedFrom": "git log / git show",
+  "repository": "M1hono/capstone-demo-ppt",
+  "records": [
+    {
+      "short": "40cef56",
+      "full": "40cef56ca014ffa77c5e4a61db1a0a3eab2c6c2e",
+      "date": "2026-10-20",
+      "author": "M1hono",
+      "subject": "fix: align browser checks with contribution cards",
+      "files": [
+        "M\tqa-show.mjs"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "9bfc3a3",
+      "full": "9bfc3a358fc08c72925cf26aaf59f5fdecf40b7c",
+      "date": "2026-10-19",
+      "author": "M1hono",
+      "subject": "style: refine presentation visual system",
+      "files": [
+        "M\tcomponents/ContributionEvidence.vue",
+        "M\tcomponents/FeedbackCycle.vue",
+        "M\tcomponents/ProjectCover.vue",
+        "M\tcomponents/WorkbenchPage.vue",
+        "M\tstyles/workbench.css"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "dde97ce",
+      "full": "dde97ce698a5883bc0edc68ea1a52bc83bb76d96",
+      "date": "2026-10-19",
+      "author": "M1hono",
+      "subject": "docs: condense XingTang individual achievements",
+      "files": [
+        "A\tdocs/XINGTANG-CHEN-INDIVIDUAL-ACHIEVEMENTS.md"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "72230d5",
+      "full": "72230d55d0dcb3497e0b1ede1a4f8a7c4c943d6e",
+      "date": "2026-10-18",
+      "author": "M1hono",
+      "subject": "feat(presentation): publish the final Flow5 evidence deck",
+      "files": [
+        "A\tDESIGN.md",
+        "M\tPRODUCT.md",
+        "A\tREADME.md",
+        "D\tcomponents/AblationBars.vue",
+        "D\tcomponents/AblationExperiment.vue",
+        "A\tcomponents/AchievementLessons.vue",
+        "D\tcomponents/AchievementSummary.vue",
+        "D\tcomponents/Act.vue"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "b93dc12",
+      "full": "b93dc1254cc787867559c3f23a3b6fa005953af0",
+      "date": "2026-10-13",
+      "author": "M1hono",
+      "subject": "feat(deck): publish component workbench",
+      "files": [
+        "M\t.github/workflows/deploy.yml",
+        "A\tcomponents/AblationBars.vue",
+        "A\tcomponents/ArchFlow.vue",
+        "A\tcomponents/CandidateClusterWorkbench.vue",
+        "M\tcomponents/Counter.vue",
+        "A\tcomponents/DirectionMagnitudeGrid.vue",
+        "A\tcomponents/EvolutionTimeline.vue",
+        "A\tcomponents/FlowSamplingWorkbench.vue"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "43cb672",
+      "full": "43cb672089b441f66120ef55c15078da18302d3f",
+      "date": "2026-09-20",
+      "author": "M1hono",
+      "subject": "Use real FiveK pairs in history and preference diagrams",
+      "files": [
+        "M\tPRODUCT.md",
+        "M\tcomponents/AchievementSummary.vue",
+        "M\tcomponents/HistoryDependence.vue",
+        "M\tcomponents/HistoryRetrieval.vue",
+        "M\tcomponents/PreferenceDefinition.vue",
+        "M\tcomponents/PreferenceMemory.vue",
+        "A\tdata/history-examples.js",
+        "A\tdata/history-pairs.json"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "ea58847",
+      "full": "ea58847de017b4d532416e056c15fbfba6b5dd73",
+      "date": "2026-09-20",
+      "author": "M1hono",
+      "subject": "docs: show tensor data flow through the retouching mechanisms",
+      "files": [
+        "M\tcomponents/DecisionMechanism.vue",
+        "M\tcomponents/LearningMechanism.vue",
+        "M\tcomponents/RenderMechanism.vue",
+        "A\tevidence/tensor-flow.json",
+        "M\tscripts/qa-motion.mjs",
+        "M\tslides.md",
+        "M\tstyles/show.css"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "db72d88",
+      "full": "db72d886635cff572eb32a091cf7c31195996d54",
+      "date": "2026-09-20",
+      "author": "M1hono",
+      "subject": "fix(ci): wait for hosted slide images before validation",
+      "files": [
+        "M\tqa-show.mjs"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench",
+        "archive/legacy-preference-workbench",
+        "archive/revision-ledger",
+        "main",
+        "HEAD -> origin/main"
+      ]
+    },
+    {
+      "short": "5293e22",
+      "full": "5293e226cee661aaee267841950a6bf86ee54d89",
+      "date": "2026-10-20",
+      "author": "M1hono",
+      "subject": "archive: preserve legacy preference workbench",
+      "files": [
+        "A\tARCHIVE.md",
+        "D\tDESIGN.md",
+        "M\tPRODUCT.md",
+        "D\tREADME.md",
+        "A\tcomponents/AblationBars.vue",
+        "A\tcomponents/AblationExperiment.vue",
+        "D\tcomponents/AchievementLessons.vue",
+        "A\tcomponents/AchievementSummary.vue"
+      ],
+      "branches": [
+        "archive/legacy-preference-workbench"
+      ]
+    },
+    {
+      "short": "a773dc2",
+      "full": "a773dc29755e55a2e7fe1106c20d92a963342980",
+      "date": "2026-10-20",
+      "author": "M1hono",
+      "subject": "archive: preserve intermediate Flow5 workbench",
+      "files": [
+        "A\tARCHIVE.md",
+        "D\tPRODUCT.md",
+        "M\tREADME.md",
+        "M\tcomponents/CandidateSelection.vue",
+        "M\tcomponents/ChallengeResolution.vue",
+        "D\tcomponents/ColorChannelShift.vue",
+        "D\tcomponents/ColorHistogramCompare.vue",
+        "M\tcomponents/ConditionalFlow.vue"
+      ],
+      "branches": [
+        "archive/flow5-intermediate-workbench"
+      ]
+    },
+    {
+      "short": "9eba228",
+      "full": "9eba2281b869c7c92f873f91fb02abbc9ec97d97",
+      "date": "2026-10-20",
+      "author": "M1hono",
+      "subject": "archive: preserve presentation revision ledger",
+      "files": [
+        "A\tARCHIVE.md",
+        "A\tREVISION-MANIFEST.json",
+        "A\trevision-archive/before-contribution-evidence-20261019-212559/PROJECT-STATE.json",
+        "A\trevision-archive/before-contribution-evidence-20261019-212559/PUBLISH-STATE.json",
+        "A\trevision-archive/before-contribution-evidence-20261019-212559/ROLE-MANIFEST.json",
+        "A\trevision-archive/before-contribution-evidence-20261019-212559/VERIFICATION.txt",
+        "A\trevision-archive/before-eyebrow-removal-h61al46c/PRODUCT.md",
+        "A\trevision-archive/before-eyebrow-removal-h61al46c/PROJECT-STATE.json"
+      ],
+      "branches": [
+        "archive/revision-ledger"
+      ]
+    }
+  ]
+}

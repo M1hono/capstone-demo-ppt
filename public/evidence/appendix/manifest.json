@@ -1,0 +1,115 @@
+{
+  "generatedFrom": "appendix screenshot pack",
+  "records": [
+    {
+      "file": "01-team-contributions.png",
+      "title": "Team organisation and contributions",
+      "caption": "Page 21; report Sections 4.1\u20134.3 and Table 6.",
+      "sha256": "c2a2bd4ca5ae5e12c6a0ec43f79132a00fc803817968a38e1045c87223d754e6",
+      "bytes": 129744,
+      "width": 1280,
+      "height": 720,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/01-team-contributions.png"
+    },
+    {
+      "file": "02-transformer-conditioning.png",
+      "title": "Transformer-based condition generation",
+      "caption": "Page 28; interleaved historical image/edit tokens.",
+      "sha256": "82ab51d53b518ac98ca284c9d065b0ae1fb2fecd5ce6a13310e136289ae0fc6e",
+      "bytes": 180847,
+      "width": 1280,
+      "height": 720,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/02-transformer-conditioning.png"
+    },
+    {
+      "file": "03-conditional-flow.png",
+      "title": "Conditional normalizing flow",
+      "caption": "Page 29; training direction and density objective.",
+      "sha256": "8c5efcf0a4e1bdf5b30879cb6e53d4e912cff20ee4ff3180f50001079dd6ab47",
+      "bytes": 127150,
+      "width": 1280,
+      "height": 720,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/03-conditional-flow.png"
+    },
+    {
+      "file": "04-gpu-benchmark.png",
+      "title": "GPU benchmark",
+      "caption": "Page 36; recorded model-side performance evidence.",
+      "sha256": "2974108a4569952bac635a45335012b05260f82a93c2816857a0bad1b4b4cb2c",
+      "bytes": 86621,
+      "width": 1280,
+      "height": 720,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/04-gpu-benchmark.png"
+    },
+    {
+      "file": "05-expert-e-reference.png",
+      "title": "Five Expert E reference edits",
+      "caption": "Page 37; attributable FiveK references, not model outputs.",
+      "sha256": "699beb3a5af04136cf3984d9bf1cbed07a73a7cbdc0d7804b5ae9479e603fc3c",
+      "bytes": 884138,
+      "width": 1280,
+      "height": 720,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/05-expert-e-reference.png"
+    },
+    {
+      "file": "06-history-pair-20.png",
+      "title": "Historical editing pair 20",
+      "caption": "Page 38; original/edit pair with provenance-backed assets.",
+      "sha256": "a884716dadc04b1ad83ac11a2407eb5e0f3f20960d401d5906a4350e0b06378e",
+      "bytes": 514230,
+      "width": 1280,
+      "height": 720,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/06-history-pair-20.png"
+    },
+    {
+      "file": "07-inference-performance.png",
+      "title": "Inference performance across configurations",
+      "caption": "Page 52; batch-eight fresh-history benchmark.",
+      "sha256": "21d1959f3dff45c4ed7e453beb6204f35494a534a98cbb562355b85d719b5bed",
+      "bytes": 86105,
+      "width": 1280,
+      "height": 720,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/07-inference-performance.png"
+    },
+    {
+      "file": "08-evidence-index.png",
+      "title": "Evidence index",
+      "caption": "Available source records, report figures, missing evidence and discrepancy ledger.",
+      "sha256": "f99267e22edbbd3c4e9d596c7d673fc5a98c6d7efc1c8620c75e8d883975ac0c",
+      "bytes": 778784,
+      "width": 1600,
+      "height": 4975,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/08-evidence-index.png"
+    },
+    {
+      "file": "09-meeting-minutes-index.png",
+      "title": "MeetingMinutes evidence gallery",
+      "caption": "Nine derived snapshots covering Weeks 4\u201310 and two status forms.",
+      "sha256": "396bc8d47923ecb0e52c30ef9cf5b48846831215beedb0e54337ce0c62b67d26",
+      "bytes": 512245,
+      "width": 1600,
+      "height": 2376,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/09-meeting-minutes-index.png"
+    },
+    {
+      "file": "10-commit-history.png",
+      "title": "Commit-history evidence",
+      "caption": "Exact presentation/evidence hashes, messages, branches and changed paths.",
+      "sha256": "cd24060305793652208da09c9f104c01cff284e7c9bf5dd952af479f68b7649c",
+      "bytes": 404548,
+      "width": 1600,
+      "height": 1963,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/10-commit-history.png"
+    },
+    {
+      "file": "11-appendix-index.png",
+      "title": "Appendix evidence pack index",
+      "caption": "Hosted index containing all screenshot cards and source links.",
+      "sha256": "fee617cf1fd852edca9e7259cdd6ea939496f4b326c2eb19455f18f8c9c4e18d",
+      "bytes": 967838,
+      "width": 1600,
+      "height": 3137,
+      "hostedUrl": "https://capstone.mihono.cn/evidence/appendix/11-appendix-index.png"
+    }
+  ]
+}
