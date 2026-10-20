@@ -37,14 +37,11 @@ function tokenPosition(i) {
           <path d="M1132 42 V81" stroke="var(--blue)" stroke-width="2"/>
           <text x="18" y="111" class="diagram-note">Historical pair {{pair}} → paired positions preserve the image–edit relationship</text>
         </g>
-        <g class="query-output" :class="{hidden:sequence.step.value < 3}" transform="translate(1106 81)">
-          <rect width="52" height="35" fill="var(--blue)"/><text x="26" y="24" text-anchor="middle" fill="white">E′₀</text>
-        </g>
       </svg>
     </div>
     <div class="transformer-output">
-      <div class="chips transformer-layers"><span v-for="i in (source ? 4 : 2)" :key="i">Layer {{i}}<small>Self-attention + FFN</small></span></div>
-      <span class="arrow">→</span><div class="condition-output" :class="{muted:sequence.step.value < 3}"><span class="condition-symbol">c</span><div><strong>Query condition</strong><p class="small">To the conditional flow</p></div></div>
+      <span class="layer-input">17 tokens<br><span>↓</span></span><div class="chips transformer-layers"><span v-for="i in (source ? 4 : 2)" :key="i">Layer {{i}}<small>Self-attention + FFN</small></span></div>
+      <span class="arrow">→</span><div class="condition-output" :class="{muted:sequence.step.value < 3}"><span class="condition-symbol">E′₀ = c</span><div><strong>Read query token</strong><p class="small">To the conditional flow</p></div></div>
     </div>
     <p class="readout" aria-live="polite">{{descriptions[sequence.step.value]}}</p>
     <SequenceControls :sequence="sequence"/>
@@ -53,4 +50,7 @@ function tokenPosition(i) {
 </template>
 <style scoped>
 .transformer{gap:12px}.history-rail{display:grid;grid-template-columns:repeat(8,1fr) 105px;gap:10px}.history-rail .history-pair{padding:0 0 5px;background:none;color:var(--ink);border:0;border-bottom:2px solid transparent;font-size:14px}.history-rail .selected{border-color:var(--blue)}.pair-images{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:5px}.pair-images img{height:49px;width:100%;object-fit:cover}.query-image{display:grid;justify-items:center;gap:5px;font-size:14px}.query-image img{height:49px;width:85px;object-fit:cover}.token-scene{flex:1;min-height:116px}.token-scene svg{width:100%;height:100%;overflow:visible}.token-scene text{font-size:18px}.token-scene .diagram-note{font-size:15px}.moving-token{transition:transform .65s cubic-bezier(.22,1,.36,1)}.context-links,.query-output{transition:opacity .4s}.hidden{opacity:0}.transformer-output{display:flex;align-items:center;gap:26px;min-height:60px}.transformer-layers{flex:1;gap:10px}.transformer-layers span{background:var(--pale);flex:1;padding:11px 15px;font-size:16px}.transformer-layers small{display:block;font-size:12px;color:var(--muted);margin-top:3px}.condition-output{display:flex;gap:18px;align-items:center;min-width:265px}.condition-symbol{font-size:42px;font-style:italic;color:var(--blue)}.condition-output strong{font-size:18px;font-weight:500}.transformer .readout{min-height:48px;font-size:17px}
+</style>
+<style scoped>
+.layer-input{font-size:16px;line-height:1.2;text-align:center;min-width:80px;color:var(--muted)}.layer-input>span{font-size:25px}.transformer-output{gap:18px}.condition-output{min-width:332px;gap:14px}.condition-symbol{font-size:29px;white-space:nowrap}.transformer-layers span{font-size:18px;padding:12px}.transformer-layers small{font-size:13px}.transformer .readout{font-size:19px;min-height:52px}.history-rail .history-pair,.query-image{font-size:16px}
 </style>

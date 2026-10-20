@@ -70,7 +70,7 @@ try{
     if(t.number===15){await section(15).getByLabel('Coverage expert').selectOption('4');assert((await section(15).innerText()).includes('23.263'));await checkLayout(15,'expert-e')}
     if([16,17].includes(t.number)){await section(t.number).getByRole('button',{name:'Correct conditions',exact:true}).click();assert.equal((await section(t.number).locator('[data-ablation-value]').innerText()).replace(/\s/g,''),'23.5dB');await checkLayout(t.number,'correct')}
     if(t.number===18){await section(18).getByRole('button',{name:'Peak allocated MiB',exact:true}).click();assert((await section(18).innerText()).includes('314.9'));await checkLayout(18,'memory')}
-    if(t.number===21){assert.equal(await section(21).locator('.member-card').count(),9);assert((await section(21).innerText()).includes('Nine contributors, one delivery chain.'));assert((await section(21).locator('a').evaluateAll(links=>links.map(link=>link.getAttribute('href')))).some(href=>href?.endsWith('TEAM-CONTRIBUTIONS.md')));await checkLayout(21,'team-map')}
+    if(t.number===21){assert.equal(await section(21).locator('.member-card').count(),9);assert((await section(21).innerText()).includes('Nine contributors, one delivery chain.'));assert((await section(21).locator('a').evaluateAll(links=>links.map(link=>link.getAttribute('href')))).some(href=>href === 'https://github.com/M1hono/capstone-demo-ppt/commits/main/'));await checkLayout(21,'team-map')}
     if(t.number===28){await section(28).getByRole('button',{name:'Saved default · 4 layers',exact:true}).click();assert.equal(await section(28).locator('.chips span').count(),4);await section(28).getByRole('button',{name:'E8',exact:true}).click();assert((await section(28).innerText()).includes('Historical pair 8'));await checkLayout(28,'source')}
     if(t.number===29){await section(29).getByRole('button',{name:'Training · z → u',exact:true}).click();assert((await section(29).innerText()).includes('log |det Jf|'));await checkLayout(29,'training')}
     if(t.number===30){assert.equal(await section(30).locator('canvas').count(),1);assert(await section(30).locator('canvas').evaluate(c=>c.width>0&&c.height>0));await section(30).getByRole('button',{name:'Angular counts',exact:true}).click();await page.waitForTimeout(200);await checkLayout(30,'angular-counts');await section(30).getByRole('button',{name:'Illustrative condition B',exact:true}).click();await checkLayout(30,'condition-b')}
@@ -175,5 +175,21 @@ try{
   }
   report.push({page:'evidence',state:'local-links',problems:[]})
   await page.setViewportSize({width:1440,height:900});await visit(13);await checkLayout(13,'scaled-viewport')
+  // Reusing a browser viewport exposed stale SVG glyph scales that element-only bounds miss.
+  for(const viewport of [{width:375,height:667},{width:667,height:375},{width:1920,height:1080}]){
+    await page.setViewportSize(viewport)
+    for(const number of [13,28]){
+      await visit(number)
+      await checkLayout(number,`resized-${viewport.width}`)
+      const staleLabels=await section(number).locator('svg text').evaluateAll(labels=>labels.flatMap(label=>{
+        if(!label.getClientRects().length||!label.textContent.trim())return []
+        const range=document.createRange();range.selectNodeContents(label)
+        const glyph=range.getBoundingClientRect(),element=label.getBoundingClientRect()
+        return Math.abs(glyph.x-element.x)>2||Math.abs(glyph.width-element.width)>2
+          ? [label.textContent.trim()] : []
+      }))
+      assert.deepEqual(staleLabels,[],`SVG glyph layout at ${viewport.width}px on slide ${number}`)
+    }
+  }
 }catch(error){report.push({page:'interaction',state:'error',problems:[error.stack]});console.error(error)}
 finally{await browser.close();const problems=report.reduce((n,r)=>n+r.problems.length,0);await writeFile(new URL('./exports/qa-show.json',import.meta.url),JSON.stringify({base,pages:index.length,checks:report.length,report,problems},null,2));console.log(`RESULT: ${index.length} pages, ${report.length} states, ${problems} problems`);process.exitCode=problems?1:0}

@@ -1,7 +1,7 @@
 ---
 theme: default
-title: Personalized Image Retouching — Final Presentation Components
-info: English component library for the SOFT3888 final report and 25-topic presentation outline.
+title: Personalized Image Retouching — Final Presentation
+info: Final research presentation for SOFT3888, with interactive mechanisms and supporting evidence.
 author: SOFT3888_TH18_04
 aspectRatio: 16/9
 canvasWidth: 1280
@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Personalized-Image-Retouching-Components
+exportFilename: Personalized-Image-Retouching-Final
 ---
 
 <WorkbenchPage :number="1">

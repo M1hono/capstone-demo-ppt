@@ -8,31 +8,58 @@ const base = import.meta.env.BASE_URL
 const pageRoot = ref(null)
 let diagramObserver
 let textSettleTimer
+let textSettleFrame
 function resolveDiagramText() {
-  pageRoot.value?.querySelectorAll('svg text').forEach(text => {
-    text.getBBox()
-    // Screen-space measurement also invalidates Chromium's stale glyph transform.
-    text.getBoundingClientRect()
+  pageRoot.value?.querySelectorAll('svg').forEach(svg => {
+    if (!svg.getClientRects().length) return
+    const labels = [...svg.querySelectorAll('text')].map(text => ({
+      text,
+      value: text.style.getPropertyValue('font-size'),
+      priority: text.style.getPropertyPriority('font-size'),
+      size: parseFloat(getComputedStyle(text).fontSize),
+    }))
+    // Invalidate Chromium's cached glyph scale without replacing Vue-owned nodes.
+    labels.forEach(({ text, size }) => text.style.setProperty('font-size', `${size + 0.01}px`, 'important'))
+    svg.getBoundingClientRect()
+    labels.forEach(({ text, value, priority }) => {
+      if (value) text.style.setProperty('font-size', value, priority)
+      else text.style.removeProperty('font-size')
+    })
+    svg.getBoundingClientRect()
+    // Repaint the old glyph region as well; geometry refresh alone can leave ghost pixels.
+    const display = svg.style.getPropertyValue('display')
+    const displayPriority = svg.style.getPropertyPriority('display')
+    svg.style.setProperty('display', 'none', 'important')
+    svg.parentElement.getBoundingClientRect()
+    if (display) svg.style.setProperty('display', display, displayPriority)
+    else svg.style.removeProperty('display')
+    svg.parentElement.getBoundingClientRect()
   })
 }
 async function settleDiagramText() {
   await nextTick()
   await document.fonts.ready
-  requestAnimationFrame(() => {
-    // Chromium can retain stale SVG glyph positions after webfont/flex sizing.
-    // Resolve text geometry once after fonts load and when the slide becomes visible.
+  if (!pageRoot.value) return
+  cancelAnimationFrame(textSettleFrame)
+  clearTimeout(textSettleTimer)
+  textSettleFrame = requestAnimationFrame(() => {
     resolveDiagramText()
-    clearTimeout(textSettleTimer)
     // Slidev finishes its parent-scale transition after the first SVG layout.
     textSettleTimer = setTimeout(resolveDiagramText, 240)
   })
 }
 onMounted(() => {
   settleDiagramText()
-  diagramObserver = new ResizeObserver(() => requestAnimationFrame(resolveDiagramText))
+  diagramObserver = new ResizeObserver(settleDiagramText)
   pageRoot.value?.querySelectorAll('svg').forEach(svg => diagramObserver.observe(svg))
+  window.addEventListener('resize', settleDiagramText)
 })
-onScopeDispose(() => { diagramObserver?.disconnect(); clearTimeout(textSettleTimer) })
+onScopeDispose(() => {
+  diagramObserver?.disconnect()
+  window.removeEventListener('resize', settleDiagramText)
+  cancelAnimationFrame(textSettleFrame)
+  clearTimeout(textSettleTimer)
+})
 onSlideEnter(settleDiagramText)
 function keepControlKeys(event) {
   if (event.target.closest('button, input, select, a')) event.stopPropagation()

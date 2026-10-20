@@ -29,9 +29,9 @@ const descriptions = [
         <path d="M389 90 H441" class="connection"/>
         <g transform="translate(455 65)"><rect width="25" height="52" fill="var(--blue)"/><rect x="30" width="25" height="52" fill="var(--teal)"/><rect x="60" width="25" height="52" fill="var(--purple)"/></g>
         <text x="497" y="151" text-anchor="middle">z ∈ ℝ³</text>
-        <path d="M553 90 H595" class="connection"/>
+        <path d="M553 90 H595" class="connection"/><text x="678" y="55" text-anchor="middle" class="diagram-detail">α(z): eight coefficients</text>
         <g v-for="i in 8" :key="i" :transform="`translate(${608 + (i - 1) * 17}, ${71 + (i % 2) * 8})`"><path d="M0 0 L14 -7 L27 0 L27 27 L14 34 L0 27 Z M0 0 L14 7 L27 0 M14 7 V34" class="lut-wire"/></g>
-        <text x="680" y="151" text-anchor="middle">8 learned LUT bases</text>
+        <text x="680" y="151" text-anchor="middle">Weighted LUT sum</text><text x="680" y="175" text-anchor="middle" class="diagram-detail">Σⱼ αⱼ(z) · LUTⱼ</text>
         <path d="M770 90 H815" class="connection"/>
         <rect x="830" y="63" width="157" height="57" fill="var(--pale)"/>
         <text x="908" y="98" text-anchor="middle">LUT decoder + O</text>
@@ -74,7 +74,7 @@ const descriptions = [
         <rect x="940" y="257" width="112" height="54" fill="var(--pale)"/>
         <text x="996" y="290" text-anchor="middle">Decoder + O₀</text>
         <path d="M1062 283 H1090" class="connection"/>
-        <g v-for="i in 5" :key="i" :transform="`translate(${1099 + (i - 1) * 13}, ${256 + (i - 1) * 7})`"><rect width="35" height="35" fill="var(--paper)" stroke="var(--blue)"/></g>
+        <g v-for="i in 5" :key="i" :transform="`translate(${1099 + (i - 1) * 13}, ${256 + (i - 1) * 7})`"><rect width="35" height="35" fill="var(--paper)" stroke="var(--blue)"/><path d="M6 24 L13 14 L19 20 L25 10 L30 24" fill="none" stroke="var(--blue)"/></g>
         <text x="1138" y="341" text-anchor="middle">Candidates</text>
       </g>
       <text x="0" y="382" class="diagram-detail">Real FiveK inputs · report architecture · sample geometry is illustrative</text>
@@ -85,5 +85,5 @@ const descriptions = [
   </div>
 </template>
 <style scoped>
-.architecture{gap:12px}.architecture-map{width:100%;flex:1;min-height:0}.architecture-map text{font-family:inherit;font-size:17px;fill:var(--ink)}.architecture-map .lane-heading{font-weight:600;font-size:18px}.architecture-map .lane-subheading{font-size:16px;fill:var(--muted)}.architecture-map .diagram-detail{font-size:13px;fill:var(--muted)}.architecture-map .large-symbol{font-size:31px}.connection{fill:none;stroke:var(--muted);stroke-width:1.4;marker-end:url(#architecture-arrow)}.tensor-shape{fill:var(--pale);stroke:var(--blue);stroke-width:1.5}.tensor-lines,.lut-wire{fill:none;stroke:var(--blue);stroke-width:1}.stage-group{transition:opacity .5s ease-out}.unrevealed{opacity:.12}.condition-label{fill:var(--blue)!important;font-style:italic}.sequence-caption{font-size:17px;min-height:25px}
+.architecture{gap:12px}.architecture-map{width:100%;flex:1;min-height:0}.architecture-map text{font-family:inherit;font-size:18px;fill:var(--ink)}.architecture-map .lane-heading{font-weight:600;font-size:18px}.architecture-map .lane-subheading{font-size:18px;fill:var(--muted)}.architecture-map .diagram-detail{font-size:15px;fill:var(--muted)}.architecture-map .large-symbol{font-size:31px}.connection{fill:none;stroke:var(--muted);stroke-width:1.4;marker-end:url(#architecture-arrow)}.tensor-shape{fill:var(--pale);stroke:var(--blue);stroke-width:1.5}.tensor-lines,.lut-wire{fill:none;stroke:var(--blue);stroke-width:1}.stage-group{transition:opacity .5s ease-out}.unrevealed{opacity:.12}.condition-label{fill:var(--blue)!important;font-style:italic}.sequence-caption{font-size:20px;min-height:25px}
 </style>
