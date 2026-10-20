@@ -22,11 +22,8 @@ def save(fig, name, note):
 
 for metric in ['psnr', 'ssim']:
     fig, ax = plt.subplots(figsize=(10.5, 5.7))
-    ax.vlines(np.arange(6), E['fivek'][metric]['top1'], E['fivek'][metric]['best5'], color='#b9c3cf', linewidth=2, zorder=1)
-    ax.axvspan(4.7, 5.3, color='#edf3ff', zorder=0)
     for key, label, color, marker in zip(['top1', 'best3', 'best5'], ['Top-1', 'Best-of-3 (oracle)', 'Best-of-5 (oracle)'], COLORS, ['o','s','^']):
-        ax.scatter(np.arange(6), E['fivek'][metric][key], color=color, marker=marker, label=label, s=48, zorder=3)
-    ax.set_xticks(np.arange(6), E['fivek']['experts'])
+        ax.plot(E['fivek']['experts'], E['fivek'][metric][key], color=color, marker=marker, label=label, linewidth=2)
     ax.set_ylabel('PSNR (dB)' if metric == 'psnr' else 'SSIM')
     ax.set_xlabel('Expert / reported aggregate')
     ax.set_title('FiveK: reported candidate fidelity', loc='left', fontsize=16, pad=18)

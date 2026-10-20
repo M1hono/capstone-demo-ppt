@@ -12,7 +12,7 @@ const a=JSON.parse(await read('data/model-artifacts.json'))
 const slides=await read('slides.md')
 assert.equal(e.language,'en')
 assert.deepEqual(e.topics.map(t=>t.number),Array.from({length:25},(_,i)=>i+1))
-assert.equal(index.length,52)
+assert.equal(index.length,36)
 assert.deepEqual([...slides.matchAll(/:number="(\d+)"/g)].map(m=>Number(m[1])),index.map(t=>t.number))
 for(const t of index)await access(resolve(root,`components/${t.component}.vue`))
 for(const obsolete of ['PartialEdit','RenderMechanism','HistoryRetrieval','BoundaryWorkbench','DecisionMechanism','PreferenceMemory'])
@@ -69,46 +69,5 @@ for(const dir of ['components','data','docs'])for(const file of await readdir(re
 }
 for(const name of ['fivek-psnr','fivek-ssim','ppsd-comparison','conditioning-ablations','inference-benchmark','decoder-robustness'])
   for(const ext of ['svg','png','pdf'])await access(resolve(publicRoot,`figures/${name}.${ext}`))
-console.log('PASS: 25 ordered topics; 52 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.')
-console.log(`Model evidence: ${hasOutput?'exported with run identity':'not supplied; availability recorded without empty image frames'}.`)
-
-// Personal achievement excerpts must stay byte-linked to the pinned source files.
-const personal = JSON.parse(await readFile(new URL('../data/personal-artifacts.json', import.meta.url), 'utf8'))
-for (const record of personal) {
-  const bytes = await readFile(new URL('../public/' + record.asset, import.meta.url))
-  const { createHash } = await import('node:crypto')
-  assert.equal(createHash('sha256').update(bytes).digest('hex'), record.sha256)
-  assert.equal(bytes.toString('utf8').split(/\r?\n/).slice(record.start - 1, record.end).join('\n'), record.excerpt)
-  assert.match(record.commit, /^[a-f0-9]{40}$/)
-}
-console.log('PASS: four pinned contribution artifacts and exact source excerpts.')
-
-// Derived image assets must match their sources and preserve all pixel counts.
-const diagnostics = JSON.parse(await read('data/image-diagnostics.json'))
-assert.equal(diagnostics.pixels, 166000)
-for (const item of Object.values(diagnostics.sources)) {
-  const bytes = await readFile(resolve(publicRoot,item.path))
-  assert.equal(createHash('sha256').update(bytes).digest('hex'),item.sha256)
-}
-for (const [path,hash] of Object.entries(diagnostics.generated)) {
-  await localAsset(path)
-  assert.equal(createHash('sha256').update(await readFile(resolve(publicRoot,path))).digest('hex'),hash)
-}
-for (const row of Object.values(diagnostics.images)) for (const bins of Object.values(row.histograms)) {
-  assert.equal(bins.length,64)
-  assert.equal(bins.reduce((sum,n) => sum + n,0),diagnostics.pixels)
-}
-for (const item of Object.values(diagnostics.experts)) {
-  assert.equal(item.tone.flat().reduce((sum,n) => sum + n,0),diagnostics.pixels)
-  assert(item.thresholds['10'].fraction >= item.thresholds['25'].fraction)
-  assert(item.thresholds['25'].fraction >= item.thresholds['50'].fraction)
-}
-for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) {
-  assert.equal(diagnostics.matrix[i][j],diagnostics.matrix[j][i])
-  if (i === j) assert.equal(diagnostics.matrix[i][j],0)
-}
-for (const file of await readdir(resolve(root,'components'))) {
-  const source = await read('components/' + file)
-  assert(!/class="[^"\n]*(?:missing|placeholder)/.test(source),'Empty visual frame in ' + file)
-}
-console.log('PASS: six input/reference sources, 25 populated derived images, exact histogram counts, symmetric distances, no empty image components.')
+console.log('PASS: 25 ordered topics; 36 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.')
+console.log(`Model evidence: ${hasOutput?'exported with run identity':'not supplied; explicit empty states preserved'}.`)

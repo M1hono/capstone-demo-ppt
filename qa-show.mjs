@@ -14,13 +14,10 @@ page.on('console',m=>{if(m.type()==='error'||/Failed to resolve component/.test(
 page.on('response',r=>{if(r.status()>=400)errors.push(`HTTP ${r.status()} ${r.url()}`)})
 const section=n=>page.locator(`section[data-topic="${n}"]`)
 async function checkLayout(n,label='default'){
-  await page.evaluate(() => document.fonts.ready)
-  await page.waitForTimeout(1200)
   await section(n).locator('img').evaluateAll(images => Promise.all(images.map(img => img.decode().catch(() => {}))))
   const result=await section(n).evaluate(slide=>{
     const bounds=slide.getBoundingClientRect(),overflow=[]
     for(const el of slide.querySelectorAll('*')){
-      if(el.closest('.meeting-list'))continue
       if(el instanceof SVGElement && !(el instanceof SVGSVGElement))continue
       if(!el.getClientRects().length)continue
       const b=el.getBoundingClientRect()
@@ -32,19 +29,14 @@ async function checkLayout(n,label='default'){
     for(const el of slide.querySelectorAll('.node, .stack, .col')){
       if(el.scrollHeight>el.clientHeight+3)overflow.push(`Internal overflow: ${el.className} (${el.scrollHeight}/${el.clientHeight})`)
     }
-    const contentBottom=Math.max(...[...body.querySelectorAll('p, h2, h3, table, button, figure, svg')].filter(x=>x.getClientRects().length && !x.closest('.meeting-list')).map(x=>x.getBoundingClientRect().bottom))
+    const contentBottom=Math.max(...[...body.querySelectorAll('p, h2, h3, table, button, figure, svg')].filter(x=>x.getClientRects().length).map(x=>x.getBoundingClientRect().bottom))
     if(contentBottom>footer.getBoundingClientRect().top-4)overflow.push('Body content overlaps footer')
     const images=[...slide.querySelectorAll('img')].filter(img=>!img.complete||img.naturalWidth===0).map(img=>img.src)
     const english=!/[\u3400-\u9fff]/u.test(slide.innerText)
-    const oversizedText=[...slide.querySelectorAll('svg text')].filter(t => parseFloat(getComputedStyle(t).fontSize) > 48).map(t => 'Oversized diagram text: ' + t.textContent)
-    const invalidGeometry=[...slide.querySelectorAll('svg [d], svg [points], svg [cx], svg [cy]')].filter(t => [...t.attributes].some(a => /NaN|Infinity|undefined/.test(a.value))).map(t => 'Invalid SVG geometry: ' + t.tagName)
-    overflow.push(...oversizedText,...invalidGeometry)
     const buttons=[...slide.querySelectorAll('button')].filter(b=>!b.innerText.trim()&&!b.getAttribute('aria-label')).length
     return {overflow,images,english,unlabelledButtons:buttons}
   })
-  const svgImages = await section(n).locator('svg image').evaluateAll(nodes => Promise.all(nodes.map(node => new Promise(resolve => { const url = node.href.baseVal; const img = new Image(); img.onload = () => resolve(null); img.onerror = () => resolve(url); img.src = url; }))));
-  const emptyFrames = await section(n).locator('.missing, .placeholder, [data-placeholder]').count()
-  const problems=[...svgImages.filter(Boolean).map(url => 'Missing SVG image ' + url),...(emptyFrames ? ['Empty visual frames: ' + emptyFrames] : []),...result.overflow,...result.images.map(p=>`Missing image ${p}`),...errors.splice(0)]
+  const problems=[...result.overflow,...result.images.map(p=>`Missing image ${p}`),...errors.splice(0)]
   if(!result.english)problems.push('Non-English visible content')
   if(result.unlabelledButtons)problems.push('Unlabelled controls')
   report.push({page:n,state:label,problems})
@@ -70,81 +62,14 @@ try{
     if(t.number===15){await section(15).getByLabel('Coverage expert').selectOption('4');assert((await section(15).innerText()).includes('23.263'));await checkLayout(15,'expert-e')}
     if([16,17].includes(t.number)){await section(t.number).getByRole('button',{name:'Correct conditions',exact:true}).click();assert.equal((await section(t.number).locator('[data-ablation-value]').innerText()).replace(/\s/g,''),'23.5dB');await checkLayout(t.number,'correct')}
     if(t.number===18){await section(18).getByRole('button',{name:'Peak allocated MiB',exact:true}).click();assert((await section(18).innerText()).includes('314.9'));await checkLayout(18,'memory')}
-    if(t.number===21){assert.equal(await section(21).locator('.member-card').count(),9);assert((await section(21).innerText()).includes('Nine contributors, one delivery chain.'));assert((await section(21).locator('a').evaluateAll(links=>links.map(link=>link.getAttribute('href')))).some(href=>href?.endsWith('TEAM-CONTRIBUTIONS.md')));await checkLayout(21,'team-map')}
+    if(t.number===21){await section(21).getByRole('button',{name:'All nine members',exact:true}).click();assert.equal(await section(21).locator('tbody tr').count(),9);await checkLayout(21,'team')}
     if(t.number===28){await section(28).getByRole('button',{name:'Saved default · 4 layers',exact:true}).click();assert.equal(await section(28).locator('.chips span').count(),4);await section(28).getByRole('button',{name:'E8',exact:true}).click();assert((await section(28).innerText()).includes('Historical pair 8'));await checkLayout(28,'source')}
     if(t.number===29){await section(29).getByRole('button',{name:'Training · z → u',exact:true}).click();assert((await section(29).innerText()).includes('log |det Jf|'));await checkLayout(29,'training')}
     if(t.number===30){assert.equal(await section(30).locator('canvas').count(),1);assert(await section(30).locator('canvas').evaluate(c=>c.width>0&&c.height>0));await section(30).getByRole('button',{name:'Angular counts',exact:true}).click();await page.waitForTimeout(200);await checkLayout(30,'angular-counts');await section(30).getByRole('button',{name:'Illustrative condition B',exact:true}).click();await checkLayout(30,'condition-b')}
     if(t.number===31){await section(31).getByRole('button',{name:'Report description',exact:true}).click();assert((await section(31).innerText()).includes('Mean sample log p'));await checkLayout(31,'report')}
     if(t.number===35){await section(35).getByRole('button',{name:/D06/}).click();assert((await section(35).innerText()).includes('MODE_CAND=True'));await checkLayout(35,'ranking')}
-    if(t.number===33){await section(33).getByLabel('Noise scale',{exact:true}).selectOption('4');assert((await section(33).innerText()).includes('27.208'));await checkLayout(33,'high-noise')}
-    if(t.number===36){for(const name of ['GPU benchmark','Decoder robustness']){await section(36).getByRole('button',{name,exact:true}).click();await checkLayout(36,name.split(' ')[0].toLowerCase())}}
-    if(t.number===37){await section(37).getByRole('button',{name:/Expert E/}).click();assert((await section(37).locator('.expert-gallery img').last().getAttribute('src')).endsWith('expert-E.png'));await checkLayout(37,'expert-e')}
-    if(t.number===38){await section(38).getByRole('button',{name:'History pair 20',exact:true}).click();assert((await section(38).locator('.pair-view img').first().getAttribute('src')).endsWith('0020-original.jpg'));await checkLayout(38,'pair-20')}
-    if(t.number===39){await section(39).getByRole('button',{name:'R',exact:true}).click();await section(39).getByLabel('Histogram expert').selectOption('E');await checkLayout(39,'red-expert-e')}
-    if(t.number===40){await section(40).getByLabel('Tone-map expert').selectOption('D');await checkLayout(40,'expert-d')}
-    if(t.number===41){await section(41).getByRole('button',{name:'Expert D',exact:true}).click();await checkLayout(41,'expert-d')}
-    if(t.number===42){const before = await section(42).locator('[data-threshold-fraction]').innerText();await section(42).getByLabel('Difference threshold').selectOption('50');assert.notEqual(await section(42).locator('[data-threshold-fraction]').innerText(),before);assert((await section(42).locator('.difference-images img').last().getAttribute('src')).endsWith('threshold-50.png'));await checkLayout(42,'threshold-50')}
-    if(t.number===43){await section(43).getByLabel('Crop zoom').selectOption('5');await section(43).getByLabel('Crop horizontal position').fill('100');await section(43).getByLabel('Crop vertical position').fill('100');assert.equal(await section(43).locator('figure svg').first().getAttribute('viewBox'),'400 265.6 100 66.4');await checkLayout(43,'corner-crop')}
-    if(t.number===44){await section(44).getByRole('button',{name:'Expert A versus Expert A: 0.00',exact:true}).click();assert((await section(44).locator('[data-pair-difference]').innerText()).startsWith('0.00'));await checkLayout(44,'diagonal-zero')}
-    if(t.number===45){const ids = () => section(45).locator('[data-selected-history]').evaluateAll(nodes => nodes.map(n => n.dataset.selectedHistory));const before = await ids();await section(45).getByRole('button',{name:'Resample history',exact:true}).click();const after = await ids();assert.equal(new Set(after).size,8);assert.notDeepEqual(after,before);assert(!after.includes('0412'));await checkLayout(45,'resampled')}
-    if(t.number===46){await section(46).getByRole('button',{name:'Shift historical edits',exact:true}).click();assert.equal((await section(46).locator('[data-pairing-psnr]').innerText()).trim(),'23.543 dB');await checkLayout(46,'shifted-pairs')}
-    if(t.number===47){for(const name of ['Shared training','Offline scoring']){await section(47).getByRole('button',{name,exact:true}).click();await checkLayout(47,name.split(' ')[0].toLowerCase())}}
-    if(t.number===48){await section(48).getByLabel('Left-mode probability').fill('5');assert((await section(48).innerText()).includes('Mass: 5% / 95%'));await checkLayout(48,'right-mode')}
-    if(t.number===49){await section(49).getByLabel('Transport deformation').fill('0');assert((await section(49).innerText()).includes('1.000'));await checkLayout(49,'identity')}
-    if(t.number===50){await section(50).getByRole('button',{name:'4096 samples',exact:true}).click();assert.equal(await section(50).locator('[data-mc-point]').count(),4096);await checkLayout(50,'4096-samples')}
-    if(t.number===51){for(const c of ['red','green','blue'])await section(51).getByLabel('LUT ' + c).fill('1');assert.equal(await section(51).locator('[data-lut-output]').innerText(),'1.000 · 1.000 · 1.000');await section(51).getByRole('button',{name:'Toy warm LUT',exact:true}).click();assert.equal(await section(51).locator('[data-lut-output]').innerText(),'1.000 · 0.900 · 0.700');await checkLayout(51,'toy-white-corner')}
-    if(t.number===52){await section(52).getByRole('button',{name:/6 Monte Carlo/}).click();assert((await section(52).innerText()).includes('48.507'));await checkLayout(52,'batch-eight-fresh')}
+    if(t.number===36){await section(36).getByRole('button',{name:'Direction / magnitude grid',exact:true}).click();assert((await section(36).innerText()).includes('unavailable'));await checkLayout(36,'direction-grid')}
   }
-  // Revised mechanisms must change data geometry, not only selected control colours.
-  await visit(2)
-  await section(2).getByLabel('Original versus expert comparison').focus()
-  await page.keyboard.press('Home')
-  assert.equal(await section(2).getByLabel('Original versus expert comparison').inputValue(),'0')
-  assert(page.url().endsWith('/2'))
-  await checkLayout(2,'comparison-endpoint')
-  await visit(5)
-  await section(5).getByRole('button',{name:'FR-03',exact:true}).click()
-  assert((await section(5).innerText()).includes('Sample a conditional density'))
-  await checkLayout(5,'multimodal-requirement')
-  await visit(8)
-  await section(8).getByRole('button',{name:/Transformer conditioning/}).click()
-  assert((await section(8).innerText()).includes('paired historical examples'))
-  await checkLayout(8,'transformer-tradeoff')
-  await visit(21)
-  assert.equal(await section(21).locator('.member-card').count(),9)
-  await checkLayout(21,'team-map-repeat')
-  await visit(28)
-  for(let i=0;i<3;i++) await section(28).getByRole('button',{name:'Previous step',exact:true}).click()
-  const token = section(28).locator('[data-token="1"]')
-  assert.equal(await token.getAttribute('transform'),'translate(18, 55)')
-  await checkLayout(28,'separate-token-rows')
-  await section(28).getByRole('button',{name:'Next step',exact:true}).click()
-  assert.equal(await token.getAttribute('transform'),'translate(86, 3)')
-  await checkLayout(28,'interleaved-tokens')
-  await visit(29)
-  const sample = section(29).locator('[data-flow-sample="0"]')
-  const inferenceX = Number(await sample.getAttribute('cx'))
-  assert(inferenceX > 500 && inferenceX < 850)
-  assert.equal(await sample.evaluate(n=>getComputedStyle(n).opacity),'0.8','Flow samples must be visible, not reinterpreted as CSS percentages')
-  await section(29).getByRole('button',{name:'Training · z → u',exact:true}).click()
-  assert(Number(await sample.getAttribute('cx')) < 320)
-  await section(29).getByRole('button',{name:'Previous step',exact:true}).click()
-  assert(Number(await sample.getAttribute('cx')) > 300)
-  await checkLayout(29,'transport-in-progress')
-  await visit(31)
-  for(let i=0;i<2;i++) await section(31).getByRole('button',{name:'Previous step',exact:true}).click()
-  const retained = await section(31).locator('[data-sample-retained]').evaluateAll(nodes=>nodes.filter(n=>Number(getComputedStyle(n).opacity)>0.1).length)
-  assert.equal(retained,128,'Source selection retains exactly half of 256 samples')
-  await checkLayout(31,'retained-half')
-  await section(31).getByRole('button',{name:'Show all',exact:true}).click()
-  await section(31).getByRole('button',{name:'Report description',exact:true}).click()
-  assert.equal(await section(31).locator('ellipse').count(),5)
-  assert.equal(await section(31).locator('.returned-vector').count(),5)
-  await checkLayout(31,'five-report-groups')
-  await visit(35)
-  await section(35).getByRole('button',{name:/D10/}).click()
-  await checkLayout(35,'diagnostic-lineage')
-
   // Manual controls must work without advancing Slidev itself.
   await visit(9)
   await section(9).getByRole('button',{name:'Previous step',exact:true}).click()

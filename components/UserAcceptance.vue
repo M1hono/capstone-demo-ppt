@@ -1,17 +1,4 @@
 <script setup>
-const stories = [
-  {id:'US-01 / FR-01', need:'“I do not know which edits to request.”', input:'Current image + editing history', result:'Automatic personalized candidates', check:'No parameters or text instructions required.'},
-  {id:'US-02 / FR-02', need:'“I have limited data and compute.”', input:'Eight previous original/edit pairs', result:'Adaptation with fixed model weights', check:'No per-user training or fine-tuning.'},
-  {id:'US-03 / FR-03', need:'“I may prefer several different results.”', input:'One query with multiple requested outputs', result:'Distinct samples from p(z | O, H)', check:'Several possible edits for the same image.'}
-]
+const rows=[['US-01','I do not know which edits to request.','Provide the current image and editing history.','Generate candidates without parameters or instructions.','FR-01'],['US-02','I have limited data and compute.','Provide eight previous original/edited pairs.','Use the same model weights; no per-user training.','FR-02'],['US-03','I may prefer several distinct results.','Request multiple outputs for one image.','Return distinct candidates from p(z | O, H).','FR-03']]
 </script>
-<template>
-  <div class="stack acceptance">
-    <div class="acceptance-head"><span>User need</span><span>What the user provides</span><span>Observable acceptance</span></div>
-    <article v-for="story in stories" :key="story.id" class="acceptance-row"><div><p class="small blue">{{story.id}}</p><h2>{{story.need}}</h2></div><p class="given">{{story.input}}</p><div><h3>{{story.result}}</h3><p>{{story.check}}</p></div></article>
-    <p class="source-caption">Stories are taken from the report, not user-study quotations. Image fidelity and candidate coverage do not establish user satisfaction.</p>
-  </div>
-</template>
-<style scoped>
-.acceptance{gap:0;justify-content:space-between}.acceptance-head,.acceptance-row{display:grid;grid-template-columns:1.1fr .9fr 1.1fr;gap:42px}.acceptance-head{font-size:14px;color:var(--muted);padding-bottom:14px}.acceptance-row{border-top:1px solid var(--line);padding:22px 0;align-items:center}.acceptance-row h2{font-size:25px;margin:9px 0 0}.acceptance-row h3{font-size:20px}.acceptance-row p:not(.small){font-size:18px;color:var(--muted)}.given{padding-right:20px}.acceptance .source-caption{padding-top:16px;border-top:1px solid var(--line)}
-</style>
+<template><div class="stack"><table class="evidence-table"><thead><tr><th>Story</th><th>User need</th><th>Given</th><th>Expected behaviour</th><th>Requirement</th></tr></thead><tbody><tr v-for="r in rows" :key="r[0]"><td v-for="(v,i) in r" :key="i">{{v}}</td></tr></tbody></table><div class="split grow"><p class="statement">Acceptance criteria describe what the model must do.</p><div class="col"><p>The experiments assess image fidelity, conditioning dependence and candidate coverage.</p><p class="note">A successful PSNR result alone does not establish user satisfaction or prove that every candidate is preferred.</p></div></div></div></template>

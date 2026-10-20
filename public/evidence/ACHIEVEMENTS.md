@@ -25,7 +25,3 @@ The supplied report identifies XingTang Chen as responsible for PPT production, 
 **Collaboration:** The report supports PPT ownership, review by Lunyan Wang, report assistance and recorded minute-taking. Attach the relevant English meeting record or screenshot and review discussion to substantiate the extent of collaboration.
 
 Model design, training and experimental performance are team research outcomes attributed in the report to the model-development work. They should not be claimed as XingTang Chen's individual implementation. Commit counts are not used as a measure of contribution.
-
-## Inspectable presentation evidence
-
-The contribution component now exposes four exact excerpts from the original commits. `data/personal-artifacts.json` records full commit IDs, source paths, line numbers, author, date and SHA-256 hashes. The complete files are available under `public/evidence/personal/`. These records demonstrate presentation implementation and verification; the earlier tensor-flow artifact is explicitly historical rather than a claim about the final model.

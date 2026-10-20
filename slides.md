@@ -6,9 +6,8 @@ author: SOFT3888_TH18_04
 aspectRatio: 16/9
 canvasWidth: 1280
 colorSchema: light
-lang: en
 fonts:
-  sans: IBM Plex Sans
+  sans: Arial
   mono: Menlo
   provider: none
 transition: fade
@@ -353,102 +352,6 @@ Evidence: supplied report 5.5. Consult the evidence index for protocol limits an
 
 ---
 
-<WorkbenchPage :number="36" title="Visual evidence atlas" component="VisualEvidenceGallery" section="Figure and candidate evidence" usage="Inspect six populated report and diagnostic figures; open or download each source asset.">
-  <VisualEvidenceGallery />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="37" title="Five expert edits of one scene" component="ExpertStyleGallery" section="2.2; real FiveK references" usage="Compare the original with five recorded expert edits.">
-  <ExpertStyleGallery />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="38" title="Twenty historical editing pairs" component="HistoryPairExplorer" section="2.4; real FiveK references" usage="Browse complete original/edit pairs and their scene identities.">
-  <HistoryPairExplorer />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="39" title="Colour and luma distributions" component="ColorHistogramCompare" section="Derived display-image measurements" usage="Compare measured RGB and encoded-luma histograms.">
-  <ColorHistogramCompare />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="40" title="Pixel tone correspondence" component="ToneMappingScatter" section="Derived display-image measurements" usage="Inspect the joint distribution of original and reference luma.">
-  <ToneMappingScatter />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="41" title="Expert colour shifts" component="ColorChannelShift" section="Derived display-image measurements" usage="Compare signed channel changes for the same scene.">
-  <ColorChannelShift />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="42" title="Where do edits change the image?" component="SpatialDifferenceMap" section="Derived display-image measurements" usage="Explore per-pixel differences and thresholded regions.">
-  <SpatialDifferenceMap />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="43" title="Synchronous image detail inspection" component="LocalEditLoupe" section="Real FiveK references" usage="Move one crop across the original and aligned expert edit.">
-  <LocalEditLoupe />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="44" title="Pairwise reference differences" component="ExpertDifferenceMatrix" section="Derived display-image measurements" usage="Select any image pair and inspect its measured RGB difference.">
-  <ExpertDifferenceMatrix />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="45" title="Sampling a user history" component="HistorySamplingWorkbench" section="2.4; protocol illustration" usage="Resample eight complete pairs from twenty real references.">
-  <HistorySamplingWorkbench />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="46" title="Does historical pairing matter?" component="TokenPairingWorkbench" section="3.6; archived pairing diagnostic" usage="Shift image/edit associations and inspect recorded sensitivity.">
-  <TokenPairingWorkbench />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="47" title="Training, inference and scoring boundaries" component="ProtocolLeakageMap" section="3.2; reported evaluation protocol" usage="Trace which images enter each stage of the reported protocol.">
-  <ProtocolLeakageMap />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="48" title="A continuous multimodal preference landscape" component="ProbabilityLandscape" section="2.2; illustrative probability model" usage="Change mixture mass and compare a density with its marginal.">
-  <ProbabilityLandscape />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="49" title="Invertibility and local volume change" component="GaussianTransportGrid" section="2.5; analytic flow illustration" usage="Deform coordinates and inspect the exact local Jacobian.">
-  <GaussianTransportGrid />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="50" title="What more samples reveal" component="MonteCarloConvergence" section="2.5; illustrative Monte Carlo sampling" usage="Compare nested samples with the exact synthetic density.">
-  <MonteCarloConvergence />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="51" title="Inside a LUT interpolation cell" component="LUTInterpolationCube" section="2.3; exact interpolation illustration" usage="Change RGB coordinates and inspect all eight corner weights.">
-  <LUTInterpolationCube />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="52" title="Inference performance across configurations" component="LatencyThroughputMap" section="3.7; recorded GPU benchmark" usage="Compare latency, throughput and allocated memory together.">
-  <LatencyThroughputMap />
+<WorkbenchPage :number="36" title="Model-output evidence slots" component="ModelEvidenceGallery" section="Figure and candidate evidence" usage="Render checkpoint-linked outputs when supplied; show missing records explicitly.">
+  <ModelEvidenceGallery />
 </WorkbenchPage>
