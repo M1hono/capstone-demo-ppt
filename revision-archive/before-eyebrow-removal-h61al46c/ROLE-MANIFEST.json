@@ -1,0 +1,26 @@
+[
+  {
+    "role": "MODIFIED_FILE",
+    "path": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/MODIFIED_FILE.zip",
+    "bytes": 9688416,
+    "sha256": "762b31b97000591e868bc06a143309a4d714e570c59417abb3d507143d78268f"
+  },
+  {
+    "role": "DIFF_FILE",
+    "path": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch",
+    "bytes": 43837926,
+    "sha256": "56533b8eeb920cd4f8f447a5ec31b6a4352701bedd69d3679c6b6dec33777ae0"
+  },
+  {
+    "role": "VERIFICATION",
+    "path": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/VERIFICATION.txt",
+    "bytes": 283774,
+    "sha256": "8dcf705872d4ecf226ab056b9f2a973d5bd5ac2fc36719fe9c1bdc3a1923290b"
+  },
+  {
+    "role": "ROLLBACK",
+    "path": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/ROLLBACK.sh",
+    "bytes": 1783,
+    "sha256": "97533d4dee62ca35a82e32dad5b30aefb9fbbe6423eed0bef80421c73b1f4087"
+  }
+]

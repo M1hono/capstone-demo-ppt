@@ -1,0 +1,12 @@
+{
+  "path": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/publish-he0lhzzd",
+  "remote": "https://github.com/M1hono/capstone-demo-ppt.git",
+  "branch": "main",
+  "expectedBase": "b93dc1254cc787867559c3f23a3b6fa005953af0",
+  "status": "pushed",
+  "sourceFiles": 191,
+  "sourceManifestSha256": "29dcb999a88d65563277292feac36d98d50d7ba8d2c9c27692d8270e882d6d67",
+  "commit": "72230d55d0dcb3497e0b1ede1a4f8a7c4c943d6e",
+  "remoteCommit": "72230d55d0dcb3497e0b1ede1a4f8a7c4c943d6e",
+  "pushCount": 1
+}

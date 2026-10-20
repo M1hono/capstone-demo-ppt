@@ -1,0 +1,95 @@
+{
+  "generatedFrom": "local dated revision archives",
+  "files": [
+    {
+      "path": "revision-archive/before-contribution-evidence-20261019-212559/PROJECT-STATE.json",
+      "bytes": 2930,
+      "sha256": "bf14c844d0d1a1e52b98f472dd0fc94af9a736a25d03f4efc09d0974672cfd7f"
+    },
+    {
+      "path": "revision-archive/before-contribution-evidence-20261019-212559/PUBLISH-STATE.json",
+      "bytes": 533,
+      "sha256": "748a9e6ed15aca481d31457049ae067b741e914c606cbdd7ea1ecf2665468b27"
+    },
+    {
+      "path": "revision-archive/before-contribution-evidence-20261019-212559/ROLE-MANIFEST.json",
+      "bytes": 1001,
+      "sha256": "cdef984d24ececd7d3785c3044677d8b6614bcc77c87b2564150a01a2b020528"
+    },
+    {
+      "path": "revision-archive/before-contribution-evidence-20261019-212559/VERIFICATION.txt",
+      "bytes": 524301,
+      "sha256": "531973381b41e202c426e3b8175500f43973cdde27be2ba97e57fadd96fa2ca5"
+    },
+    {
+      "path": "revision-archive/before-eyebrow-removal-h61al46c/PRODUCT.md",
+      "bytes": 1794,
+      "sha256": "c48b9bf9dfa18460a066f25ecbce8cc4153391b671b1fd23170b9b1c41089dad"
+    },
+    {
+      "path": "revision-archive/before-eyebrow-removal-h61al46c/PROJECT-STATE.json",
+      "bytes": 2203,
+      "sha256": "33b3f2d94fef38abf52229d588ea08451d8db2ec89e1611f08f6442fcf8fc376"
+    },
+    {
+      "path": "revision-archive/before-eyebrow-removal-h61al46c/README.md",
+      "bytes": 5359,
+      "sha256": "9c4edb44ec0e703fb317722ecdf1777ce9b5379e670f481a33e231a52a6e6075"
+    },
+    {
+      "path": "revision-archive/before-eyebrow-removal-h61al46c/ROLE-MANIFEST.json",
+      "bytes": 1001,
+      "sha256": "0a77c92f1b6537cfe27dda2496035b80cb6d6e1e0320d967ebf8d7cebeb1bd82"
+    },
+    {
+      "path": "revision-archive/before-eyebrow-removal-h61al46c/VERIFICATION.txt",
+      "bytes": 283774,
+      "sha256": "8dcf705872d4ecf226ab056b9f2a973d5bd5ac2fc36719fe9c1bdc3a1923290b"
+    },
+    {
+      "path": "revision-archive/before-header-cleanup-sc5ud38p/PROJECT-STATE.json",
+      "bytes": 2131,
+      "sha256": "6aa435a17484cdbd6e3c0dcd49a012d549229f30f9426221f162698282496548"
+    },
+    {
+      "path": "revision-archive/before-header-cleanup-sc5ud38p/README.md",
+      "bytes": 5238,
+      "sha256": "d298cf50d77826d8298e676aaeb472e8e47e61c1b1a76135b9b5daf25fa92e04"
+    },
+    {
+      "path": "revision-archive/before-header-cleanup-sc5ud38p/ROLE-MANIFEST.json",
+      "bytes": 1001,
+      "sha256": "66dccce2838304a2dcb42f2e0e0930adb8ba1d847d9bc3c99d1a2499e4497f6a"
+    },
+    {
+      "path": "revision-archive/before-header-cleanup-sc5ud38p/VERIFICATION.txt",
+      "bytes": 228642,
+      "sha256": "8bae11487d871239fe31669b77253c39a7b7c03cdff10f5f3e69f85db266b2a6"
+    },
+    {
+      "path": "revision-archive/first-rebuild/PROJECT-STATE.json",
+      "bytes": 1472,
+      "sha256": "d899f65c68b019a5f63492f56c87b47575633828fa39c573bbaa968ee42ba4b9"
+    },
+    {
+      "path": "revision-archive/first-rebuild/ROLE-MANIFEST.json",
+      "bytes": 1000,
+      "sha256": "e17f0a16b7127b1038ec17d09db6e07861daaf8341b38f5be787356f7ca35909"
+    },
+    {
+      "path": "revision-archive/first-rebuild/VERIFICATION.txt",
+      "bytes": 70186,
+      "sha256": "654a3e65434bd1a64100494860c14060ff40aa96fc68164e6804a667c6de5132"
+    },
+    {
+      "path": "revision-archive/quality-pass-before-expansion/ModelEvidenceGallery.vue",
+      "bytes": 2328,
+      "sha256": "fca6982bfd995f016a5836ca19a6171799dda86e49651562c877d17f8942eaca"
+    },
+    {
+      "path": "revision-archive/quality-pass-before-expansion/source.zip",
+      "bytes": 4208281,
+      "sha256": "c05ab2a2e3227ec7755ae63733503fb6298c76dc3f320e234d58ccb08e3db494"
+    }
+  ]
+}

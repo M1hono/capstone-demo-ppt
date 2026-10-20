@@ -1,0 +1,50 @@
+{
+  "ACTIVE_OBJECT": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree",
+  "ORIGINAL_TARGET": "/Users/gedwen/Documents/programing/personal/study/notes/2026/S2C/SOFT3888/assignments/capstone-demo-ppt",
+  "STATUS": "complete",
+  "LAST_CONFIRMED_RESULT": "Removed all shared eyebrow subtitles. All 52 title-only headers and 102 browser states pass. Refreshed English PDF and overview. Committed and pushed once to origin/main; remote SHA 72230d55d0dcb3497e0b1ede1a4f8a7c4c943d6e verified. Source, patch, verification and rollback reopened; original source preserved.",
+  "NEXT_EXECUTABLE_ACTION": null,
+  "INPUT_PATHS": [
+    "User-supplied final report",
+    "306a59b381c61b664cf5cca9c6374870.png",
+    "Audited flow5 source 9d85b9b"
+  ],
+  "ACCEPTANCE_EVENT": "52 observed title-only headers, build and browser checks passed, executed exact rollback, and one successful Git push with matching remote commit.",
+  "ROLE_PATHS": {
+    "MODIFIED_FILE": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/MODIFIED_FILE.zip",
+    "DIFF_FILE": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch",
+    "VERIFICATION": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/VERIFICATION.txt",
+    "ROLLBACK": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/ROLLBACK.sh"
+  },
+  "PREVIEW": "http://127.0.0.1:18341/",
+  "LIMITATIONS": [
+    "No final model checkpoints/output images supplied",
+    "Final held-out experimental protocol not independently verified",
+    "GitHub Actions deployment status unavailable: CLI API returned HTTP 404. Git push and remote commit verified."
+  ],
+  "OUTPUTS": {
+    "preview": "http://127.0.0.1:18341/1",
+    "pdf": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/exports/Flow5-Component-Library.pdf",
+    "pdfSha256": "560187f99f32756a2b374ba227457a6e4f3645d4345367e5ba5fb7f1db03918b",
+    "overview": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/exports/Visual-Component-Overview.png",
+    "components": 53,
+    "pages": 52,
+    "browserStates": 102,
+    "problems": 0,
+    "visibleComponentTags": 0,
+    "visibleEyebrows": 0,
+    "titleOnlyHeaders": 52
+  },
+  "PUBLICATION": {
+    "path": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/publish-he0lhzzd",
+    "remote": "https://github.com/M1hono/capstone-demo-ppt.git",
+    "branch": "main",
+    "expectedBase": "b93dc1254cc787867559c3f23a3b6fa005953af0",
+    "status": "pushed",
+    "sourceFiles": 191,
+    "sourceManifestSha256": "29dcb999a88d65563277292feac36d98d50d7ba8d2c9c27692d8270e882d6d67",
+    "commit": "72230d55d0dcb3497e0b1ede1a4f8a7c4c943d6e",
+    "remoteCommit": "72230d55d0dcb3497e0b1ede1a4f8a7c4c943d6e",
+    "pushCount": 1
+  }
+}

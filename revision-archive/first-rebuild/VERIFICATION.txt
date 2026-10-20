@@ -1,0 +1,1147 @@
+TARGET: /Users/gedwen/Documents/programing/personal/study/notes/2026/S2C/SOFT3888/assignments/capstone-demo-ppt
+GOAL: English flow5 presentation components, all 25 outline topics, evidence coverage, contribution analysis
+BASELINE_HEAD: b93dc1254cc787867559c3f23a3b6fa005953af0
+TARGET slides.md SHA256: 98a40368541403e9a37b42a6882d9c100753c168b3a1d94be730e2741cf8fb29
+BASELINE tree SHA256: 1a99ff20ab23cdbb2006edeb93c3c95b8e1e3d577e7962c1dbf6e32b761497a1
+BASELINE COMMAND: ["python3", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/probe.py", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree"]
+INPUT: source tree at worktree
+STDOUT:
+{"components": 41, "language": "unrecorded", "obsolete_components": ["BoundaryWorkbench", "DecisionMechanism", "HistoryRetrieval", "PartialEdit", "PreferenceMemory", "RenderMechanism"], "slides": 42, "structured_evidence": false, "topics": 0}
+STDERR:
+EXIT: 0
+
+FIGURES COMMAND: ["python3", "scripts/make-figures.py"]
+STDOUT:
+Exported six figure sets as SVG, PNG and PDF. matplotlib=3.9.4; numpy=2.0.2
+STDERR:
+EXIT: 0
+
+BUILD COMMAND: ["npm", "run", "build"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 prebuild
+> node scripts/sync-evidence.mjs && node scripts/validate-evidence.mjs
+
+Downloadable evidence synchronised with component data.
+PASS: 25 ordered topics; 36 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.
+Model evidence: not supplied; explicit empty states preserved.
+
+> flow5-final-presentation-components@0.1.0 build
+> slidev build
+
+
+
+  ●■▲
+  Slidev  v52.19.1 
+
+  theme       @slidev/theme-default
+  css engine  unocss
+  entry       /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/slides.md
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 645 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                   1.46 kB │ gzip:   0.62 kB
+dist/assets/logo-BYkHSa_O.png                    94.32 kB
+dist/assets/play-D_7yfuao.css                     0.06 kB │ gzip:   0.08 kB
+dist/assets/NoteDisplay-DCBzjb4F.css              0.09 kB │ gzip:   0.10 kB
+dist/assets/md-BmoZPqne.css                       0.13 kB │ gzip:   0.12 kB
+dist/assets/overview-Bm2pcStm.css                 0.13 kB │ gzip:   0.09 kB
+dist/assets/404-VQkf1Vlw.css                      0.15 kB │ gzip:   0.12 kB
+dist/assets/md-D_a9EWz9.css                       0.21 kB │ gzip:   0.15 kB
+dist/assets/md-DeUjfFvy.css                       0.30 kB │ gzip:   0.20 kB
+dist/assets/entry-CQkCdRep.css                    0.32 kB │ gzip:   0.21 kB
+dist/assets/md-CBBiozBC.css                       0.36 kB │ gzip:   0.22 kB
+dist/assets/md-7v--EVPf.css                       0.37 kB │ gzip:   0.23 kB
+dist/assets/md-B-b6LONu.css                       0.37 kB │ gzip:   0.18 kB
+dist/assets/md-CzfpHnAG.css                       0.41 kB │ gzip:   0.26 kB
+dist/assets/md-BJ2hkzja.css                       0.49 kB │ gzip:   0.27 kB
+dist/assets/md-yP4eJ2M7.css                       0.63 kB │ gzip:   0.31 kB
+dist/assets/md-B0wiXfOW.css                       0.64 kB │ gzip:   0.33 kB
+dist/assets/SlideWrapper-DpMGUg5h.css             0.91 kB │ gzip:   0.35 kB
+dist/assets/shortcuts-CQI6CZy9.css                1.56 kB │ gzip:   0.66 kB
+dist/assets/presenter-CewvU2-N.css                3.45 kB │ gzip:   0.75 kB
+dist/assets/modules/shiki-BrmBd2_v.css           15.67 kB │ gzip:   2.92 kB
+dist/assets/index-BF5Rwlw1.css                  106.76 kB │ gzip:  20.77 kB
+dist/assets/slidev/client-BasQGJx3.js             0.06 kB │ gzip:   0.07 kB
+dist/assets/slidev/default-Dn9Kz4-h.js            0.25 kB │ gzip:   0.21 kB
+dist/assets/model-artifacts-cRjWTBNz.js           0.31 kB │ gzip:   0.23 kB
+dist/assets/slidev/IconButton-D4Plp8SF.js         0.58 kB │ gzip:   0.39 kB
+dist/assets/md-DAn2yiNC.js                        0.61 kB │ gzip:   0.39 kB
+dist/assets/md-CsAorA5I.js                        0.61 kB │ gzip:   0.39 kB
+dist/assets/slidev/Modal-CZ-ps0gM.js              0.71 kB │ gzip:   0.47 kB
+dist/assets/rolldown-runtime-hePW80VL.js          0.71 kB │ gzip:   0.42 kB
+dist/assets/slidev/entry-7JqOJbQD.js              0.92 kB │ gzip:   0.45 kB
+dist/assets/slidev/404-C3F0pObN.js                1.11 kB │ gzip:   0.66 kB
+dist/assets/modules/unplugin-icons-BxLH0V-A.js    1.65 kB │ gzip:   0.79 kB
+dist/assets/md-BkDmGVfA.js                        1.73 kB │ gzip:   0.97 kB
+dist/assets/md-Da0GWCVl.js                        1.85 kB │ gzip:   1.02 kB
+dist/assets/md-GxnnJPA1.js                        1.86 kB │ gzip:   1.01 kB
+dist/assets/md-BZpZ5UHB.js                        1.93 kB │ gzip:   1.07 kB
+dist/assets/md-C5GeS49W.js                        1.95 kB │ gzip:   1.05 kB
+dist/assets/md-DLqDTipF.js                        2.01 kB │ gzip:   1.02 kB
+dist/assets/md-CoaBuRCF.js                        2.04 kB │ gzip:   1.12 kB
+dist/assets/md-6j-lbxCv.js                        2.06 kB │ gzip:   1.14 kB
+dist/assets/md-dPxlS6bA.js                        2.06 kB │ gzip:   1.02 kB
+dist/assets/md-Dm9sdUAX.js                        2.08 kB │ gzip:   1.13 kB
+dist/assets/md-Cqj5pE71.js                        2.09 kB │ gzip:   1.05 kB
+dist/assets/slidev/notes-edit-C77Qn3r6.js         2.10 kB │ gzip:   1.13 kB
+dist/assets/md-BOVLshgL.js                        2.12 kB │ gzip:   1.16 kB
+dist/assets/useSequence-Cn10cq3a.js               2.14 kB │ gzip:   0.99 kB
+dist/assets/md-C-LpGUJj.js                        2.21 kB │ gzip:   1.21 kB
+dist/assets/slidev/NoteEditable-7Re5zwFI.js       2.24 kB │ gzip:   1.17 kB
+dist/assets/md-F_Id1epN.js                        2.25 kB │ gzip:   1.10 kB
+dist/assets/md-BpIZUEVl.js                        2.29 kB │ gzip:   1.25 kB
+dist/assets/md-Dn1yaN49.js                        2.35 kB │ gzip:   1.17 kB
+dist/assets/md-i1ug9aiI.js                        2.40 kB │ gzip:   1.14 kB
+dist/assets/md-BAY_pOwU.js                        2.46 kB │ gzip:   1.24 kB
+dist/assets/md-FcxPP84S.js                        2.48 kB │ gzip:   1.30 kB
+dist/assets/md-DvfzwR4O.js                        2.53 kB │ gzip:   1.39 kB
+dist/assets/md-8ywKltfh.js                        2.56 kB │ gzip:   1.32 kB
+dist/assets/md-BXB43oQP.js                        2.58 kB │ gzip:   1.26 kB
+dist/assets/modules/file-saver-BpWusTEB.js        2.69 kB │ gzip:   1.29 kB
+dist/assets/md-BuCeO8t6.js                        2.70 kB │ gzip:   1.16 kB
+dist/assets/md-DJpGKyYc.js                        2.70 kB │ gzip:   1.36 kB
+dist/assets/slidev/TimerBar-DXB7LYYm.js           2.73 kB │ gzip:   1.20 kB
+dist/assets/md-BhKaW-iB.js                        2.84 kB │ gzip:   1.52 kB
+dist/assets/md-BKDJznhA.js                        2.85 kB │ gzip:   1.51 kB
+dist/assets/ConditioningAblation-cJGc7do7.js      2.90 kB │ gzip:   1.35 kB
+dist/assets/history-pairs-DX0sj4nM.js             2.92 kB │ gzip:   0.49 kB
+dist/assets/md-C8BPRZH9.js                        3.20 kB │ gzip:   1.44 kB
+dist/assets/md-D7JFOxx0.js                        3.23 kB │ gzip:   1.56 kB
+dist/assets/md-Bf5Kp3HO.js                        3.23 kB │ gzip:   1.49 kB
+dist/assets/slidev/notes-ClSG5oqs.js              3.26 kB │ gzip:   1.50 kB
+dist/assets/md-DiADTWe2.js                        3.30 kB │ gzip:   1.66 kB
+dist/assets/md-Cjkqatez.js                        3.39 kB │ gzip:   1.57 kB
+dist/assets/md-DX6vUgdk.js                        3.50 kB │ gzip:   1.73 kB
+dist/assets/md-x2RPyTlK.js                        3.71 kB │ gzip:   1.72 kB
+dist/assets/slidev/play-Djm1saTn.js               4.29 kB │ gzip:   1.99 kB
+dist/assets/slidev/NoteDisplay-CW8aMh1P.js        6.02 kB │ gzip:   2.63 kB
+dist/assets/slidev/overview-kNLe2a6K.js           9.27 kB │ gzip:   4.02 kB
+dist/assets/slidev/presenter-D1e3uFyw.js         10.30 kB │ gzip:   3.97 kB
+dist/assets/WorkbenchPage-D7g7hHdu.js            13.35 kB │ gzip:   5.55 kB
+dist/assets/useDrawings-DL8J8xyt.js              20.49 kB │ gzip:   7.07 kB
+dist/assets/slidev/SlideWrapper-yc246-1f.js      38.05 kB │ gzip:  12.22 kB
+dist/assets/slidev/shortcuts-DQy6rgGy.js         65.97 kB │ gzip:  23.26 kB
+dist/assets/modules/vue-UoSe8YZ5.js              79.82 kB │ gzip:  29.64 kB
+dist/assets/index-Li5hH5Uh.js                   139.47 kB │ gzip:  46.45 kB
+dist/assets/modules/shiki-Dj5E7glx.js           223.91 kB │ gzip:  79.46 kB
+dist/assets/md-C4ImmREW.js                      487.51 kB │ gzip: 122.54 kB
+
+✓ built in 1.16s
+STDERR:
+(node:39715) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+EXIT: 0
+
+BROWSER_QA COMMAND: ["npm", "run", "test:slides"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 test:slides
+> node qa-show.mjs
+
+Page 1 (default): PASS
+Page 2 (default): PASS
+Page 2 (expert-e): PASS
+Page 3 (default): PASS
+Page 4 (default): PASS
+Page 5 (default): PASS
+Page 6 (default): PASS
+Page 7 (default): PASS
+Page 8 (default): PASS
+Page 9 (default): PASS
+Page 10 (default): PASS
+Page 11 (default): PASS
+Page 12 (default): PASS
+Page 13 (default): PASS
+Page 13 (ssim): PASS
+Page 14 (default): PASS
+Page 14 (ppsd-ssim): PASS
+Page 15 (default): PASS
+Page 15 (expert-e): PASS
+Page 16 (default): PASS
+Page 16 (correct): PASS
+Page 17 (default): PASS
+Page 17 (correct): PASS
+Page 18 (default): PASS
+Page 18 (memory): PASS
+Page 19 (default): PASS
+Page 20 (default): PASS
+Page 21 (default): PASS
+Page 21 (team): PASS
+Page 22 (default): PASS
+Page 23 (default): PASS
+Page 24 (default): PASS
+Page 25 (default): PASS
+Page 26 (default): PASS
+Page 27 (default): PASS
+Page 28 (default): PASS
+Page 28 (source): Missing image http://127.0.0.1:18341/assets/history-pairs/0008-original.jpg | Missing image http://127.0.0.1:18341/assets/history-pairs/0008-edited.jpg
+Page 29 (default): PASS
+Page 29 (training): PASS
+Page 30 (default): PASS
+Page 30 (angular-counts): PASS
+Page 30 (condition-b): PASS
+Page 31 (default): PASS
+Page 31 (report): PASS
+Page 32 (default): PASS
+Page 33 (default): PASS
+Page 34 (default): PASS
+Page 35 (default): PASS
+Page 35 (ranking): PASS
+Page 36 (default): PASS
+Page 36 (direction-grid): PASS
+Page 13 (scaled-viewport): PASS
+RESULT: 36 pages, 55 states, 2 problems
+STDERR:
+EXIT: 1
+
+BUILD_AFTER_VISUAL_FIX COMMAND: ["npm", "run", "build"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 prebuild
+> node scripts/sync-evidence.mjs && node scripts/validate-evidence.mjs
+
+Downloadable evidence synchronised with component data.
+PASS: 25 ordered topics; 36 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.
+Model evidence: not supplied; explicit empty states preserved.
+
+> flow5-final-presentation-components@0.1.0 build
+> slidev build
+
+
+
+  ●■▲
+  Slidev  v52.19.1 
+
+  theme       @slidev/theme-default
+  css engine  unocss
+  entry       /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/slides.md
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 646 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     1.46 kB │ gzip:   0.62 kB
+dist/assets/logo-BYkHSa_O.png                      94.32 kB
+dist/assets/play-BJul2ati.css                       0.07 kB │ gzip:   0.09 kB
+dist/assets/NoteDisplay-DRfXbFOS.css                0.11 kB │ gzip:   0.11 kB
+dist/assets/md-CyQkBbV-.css                         0.13 kB │ gzip:   0.12 kB
+dist/assets/overview-DYYNwpSi.css                   0.15 kB │ gzip:   0.10 kB
+dist/assets/md-CjguurJ1.css                         0.18 kB │ gzip:   0.13 kB
+dist/assets/md-Bx3m-8mn.css                         0.20 kB │ gzip:   0.15 kB
+dist/assets/404-BQm5HUGB.css                        0.25 kB │ gzip:   0.16 kB
+dist/assets/md-CyEUs2vu.css                         0.30 kB │ gzip:   0.20 kB
+dist/assets/md-C3Sk_m11.css                         0.36 kB │ gzip:   0.22 kB
+dist/assets/entry-B9yqiw_R.css                      0.37 kB │ gzip:   0.24 kB
+dist/assets/md-BKKtW-Mu.css                         0.37 kB │ gzip:   0.23 kB
+dist/assets/md-CEwXPZie.css                         0.37 kB │ gzip:   0.18 kB
+dist/assets/md-_952-CCv.css                         0.41 kB │ gzip:   0.25 kB
+dist/assets/md-BqMzR9eq.css                         0.49 kB │ gzip:   0.26 kB
+dist/assets/md-CsXWWU25.css                         0.63 kB │ gzip:   0.31 kB
+dist/assets/md-B4nqV3QV.css                         0.64 kB │ gzip:   0.33 kB
+dist/assets/SlideWrapper-j2F1aOIy.css               1.07 kB │ gzip:   0.42 kB
+dist/assets/shortcuts-D6ZOvbjx.css                  2.05 kB │ gzip:   0.77 kB
+dist/assets/presenter-CxYbGPF7.css                  4.13 kB │ gzip:   0.84 kB
+dist/assets/modules/shiki-ipjRpIB4.css             17.43 kB │ gzip:   3.35 kB
+dist/assets/index-CmK9TgTr.css                    120.57 kB │ gzip:  23.82 kB
+dist/assets/slidev/client-Sw9AUL4p.js               0.06 kB │ gzip:   0.07 kB
+dist/assets/model-artifacts-DbQov5CX.js             0.43 kB │ gzip:   0.29 kB
+dist/assets/slidev/default-B8wasBtt.js              0.60 kB │ gzip:   0.35 kB
+dist/assets/md-B1Uu54cX.js                          1.25 kB │ gzip:   0.57 kB
+dist/assets/md-ZGZ0qLn_.js                          1.25 kB │ gzip:   0.57 kB
+dist/assets/slidev/IconButton-hDgGnSX7.js           1.40 kB │ gzip:   0.68 kB
+dist/assets/rolldown-runtime-DC62tzP2.js            1.44 kB │ gzip:   0.67 kB
+dist/assets/slidev/Modal-BKm4LOzB.js                1.51 kB │ gzip:   0.78 kB
+dist/assets/slidev/entry-B8d95jrU.js                1.85 kB │ gzip:   0.69 kB
+dist/assets/modules/unplugin-icons-BLyxnXpK.js      2.38 kB │ gzip:   0.95 kB
+dist/assets/slidev/404-Dq-DckQb.js                  2.57 kB │ gzip:   1.07 kB
+dist/assets/md-DaWqH1nh.js                          2.63 kB │ gzip:   1.17 kB
+dist/assets/md-CmtKj8LT.js                          2.76 kB │ gzip:   1.21 kB
+dist/assets/md-BfmFgrZs.js                          2.95 kB │ gzip:   1.20 kB
+dist/assets/md-BgjW1DR2.js                          2.99 kB │ gzip:   1.24 kB
+dist/assets/md-D3FPJbpP.js                          3.30 kB │ gzip:   1.30 kB
+dist/assets/md-Bd0No7TA.js                          3.35 kB │ gzip:   1.35 kB
+dist/assets/md-Bqix2DNF.js                          3.48 kB │ gzip:   1.34 kB
+dist/assets/md-Bbwlz4Y3.js                          3.52 kB │ gzip:   1.42 kB
+dist/assets/md-C4HBO88f.js                          3.62 kB │ gzip:   1.43 kB
+dist/assets/modules/file-saver-ClsswKLD.js          3.64 kB │ gzip:   1.55 kB
+dist/assets/history-pairs-DNL7dZnk.js               3.69 kB │ gzip:   0.56 kB
+dist/assets/md-DVHqqqT1.js                          3.73 kB │ gzip:   1.44 kB
+dist/assets/useSequence-BY65vzjA.js                 3.89 kB │ gzip:   1.34 kB
+dist/assets/md-Ccwf_ifZ.js                          3.91 kB │ gzip:   1.53 kB
+dist/assets/md-DKGk69jf.js                          4.06 kB │ gzip:   1.50 kB
+dist/assets/slidev/notes-edit-20nrUIUh.js           4.06 kB │ gzip:   1.62 kB
+dist/assets/md-Bgm8O5Be.js                          4.17 kB │ gzip:   1.42 kB
+dist/assets/slidev/NoteEditable-DoewvCQi.js         4.24 kB │ gzip:   1.68 kB
+dist/assets/md-CIEckILt.js                          4.27 kB │ gzip:   1.42 kB
+dist/assets/md-2VBIJ_c3.js                          4.29 kB │ gzip:   1.67 kB
+dist/assets/md-v3L01hzh.js                          4.46 kB │ gzip:   1.66 kB
+dist/assets/md-DhBcgE-H.js                          4.52 kB │ gzip:   1.59 kB
+dist/assets/md-DpZKydEh.js                          4.52 kB │ gzip:   1.67 kB
+dist/assets/md-D5C041Xj.js                          4.68 kB │ gzip:   1.79 kB
+dist/assets/md-Ox-pSKDU.js                          4.68 kB │ gzip:   1.67 kB
+dist/assets/md-Cl7gCyIC.js                          4.77 kB │ gzip:   1.64 kB
+dist/assets/md-C6opPTIz.js                          4.94 kB │ gzip:   1.91 kB
+dist/assets/md-B8-H81TH.js                          5.09 kB │ gzip:   1.91 kB
+dist/assets/ConditioningAblation-CX5v5diW.js        5.14 kB │ gzip:   1.70 kB
+dist/assets/md-DhbuW23G.js                          5.17 kB │ gzip:   1.53 kB
+dist/assets/md-CNCOILmb.js                          5.24 kB │ gzip:   1.79 kB
+dist/assets/md-DbtP6Jsn.js                          5.25 kB │ gzip:   1.77 kB
+dist/assets/slidev/TimerBar-Nk_oiLV4.js             5.58 kB │ gzip:   1.75 kB
+dist/assets/md-B8sYjad5.js                          5.86 kB │ gzip:   1.90 kB
+dist/assets/md-WVSS8X0S.js                          5.96 kB │ gzip:   1.90 kB
+dist/assets/md-CAlZmgmy.js                          6.11 kB │ gzip:   2.00 kB
+dist/assets/md-D_ItLiii.js                          6.35 kB │ gzip:   2.00 kB
+dist/assets/md-DQzI1lVx.js                          6.41 kB │ gzip:   2.18 kB
+dist/assets/slidev/notes-BNxPr1Bj.js                6.58 kB │ gzip:   2.08 kB
+dist/assets/md-G03CvPvb.js                          7.01 kB │ gzip:   2.24 kB
+dist/assets/md-CXJu1yee.js                          7.22 kB │ gzip:   2.26 kB
+dist/assets/slidev/play-BpcdDBQ7.js                 9.55 kB │ gzip:   2.93 kB
+dist/assets/slidev/NoteDisplay-DDAhJCPL.js         12.26 kB │ gzip:   3.63 kB
+dist/assets/WorkbenchPage-7Z4FPLsA.js              18.06 kB │ gzip:   6.04 kB
+dist/assets/slidev/overview-DqB8SGnK.js            19.04 kB │ gzip:   5.44 kB
+dist/assets/slidev/presenter-yum2Hafv.js           21.97 kB │ gzip:   5.54 kB
+dist/assets/useDrawings-CoNm23bp.js                32.66 kB │ gzip:   9.25 kB
+dist/assets/slidev/SlideWrapper-DoCg87Jh.js        55.58 kB │ gzip:  15.22 kB
+dist/assets/slidev/shortcuts-8eydhNID.js          135.72 kB │ gzip:  32.62 kB
+dist/assets/modules/vue-CN3pe5nb.js               202.53 kB │ gzip:  52.35 kB
+dist/assets/index-DgNiQ2B4.js                     276.18 kB │ gzip:  68.58 kB
+dist/assets/modules/shiki-ByKvxtgI.js             475.55 kB │ gzip: 116.06 kB
+dist/assets/md-D_V2SCtU.js                      1,106.65 kB │ gzip: 224.19 kB
+
+✓ built in 905ms
+STDERR:
+(node:46227) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+EXIT: 0
+
+SCALE_DIAGNOSTIC COMMAND: ["npm", "run", "build"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 prebuild
+> node scripts/sync-evidence.mjs && node scripts/validate-evidence.mjs
+
+Downloadable evidence synchronised with component data.
+PASS: 25 ordered topics; 36 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.
+Model evidence: not supplied; explicit empty states preserved.
+
+> flow5-final-presentation-components@0.1.0 build
+> slidev build
+
+
+
+  ●■▲
+  Slidev  v52.19.1 
+
+  theme       @slidev/theme-default
+  css engine  unocss
+  entry       /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/slides.md
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 646 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     1.46 kB │ gzip:   0.62 kB
+dist/assets/logo-BYkHSa_O.png                      94.32 kB
+dist/assets/play-BJul2ati.css                       0.07 kB │ gzip:   0.09 kB
+dist/assets/NoteDisplay-DRfXbFOS.css                0.11 kB │ gzip:   0.11 kB
+dist/assets/md-CyQkBbV-.css                         0.13 kB │ gzip:   0.12 kB
+dist/assets/overview-DYYNwpSi.css                   0.15 kB │ gzip:   0.10 kB
+dist/assets/md-CjguurJ1.css                         0.18 kB │ gzip:   0.13 kB
+dist/assets/md-Bx3m-8mn.css                         0.20 kB │ gzip:   0.15 kB
+dist/assets/404-BQm5HUGB.css                        0.25 kB │ gzip:   0.16 kB
+dist/assets/md-CyEUs2vu.css                         0.30 kB │ gzip:   0.20 kB
+dist/assets/md-C3Sk_m11.css                         0.36 kB │ gzip:   0.22 kB
+dist/assets/entry-B9yqiw_R.css                      0.37 kB │ gzip:   0.24 kB
+dist/assets/md-BKKtW-Mu.css                         0.37 kB │ gzip:   0.23 kB
+dist/assets/md-CEwXPZie.css                         0.37 kB │ gzip:   0.18 kB
+dist/assets/md-_952-CCv.css                         0.41 kB │ gzip:   0.25 kB
+dist/assets/md-BqMzR9eq.css                         0.49 kB │ gzip:   0.26 kB
+dist/assets/md-CsXWWU25.css                         0.63 kB │ gzip:   0.31 kB
+dist/assets/md-B4nqV3QV.css                         0.64 kB │ gzip:   0.33 kB
+dist/assets/SlideWrapper-j2F1aOIy.css               1.07 kB │ gzip:   0.42 kB
+dist/assets/shortcuts-D6ZOvbjx.css                  2.05 kB │ gzip:   0.77 kB
+dist/assets/presenter-CxYbGPF7.css                  4.13 kB │ gzip:   0.84 kB
+dist/assets/modules/shiki-ipjRpIB4.css             17.43 kB │ gzip:   3.35 kB
+dist/assets/index-CmK9TgTr.css                    120.57 kB │ gzip:  23.82 kB
+dist/assets/slidev/client-Sw9AUL4p.js               0.06 kB │ gzip:   0.07 kB
+dist/assets/model-artifacts-DbQov5CX.js             0.43 kB │ gzip:   0.29 kB
+dist/assets/slidev/default-B8wasBtt.js              0.60 kB │ gzip:   0.35 kB
+dist/assets/md-B1Uu54cX.js                          1.25 kB │ gzip:   0.57 kB
+dist/assets/md-ZGZ0qLn_.js                          1.25 kB │ gzip:   0.57 kB
+dist/assets/slidev/IconButton-hDgGnSX7.js           1.40 kB │ gzip:   0.68 kB
+dist/assets/rolldown-runtime-DC62tzP2.js            1.44 kB │ gzip:   0.67 kB
+dist/assets/slidev/Modal-BKm4LOzB.js                1.51 kB │ gzip:   0.78 kB
+dist/assets/slidev/entry-B8d95jrU.js                1.85 kB │ gzip:   0.69 kB
+dist/assets/modules/unplugin-icons-BLyxnXpK.js      2.38 kB │ gzip:   0.95 kB
+dist/assets/slidev/404-Dq-DckQb.js                  2.57 kB │ gzip:   1.07 kB
+dist/assets/md-DaWqH1nh.js                          2.63 kB │ gzip:   1.17 kB
+dist/assets/md-CmtKj8LT.js                          2.76 kB │ gzip:   1.21 kB
+dist/assets/md-BfmFgrZs.js                          2.95 kB │ gzip:   1.20 kB
+dist/assets/md-BgjW1DR2.js                          2.99 kB │ gzip:   1.24 kB
+dist/assets/md-D3FPJbpP.js                          3.30 kB │ gzip:   1.30 kB
+dist/assets/md-Bd0No7TA.js                          3.35 kB │ gzip:   1.35 kB
+dist/assets/md-Bqix2DNF.js                          3.48 kB │ gzip:   1.34 kB
+dist/assets/md-Bbwlz4Y3.js                          3.52 kB │ gzip:   1.42 kB
+dist/assets/md-C4HBO88f.js                          3.62 kB │ gzip:   1.43 kB
+dist/assets/modules/file-saver-ClsswKLD.js          3.64 kB │ gzip:   1.55 kB
+dist/assets/history-pairs-DNL7dZnk.js               3.69 kB │ gzip:   0.56 kB
+dist/assets/md-DVHqqqT1.js                          3.73 kB │ gzip:   1.44 kB
+dist/assets/useSequence-BY65vzjA.js                 3.89 kB │ gzip:   1.34 kB
+dist/assets/md-Ccwf_ifZ.js                          3.91 kB │ gzip:   1.53 kB
+dist/assets/md-DKGk69jf.js                          4.06 kB │ gzip:   1.50 kB
+dist/assets/slidev/notes-edit-20nrUIUh.js           4.06 kB │ gzip:   1.62 kB
+dist/assets/md-Bgm8O5Be.js                          4.17 kB │ gzip:   1.42 kB
+dist/assets/slidev/NoteEditable-DoewvCQi.js         4.24 kB │ gzip:   1.68 kB
+dist/assets/md-CIEckILt.js                          4.27 kB │ gzip:   1.42 kB
+dist/assets/md-2VBIJ_c3.js                          4.29 kB │ gzip:   1.67 kB
+dist/assets/md-v3L01hzh.js                          4.46 kB │ gzip:   1.66 kB
+dist/assets/md-DhBcgE-H.js                          4.52 kB │ gzip:   1.59 kB
+dist/assets/md-DpZKydEh.js                          4.52 kB │ gzip:   1.67 kB
+dist/assets/md-D5C041Xj.js                          4.68 kB │ gzip:   1.79 kB
+dist/assets/md-Ox-pSKDU.js                          4.68 kB │ gzip:   1.67 kB
+dist/assets/md-Cl7gCyIC.js                          4.77 kB │ gzip:   1.64 kB
+dist/assets/md-C6opPTIz.js                          4.94 kB │ gzip:   1.91 kB
+dist/assets/md-B8-H81TH.js                          5.09 kB │ gzip:   1.91 kB
+dist/assets/ConditioningAblation-CX5v5diW.js        5.14 kB │ gzip:   1.70 kB
+dist/assets/md-DhbuW23G.js                          5.17 kB │ gzip:   1.53 kB
+dist/assets/md-CNCOILmb.js                          5.24 kB │ gzip:   1.79 kB
+dist/assets/md-DbtP6Jsn.js                          5.25 kB │ gzip:   1.77 kB
+dist/assets/slidev/TimerBar-Nk_oiLV4.js             5.58 kB │ gzip:   1.75 kB
+dist/assets/md-B8sYjad5.js                          5.86 kB │ gzip:   1.90 kB
+dist/assets/md-WVSS8X0S.js                          5.96 kB │ gzip:   1.90 kB
+dist/assets/md-CAlZmgmy.js                          6.11 kB │ gzip:   2.00 kB
+dist/assets/md-D_ItLiii.js                          6.35 kB │ gzip:   2.00 kB
+dist/assets/md-DQzI1lVx.js                          6.41 kB │ gzip:   2.18 kB
+dist/assets/slidev/notes-BNxPr1Bj.js                6.58 kB │ gzip:   2.08 kB
+dist/assets/md-G03CvPvb.js                          7.01 kB │ gzip:   2.24 kB
+dist/assets/md-CXJu1yee.js                          7.22 kB │ gzip:   2.26 kB
+dist/assets/slidev/play-BpcdDBQ7.js                 9.55 kB │ gzip:   2.93 kB
+dist/assets/slidev/NoteDisplay-DDAhJCPL.js         12.26 kB │ gzip:   3.63 kB
+dist/assets/WorkbenchPage-7Z4FPLsA.js              18.06 kB │ gzip:   6.04 kB
+dist/assets/slidev/overview-DqB8SGnK.js            19.04 kB │ gzip:   5.44 kB
+dist/assets/slidev/presenter-yum2Hafv.js           21.97 kB │ gzip:   5.54 kB
+dist/assets/useDrawings-CoNm23bp.js                32.66 kB │ gzip:   9.25 kB
+dist/assets/slidev/SlideWrapper-DoCg87Jh.js        55.58 kB │ gzip:  15.22 kB
+dist/assets/slidev/shortcuts-8eydhNID.js          135.72 kB │ gzip:  32.62 kB
+dist/assets/modules/vue-CN3pe5nb.js               202.53 kB │ gzip:  52.35 kB
+dist/assets/index-DgNiQ2B4.js                     276.18 kB │ gzip:  68.58 kB
+dist/assets/modules/shiki-ByKvxtgI.js             475.55 kB │ gzip: 116.06 kB
+dist/assets/md-D_V2SCtU.js                      1,106.65 kB │ gzip: 224.19 kB
+
+✓ built in 819ms
+STDERR:
+(node:46708) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+EXIT: 0
+
+SCALE_TRANSFORM_TRACE COMMAND: ["npm", "run", "build"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 prebuild
+> node scripts/sync-evidence.mjs && node scripts/validate-evidence.mjs
+
+Downloadable evidence synchronised with component data.
+PASS: 25 ordered topics; 36 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.
+Model evidence: not supplied; explicit empty states preserved.
+
+> flow5-final-presentation-components@0.1.0 build
+> slidev build
+
+
+
+  ●■▲
+  Slidev  v52.19.1 
+
+  theme       @slidev/theme-default
+  css engine  unocss
+  entry       /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/slides.md
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 646 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                   1.46 kB │ gzip:   0.62 kB
+dist/assets/logo-BYkHSa_O.png                    94.32 kB
+dist/assets/play-D_7yfuao.css                     0.06 kB │ gzip:   0.08 kB
+dist/assets/NoteDisplay-DCBzjb4F.css              0.09 kB │ gzip:   0.10 kB
+dist/assets/md-BmoZPqne.css                       0.13 kB │ gzip:   0.12 kB
+dist/assets/overview-Bm2pcStm.css                 0.13 kB │ gzip:   0.09 kB
+dist/assets/404-VQkf1Vlw.css                      0.15 kB │ gzip:   0.12 kB
+dist/assets/md-6qyUNQ6X.css                       0.18 kB │ gzip:   0.13 kB
+dist/assets/md-D_a9EWz9.css                       0.21 kB │ gzip:   0.15 kB
+dist/assets/md-DeUjfFvy.css                       0.30 kB │ gzip:   0.20 kB
+dist/assets/entry-CQkCdRep.css                    0.32 kB │ gzip:   0.21 kB
+dist/assets/md-CBBiozBC.css                       0.36 kB │ gzip:   0.22 kB
+dist/assets/md-7v--EVPf.css                       0.37 kB │ gzip:   0.23 kB
+dist/assets/md-B-b6LONu.css                       0.37 kB │ gzip:   0.18 kB
+dist/assets/md-CzfpHnAG.css                       0.41 kB │ gzip:   0.26 kB
+dist/assets/md-ATYr8NHo.css                       0.49 kB │ gzip:   0.27 kB
+dist/assets/md-yP4eJ2M7.css                       0.63 kB │ gzip:   0.31 kB
+dist/assets/md-B0wiXfOW.css                       0.64 kB │ gzip:   0.33 kB
+dist/assets/SlideWrapper-DpMGUg5h.css             0.91 kB │ gzip:   0.35 kB
+dist/assets/shortcuts-CQI6CZy9.css                1.56 kB │ gzip:   0.66 kB
+dist/assets/presenter-CewvU2-N.css                3.45 kB │ gzip:   0.75 kB
+dist/assets/modules/shiki-BrmBd2_v.css           15.67 kB │ gzip:   2.92 kB
+dist/assets/index-BF5Rwlw1.css                  106.76 kB │ gzip:  20.77 kB
+dist/assets/slidev/client-FQhLTUce.js             0.06 kB │ gzip:   0.07 kB
+dist/assets/slidev/default-D7ee5O3F.js            0.25 kB │ gzip:   0.21 kB
+dist/assets/model-artifacts-cRjWTBNz.js           0.31 kB │ gzip:   0.23 kB
+dist/assets/slidev/IconButton-D4Plp8SF.js         0.58 kB │ gzip:   0.39 kB
+dist/assets/md-BIC71WQD.js                        0.61 kB │ gzip:   0.39 kB
+dist/assets/md-C61xSgOw.js                        0.61 kB │ gzip:   0.40 kB
+dist/assets/slidev/Modal-CZ-ps0gM.js              0.71 kB │ gzip:   0.47 kB
+dist/assets/rolldown-runtime-hePW80VL.js          0.71 kB │ gzip:   0.42 kB
+dist/assets/slidev/entry-jHVu1wrs.js              0.92 kB │ gzip:   0.45 kB
+dist/assets/slidev/404-BpXSOdKq.js                1.11 kB │ gzip:   0.67 kB
+dist/assets/modules/unplugin-icons-BxLH0V-A.js    1.65 kB │ gzip:   0.79 kB
+dist/assets/md-DVFjX9E1.js                        1.73 kB │ gzip:   0.97 kB
+dist/assets/md-D4I58ayl.js                        1.85 kB │ gzip:   1.02 kB
+dist/assets/md-DTQMmPqC.js                        1.86 kB │ gzip:   1.01 kB
+dist/assets/md-79CvqIwk.js                        1.93 kB │ gzip:   1.07 kB
+dist/assets/md-D5K1k9Ab.js                        1.95 kB │ gzip:   1.05 kB
+dist/assets/md-B1dBbgLL.js                        2.01 kB │ gzip:   1.02 kB
+dist/assets/md-Bv-3yloa.js                        2.06 kB │ gzip:   1.02 kB
+dist/assets/md-CdvXaZuZ.js                        2.06 kB │ gzip:   1.14 kB
+dist/assets/md-CMd7-n1J.js                        2.08 kB │ gzip:   1.13 kB
+dist/assets/md-Cvau23Tj.js                        2.09 kB │ gzip:   1.05 kB
+dist/assets/md-BFJwnNNL.js                        2.10 kB │ gzip:   1.16 kB
+dist/assets/slidev/notes-edit-B4Ep9gih.js         2.10 kB │ gzip:   1.13 kB
+dist/assets/md-DmKT0Xy6.js                        2.12 kB │ gzip:   1.16 kB
+dist/assets/useSequence-Dy8OAu9E.js               2.14 kB │ gzip:   0.99 kB
+dist/assets/md-Ce3WiYjG.js                        2.21 kB │ gzip:   1.21 kB
+dist/assets/slidev/NoteEditable-DstBW_7x.js       2.24 kB │ gzip:   1.17 kB
+dist/assets/md-pbnTnSi_.js                        2.25 kB │ gzip:   1.10 kB
+dist/assets/md-CgP-OolW.js                        2.29 kB │ gzip:   1.25 kB
+dist/assets/md-CTAI_7DE.js                        2.35 kB │ gzip:   1.17 kB
+dist/assets/md-Dp8H-F82.js                        2.40 kB │ gzip:   1.14 kB
+dist/assets/md-D9YcaDWf.js                        2.46 kB │ gzip:   1.24 kB
+dist/assets/md-i4eaLKhr.js                        2.48 kB │ gzip:   1.30 kB
+dist/assets/md-Dut8LceD.js                        2.53 kB │ gzip:   1.39 kB
+dist/assets/md-DnVPdk8-.js                        2.56 kB │ gzip:   1.32 kB
+dist/assets/md-CKrrmBZy.js                        2.58 kB │ gzip:   1.26 kB
+dist/assets/modules/file-saver-BpWusTEB.js        2.69 kB │ gzip:   1.29 kB
+dist/assets/md-DlloA01R.js                        2.70 kB │ gzip:   1.17 kB
+dist/assets/md-Hdh_0g3-.js                        2.70 kB │ gzip:   1.36 kB
+dist/assets/slidev/TimerBar-DjMN4hw1.js           2.73 kB │ gzip:   1.20 kB
+dist/assets/md-D8LW2tKz.js                        2.84 kB │ gzip:   1.52 kB
+dist/assets/md-C1G-HuV1.js                        2.85 kB │ gzip:   1.51 kB
+dist/assets/ConditioningAblation-DwlNJFiT.js      2.90 kB │ gzip:   1.35 kB
+dist/assets/history-pairs-DX0sj4nM.js             2.92 kB │ gzip:   0.49 kB
+dist/assets/md-CY7lsfr4.js                        3.20 kB │ gzip:   1.44 kB
+dist/assets/md-Cnub7FcX.js                        3.23 kB │ gzip:   1.57 kB
+dist/assets/md-Cys_FEUN.js                        3.23 kB │ gzip:   1.49 kB
+dist/assets/slidev/notes-t76yKoPb.js              3.26 kB │ gzip:   1.50 kB
+dist/assets/md-Ct1vWsO8.js                        3.30 kB │ gzip:   1.67 kB
+dist/assets/md-YW8BaLJe.js                        3.39 kB │ gzip:   1.57 kB
+dist/assets/md-B8Bx5Sc9.js                        3.50 kB │ gzip:   1.73 kB
+dist/assets/md-DS-X9ykc.js                        3.71 kB │ gzip:   1.73 kB
+dist/assets/slidev/play-BvTMnTz1.js               4.29 kB │ gzip:   1.99 kB
+dist/assets/slidev/NoteDisplay-Df63hbdH.js        6.02 kB │ gzip:   2.63 kB
+dist/assets/slidev/overview-CuTdESxy.js           9.27 kB │ gzip:   4.02 kB
+dist/assets/slidev/presenter-B5pFTVYS.js         10.30 kB │ gzip:   3.97 kB
+dist/assets/WorkbenchPage-CP0t_uvA.js            13.35 kB │ gzip:   5.55 kB
+dist/assets/useDrawings-BrAFID9Z.js              20.49 kB │ gzip:   7.07 kB
+dist/assets/slidev/SlideWrapper-Bm0AK6Ph.js      38.05 kB │ gzip:  12.22 kB
+dist/assets/slidev/shortcuts-D6CdJ2Jp.js         65.97 kB │ gzip:  23.26 kB
+dist/assets/modules/vue-UoSe8YZ5.js              79.82 kB │ gzip:  29.64 kB
+dist/assets/index-BZGBJMc7.js                   139.50 kB │ gzip:  46.46 kB
+dist/assets/modules/shiki-Dj5E7glx.js           223.91 kB │ gzip:  79.46 kB
+dist/assets/md-CihFtMTw.js                      487.58 kB │ gzip: 122.57 kB
+
+✓ built in 975ms
+STDERR:
+(node:47108) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+EXIT: 0
+
+VISUAL REVIEW FINDINGS: page 13 plot points were outside the axes; page 20 internal content overlapped. Initial QA reported a transient image decode issue after changing history pairs.
+ROOT CAUSE: UnoCSS pre-transform rewrote 260-(v-20)/8*220 to 260-v-20/8*220. Disabling minification did not fix it; that configuration was removed. Whitespace now prevents variant-group matching. Exact transformed source is retained in scale-transform-trace.txt.
+DIAGNOSTIC ERROR: Vite transformWithEsbuild probe exited 1: Failed to load transformWithEsbuild; esbuild is not separately installed. Follow-up used transformWithOxc and rolldown successfully (exit 0).
+
+BUILD_CORRECTED COMMAND: ["npm", "run", "build"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 prebuild
+> node scripts/sync-evidence.mjs && node scripts/validate-evidence.mjs
+
+Downloadable evidence synchronised with component data.
+PASS: 25 ordered topics; 36 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.
+Model evidence: not supplied; explicit empty states preserved.
+
+> flow5-final-presentation-components@0.1.0 build
+> slidev build
+
+
+
+  ●■▲
+  Slidev  v52.19.1 
+
+  theme       @slidev/theme-default
+  css engine  unocss
+  entry       /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/slides.md
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 646 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                   1.46 kB │ gzip:   0.62 kB
+dist/assets/logo-BYkHSa_O.png                    94.32 kB
+dist/assets/play-D_7yfuao.css                     0.06 kB │ gzip:   0.08 kB
+dist/assets/NoteDisplay-DCBzjb4F.css              0.09 kB │ gzip:   0.10 kB
+dist/assets/md-BmoZPqne.css                       0.13 kB │ gzip:   0.12 kB
+dist/assets/overview-Bm2pcStm.css                 0.13 kB │ gzip:   0.09 kB
+dist/assets/404-VQkf1Vlw.css                      0.15 kB │ gzip:   0.12 kB
+dist/assets/md-6qyUNQ6X.css                       0.18 kB │ gzip:   0.13 kB
+dist/assets/md-D_a9EWz9.css                       0.21 kB │ gzip:   0.15 kB
+dist/assets/md-DeUjfFvy.css                       0.30 kB │ gzip:   0.20 kB
+dist/assets/entry-CQkCdRep.css                    0.32 kB │ gzip:   0.21 kB
+dist/assets/md-CBBiozBC.css                       0.36 kB │ gzip:   0.22 kB
+dist/assets/md-7v--EVPf.css                       0.37 kB │ gzip:   0.23 kB
+dist/assets/md-B-b6LONu.css                       0.37 kB │ gzip:   0.18 kB
+dist/assets/md-CzfpHnAG.css                       0.41 kB │ gzip:   0.26 kB
+dist/assets/md-ATYr8NHo.css                       0.49 kB │ gzip:   0.27 kB
+dist/assets/md-yP4eJ2M7.css                       0.63 kB │ gzip:   0.31 kB
+dist/assets/md-DmhdWEJ1.css                       0.74 kB │ gzip:   0.38 kB
+dist/assets/SlideWrapper-DpMGUg5h.css             0.91 kB │ gzip:   0.35 kB
+dist/assets/shortcuts-CQI6CZy9.css                1.56 kB │ gzip:   0.66 kB
+dist/assets/presenter-CewvU2-N.css                3.45 kB │ gzip:   0.75 kB
+dist/assets/modules/shiki-BrmBd2_v.css           15.67 kB │ gzip:   2.92 kB
+dist/assets/index-BF5Rwlw1.css                  106.76 kB │ gzip:  20.77 kB
+dist/assets/slidev/client-Daneojwx.js             0.06 kB │ gzip:   0.07 kB
+dist/assets/slidev/default-DRu625Oz.js            0.25 kB │ gzip:   0.21 kB
+dist/assets/model-artifacts-cRjWTBNz.js           0.31 kB │ gzip:   0.23 kB
+dist/assets/slidev/IconButton-D4Plp8SF.js         0.58 kB │ gzip:   0.39 kB
+dist/assets/md-BuczwaBi.js                        0.61 kB │ gzip:   0.39 kB
+dist/assets/md-JqDfz5h9.js                        0.61 kB │ gzip:   0.39 kB
+dist/assets/slidev/Modal-CZ-ps0gM.js              0.71 kB │ gzip:   0.47 kB
+dist/assets/rolldown-runtime-hePW80VL.js          0.71 kB │ gzip:   0.42 kB
+dist/assets/slidev/entry-BeAUHvpz.js              0.92 kB │ gzip:   0.45 kB
+dist/assets/slidev/404-Btw32cSQ.js                1.11 kB │ gzip:   0.67 kB
+dist/assets/modules/unplugin-icons-BxLH0V-A.js    1.65 kB │ gzip:   0.79 kB
+dist/assets/md-CdG7x9GL.js                        1.73 kB │ gzip:   0.97 kB
+dist/assets/md-HPMayvNX.js                        1.85 kB │ gzip:   1.02 kB
+dist/assets/md-DnhhGTAr.js                        1.86 kB │ gzip:   1.01 kB
+dist/assets/md-CTwsK5xk.js                        1.93 kB │ gzip:   1.07 kB
+dist/assets/md-CQWmQNLj.js                        1.95 kB │ gzip:   1.05 kB
+dist/assets/md-Ba3KBnEg.js                        2.01 kB │ gzip:   1.02 kB
+dist/assets/md-CuaMXKDk.js                        2.06 kB │ gzip:   1.14 kB
+dist/assets/md-DjtenhRv.js                        2.06 kB │ gzip:   1.02 kB
+dist/assets/md-BYSVS25q.js                        2.08 kB │ gzip:   1.13 kB
+dist/assets/md-DU9RW-l4.js                        2.09 kB │ gzip:   1.05 kB
+dist/assets/md-CX_GY636.js                        2.10 kB │ gzip:   1.16 kB
+dist/assets/slidev/notes-edit-B-QbMJhq.js         2.10 kB │ gzip:   1.13 kB
+dist/assets/md-CUr_V_kT.js                        2.12 kB │ gzip:   1.16 kB
+dist/assets/useSequence-DzrPa4XG.js               2.14 kB │ gzip:   0.98 kB
+dist/assets/md-Bcif_dgC.js                        2.21 kB │ gzip:   1.21 kB
+dist/assets/slidev/NoteEditable-DMP3eGNW.js       2.24 kB │ gzip:   1.17 kB
+dist/assets/md-BMJZy8As.js                        2.25 kB │ gzip:   1.10 kB
+dist/assets/md-CFJGZV9J.js                        2.29 kB │ gzip:   1.25 kB
+dist/assets/md-DXAtqnJz.js                        2.35 kB │ gzip:   1.17 kB
+dist/assets/md-DXDfndee.js                        2.40 kB │ gzip:   1.14 kB
+dist/assets/md-D6no_Hw6.js                        2.46 kB │ gzip:   1.24 kB
+dist/assets/md-2VXu0ctJ.js                        2.48 kB │ gzip:   1.30 kB
+dist/assets/md-BRyivJMO.js                        2.53 kB │ gzip:   1.39 kB
+dist/assets/md-CbOZJ8do.js                        2.56 kB │ gzip:   1.32 kB
+dist/assets/md-Dte07cP_.js                        2.58 kB │ gzip:   1.26 kB
+dist/assets/modules/file-saver-BpWusTEB.js        2.69 kB │ gzip:   1.29 kB
+dist/assets/md-Cd8_5jdo.js                        2.70 kB │ gzip:   1.36 kB
+dist/assets/md-DoA6vF4R.js                        2.70 kB │ gzip:   1.17 kB
+dist/assets/slidev/TimerBar-Bm8gFsUn.js           2.73 kB │ gzip:   1.20 kB
+dist/assets/md-BVHyJxCA.js                        2.84 kB │ gzip:   1.52 kB
+dist/assets/md-CTi1OTOD.js                        2.85 kB │ gzip:   1.51 kB
+dist/assets/ConditioningAblation-CveaxlCe.js      2.90 kB │ gzip:   1.35 kB
+dist/assets/history-pairs-DX0sj4nM.js             2.92 kB │ gzip:   0.49 kB
+dist/assets/md-CZo0_JP2.js                        3.20 kB │ gzip:   1.44 kB
+dist/assets/md-CMq7Qx2B.js                        3.23 kB │ gzip:   1.56 kB
+dist/assets/md-BRsiTAx2.js                        3.23 kB │ gzip:   1.48 kB
+dist/assets/slidev/notes-Dkp6EdsX.js              3.26 kB │ gzip:   1.50 kB
+dist/assets/md-bWCV5tCW.js                        3.31 kB │ gzip:   1.67 kB
+dist/assets/md-DDDvAFia.js                        3.39 kB │ gzip:   1.57 kB
+dist/assets/md-CpWeCFuY.js                        3.50 kB │ gzip:   1.73 kB
+dist/assets/md-cuUdyodj.js                        3.85 kB │ gzip:   1.76 kB
+dist/assets/slidev/play-L205Q7Nh.js               4.29 kB │ gzip:   1.99 kB
+dist/assets/slidev/NoteDisplay-DT5MTGfu.js        6.02 kB │ gzip:   2.63 kB
+dist/assets/slidev/overview-B68OmgID.js           9.27 kB │ gzip:   4.02 kB
+dist/assets/slidev/presenter-CKHeeEvi.js         10.30 kB │ gzip:   3.97 kB
+dist/assets/WorkbenchPage-Dpg8Kikn.js            13.35 kB │ gzip:   5.55 kB
+dist/assets/useDrawings-BnFMerLs.js              20.49 kB │ gzip:   7.07 kB
+dist/assets/slidev/SlideWrapper-_WFcT6z1.js      38.05 kB │ gzip:  12.22 kB
+dist/assets/slidev/shortcuts-0nyMOizY.js         65.97 kB │ gzip:  23.26 kB
+dist/assets/modules/vue-UoSe8YZ5.js              79.82 kB │ gzip:  29.64 kB
+dist/assets/index-BEm5TZ9y.js                   139.50 kB │ gzip:  46.46 kB
+dist/assets/modules/shiki-Dj5E7glx.js           223.91 kB │ gzip:  79.46 kB
+dist/assets/md-C6b0J-zl.js                      487.58 kB │ gzip: 122.57 kB
+
+✓ built in 906ms
+STDERR:
+(node:47366) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+EXIT: 0
+
+BROWSER_QA_CORRECTED COMMAND: ["npm", "run", "test:slides"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 test:slides
+> node qa-show.mjs
+
+Page 1 (default): PASS
+Page 2 (default): PASS
+Page 2 (expert-e): PASS
+Page 3 (default): PASS
+Page 4 (default): PASS
+Page 5 (default): PASS
+Page 6 (default): PASS
+Page 7 (default): PASS
+Page 8 (default): PASS
+Page 9 (default): PASS
+Page 10 (default): PASS
+Page 11 (default): PASS
+Page 12 (default): PASS
+Page 13 (default): PASS
+Page 13 (ssim): PASS
+Page 14 (default): PASS
+Page 14 (ppsd-ssim): PASS
+Page 15 (default): PASS
+Page 15 (expert-e): PASS
+Page 16 (default): PASS
+Page 16 (correct): PASS
+Page 17 (default): PASS
+Page 17 (correct): PASS
+Page 18 (default): PASS
+Page 18 (memory): PASS
+Page 19 (default): PASS
+Page 20 (default): PASS
+Page 21 (default): PASS
+Page 21 (team): PASS
+Page 22 (default): PASS
+Page 23 (default): PASS
+Page 24 (default): PASS
+Page 25 (default): PASS
+Page 26 (default): PASS
+Page 27 (default): PASS
+Page 28 (default): PASS
+Page 28 (source): PASS
+Page 29 (default): PASS
+Page 29 (training): PASS
+Page 30 (default): PASS
+Page 30 (angular-counts): PASS
+Page 30 (condition-b): PASS
+Page 31 (default): PASS
+Page 31 (report): PASS
+Page 32 (default): PASS
+Page 33 (default): PASS
+Page 34 (default): PASS
+Page 35 (default): PASS
+Page 35 (ranking): PASS
+Page 36 (default): PASS
+Page 36 (direction-grid): PASS
+Page 13 (scaled-viewport): PASS
+RESULT: 36 pages, 55 states, 0 problems
+STDERR:
+EXIT: 0
+
+PDF_EXPORT COMMAND: ["npm", "run", "export", "--", "--output", "exports/Flow5-Component-Library.pdf", "--wait", "700"]
+STDOUT:
+
+> flow5-final-presentation-components@0.1.0 export
+> slidev export --format pdf --output exports/Flow5-Component-Library.pdf --wait 700
+
+[Slidev] Try the new browser exporter!
+You can use the browser exporter instead by starting the dev server as normal and visit localhost:<port>/export
+
+10:13:05 PM [vite] (client) Re-optimizing dependencies because lockfile has changed
+
+
+  ●■▲
+  Slidev  v52.19.1 
+
+  theme       @slidev/theme-default
+  css engine  unocss
+  entry       /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/slides.md
+10:13:07 PM [vite] (client) dependency optimized: three
+10:13:07 PM [vite] (client) optimized dependencies changed. reloading
+  ✓ exported to ./exports/Flow5-Component-Library.pdf
+
+STDERR:
+(node:47643) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+EXIT: 0
+
+ORIGINAL_STATUS COMMAND: ["git", "status", "--porcelain"]
+CWD: /Users/gedwen/Documents/programing/personal/study/notes/2026/S2C/SOFT3888/assignments/capstone-demo-ppt
+STDOUT:
+STDERR:
+EXIT: 0
+
+MODIFIED COMMAND: ["python3", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/probe.py", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5
+STDOUT:
+{"components": 37, "language": "en", "obsolete_components": [], "slides": 36, "structured_evidence": true, "topics": 25}
+STDERR:
+EXIT: 0
+
+FINALIZATION_ERROR: python3 finalize-transaction.py exited 1. TypeError: extractall() got an unexpected keyword argument filter. The available Python is older than the tarfile filter argument; correction validates archive member paths/types explicitly before extraction.
+
+ORIGINAL_STATUS COMMAND: ["git", "status", "--porcelain"]
+CWD: /Users/gedwen/Documents/programing/personal/study/notes/2026/S2C/SOFT3888/assignments/capstone-demo-ppt
+STDOUT:
+STDERR:
+EXIT: 0
+
+MODIFIED COMMAND: ["python3", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/probe.py", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5
+STDOUT:
+{"components": 37, "language": "en", "obsolete_components": [], "slides": 36, "structured_evidence": true, "topics": 25}
+STDERR:
+EXIT: 0
+
+PATCH_INIT COMMAND: ["git", "init", "-q", "-b", "transaction"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/patch-construction
+STDOUT:
+STDERR:
+EXIT: 0
+
+PATCH_BASELINE_INDEX COMMAND: ["git", "add", "-A"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/patch-construction
+STDOUT:
+STDERR:
+EXIT: 0
+
+PATCH_BASELINE_TREE COMMAND: ["git", "write-tree"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/patch-construction
+STDOUT:
+46d98043ff4bf3f36e8cdcbe5e37ac9eb9e81c29
+STDERR:
+EXIT: 0
+
+PATCH_MODIFIED_INDEX COMMAND: ["git", "add", "-A"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/patch-construction
+STDOUT:
+STDERR:
+EXIT: 0
+
+PATCH_STAT COMMAND: ["git", "diff", "--cached", "--stat", "46d98043ff4bf3f36e8cdcbe5e37ac9eb9e81c29"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/patch-construction
+STDOUT:
+ DESIGN.md                                          |   7 +
+ PRODUCT.md                                         |  39 -
+ README.md                                          |  34 +
+ components/AblationBars.vue                        |  47 -
+ components/AblationExperiment.vue                  |  17 -
+ components/AchievementLessons.vue                  |   1 +
+ components/AchievementSummary.vue                  |  25 -
+ components/Act.vue                                 |  15 -
+ components/ArchFlow.vue                            |  42 -
+ components/ArchitectureEvolution.vue               |   8 +
+ components/AttentionWorkbench.vue                  |  30 -
+ components/BaselineComparison.vue                  |   8 +
+ components/BoundaryWorkbench.vue                   |  87 --
+ components/CandidateClusterWorkbench.vue           |  31 -
+ components/CandidateCoverage.vue                   |   6 +
+ components/CandidateSelection.vue                  |   6 +
+ components/ChallengeResolution.vue                 |   2 +
+ components/ChangeMaps.vue                          |   7 -
+ components/ConditionalFlow.vue                     |   6 +
+ components/ConditioningAblation.vue                |   7 +
+ components/ContributionEvidence.vue                |   2 +
+ components/Counter.vue                             |  32 -
+ components/DatasetProtocol.vue                     |   3 +
+ components/DecisionMechanism.vue                   |  31 -
+ components/DeckFooter.vue                          |   6 -
+ components/DesignTradeoffs.vue                     |   2 +
+ components/DirectionMagnitudeGrid.vue              |  47 -
+ components/EditEncoding.vue                        |  28 -
+ components/EvaluationMetrics.vue                   |   1 +
+ components/EvidenceAudit.vue                       |   6 +
+ components/EvidencePlate.vue                       |  11 -
+ components/EvolutionTimeline.vue                   |  65 --
+ components/ExpertStudy.vue                         |  15 -
+ components/FeedbackCycle.vue                       |   7 +
+ components/FlowSamplingWorkbench.vue               |  29 -
+ components/HistoryDependence.vue                   |  25 -
+ components/HistoryRetrieval.vue                    |  30 -
+ components/ImageComparison.vue                     |  26 -
+ components/ImprovementPriorities.vue               |   2 +
+ components/LUTAssembly.vue                         |   6 +
+ components/LUTBasisAssembly.vue                    |  47 -
+ components/LatentGeometry.vue                      |   5 +
+ components/LearningMechanism.vue                   |  19 -
+ components/MetricBars.vue                          |  65 --
+ components/MetricChart.vue                         |  27 -
+ components/MetricEvidenceCard.vue                  |  22 -
+ components/ModelEvidenceGallery.vue                |   6 +
+ components/MotivationStat.vue                      |  54 --
+ components/NextStepMechanism.vue                   |  59 --
+ components/PairingDiagnostic.vue                   |   2 +
+ components/PartialEdit.vue                         |  25 -
+ components/PlaybackControls.vue                    |  14 -
+ components/PreferenceDefinition.vue                |  52 --
+ components/PreferenceDistribution.vue              | 132 +++
+ components/PreferenceMemory.vue                    |  95 --
+ components/PreferenceSphere.vue                    | 604 -------------
+ components/ProjectCover.vue                        |  11 +
+ components/QualityObjectives.vue                   |   4 +
+ components/QuantitativeResults.vue                 |  12 +
+ components/ReconstructionEvidence.vue              |   2 +
+ components/ReconstructionStrip.vue                 |  46 -
+ components/RenderMechanism.vue                     |  39 -
+ components/RequirementMap.vue                      |   6 +
+ components/ResearchConclusion.vue                  |   1 +
+ components/ResearchOutcomes.vue                    |   2 +
+ components/ResearchProblem.vue                     |  11 +
+ components/ResultsGallery.vue                      |  11 -
+ components/RetouchingEncoder.vue                   |   6 +
+ components/RuntimeBenchmark.vue                    |   7 +
+ components/Scene.vue                               |  26 -
+ components/SequenceControls.vue                    |  13 +
+ components/SystemArchitecture.vue                  |   6 +
+ components/TechnologyChoices.vue                   |   1 +
+ components/Terminal.vue                            |  16 -
+ components/TestingStrategy.vue                     |   2 +
+ components/TransformerConditionWorkbench.vue       |  31 -
+ components/TransformerConditioning.vue             |   6 +
+ components/Type.vue                                |  10 -
+ components/UserAcceptance.vue                      |   4 +
+ components/Workbench.vue                           |  23 -
+ components/WorkbenchPage.vue                       |  16 +
+ components/engine.js                               | 105 ---
+ components/props.js                                |  89 --
+ composables/usePresentationPlayback.js             |  59 --
+ composables/useSequence.js                         |  33 +
+ data/component-index.json                          | 254 ++++++
+ data/history-examples.js                           |   7 -
+ data/model-artifacts.json                          |  15 +
+ data/report-evidence.json                          | 663 ++++++++++++++
+ docs/ACHIEVEMENTS.md                               |  27 +
+ ...19-preference-enhancement-engine-deck-design.md | 267 ------
+ evidence/fivek-specimen.json                       | 209 -----
+ evidence/group-originals.json                      |  39 -
+ evidence/manuscript-section-titles.json            |  16 -
+ evidence/next-step-schematics.json                 |  29 -
+ evidence/tensor-flow.json                          | 237 -----
+ package-lock.json                                  |   4 +-
+ package.json                                       |  11 +-
+ public/assets/architecture.jpg                     | Bin 139859 -> 0 bytes
+ public/assets/books.jpg                            | Bin 234506 -> 0 bytes
+ public/assets/dog.jpg                              | Bin 207653 -> 0 bytes
+ public/assets/engine/act-0.png                     | Bin 189029 -> 0 bytes
+ public/assets/engine/act-12.png                    | Bin 242423 -> 0 bytes
+ public/assets/engine/act-2.png                     | Bin 189029 -> 0 bytes
+ public/assets/evidence/books-brightness.png        | Bin 107052 -> 0 bytes
+ public/assets/evidence/books-original.png          | Bin 86113 -> 0 bytes
+ public/assets/evidence/books-output.png            | Bin 85525 -> 0 bytes
+ public/assets/evidence/books-ref1-expert.png       | Bin 109612 -> 0 bytes
+ public/assets/evidence/books-ref1-original.png     | Bin 95216 -> 0 bytes
+ public/assets/evidence/books-ref1-query.png        | Bin 98218 -> 0 bytes
+ public/assets/evidence/books-ref2-expert.png       | Bin 104546 -> 0 bytes
+ public/assets/evidence/books-ref2-original.png     | Bin 90643 -> 0 bytes
+ public/assets/evidence/books-ref2-query.png        | Bin 99718 -> 0 bytes
+ public/assets/evidence/books-ref3-expert.png       | Bin 65823 -> 0 bytes
+ public/assets/evidence/books-ref3-original.png     | Bin 63117 -> 0 bytes
+ public/assets/evidence/books-ref3-query.png        | Bin 91190 -> 0 bytes
+ public/assets/evidence/books-saturation.png        | Bin 90706 -> 0 bytes
+ public/assets/evidence/books-target.png            | Bin 93886 -> 0 bytes
+ public/assets/evidence/books-warmth.png            | Bin 48992 -> 0 bytes
+ public/assets/evidence/dog-brightness.png          | Bin 67695 -> 0 bytes
+ public/assets/evidence/dog-original.png            | Bin 68362 -> 0 bytes
+ public/assets/evidence/dog-output.png              | Bin 65492 -> 0 bytes
+ public/assets/evidence/dog-ref1-expert.png         | Bin 126789 -> 0 bytes
+ public/assets/evidence/dog-ref1-original.png       | Bin 130464 -> 0 bytes
+ public/assets/evidence/dog-ref1-query.png          | Bin 67312 -> 0 bytes
+ public/assets/evidence/dog-ref2-expert.png         | Bin 135339 -> 0 bytes
+ public/assets/evidence/dog-ref2-original.png       | Bin 131471 -> 0 bytes
+ public/assets/evidence/dog-ref2-query.png          | Bin 67938 -> 0 bytes
+ public/assets/evidence/dog-ref3-expert.png         | Bin 87997 -> 0 bytes
+ public/assets/evidence/dog-ref3-original.png       | Bin 90603 -> 0 bytes
+ public/assets/evidence/dog-ref3-query.png          | Bin 68944 -> 0 bytes
+ public/assets/evidence/dog-saturation.png          | Bin 59980 -> 0 bytes
+ public/assets/evidence/dog-target.png              | Bin 59854 -> 0 bytes
+ public/assets/evidence/dog-warmth.png              | Bin 32063 -> 0 bytes
+ public/assets/evidence/flowers-brightness.png      | Bin 103527 -> 0 bytes
+ public/assets/evidence/flowers-original.png        | Bin 119755 -> 0 bytes
+ public/assets/evidence/flowers-output.png          | Bin 117060 -> 0 bytes
+ .../evidence/flowers-recorded-brightness.png       | Bin 89628 -> 0 bytes
+ .../evidence/flowers-recorded-saturation.png       | Bin 113856 -> 0 bytes
+ public/assets/evidence/flowers-recorded-warmth.png | Bin 87999 -> 0 bytes
+ public/assets/evidence/flowers-ref1-expert.png     | Bin 95820 -> 0 bytes
+ public/assets/evidence/flowers-ref1-original.png   | Bin 94488 -> 0 bytes
+ public/assets/evidence/flowers-ref1-query.png      | Bin 119637 -> 0 bytes
+ public/assets/evidence/flowers-ref2-expert.png     | Bin 88567 -> 0 bytes
+ public/assets/evidence/flowers-ref2-original.png   | Bin 93165 -> 0 bytes
+ public/assets/evidence/flowers-ref2-query.png      | Bin 125098 -> 0 bytes
+ public/assets/evidence/flowers-ref3-expert.png     | Bin 70408 -> 0 bytes
+ public/assets/evidence/flowers-ref3-original.png   | Bin 79719 -> 0 bytes
+ public/assets/evidence/flowers-ref3-query.png      | Bin 120039 -> 0 bytes
+ public/assets/evidence/flowers-saturation.png      | Bin 127821 -> 0 bytes
+ public/assets/evidence/flowers-target.png          | Bin 107362 -> 0 bytes
+ public/assets/evidence/flowers-warmth.png          | Bin 101888 -> 0 bytes
+ public/assets/fivek/cnn-cool.png                   | Bin 125500 -> 0 bytes
+ public/assets/fivek/cnn-input.png                  | Bin 128426 -> 0 bytes
+ public/assets/fivek/cnn-reference.png              | Bin 129172 -> 0 bytes
+ public/assets/fivek/cnn-warm.png                   | Bin 125777 -> 0 bytes
+ public/assets/fivek/cnn-zero.png                   | Bin 127814 -> 0 bytes
+ public/assets/fivek/expert-A-luminance.png         | Bin 84536 -> 0 bytes
+ public/assets/fivek/expert-A-rgb-delta.png         | Bin 99274 -> 0 bytes
+ public/assets/fivek/expert-A-saturation.png        | Bin 100418 -> 0 bytes
+ public/assets/fivek/expert-A-warmth.png            | Bin 69164 -> 0 bytes
+ public/assets/fivek/expert-B-luminance.png         | Bin 91833 -> 0 bytes
+ public/assets/fivek/expert-B-saturation.png        | Bin 97686 -> 0 bytes
+ public/assets/fivek/expert-B-warmth.png            | Bin 81902 -> 0 bytes
+ public/assets/fivek/expert-C-luminance.png         | Bin 89987 -> 0 bytes
+ public/assets/fivek/expert-C-saturation.png        | Bin 88560 -> 0 bytes
+ public/assets/fivek/expert-C-warmth.png            | Bin 67428 -> 0 bytes
+ public/assets/fivek/expert-D-luminance.png         | Bin 85881 -> 0 bytes
+ public/assets/fivek/expert-D-saturation.png        | Bin 98214 -> 0 bytes
+ public/assets/fivek/expert-D-warmth.png            | Bin 64881 -> 0 bytes
+ public/assets/fivek/expert-E-luminance.png         | Bin 87676 -> 0 bytes
+ public/assets/fivek/expert-E-saturation.png        | Bin 105652 -> 0 bytes
+ public/assets/fivek/expert-E-warmth.png            | Bin 65931 -> 0 bytes
+ public/assets/fivek/group-original-0406.png        | Bin 255039 -> 0 bytes
+ public/assets/fivek/group-original-0426.png        | Bin 308071 -> 0 bytes
+ public/assets/fivek/group-original-0490.png        | Bin 317304 -> 0 bytes
+ public/assets/fivek/pair-difference.png            | Bin 0 -> 267145 bytes
+ public/assets/fivek/specimen.json                  | 209 -----
+ public/assets/flowers.jpg                          | Bin 266532 -> 0 bytes
+ public/assets/next-step/expert-target.png          | Bin 142418 -> 0 bytes
+ public/assets/next-step/illustrative-mask.png      | Bin 357 -> 0 bytes
+ public/assets/next-step/partial-clue.png           | Bin 130554 -> 0 bytes
+ public/assets/next-step/specified-edit.png         | Bin 164045 -> 0 bytes
+ public/assets/next-step/zero-difference-x4.png     | Bin 53941 -> 0 bytes
+ public/assets/reported-comparison.png              | Bin 476324 -> 0 bytes
+ public/assets/sphere/sphere-data.json              |   1 -
+ public/assets/web-demo.jpg                         | Bin 62569 -> 0 bytes
+ public/downloads/Evidence-Companion-v4.pdf         | Bin 4071780 -> 0 bytes
+ public/downloads/Evidence-Companion-v5.pdf         | Bin 4072163 -> 0 bytes
+ public/downloads/Evidence-Companion-v6.pdf         | Bin 4073280 -> 0 bytes
+ public/downloads/Evidence-Companion-v8.pdf         | Bin 4053146 -> 0 bytes
+ public/evidence.html                               |  90 --
+ public/evidence/ACHIEVEMENTS.md                    |  27 +
+ public/evidence/fivek-example.json                 |  66 ++
+ {evidence => public/evidence}/history-pairs.json   |   0
+ public/evidence/index.html                         |   1 +
+ public/evidence/model-artifacts.json               |  15 +
+ public/evidence/phase2_diag.txt                    | 166 ++++
+ public/evidence/report-evidence.json               | 663 ++++++++++++++
+ public/evidence/source-manifest.json               |  51 ++
+ public/figures/conditioning-ablations.pdf          | Bin 0 -> 14761 bytes
+ public/figures/conditioning-ablations.png          | Bin 0 -> 109820 bytes
+ public/figures/conditioning-ablations.svg          | 246 +++++
+ public/figures/decoder-robustness.pdf              | Bin 0 -> 15369 bytes
+ public/figures/decoder-robustness.png              | Bin 0 -> 143235 bytes
+ public/figures/decoder-robustness.svg              | 322 +++++++
+ public/figures/fivek-psnr.pdf                      | Bin 0 -> 16680 bytes
+ public/figures/fivek-psnr.png                      | Bin 0 -> 153633 bytes
+ public/figures/fivek-psnr.svg                      | 411 +++++++++
+ public/figures/fivek-ssim.pdf                      | Bin 0 -> 16642 bytes
+ public/figures/fivek-ssim.png                      | Bin 0 -> 162860 bytes
+ public/figures/fivek-ssim.svg                      | 396 ++++++++
+ public/figures/inference-benchmark.pdf             | Bin 0 -> 19190 bytes
+ public/figures/inference-benchmark.png             | Bin 0 -> 226976 bytes
+ public/figures/inference-benchmark.svg             | 991 +++++++++++++++++++++
+ public/figures/ppsd-comparison.pdf                 | Bin 0 -> 17117 bytes
+ public/figures/ppsd-comparison.png                 | Bin 0 -> 164694 bytes
+ public/figures/ppsd-comparison.svg                 | 681 ++++++++++++++
+ qa-show.mjs                                        | 161 ++--
+ scripts/create-next-step-assets.py                 |  42 -
+ scripts/export-motion.mjs                          |  97 --
+ scripts/make-figures.py                            |  65 ++
+ scripts/make-synthetic-sphere.py                   | 136 ---
+ scripts/prepare-history-pairs.py                   |  80 --
+ scripts/qa-motion.mjs                              | 181 ----
+ scripts/sync-evidence.mjs                          |   5 +
+ scripts/validate-evidence.mjs                      |  73 ++
+ slides.md                                          | 473 +++++-----
+ styles/index.css                                   |   2 +-
+ styles/show.css                                    | 597 -------------
+ styles/workbench.css                               |  12 +
+ 231 files changed, 5888 insertions(+), 4775 deletions(-)
+STDERR:
+EXIT: 0
+
+ROLLBACK_EXECUTION COMMAND: ["/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/ROLLBACK.sh", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5
+STDOUT:
+Restored pristine source files to /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy
+STDERR:
+EXIT: 0
+
+ROLLBACK COMMAND: ["python3", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/probe.py", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5
+STDOUT:
+{"components": 41, "language": "unrecorded", "obsolete_components": ["BoundaryWorkbench", "DecisionMechanism", "HistoryRetrieval", "PartialEdit", "PreferenceMemory", "RenderMechanism"], "slides": 42, "structured_evidence": false, "topics": 0}
+STDERR:
+EXIT: 0
+
+PATCH_CHECK_INIT COMMAND: ["git", "init", "-q", "-b", "verification"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy
+STDOUT:
+STDERR:
+EXIT: 0
+
+PATCH_REAPPLY_CHECK COMMAND: ["git", "apply", "--check", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy
+STDOUT:
+STDERR:
+EXIT: 0
+
+PATCH_REAPPLY COMMAND: ["git", "apply", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch"]
+CWD: /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy
+STDOUT:
+STDERR:
+/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch:513685: trailing whitespace.
+==============================================================================
+/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch:513686: trailing whitespace.
+PHASE2 DIAGNOSTICS
+/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch:513687: trailing whitespace.
+==============================================================================
+/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch:513688: trailing whitespace.
+
+Cache z: 0batch [00:00, ?batch/s]
+Cache z: 0batch [00:00, ?batch/s]
+/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch:513689: trailing whitespace.
+z_cache=0d19b237bd7b5092 generated=0 reused=9995
+warning: squelched 715 whitespace errors
+warning: 720 lines add whitespace errors.
+EXIT: 0
+
+FINAL OBSERVED TRANSITIONS
+BASELINE: 42 pages; 41 components; obsolete active components present; no structured report evidence.
+MODIFIED: {"components": 37, "language": "en", "obsolete_components": [], "slides": 36, "structured_evidence": true, "topics": 25}
+ROLLBACK: {"components": 41, "language": "unrecorded", "obsolete_components": ["BoundaryWorkbench", "DecisionMechanism", "HistoryRetrieval", "PartialEdit", "PreferenceMemory", "RenderMechanism"], "slides": 42, "structured_evidence": false, "topics": 0}
+RESTORED_BASELINE_TREE_SHA256: 1a99ff20ab23cdbb2006edeb93c3c95b8e1e3d577e7962c1dbf6e32b761497a1
+ORIGINAL_TREE_SHA256: 1a99ff20ab23cdbb2006edeb93c3c95b8e1e3d577e7962c1dbf6e32b761497a1
+MODIFIED_TREE_SHA256: 7df9f37ca983f1e4823f02de8c7100d69f89a2b92ec9b5a52da34439593d5027
+Restored hash equals original: true. Patch reconstruction equals modified: true. Original tracked files remain unchanged: true.
+Changed fields: slides.md component composition; components/*.vue; data/report-evidence.json language=en and 25-topic index; evidence provenance; validation and figure exports.
+Validation: npm run build and npm run test:data succeeded; Chromium tested 36 pages and 55 states with 0 problems. Static figure exports: six sets, each SVG/PNG/PDF.
+
+PDF_VERIFICATION: initial fitz import exited 1 (ModuleNotFoundError). Corrected to installed Poppler pdfinfo / pdftotext / pdftoppm; all commands exited 0.
+{
+  "pdf": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree/exports/Flow5-Component-Library.pdf",
+  "pages": 36,
+  "bytes": 2246903,
+  "sha256": "8caab050ed31423f82c7786eeaf034448710f821837a869d5f3b2fc247517743",
+  "english_text": true,
+  "metadata": "Title:           Personalized Image Retouching \u2014 Final Presentation Components\nSubject:         English component library for the SOFT3888 final report and 25-topic presentation outline.\nAuthor:          SOFT3888_TH18_04\nCreator:         Chromium\nProducer:        pdf-lib (https://github.com/Hopding/pdf-lib)\nCreationDate:    Sun Oct 18 22:13:09 2026 AEDT\nModDate:         Sun Oct 18 22:13:09 2026 AEDT\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           36\nEncrypted:       no\nPage size:       960 x 540 pts\nPage rot:        0\nFile size:       2246903 bytes\nOptimized:       no\nPDF version:     1.7\n"
+}
+
+FINAL_ROLLBACK COMMAND: ["/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/ROLLBACK.sh", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy"]
+STDOUT:
+Restored pristine source files to /Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy
+STDERR:
+EXIT: 0
+FINAL_ROLLBACK_CHECK COMMAND: ["python3", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/probe.py", "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/rollback-copy"]
+STDOUT:
+{"components": 41, "language": "unrecorded", "obsolete_components": ["BoundaryWorkbench", "DecisionMechanism", "HistoryRetrieval", "PartialEdit", "PreferenceMemory", "RenderMechanism"], "slides": 42, "structured_evidence": false, "topics": 0}
+STDERR:
+EXIT: 0
+Restored manifest equals original: true
+ORIGINAL_PATH_GUARD COMMAND: ["/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/ROLLBACK.sh", "/Users/gedwen/Documents/programing/personal/study/notes/2026/S2C/SOFT3888/assignments/capstone-demo-ppt"]
+STDOUT:
+STDERR:
+Refusing to overwrite the original project or a protected directory.
+EXIT: 2 (expected rejection)
+PDF visual review: pages 13, 20 and 30 rendered and inspected. Chart, client-feedback sequence and WebGL distribution are present.

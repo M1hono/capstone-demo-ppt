@@ -1,0 +1,25 @@
+{
+  "ACTIVE_OBJECT": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/worktree",
+  "ORIGINAL_TARGET": "/Users/gedwen/Documents/programing/personal/study/notes/2026/S2C/SOFT3888/assignments/capstone-demo-ppt",
+  "STATUS": "complete-local",
+  "LAST_CONFIRMED_RESULT": "36 English pages; all 25 topics; 55 Chromium states pass; 36-page PDF verified; six report figure sets; original source preserved and rollback hash verified.",
+  "NEXT_EXECUTABLE_ACTION": null,
+  "INPUT_PATHS": [
+    "User-supplied final report",
+    "306a59b381c61b664cf5cca9c6374870.png",
+    "Audited flow5 source 9d85b9b"
+  ],
+  "ACCEPTANCE_EVENT": "Built, browser-tested, exported, patch-reconstructed and rollback-verified artifacts.",
+  "ROLE_PATHS": {
+    "MODIFIED_FILE": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/MODIFIED_FILE.zip",
+    "DIFF_FILE": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/DIFF_FILE.patch",
+    "VERIFICATION": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/VERIFICATION.txt",
+    "ROLLBACK": "/Users/gedwen/Documents/programing/personal/study/output/capstone-flow5-52qsr7n5/ROLLBACK.sh"
+  },
+  "PREVIEW": "http://127.0.0.1:18341/",
+  "LIMITATIONS": [
+    "No final model checkpoints/output images supplied",
+    "Final held-out experimental protocol not independently verified",
+    "No new remote publication performed"
+  ]
+}
