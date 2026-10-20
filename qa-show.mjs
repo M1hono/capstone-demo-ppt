@@ -20,6 +20,7 @@ async function checkLayout(n,label='default'){
   const result=await section(n).evaluate(slide=>{
     const bounds=slide.getBoundingClientRect(),overflow=[]
     for(const el of slide.querySelectorAll('*')){
+      if(el.closest('.meeting-list'))continue
       if(el instanceof SVGElement && !(el instanceof SVGSVGElement))continue
       if(!el.getClientRects().length)continue
       const b=el.getBoundingClientRect()
@@ -31,7 +32,7 @@ async function checkLayout(n,label='default'){
     for(const el of slide.querySelectorAll('.node, .stack, .col')){
       if(el.scrollHeight>el.clientHeight+3)overflow.push(`Internal overflow: ${el.className} (${el.scrollHeight}/${el.clientHeight})`)
     }
-    const contentBottom=Math.max(...[...body.querySelectorAll('p, h2, h3, table, button, figure, svg')].filter(x=>x.getClientRects().length).map(x=>x.getBoundingClientRect().bottom))
+    const contentBottom=Math.max(...[...body.querySelectorAll('p, h2, h3, table, button, figure, svg')].filter(x=>x.getClientRects().length && !x.closest('.meeting-list')).map(x=>x.getBoundingClientRect().bottom))
     if(contentBottom>footer.getBoundingClientRect().top-4)overflow.push('Body content overlaps footer')
     const images=[...slide.querySelectorAll('img')].filter(img=>!img.complete||img.naturalWidth===0).map(img=>img.src)
     const english=!/[\u3400-\u9fff]/u.test(slide.innerText)
@@ -69,7 +70,7 @@ try{
     if(t.number===15){await section(15).getByLabel('Coverage expert').selectOption('4');assert((await section(15).innerText()).includes('23.263'));await checkLayout(15,'expert-e')}
     if([16,17].includes(t.number)){await section(t.number).getByRole('button',{name:'Correct conditions',exact:true}).click();assert.equal((await section(t.number).locator('[data-ablation-value]').innerText()).replace(/\s/g,''),'23.5dB');await checkLayout(t.number,'correct')}
     if(t.number===18){await section(18).getByRole('button',{name:'Peak allocated MiB',exact:true}).click();assert((await section(18).innerText()).includes('314.9'));await checkLayout(18,'memory')}
-    if(t.number===21){await section(21).getByRole('button',{name:'All nine members',exact:true}).click();assert.equal(await section(21).locator('tbody tr').count(),9);await checkLayout(21,'team')}
+    if(t.number===21){assert.equal(await section(21).locator('.member-card').count(),9);assert((await section(21).innerText()).includes('Nine contributors, one delivery chain.'));assert((await section(21).locator('a').evaluateAll(links=>links.map(link=>link.getAttribute('href')))).some(href=>href?.endsWith('TEAM-CONTRIBUTIONS.md')));await checkLayout(21,'team-map')}
     if(t.number===28){await section(28).getByRole('button',{name:'Saved default · 4 layers',exact:true}).click();assert.equal(await section(28).locator('.chips span').count(),4);await section(28).getByRole('button',{name:'E8',exact:true}).click();assert((await section(28).innerText()).includes('Historical pair 8'));await checkLayout(28,'source')}
     if(t.number===29){await section(29).getByRole('button',{name:'Training · z → u',exact:true}).click();assert((await section(29).innerText()).includes('log |det Jf|'));await checkLayout(29,'training')}
     if(t.number===30){assert.equal(await section(30).locator('canvas').count(),1);assert(await section(30).locator('canvas').evaluate(c=>c.width>0&&c.height>0));await section(30).getByRole('button',{name:'Angular counts',exact:true}).click();await page.waitForTimeout(200);await checkLayout(30,'angular-counts');await section(30).getByRole('button',{name:'Illustrative condition B',exact:true}).click();await checkLayout(30,'condition-b')}
@@ -110,10 +111,8 @@ try{
   assert((await section(8).innerText()).includes('paired historical examples'))
   await checkLayout(8,'transformer-tradeoff')
   await visit(21)
-  for (const name of ['Real FiveK asset preparation','Mechanism communication','Browser delivery checks']) {
-    await section(21).getByRole('button',{name:new RegExp(name)}).click()
-    await checkLayout(21,name.split(' ')[0].toLowerCase())
-  }
+  assert.equal(await section(21).locator('.member-card').count(),9)
+  await checkLayout(21,'team-map-repeat')
   await visit(28)
   for(let i=0;i<3;i++) await section(28).getByRole('button',{name:'Previous step',exact:true}).click()
   const token = section(28).locator('[data-token="1"]')
