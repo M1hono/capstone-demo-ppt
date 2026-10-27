@@ -1,71 +1,23 @@
 <script setup>
-import { computed, ref } from 'vue'
 import { useSequence } from '../composables/useSequence'
-const training = ref(false)
-const sequence = useSequence(['Start in the input space', 'Apply the invertible map', 'Account for changes in volume', 'Read the result'])
-const samples = Array.from({ length:256 }, (_, i) => {
-  const radius = Math.sqrt(-2 * Math.log((i + 0.5) / 256))
-  const angle = i * 2.3999632297
-  return { x:radius * Math.cos(angle), y:radius * Math.sin(angle) }
-})
-function warp(p) { return { x:p.x + 1.45 * Math.tanh(p.x * 2), y:0.7 * p.y + 0.3 * Math.sin(p.x * 1.4) } }
-function origin(p) { return { x:170 + p.x * 38, y:171 - p.y * 38 } }
-function target(p) { const z = warp(p); return { x:666 + z.x * 31, y:171 - z.y * 48 } }
-const progress = computed(() => [0, 0.33, 0.7, 1][sequence.step.value])
-function position(p) {
-  const a = training.value ? target(p) : origin(p)
-  const b = training.value ? origin(p) : target(p)
-  return { x:a.x + (b.x - a.x) * progress.value, y:a.y + (b.y - a.y) * progress.value }
-}
-function ring(radius, warped = false) {
-  return Array.from({ length:97 }, (_, i) => {
-    const angle = i / 96 * Math.PI * 2
-    const p = { x:Math.cos(angle) * radius, y:Math.sin(angle) * radius }
-    const q = warped ? target(p) : origin(p)
-    return `${q.x},${q.y}`
-  }).join(' ')
-}
-const explanation = computed(() => training.value ? [
-  'Start with the target edit vector z and the condition c produced by the image and history.',
-  'Map z into the base space through the conditional invertible transformation f.',
-  'The Jacobian corrects for local stretching or compression of the retouching space.',
-  'Maximise the conditional log-likelihood of the observed target edits.'
-][sequence.step.value] : [
-  'Draw 256 samples from a standard Gaussian. The same condition c is shared by all samples.',
-  'Apply the inverse flow to each sample; the map can stretch and bend the base distribution.',
-  'Different local volume changes produce different densities in the retouching space.',
-  'Each resulting z is a possible edit vector. Candidate selection follows this sampling step.'
-][sequence.step.value])
+const sequence=useSequence(['Training map','Likelihood objective','Conditional sampling','Cluster and rank'],{animate:true,intervalMs:2400})
+const active=i=>!sequence.complete.value && sequence.step.value===i
+const samples=Array.from({length:60},(_,i)=>({x:50+Math.sin(i*2.4)*(5+i%36),y:42+Math.cos(i*1.9)*(4+i%27)}))
 </script>
 <template>
-  <div class="stack conditional-flow">
-    <div class="row spread"><div class="tabs"><button :aria-pressed="training" @click.stop="training=true">Training · z → u</button><button :aria-pressed="!training" @click.stop="training=false">Inference · u → z</button></div><span class="small muted">Same condition c · reversible mapping</span></div>
-    <div class="flow-explanation grow">
-      <svg viewBox="0 0 850 330" role="img" aria-label="Illustrative Gaussian samples move through an invertible transformation into a retouching distribution; switch direction to explain training">
-        <text x="170" y="25" text-anchor="middle" class="space-title">Gaussian base</text><text x="666" y="25" text-anchor="middle" class="space-title">Retouching space</text>
-        <g v-for="x in [170, 666]" :key="x" class="axes"><path :d="`M${x - 144} 171 H${x + 144} M${x} 47 V296`"/></g>
-        <polyline v-for="r in [1, 2, 3]" :key="'u'+r" :points="ring(r)" fill="none" stroke="var(--teal)" :style="{opacity:0.25}"/>
-        <polyline v-for="r in [1, 2, 3]" :key="'z'+r" :points="ring(r, true)" fill="none" stroke="var(--blue)" :style="{opacity:0.25}"/>
-        <g v-if="sequence.step.value > 0" class="transport-lines">
-          <path v-for="p in samples.filter((_, i) => i % 13 === 0)" :key="p.x" :d="`M${origin(p).x} ${origin(p).y} C370 ${origin(p).y} 470 ${target(p).y} ${target(p).x} ${target(p).y}`" fill="none" stroke="var(--line)" stroke-width=".8"/>
-        </g>
-        <g class="particles"><circle v-for="(p, i) in samples" :key="i" :cx="position(p).x" :cy="position(p).y" r="2.6" :fill="p.x < 0 ? 'var(--blue)' : 'var(--teal)'" :style="{opacity:0.8}" :data-flow-sample="i"/></g>
-        <text x="423" y="92" text-anchor="middle" class="map-symbol">{{training ? 'f' : 'f⁻¹'}}</text>
-        <text x="423" y="119" text-anchor="middle" class="map-label">conditioned on c</text>
-        <path :d="training ? 'M468 252 H378 M389 244 L378 252 L389 260' : 'M378 252 H468 M457 244 L468 252 L457 260'" stroke="var(--ink)" stroke-width="1.8" fill="none"/>
-        <text x="170" y="323" text-anchor="middle" class="space-formula">u ∼ N(0, I)</text><text x="666" y="323" text-anchor="middle" class="space-formula">z ∼ p(z | c)</text>
-      </svg>
-      <aside>
-        <p class="section-title">{{training ? 'Learning the density' : 'Generating alternatives'}}</p>
-        <p class="flow-formula">{{training ? 'u = f(z; c)' : 'z = f⁻¹(u; c)'}}</p>
-        <p class="readout" aria-live="polite">{{explanation}}</p>
-        <p class="source-caption">Illustrative 2D map and samples. The trained flow operates in ℝ³; no model checkpoint is being run here.</p>
-      </aside>
-    </div>
-    <div class="likelihood"><p v-if="training" class="formula">log p(z | c) = log pₙ(f(z; c)) + log |det Jf|</p><p v-else class="formula">256 Gaussian samples → 256 possible edit vectors</p><p class="small muted">{{training ? 'Base log-density + change of volume' : 'The benchmark retains five candidates after sampling and selection.'}}</p></div>
-    <SequenceControls :sequence="sequence"/>
+  <div class="stack flow-academic">
+    <div class="condition-ribbon"><strong>c</strong><b>Current image + 8 history pairs → Transformer</b><span>Shared condition · z, u ∈ ℝ³</span></div>
+    <section class="training-lane" data-flow-training><div class="lane-heading"><span>01</span><h2>Train the density</h2><p>Maximise log p(z | c)</p></div><div class="training-layout"><div class="training-map" :class="{active:active(0)}"><div class="training-node"><h3>Ground-truth z</h3><div class="vector-icon"><i/><i/><i/></div><p>Stage 1 encodes (O, T)</p></div><span class="flow-arrow">→</span><div class="training-node"><h3>Conditional Flow</h3><div class="forward-symbol">f</div><p class="math-line">u = f(z; c)</p><small>Invertible transformation</small></div><span class="flow-arrow">→</span><div class="training-node"><h3>Standard Gaussian</h3><svg viewBox="0 0 130 56" role="img" aria-label="Illustrative standard Gaussian density"><path d="M4 51 C25 51 28 6 65 6 C102 6 105 51 126 51" fill="var(--pale)" stroke="var(--ink)" stroke-width="2"/><path d="M4 51 H126" stroke="var(--muted)"/></svg><p class="math-line">u ∼ N(0, I)</p></div></div><div class="likelihood-objective" :class="{active:active(1)}"><div class="objective-title"><h3>Conditional log-likelihood</h3><b>L = −log p(z | c)</b></div><p class="density-equation">log p(z | c) = log p(u) + log |det J|</p><div class="density-definitions"><span>J = ∂f(z; c) / ∂z</span><span>log p(u) = −½‖u‖² − ³⁄₂ log(2π)</span></div><p class="backprop">↶ Backpropagation updates Flow parameters.</p></div></div></section>
+    <section class="inference-lane" data-flow-inference><div class="lane-heading"><span>02</span><h2>Generate candidates</h2><p>Reverse the map, then select representative edits</p></div><div class="inference-path">
+      <article class="inference-node" :class="{active:active(2)}"><h3>Monte Carlo</h3><svg viewBox="0 0 100 82" role="img" aria-label="Illustrative standard Gaussian samples"><circle v-for="(p,i) in samples" :key="i" :cx="p.x" :cy="p.y" r="1.8" fill="var(--muted)" data-flow-sample/></svg><p>M samples u ∼ N(0, I)</p></article><span class="flow-arrow">→</span>
+      <article class="inference-node inverse-node" :class="{active:active(2)}"><h3>Inverse Flow + c</h3><div class="inverse-symbol">f⁻¹</div><p class="math-line">z = f⁻¹(u; c)</p><small>M candidate edit vectors</small></article><span class="flow-arrow">→</span>
+      <article class="inference-node" :class="{active:active(3)}"><h3>K-means in z space</h3><svg viewBox="0 0 150 82" role="img" aria-label="Illustrative edit samples partitioned into clusters"><g v-for="j in 3" :key="j"><circle :cx="25+(j-1)*50" :cy="j%2?30:53" r="23" fill="none" stroke="var(--line)"/><circle v-for="k in 10" :key="k" :cx="25+(j-1)*50+Math.sin(k*2.3)*15" :cy="(j%2?30:53)+Math.cos(k*2)*15" r="2" :fill="j===1?'var(--ink)':'var(--purple)'"/></g></svg><p>K groups of edit vectors</p></article><span class="flow-arrow">→</span>
+      <article class="inference-node" :class="{active:active(3)}"><h3>Rank clusters</h3><div class="rank-bars"><i/><i/><i/></div><p>Mean log p(z | c)</p><small>One representative per cluster</small></article><span class="flow-arrow">→</span>
+      <article class="inference-node" :class="{active:active(3)}"><h3>Top-1 … Top-K</h3><div class="candidate-symbols"><span>z₁</span><span>z₂</span><span>…</span></div><p>LUT decoder + original O</p><small>Multiple retouched images</small></article>
+    </div></section>
+    <div class="flow-takeaway"><b>Density-ranked alternatives</b><p>No query target during generation. Best-of-K uses the target only for offline evaluation.</p></div>
   </div>
 </template>
 <style scoped>
-.conditional-flow{gap:14px}.flow-explanation{display:grid;grid-template-columns:2.35fr 1fr;gap:30px;min-height:0}.flow-explanation svg{width:100%;height:100%;min-height:0}.flow-explanation aside{display:flex;flex-direction:column;justify-content:center;gap:18px;border-left:1px solid var(--line);padding-left:24px}.flow-formula{font-size:31px;color:var(--blue);letter-spacing:-1px}.space-title{font-size:22px;fill:var(--ink)}.space-formula{font-size:20px;fill:var(--ink)}.axes path{stroke:var(--line);stroke-width:1;fill:none}.map-symbol{font-size:44px;fill:var(--blue);font-style:italic}.map-label{font-size:15px;fill:var(--muted)}.particles circle{transition:cx .8s cubic-bezier(.22,1,.36,1),cy .8s cubic-bezier(.22,1,.36,1)}.likelihood{border-top:1px solid var(--line);padding-top:12px}.likelihood .formula{font-size:22px}
+.flow-academic{gap:10px}.condition-ribbon{display:flex;align-items:center;gap:15px;min-height:35px}.condition-ribbon>strong{background:var(--signal);font:italic 27px/35px Saira;width:35px;height:35px;text-align:center}.condition-ribbon>b{font-size:20px;font-weight:500}.condition-ribbon>span{margin-left:auto;font-size:16px;color:var(--muted)}.lane-heading{display:flex;align-items:center;gap:11px;margin-bottom:13px}.lane-heading>span{font:500 19px Saira;color:var(--muted)}.lane-heading h2{font-size:24px;margin:0}.lane-heading>p{font-size:16px;color:var(--muted);margin-left:12px}.training-layout{display:grid;grid-template-columns:1.12fr 1fr;gap:24px}.training-map{display:grid;grid-template-columns:1fr 24px 1fr 24px 1.2fr;gap:9px;align-items:center;border-top:2px solid var(--line);padding:14px 0 10px;transition:border-color 250ms}.training-node{text-align:center;min-width:0}.flow-academic h3{font-size:18px;font-weight:500;margin:0 0 10px;white-space:nowrap}.training-node>p{font-size:14px;color:var(--muted)}.training-node>small{display:block;font-size:12px;color:var(--muted);margin-top:3px}.training-node svg{width:130px;height:56px;margin:auto;max-width:100%;display:block}.vector-icon{height:56px;display:flex;align-items:center;justify-content:center;gap:4px}.vector-icon i{width:20px;height:29px;border:1px solid var(--muted);background:var(--pale)}.forward-symbol{font:italic 45px/56px Saira;height:56px}.flow-academic .math-line{font-size:19px;color:var(--ink);white-space:nowrap}.flow-arrow{font-size:25px;color:var(--muted);align-self:center;text-align:center}.likelihood-objective{padding:12px 16px;background:var(--surface);border-top:2px solid var(--line);transition:border-color 250ms,background 250ms}.objective-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.objective-title h3{font-size:17px;margin:0}.objective-title>b{font:500 23px/1.1 Saira;white-space:nowrap}.density-equation{font-size:21px;white-space:nowrap}.density-definitions{display:flex;justify-content:space-between;gap:10px;font-size:13px;line-height:1.25;color:var(--muted);margin-top:8px}.backprop{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;margin-top:8px!important}.inference-lane{flex:1;display:flex;flex-direction:column;min-height:221px}.inference-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr) 22px) minmax(0,1fr);gap:8px;flex:1;min-height:177px}.inference-node{padding:12px 10px;border-top:2px solid var(--line);background:var(--surface);transition:border-color 250ms,background 250ms}.inference-node h3{font-size:18px;margin-bottom:9px}.inference-node p{font-size:15px;line-height:1.3;color:var(--muted);margin-top:7px}.inference-node>small{display:block;font-size:13px;line-height:1.3;color:var(--muted);margin-top:6px}.inference-node svg{width:100%;height:58px;display:block}.inverse-symbol{font:italic 42px/58px Saira;height:58px;text-align:center}.rank-bars{height:58px;display:flex;flex-direction:column;justify-content:center;gap:7px}.rank-bars i{display:block;background:var(--purple);height:9px}.rank-bars i:nth-child(2){width:73%}.rank-bars i:nth-child(3){width:47%}.candidate-symbols{height:58px;display:flex;gap:7px;align-items:center;justify-content:center}.candidate-symbols span{padding:6px 9px;border:1px solid var(--muted);font-size:22px}.flow-academic .active{border-top-color:var(--ink)}.likelihood-objective.active{background:#f2f0d6}.inverse-node.active{background:var(--pale)}.flow-takeaway{display:flex;align-items:center;gap:22px;border-top:1px solid var(--ink);padding-top:13px;min-height:44px}.flow-takeaway>b{font:500 22px Saira;white-space:nowrap}.flow-takeaway>p{font-size:16px;color:var(--muted)}
 </style>

@@ -2,176 +2,176 @@
   {
     "number": 1,
     "component": "ProjectCover",
-    "title": "Final demo / Project14",
+    "title": "Personalized Agent-based Image Enhancement",
     "section": "Cover",
-    "usage": "Project identity, client, tutor and group members."
+    "usage": "Hello, everyone."
   },
   {
     "number": 2,
     "component": "ResearchProblem",
-    "title": "One image, different preferences",
-    "section": "1.1, 2.2",
-    "usage": "Explain three user preferences using the supplied illustration and historical editing pairs."
+    "title": "Project background",
+    "section": "1.1",
+    "usage": "Personalized image retouching should reflect individual preferences."
   },
   {
     "number": 3,
-    "component": "ResearchOutcomes",
-    "title": "Goals and outcomes",
-    "section": "1.2\u20131.3, 3.5",
-    "usage": "Connect the distribution objective to the reported outcomes."
+    "component": "ExistingMethods",
+    "title": "Existing methods and our core idea",
+    "section": "1.1–2.2",
+    "usage": "AdaInt and RSFNet can require user- or expert-specific training."
   },
   {
     "number": 4,
-    "component": "ArchitectureEvolution",
-    "title": "How the approach evolved",
-    "section": "1.4, 2.7",
-    "usage": "Step through five research approaches and their limitations."
+    "component": "ResearchOutcomes",
+    "title": "Project goals and achievements",
+    "section": "1.2–1.3",
+    "usage": "Our three goals are automatic retouching without instructions, adaptation to unseen users without fine-tuning, and multiple editing candidates."
   },
   {
     "number": 5,
     "component": "RequirementMap",
-    "title": "Functional requirements",
+    "title": "User stories and functional requirements",
     "section": "2.1",
-    "usage": "Trace FR-01, FR-02 and FR-03 to model behaviour."
+    "usage": "FR-01 uses the current image and history for automatic enhancement."
   },
   {
     "number": 6,
-    "component": "QualityObjectives",
-    "title": "Quality targets",
-    "section": "3.7.1",
-    "usage": "Connect quality objectives to measured evidence and its limits."
+    "component": "UserAcceptance",
+    "title": "Acceptance criteria and constraints",
+    "section": "3.3",
+    "usage": "Acceptance checks map to all three requirements: predict without instructions or the query target; adapt using eight historical pairs and no weight update; and generate multiple candidates."
   },
   {
     "number": 7,
-    "component": "UserAcceptance",
-    "title": "User needs and acceptance",
-    "section": "2.1",
-    "usage": "Map each user need to an observable acceptance criterion."
+    "component": "PreferenceDensity",
+    "title": "Modelling user preferences",
+    "section": "2.2",
+    "usage": "Early image-similarity retrieval achieved approximately 30% accuracy."
   },
   {
     "number": 8,
-    "component": "DesignTradeoffs",
-    "title": "Key design decisions",
-    "section": "2.6",
-    "usage": "Explain the capacity, conditioning and sampling trade-offs."
+    "component": "SystemArchitecture",
+    "title": "Overall system architecture",
+    "section": "2.3–2.6",
+    "usage": "Stage 1 learns a low-dimensional retouching representation from original and expert-edited images."
   },
   {
     "number": 9,
-    "component": "SystemArchitecture",
-    "title": "Final system architecture",
-    "section": "2.2\u20132.5",
-    "usage": "Follow the two-stage training and inference paths."
+    "component": "RetouchingEncoder",
+    "title": "Stage 1 · Retouching encoder and decoder",
+    "section": "2.3",
+    "usage": "The encoder receives the original, target and pixel-wise difference: nine channels in total."
   },
   {
     "number": 10,
-    "component": "TestingStrategy",
-    "title": "What we tested",
-    "section": "3.1",
-    "usage": "Connect each research question to its evaluation method."
+    "component": "LatentGeometry",
+    "title": "Understanding the retouching space",
+    "section": "3.4",
+    "usage": "The retouching space is continuous and directional."
   },
   {
     "number": 11,
-    "component": "DatasetProtocol",
-    "title": "Datasets and protocol",
-    "section": "3.2",
-    "usage": "Inspect the reported image/user splits and history boundary."
+    "component": "TransformerConditioning",
+    "title": "Stage 2 · Transformer-based conditioning",
+    "section": "2.4",
+    "usage": "Eight historical pairs provide image features and edit vectors."
   },
   {
     "number": 12,
-    "component": "EvaluationMetrics",
-    "title": "What the metrics measure",
-    "section": "3.1\u20133.3",
-    "usage": "Separate image fidelity, oracle coverage and preference validity."
+    "component": "ConditionalFlow",
+    "title": "Conditional Flow and candidate generation",
+    "section": "2.5",
+    "usage": "The conditional flow learns an invertible mapping between retouching vectors and a Gaussian base."
   },
   {
     "number": 13,
-    "component": "QuantitativeResults",
-    "title": "Quantitative results",
-    "section": "3.5",
-    "usage": "Inspect every per-expert PSNR/SSIM value and the PPSD result."
+    "component": "TestingStrategy",
+    "title": "Testing strategy and quality assurance",
+    "section": "3.1–3.3",
+    "usage": "We test reconstruction, prediction quality, unseen-user generalization, conditioning ablations, candidate coverage and computational cost."
   },
   {
     "number": 14,
-    "component": "BaselineComparison",
-    "title": "Baseline comparisons",
-    "section": "3.5",
-    "usage": "Compare external results with visible protocol differences."
+    "component": "DatasetProtocol",
+    "title": "Datasets and evaluation protocol",
+    "section": "3.2",
+    "usage": "FiveK contains 5,000 originals and edits from five experts."
   },
   {
     "number": 15,
-    "component": "CandidateCoverage",
-    "title": "Top-1 vs Best-of-K",
-    "section": "3.5",
-    "usage": "Distinguish deployable ranking from offline Best-of-K coverage."
+    "component": "RequirementCoverage",
+    "title": "Test cases and requirement coverage",
+    "section": "3.3.3",
+    "usage": "The nine checks are grouped by requirement."
   },
   {
     "number": 16,
-    "component": "ConditioningAblation",
-    "title": "Wrong-history ablation",
-    "section": "3.6",
-    "usage": "Hold the query fixed and replace the user history."
+    "component": "ReconstructionEvidence",
+    "title": "Retouching space reconstruction evaluation",
+    "section": "3.4",
+    "usage": "Reconstruction reached 28.5 dB on FiveK and 28.2 dB on PPSD."
   },
   {
     "number": 17,
-    "component": "ConditioningAblation",
-    "title": "Wrong-current-image ablation",
-    "section": "3.6",
-    "usage": "Replace the conditioner image while rendering the real query."
+    "component": "QuantitativeResults",
+    "title": "Quantitative results on FiveK",
+    "section": "3.5.1",
+    "usage": "FiveK mean Top-1 PSNR was 23.562 dB."
   },
   {
     "number": 18,
-    "component": "RuntimeBenchmark",
-    "title": "Inference time and resources",
-    "section": "3.7",
-    "usage": "Compare all six benchmark configurations and measurement limits."
+    "component": "BaselineComparison",
+    "title": "Comparison with existing methods",
+    "section": "3.5",
+    "usage": "Our reported FiveK and PPSD results provide context against existing methods."
   },
   {
     "number": 19,
-    "component": "TechnologyChoices",
-    "title": "Technology choices",
-    "section": "2.6, 3.7",
-    "usage": "Explain the role of each model and engineering technology."
+    "component": "AblationResults",
+    "title": "Ablation studies",
+    "section": "3.6",
+    "usage": "The complete model achieved 23.5 dB."
   },
   {
     "number": 20,
-    "component": "FeedbackCycle",
-    "title": "Feedback and iteration",
-    "section": "4.6 (client feedback)",
-    "usage": "Trace the reported proposal\u2013review\u2013implementation loop."
+    "component": "CandidateCoverage",
+    "title": "Multimodal evaluation and test limitations",
+    "section": "2.5, 3.3, 3.5",
+    "usage": "Multiple sampled candidates improve Best-of-K target coverage."
   },
   {
     "number": 21,
-    "component": "ContributionEvidence",
-    "title": "Team contributions",
-    "section": "4.1\u20134.3, Table 6",
-    "usage": "Inspect supported contributions and individual evidence links."
+    "component": "TechnologyChoices",
+    "title": "Discipline knowledge, implementation and tools",
+    "section": "3.7, 4.1",
+    "usage": "The system combines convolutional image encoding, learned LUTs, Transformer conditioning and Conditional Normalizing Flow, implemented with Python, PyTorch and CUDA."
   },
   {
     "number": 22,
-    "component": "ChallengeResolution",
-    "title": "Challenges and responses",
-    "section": "4.4\u20134.5, 5.2",
-    "usage": "Connect observed problems to changes and remaining gaps."
+    "component": "ArchitectureEvolution",
+    "title": "Client feedback and architecture evolution",
+    "section": "2.7, 4.6",
+    "usage": "We explored semantic controls, dynamic grouping, memory, and similarity retrieval before adopting conditional density modelling."
   },
   {
     "number": 23,
-    "component": "AchievementLessons",
-    "title": "Achievements and lessons",
-    "section": "5.1\u20135.2",
-    "usage": "Separate research outcomes from presentation-engineering contributions."
+    "component": "ProjectCollaboration",
+    "title": "Project management and collaboration",
+    "section": "4.1–4.6",
+    "usage": "Our team used GitHub for version control and collaboration, and Zoom and WeChat for communication."
   },
   {
     "number": 24,
-    "component": "ResearchLimitations",
-    "title": "Limitations",
-    "section": "5.3\u20135.4",
-    "usage": "Explain the limits of preference learning, edit capacity and evaluation evidence."
+    "component": "ContributionEvidence",
+    "title": "Individual contributions",
+    "section": "6, Table 6",
+    "usage": "The nine members contributed across research, implementation, evaluation, presentation and coordination."
   },
   {
     "number": 25,
     "component": "ResearchConclusion",
-    "title": "Conclusion and Q&A",
-    "section": "5.5",
-    "usage": "Summarise the architecture, evidence and outstanding validation."
+    "title": "Reflections, limitations and conclusion",
+    "section": "5.1–5.5",
+    "usage": "Our contribution is modelling a distribution of edits rather than one fixed output."
   }
 ]

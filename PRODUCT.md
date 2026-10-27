@@ -10,7 +10,7 @@ The SOFT3888 presentation team uses these components during a live technical pre
 
 ## Product Purpose
 
-An English Slidev/Vue library for the final flow5 report. The first 25 pages follow the supplied outline; supporting pages explain mechanisms and expose evidence. Each page presents one principal reusable component under a title-only header. Usage descriptions remain in the component metadata. Source: README.md, DESIGN.md, data/component-index.json and docs/ACHIEVEMENTS.md.
+An English Slidev/Vue library for the final flow5 report. Exactly 25 pages follow the supplied reference deck titles and presentation script. Supporting components stay outside the formal deck. Each page presents one principal reusable component under a title-only header. Usage descriptions remain in the component metadata. Source: README.md, DESIGN.md, data/component-index.json and docs/ACHIEVEMENTS.md.
 
 ## Brand Personality
 
@@ -26,7 +26,7 @@ Avoid commercial landing pages, slogans, decorative badges, repetitive card grid
 - Let one visual argument dominate each slide.
 - Keep exact metrics and provenance inspectable without overwhelming the explanation.
 - Preserve the 25-topic outline and the attribution of individual contributions.
-- Offer manual sequencing and useful static final states.
+- Autoplay explanations once, with playback controls only; preserve complete static states.
 
 ## Accessibility & Inclusion
 

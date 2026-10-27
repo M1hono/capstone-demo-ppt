@@ -1,0 +1,794 @@
+{
+  "reference": "/Users/gedwen/Documents/programing/personal/study/notes/2026/S2C/SOFT3888/13\u6c47\u62a5.pptx",
+  "reference_sha256": "6f07c8c4ab7ca30290298873dc18c643315caeb67e4daa088c9fdf38f249f7f5",
+  "records": [
+    {
+      "asset": "assets/reference-deck/results/fivek-input.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        0,
+        168,
+        247,
+        416
+      ],
+      "white_canvas_removed": false,
+      "sha256": "e05b0e9e4d997ac2324c166100e7658bfc1f3d404be22cb897e8c8bec77144af"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-A-target.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        248,
+        168,
+        494,
+        416
+      ],
+      "white_canvas_removed": false,
+      "sha256": "398f170ad3df8506ea061b446d6635e0d3218a4730cc774ef1ceca163843c3dd"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-A-top1.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        495,
+        168,
+        741,
+        416
+      ],
+      "white_canvas_removed": false,
+      "sha256": "3d1126c7332b060078e37f3dda4ee74c18394e75a2e44a37daab06acaf49914f"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-A-best3.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        742,
+        168,
+        988,
+        416
+      ],
+      "white_canvas_removed": false,
+      "sha256": "07c8953328e434a1fe6661c1c4e71179e7555dcf696430bb8a6e5722eb9e3fcf"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-A-best5.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        990,
+        168,
+        1237,
+        416
+      ],
+      "white_canvas_removed": false,
+      "sha256": "ec3dd3f61e9d3d24f6e39b433c72f917724b6eae3575b6be34ce864ac8e4c0ee"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-A-samples.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1240,
+        168,
+        1630,
+        416
+      ],
+      "white_canvas_removed": true,
+      "sha256": "c27707beaca12c6bba812989a5f0d68a5225f025b3080e47632c3ce2372e3e61"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-A-density.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1630,
+        168,
+        2048,
+        416
+      ],
+      "white_canvas_removed": true,
+      "sha256": "7dbf0ba467ebeb06d203675a69d9b3057061fd78ce0b94ffc25be694fd45a53f"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-B-target.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        248,
+        487,
+        494,
+        735
+      ],
+      "white_canvas_removed": false,
+      "sha256": "ee3686e61e7145f4693313278c94e756dcba4419c85ef41bc1033eb99cdbdb9f"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-B-top1.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        495,
+        487,
+        741,
+        735
+      ],
+      "white_canvas_removed": false,
+      "sha256": "2a7c2bba338a3d0813c155faf3ff6f48a8b7e9def6eb14a231c6f635e814d173"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-B-best3.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        742,
+        487,
+        988,
+        735
+      ],
+      "white_canvas_removed": false,
+      "sha256": "2dca8e1d27aefea0ac3a632111e3ec3cade96913d4455b312e46c43a088c1384"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-B-best5.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        990,
+        487,
+        1237,
+        735
+      ],
+      "white_canvas_removed": false,
+      "sha256": "201dda9b277738223ad5dbe443dfab0db60bacd8285c4cfa7960ab3adf6a9678"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-B-samples.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1240,
+        487,
+        1630,
+        735
+      ],
+      "white_canvas_removed": true,
+      "sha256": "e4f91012e4b91d9841266587a71eae39051514c92f503ea73e7fcf1ad76b09f4"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-B-density.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1630,
+        487,
+        2048,
+        735
+      ],
+      "white_canvas_removed": true,
+      "sha256": "c19e9cfb11ef77c99e29d837bc109376d7fd22a36657f87ecdf95960a31ea215"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-C-target.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        248,
+        805,
+        494,
+        1053
+      ],
+      "white_canvas_removed": false,
+      "sha256": "27d7159e93570663df08fab05ed68a871855b966c12f92cf87012863e0074700"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-C-top1.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        495,
+        805,
+        741,
+        1053
+      ],
+      "white_canvas_removed": false,
+      "sha256": "9f94b9be0e2ac6afee5edb2130f610bf9262d74a38ca60d71d37d52b0c9b60c5"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-C-best3.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        742,
+        805,
+        988,
+        1053
+      ],
+      "white_canvas_removed": false,
+      "sha256": "eb4b94a42fb03ec8b5f55c539a934d0d7e45818b975d9d5e9ae568a0051b0e09"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-C-best5.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        990,
+        805,
+        1237,
+        1053
+      ],
+      "white_canvas_removed": false,
+      "sha256": "156d8faab3d8b0f537b76ac60a2cf1eee658b8b28f83e230edb0c86449f91360"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-C-samples.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1240,
+        805,
+        1630,
+        1053
+      ],
+      "white_canvas_removed": true,
+      "sha256": "6bc845c1a27f8933b71a5f3be9c9c1c067b89099df179ef1ba6c8c53356d2f16"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-C-density.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1630,
+        805,
+        2048,
+        1053
+      ],
+      "white_canvas_removed": true,
+      "sha256": "dff4ffb2addf0024ddc910a032daf1aa7329d83b3ff7e1ec2102ff391ace0fd6"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-D-target.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        248,
+        1124,
+        494,
+        1372
+      ],
+      "white_canvas_removed": false,
+      "sha256": "7113eedcc67bf2bb9b1f1587662226c8aaae320fe97dc4208d2e5120ed4ca863"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-D-top1.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        495,
+        1124,
+        741,
+        1372
+      ],
+      "white_canvas_removed": false,
+      "sha256": "4e44fce7657990f5a90bca21dc87e6b19bd61b6c18a36a89f0cc4a42b1003608"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-D-best3.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        742,
+        1124,
+        988,
+        1372
+      ],
+      "white_canvas_removed": false,
+      "sha256": "cd4540b2f7c6159ce119531240613b6f67f39815e52c71c7837b28cd91da012e"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-D-best5.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        990,
+        1124,
+        1237,
+        1372
+      ],
+      "white_canvas_removed": false,
+      "sha256": "2ce9b9cdd42c109a6ca9fb5aaec23741bd0ddaef7aae783d51f44dbf5bbdbede"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-D-samples.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1240,
+        1124,
+        1630,
+        1372
+      ],
+      "white_canvas_removed": true,
+      "sha256": "7df0e457f361ada8fe4c86151799efb77c8bc0162f93a9bcd85b4af8406df082"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-D-density.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1630,
+        1124,
+        2048,
+        1372
+      ],
+      "white_canvas_removed": true,
+      "sha256": "8f5c516ad1d6789ab42a5b0bce70229d9a322af2a580cb6b3812772b89e964c3"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-E-target.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        248,
+        1443,
+        494,
+        1691
+      ],
+      "white_canvas_removed": false,
+      "sha256": "7837c1ba40287012e3ab14ea425a9edee9d41355fd6baecd8de40566dbf324b1"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-E-top1.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        495,
+        1443,
+        741,
+        1691
+      ],
+      "white_canvas_removed": false,
+      "sha256": "ab9b8d92fc2a01d8e8a2a4991e81b0422be779ebda054a2cb462957182ff3680"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-E-best3.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        742,
+        1443,
+        988,
+        1691
+      ],
+      "white_canvas_removed": false,
+      "sha256": "9b180eaafb662488ff9f9ba627581e19b98c78d96780a3b2368e17ec98e06e72"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-E-best5.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        990,
+        1443,
+        1237,
+        1691
+      ],
+      "white_canvas_removed": false,
+      "sha256": "1b8934ace0bba338a6b9344fa26f8bb6f77b54049efecfd11ba2da8ca4f67e59"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-E-samples.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1240,
+        1443,
+        1630,
+        1691
+      ],
+      "white_canvas_removed": true,
+      "sha256": "7a1f9c67b87aa7fd501a81624bcafd9db77f129c11f998fa52fcae2ca6eca356"
+    },
+    {
+      "asset": "assets/reference-deck/results/fivek-E-density.png",
+      "source_media": "image9.png",
+      "crop_xyxy": [
+        1630,
+        1443,
+        2048,
+        1691
+      ],
+      "white_canvas_removed": true,
+      "sha256": "31ee953e1bd6b38415d322c9ca9add46da37c342c42dd77707709c1ab3e31852"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-1-input.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        28,
+        184,
+        211,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "b6b5422b3d15e7e9bcd749953863f6c5875ee3417569b0e3bf25a036d26db5c1"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-1-target.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        215,
+        184,
+        399,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "5ed9ba55fa57da33c90b410c739ca6b514edc6c19d1121880fbf0ff628840e69"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-1-c1.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        403,
+        184,
+        586,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "356d42cac2eae75ef55a5f3f2da72aef602d2aa6cef8f78989fcb15c2631e354"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-1-c2.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        591,
+        184,
+        774,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "54739e6e115072a9e62548c769945e9bb150fe8ace40c57492b6112272d8eb79"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-1-c3.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        778,
+        184,
+        961,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "ed242f48d135146b32387e4b234ad1c51083e61136a5d4dcc5f69dfe6b652909"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-2-input.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        997,
+        184,
+        1180,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "93f9b473152b985f2fa671f74d1b09c59b9ed7b26e6ef86a39026c298f8dd0ad"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-2-target.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1185,
+        184,
+        1368,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "e2897e5bee0d93b8a8591e61a996c2ed7eed958b1637d64ba79b5fbb788f6aae"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-2-c1.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1372,
+        184,
+        1556,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "d3feef8732b13cf4e01fd931f13ad01ec7be3982bd3c8c30cd1d1dec157b1f8e"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-2-c2.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1560,
+        184,
+        1743,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "7f80c696598a503345e8dbf68de01d52a8c850a4c369ffa2c83658006b3251da"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-2-c3.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1747,
+        184,
+        1931,
+        367
+      ],
+      "white_canvas_removed": false,
+      "sha256": "72cbe5d920cb1e164e755f6dc2b36089a48d89231a9351d5be87f42ef10d5cdb"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-3-input.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        28,
+        819,
+        211,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "1863c1e59d9d11e0ab0130288def8beae6872a5c7257d546678fc9041a70d164"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-3-target.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        215,
+        819,
+        399,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "a1dff12a9665ecc4b14a94bc3306ba8bdd75373283e6c53b42a8fb66973b9987"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-3-c1.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        403,
+        819,
+        586,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "d45ca42030f087dfa7bf09bd57c908de92a55835811f16692ecdd3c26e13f259"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-3-c2.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        591,
+        819,
+        774,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "54c5b4b551af8b4234f061778e29044399b8ea4e20f440d1ffba7ff91ff19db5"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-3-c3.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        778,
+        819,
+        961,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "bc25f0fd4d80dc818862489921204d3feb5304a53db78dd642cbd314ac992868"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-4-input.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        997,
+        819,
+        1180,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "5d6d807d7d1c6944516130ffa1fe2690c258e954b785914ef1a6d1106bbc8a18"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-4-target.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1185,
+        819,
+        1368,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "b586d327e5b6db495e48936824c4ea7f4c95ea72a84118b0a842fff568a2ea0e"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-4-c1.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1372,
+        819,
+        1556,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "75a2b2be7a30ac72ae689588221eff0ede69820d57982f85c7c23f052ccc0c0e"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-4-c2.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1560,
+        819,
+        1743,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "22949f6b594adc39add5a2160cf9e51cec4c72bd2332509a8d169e5299a43245"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-4-c3.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1747,
+        819,
+        1931,
+        1002
+      ],
+      "white_canvas_removed": false,
+      "sha256": "2679a7f4a51d579b32cfd75f4dad87771442547ce17747f7c4dfba03add0e39a"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-5-input.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        28,
+        1454,
+        211,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "43e90b4208451abe09e66bd3e0c324a2a37358967a1485fba8d0b3884b80b0a5"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-5-target.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        215,
+        1454,
+        399,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "79ec09fad845113b7e08b26071ea688d486a3aa54562606d611cf87d4486e1b3"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-5-c1.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        403,
+        1454,
+        586,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "ac083b0e4da8d9e2316441ed90fdb851fca6af753e52db4248b609881b3169cb"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-5-c2.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        591,
+        1454,
+        774,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "977bf608ac75df1c6058efe121959d7a73df86f0005da084459a745a3a823285"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-5-c3.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        778,
+        1454,
+        961,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "78466563899507880d0fedb3d33f87166a2c6859b27c75c5d7d9588a4f7bfb27"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-6-input.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        997,
+        1454,
+        1180,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "2feead3b87aca3bd3100185bb2066517cde22478e1d5dd233d9ffa7c6c2569d2"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-6-target.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1185,
+        1454,
+        1368,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "e742ebc102f72147bc24d3536502fec8f6af09af249a12ae7a2ffdd51e0a9f84"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-6-c1.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1372,
+        1454,
+        1556,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "dece68fa2a76f3b9946b679114ae3ce93efbaa7655daa94bf9c7a0d4e23ee6e1"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-6-c2.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1560,
+        1454,
+        1743,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "1b0ae3fe1b17b811549f9b8d2b2c4a6aa14529e4c713d4aa5336518752a58099"
+    },
+    {
+      "asset": "assets/reference-deck/results/ppsd-6-c3.png",
+      "source_media": "image10.png",
+      "crop_xyxy": [
+        1747,
+        1454,
+        1931,
+        1637
+      ],
+      "white_canvas_removed": false,
+      "sha256": "5c3fba36bbfee99ddb000116bd571ff79db3a06cfc10a7012d53513933c038f9"
+    },
+    {
+      "asset": "assets/reference-deck/results/candidate-concept.png",
+      "source_media": "image1.png",
+      "protected_photo_rectangles": [
+        [
+          97,
+          104,
+          508,
+          359
+        ],
+        [
+          43,
+          442,
+          149,
+          513
+        ],
+        [
+          187,
+          442,
+          280,
+          513
+        ],
+        [
+          324,
+          442,
+          428,
+          513
+        ],
+        [
+          458,
+          442,
+          563,
+          513
+        ],
+        [
+          629,
+          25,
+          879,
+          188
+        ],
+        [
+          1245,
+          69,
+          1496,
+          234
+        ],
+        [
+          1211,
+          465,
+          1463,
+          597
+        ]
+      ],
+      "sha256": "a75348ae57901e37cb20a6cf287220f2d76a316283caeca2a133c310352b3f68"
+    }
+  ],
+  "meaning": "Literal supplied examples; no generated or newly evaluated model outputs."
+}

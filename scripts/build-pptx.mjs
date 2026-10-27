@@ -1,6 +1,7 @@
 import { Presentation, PresentationFile } from '@oai/artifact-tool'
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
+import { execFileSync } from 'node:child_process'
 
 const root = new URL('../', import.meta.url)
 const scratch = new URL('tmp/slides/final-25/', root)
@@ -47,17 +48,12 @@ function nativeChart(slide, snapshot) {
   const chart = slide.charts.add('bar')
   chart.position = position(snapshot.chart)
   chart.plotAreaFill = '#F4F4F2'
-  chart.barOptions.direction = snapshot.number === 18 ? 'bar' : 'column'
+  chart.barOptions.direction = 'bar'
   chart.barOptions.grouping = 'clustered'
-  const sets = snapshot.number === 13
-    ? ['top1', 'best3', 'best5'].map((key, i) => ({ name: ['Top-1', 'Best-of-3*', 'Best-of-5*'][i], values: evidence.fivek.psnr[key] }))
-    : snapshot.number === 15
-      ? [{ name: 'PSNR (dB)', values: ['top1', 'best3', 'best5'].map(key => evidence.fivek.psnr[key][5]) }]
-      : [{ name: 'Mean ms / batch', values: evidence.benchmark.rows.map(row => row.mean) }]
-  chart.categories = snapshot.number === 13
-    ? evidence.fivek.experts
-    : snapshot.number === 15 ? ['Top-1', 'Best-of-3*', 'Best-of-5*']
-      : evidence.benchmark.rows.map(row => `${row.batch} / ${row.mode} / ${row.history}`)
+  const sets = snapshot.number === 18 ? [{ name: 'Top-1 PSNR', values: [20.540, 21.940, 23.562] }]
+      : [{ name: 'PSNR', values: evidence.ablations.map(row => row.psnr) }]
+  chart.categories = snapshot.number === 18 ? ['PieNet', 'RefRetouch', 'Our model']
+      : ['Original image', 'Expert-average z', 'Wrong image', 'Wrong history', 'Complete model']
   sets.forEach((data, i) => {
     const series = chart.series.add(data.name)
     series.values = data.values
@@ -65,9 +61,11 @@ function nativeChart(slide, snapshot) {
     series.fill = palette[i]
     series.stroke = { fill: palette[i], width: 0, style: 'solid' }
   })
-  chart.hasLegend = snapshot.number === 13
+  chart.hasLegend = false
   chart.xAxis.visible = true
   chart.yAxis.visible = true
+  chart.xAxis.deleted = false
+  chart.yAxis.deleted = false
   chart.yAxis.majorGridlines.visible = true
   chart.yAxis.majorGridlines.fill = '#D9D9D6'
   chart.yAxis.majorGridlines.width = .5
@@ -76,15 +74,15 @@ function nativeChart(slide, snapshot) {
   chart.xAxis.tickLabelPosition = 'nextTo'
   chart.yAxis.tickLabelPosition = 'nextTo'
   chart.yAxis.min = 0
-  chart.yAxis.max = snapshot.number === 18 ? 60 : 30
-  chart.yAxis.majorUnit = snapshot.number === 18 ? 10 : 5
+  chart.yAxis.max = 30
+  chart.yAxis.majorUnit = 5
   chart.legend.position = 'bottom'
-  chart.title = snapshot.number === 18 ? 'Mean latency (ms per batch)' : 'PSNR (dB)'
+  chart.title = 'PSNR (dB)'
   for (const style of [chart.titleTextStyle, chart.legend.textStyle, chart.xAxis.textStyle, chart.yAxis.textStyle, chart.dataLabels.textStyle]) {
-    style.typeface = 'Arial'; style.fontSize = 15; style.fill = '#161616'
+    style.typeface = 'Arial'; style.fontSize = 16; style.fill = '#161616'
   }
   chart.titleTextStyle.fontSize = 18
-  chart.dataLabels.showValue = snapshot.number !== 13
+  chart.dataLabels.showValue = true
   chart.dataLabels.position = 'outEnd'
   inspect.push({ kind: 'native-chart', slide: snapshot.number, series: sets, categories: chart.categories, bbox: position(snapshot.chart) })
 }
@@ -111,8 +109,9 @@ for (const snapshot of snapshots) {
 }
 const file = await PresentationFile.exportPptx(presentation)
 await file.save(fileURLToPath(new URL('exports/output.pptx', root)))
+console.log(execFileSync('python3', [fileURLToPath(new URL('scripts/add-pptx-playback.py', root)), fileURLToPath(new URL('exports/output.pptx', root))], { encoding: 'utf8' }).trim())
 await writeFile(new URL('editable-inspect.json', scratch), JSON.stringify(inspect, null, 2))
-console.log(`Exported ${presentation.slides.count} slides, ${inspect.filter(x => x.kind === 'text').length} editable text runs, 3 native charts.`)
+console.log(`Exported ${presentation.slides.count} slides, ${inspect.filter(x => x.kind === 'text').length} editable text runs, ${inspect.filter(x => x.kind === 'native-chart').length} native charts.`)
 for (let i = 0; i < presentation.slides.count; i++) {
   const output = await presentation.export({ slide: presentation.slides.getItem(i), format: 'png', scale: 1 })
   await writeFile(new URL(`slide-${String(i + 1).padStart(2, '0')}.png`, previews), new Uint8Array(await output.arrayBuffer()))

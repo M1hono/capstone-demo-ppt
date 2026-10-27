@@ -1,0 +1,157 @@
+{
+  "referenceSha256": "6f07c8c4ab7ca30290298873dc18c643315caeb67e4daa088c9fdf38f249f7f5",
+  "titles": [
+    "Personalized Agent-based Image Enhancement",
+    "Project background",
+    "Existing methods and our core idea",
+    "Project goals and achievements",
+    "User stories and functional requirements",
+    "Acceptance criteria and constraints",
+    "Modelling user preferences",
+    "Overall system architecture",
+    "Stage 1 · Retouching encoder and decoder",
+    "Understanding the retouching space",
+    "Stage 2 · Transformer-based conditioning",
+    "Conditional Flow and candidate generation",
+    "Testing strategy and quality assurance",
+    "Datasets and evaluation protocol",
+    "Test cases and requirement coverage",
+    "Retouching space reconstruction evaluation",
+    "Quantitative results on FiveK",
+    "Comparison with existing methods",
+    "Ablation studies",
+    "Multimodal evaluation and test limitations",
+    "Discipline knowledge, implementation and tools",
+    "Client feedback and architecture evolution",
+    "Project management and collaboration",
+    "Individual contributions",
+    "Reflections, limitations and conclusion"
+  ],
+  "presenters": [
+    {
+      "number": 1,
+      "presenter": 1,
+      "name": ""
+    },
+    {
+      "number": 2,
+      "presenter": 1,
+      "name": ""
+    },
+    {
+      "number": 3,
+      "presenter": 1,
+      "name": ""
+    },
+    {
+      "number": 4,
+      "presenter": 2,
+      "name": ""
+    },
+    {
+      "number": 5,
+      "presenter": 2,
+      "name": ""
+    },
+    {
+      "number": 6,
+      "presenter": 2,
+      "name": ""
+    },
+    {
+      "number": 7,
+      "presenter": 3,
+      "name": ""
+    },
+    {
+      "number": 8,
+      "presenter": 3,
+      "name": ""
+    },
+    {
+      "number": 9,
+      "presenter": 3,
+      "name": ""
+    },
+    {
+      "number": 10,
+      "presenter": 4,
+      "name": "Yuchen Deng"
+    },
+    {
+      "number": 11,
+      "presenter": 4,
+      "name": "Yuchen Deng"
+    },
+    {
+      "number": 12,
+      "presenter": 4,
+      "name": "Yuchen Deng"
+    },
+    {
+      "number": 13,
+      "presenter": 5,
+      "name": ""
+    },
+    {
+      "number": 14,
+      "presenter": 5,
+      "name": ""
+    },
+    {
+      "number": 15,
+      "presenter": 5,
+      "name": ""
+    },
+    {
+      "number": 16,
+      "presenter": 6,
+      "name": ""
+    },
+    {
+      "number": 17,
+      "presenter": 6,
+      "name": ""
+    },
+    {
+      "number": 18,
+      "presenter": 6,
+      "name": ""
+    },
+    {
+      "number": 19,
+      "presenter": 7,
+      "name": ""
+    },
+    {
+      "number": 20,
+      "presenter": 7,
+      "name": ""
+    },
+    {
+      "number": 21,
+      "presenter": 8,
+      "name": ""
+    },
+    {
+      "number": 22,
+      "presenter": 8,
+      "name": ""
+    },
+    {
+      "number": 23,
+      "presenter": 9,
+      "name": ""
+    },
+    {
+      "number": 24,
+      "presenter": 9,
+      "name": ""
+    },
+    {
+      "number": 25,
+      "presenter": 9,
+      "name": ""
+    }
+  ]
+}

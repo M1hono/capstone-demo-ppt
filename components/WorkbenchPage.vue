@@ -1,9 +1,10 @@
 <script setup>
 import { nextTick, onMounted, onScopeDispose, ref } from 'vue'
-import { onSlideEnter, onSlideLeave } from '@slidev/client'
+import { onSlideEnter, onSlideLeave, useNav } from '@slidev/client'
 import evidence from '../data/report-evidence.json'
 const props = defineProps({ number:Number, title:String, component:String, section:String, usage:String })
 const topic = evidence.topics.find(t => t.number === props.number)
+const { isPrintMode } = useNav()
 const pageRoot = ref(null)
 const entered = ref(false)
 let diagramObserver
@@ -67,7 +68,7 @@ function keepControlKeys(event) {
 }
 </script>
 <template>
-  <section ref="pageRoot" class="workbench" :class="{entered}" :data-topic="number" :data-section="number <= 25 ? 'report' : 'lab'" @keydown="keepControlKeys" @keyup="keepControlKeys">
+  <section ref="pageRoot" class="workbench" :class="{entered, 'static-view':isPrintMode, 'no-motion':number!==12}" :data-topic="number" :data-section="number <= 25 ? 'report' : 'lab'" @keydown="keepControlKeys" @keyup="keepControlKeys">
     <header><div class="page-index" aria-hidden="true"><span>{{ String(number).padStart(2,'0') }}</span></div><h1>{{ title || topic?.title }}</h1></header>
     <main class="workbench-body"><slot /></main>
     <footer><span>{{ section || `Report ${topic?.section}` }}</span><span class="page-total">{{ String(number).padStart(2,'0') }} / 25</span></footer>

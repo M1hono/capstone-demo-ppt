@@ -7,19 +7,17 @@ await mkdir(scratch, { recursive: true })
 const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 })
 const snapshots = []
+await page.emulateMedia({ reducedMotion: 'reduce' })
 try {
   for (let n = 1; n <= 25; n++) {
-    await page.goto(`http://localhost:18355/${n}`, { waitUntil: 'networkidle' })
+    await page.goto(`${process.env.SHOW_BASE || 'http://127.0.0.1:18356'}/${n}?print=true`, { waitUntil: 'networkidle' })
     await page.evaluate(() => document.fonts.ready)
     await page.waitForTimeout(500)
     const slide = page.locator(`section[data-topic="${n}"]`)
-    const showAll = slide.getByRole('button', { name: 'Show all', exact: true })
-    if (await showAll.count()) {
-      await showAll.click()
-      await page.waitForTimeout(600)
-    }
+    if (await slide.locator('.controls,.dim,.unrevealed,.context-links.hidden').count())
+      throw new Error(`Slide ${n} did not enter the complete static export state`)
     await slide.locator('img').evaluateAll(images => Promise.all(images.map(img => img.decode())))
-    const chartSelector = { 13: '.result-plot', 15: '.coverage-main > svg', 18: '.runtime-chart' }[n]
+    const chartSelector = { 18: '.comparison-chart', 19: '.ablation-chart' }[n]
     if (chartSelector) await slide.locator(chartSelector).evaluate(el => el.dataset.nativeChart = 'true')
     const svgs = slide.locator('svg:not([data-native-chart]):not([data-native-chart] svg)')
     const svgFiles = []

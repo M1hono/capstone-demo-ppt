@@ -41,8 +41,10 @@
 .workbench.entered .evidence-table tbody tr:nth-child(4){animation-delay:135ms}
 .workbench.entered .evidence-table tbody tr:nth-child(5){animation-delay:180ms}
 .workbench.entered .evidence-table tbody tr:nth-child(n+6){animation-delay:225ms}
-.workbench.entered .bar-value{transform-origin:left;animation:bar-enter 500ms cubic-bezier(.7,0,.2,1) both}
+.workbench.entered .bar-value,.workbench.entered .chart-bar{transform-origin:left;animation:bar-enter 500ms cubic-bezier(.7,0,.2,1) both}
 @keyframes record-enter{from{opacity:0}to{opacity:1}}
 @keyframes bar-enter{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.workbench.no-motion *,.workbench.static-view *{animation:none!important;transition:none!important}
+.workbench.static-view .controls{display:none!important}
 @media(prefers-reduced-motion:reduce){.workbench *{transition:none!important;animation:none!important}}
-@media print{.workbench *{animation:none!important;transition:none!important}}
+@media print{.workbench *{animation:none!important;transition:none!important}.workbench .controls{display:none!important}}

@@ -1,0 +1,205 @@
+[
+  {
+    "source": "direction-grid.png",
+    "sourceSha256": "7368bd2eef1b20398fcb0fcb081db85cea224340d3193f3353fc0af5784cab7d",
+    "output": "direction-grid-transparent.png",
+    "sha256": "cf8ed5a82ad3900a6d54b623c147ac3ef49652f1a26d6a290ddb7f3c270eb777",
+    "transparentPixels": 346029,
+    "protectedPhotoRectangles": [
+      [
+        18,
+        56,
+        175,
+        214
+      ],
+      [
+        748,
+        31,
+        881,
+        164
+      ],
+      [
+        748,
+        190,
+        881,
+        323
+      ],
+      [
+        748,
+        349,
+        881,
+        482
+      ],
+      [
+        893,
+        31,
+        1026,
+        164
+      ],
+      [
+        893,
+        190,
+        1026,
+        323
+      ],
+      [
+        893,
+        349,
+        1026,
+        482
+      ],
+      [
+        1038,
+        31,
+        1171,
+        164
+      ],
+      [
+        1038,
+        190,
+        1171,
+        323
+      ],
+      [
+        1038,
+        349,
+        1171,
+        482
+      ],
+      [
+        1183,
+        31,
+        1316,
+        164
+      ],
+      [
+        1183,
+        190,
+        1316,
+        323
+      ],
+      [
+        1183,
+        349,
+        1316,
+        482
+      ],
+      [
+        1328,
+        31,
+        1461,
+        164
+      ],
+      [
+        1328,
+        190,
+        1461,
+        323
+      ],
+      [
+        1328,
+        349,
+        1461,
+        482
+      ]
+    ],
+    "protectedPixelsIdentical": true
+  },
+  {
+    "source": "magnitude-grid.png",
+    "sourceSha256": "3dc65a263d848abbadec4da5a88a129428adb13664d811cdf9ee51268f571399",
+    "output": "magnitude-grid-transparent.png",
+    "sha256": "510d12185a2c213bcd07d851d3a689d1b4a3c641d9e61fdb7a7163d65d2b8605",
+    "transparentPixels": 397389,
+    "protectedPhotoRectangles": [
+      [
+        18,
+        71,
+        177,
+        229
+      ],
+      [
+        775,
+        76,
+        916,
+        217
+      ],
+      [
+        775,
+        226,
+        916,
+        367
+      ],
+      [
+        775,
+        376,
+        916,
+        517
+      ],
+      [
+        953,
+        76,
+        1094,
+        217
+      ],
+      [
+        953,
+        226,
+        1094,
+        367
+      ],
+      [
+        953,
+        376,
+        1094,
+        517
+      ],
+      [
+        1131,
+        76,
+        1272,
+        217
+      ],
+      [
+        1131,
+        226,
+        1272,
+        367
+      ],
+      [
+        1131,
+        376,
+        1272,
+        517
+      ],
+      [
+        1309,
+        76,
+        1450,
+        217
+      ],
+      [
+        1309,
+        226,
+        1450,
+        367
+      ],
+      [
+        1309,
+        376,
+        1450,
+        517
+      ]
+    ],
+    "protectedPixelsIdentical": true
+  },
+  {
+    "source": "sample-density.png",
+    "sourceSha256": "1fb6937a850483ae3831735c9d9328476af989004b3f8fa891046f28e0236496",
+    "output": "sample-density-transparent.png",
+    "sha256": "a9782225f7dc9a52a17d07f5265fb2f952f0b683cc786ec29adb870dc053684e",
+    "transparentPixels": 96944,
+    "protectedPhotoRectangles": [],
+    "protectedPixelsIdentical": true
+  }
+]

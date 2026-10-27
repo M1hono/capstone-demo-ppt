@@ -1,56 +1,18 @@
 <script setup>
-import { ref } from 'vue'
 import pairs from '../data/history-pairs.json'
-import { useSequence } from '../composables/useSequence'
-const base = import.meta.env.BASE_URL
-const pair = ref(1)
-const source = ref(false)
-const sequence = useSequence(['Encode each historical pair', 'Interleave image and edit tokens', 'Mix context with self-attention', 'Read the updated query token'])
-const descriptions = [
-  'A shared image encoder produces Eᵢ. The edit encoder produces zᵢ from the original and retouched pair.',
-  'Project each zᵢ to the image-token dimension, then interleave eight pairs and append the query E₀.',
-  'Self-attention lets the query exchange information with the historical image and edit tokens.',
-  'Read only the updated E₀ as condition c. Model weights stay fixed when a new user supplies history.'
-]
-function tokenPosition(i) {
-  if (sequence.step.value === 0 && i < 16) return `translate(${18 + Math.floor(i / 2) * 132}, ${i % 2 ? 55 : 3})`
-  return `translate(${18 + i * 68}, 3)`
-}
+const base=import.meta.env.BASE_URL
 </script>
 <template>
-  <div class="stack transformer">
-    <div class="row spread"><div class="tabs"><button :aria-pressed="!source" @click.stop="source=false">Report · 2 layers</button><button :aria-pressed="source" @click.stop="source=true">Saved default · 4 layers</button></div><span class="small muted">8 pairs + query · 17 tokens</span></div>
-    <div class="history-rail">
-      <button v-for="(p, i) in pairs.slice(0, 8)" :key="p.id" class="history-pair" :class="{ selected:pair === i + 1 }" :aria-label="`E${i + 1}`" :aria-pressed="pair === i + 1" @click.stop="pair=i + 1">
-        <span class="pair-images"><img :src="base+p.original" :alt="`Historical original ${i + 1}`"/><img :src="base+p.edited" :alt="`Historical Expert C edit ${i + 1}`"/></span><span>H{{i + 1}}</span>
-      </button>
-      <div class="query-image"><img :src="base+'assets/fivek/original.png'" alt="Current original image"/><span>Query O₀</span></div>
+  <div class="stack conditioning-academic">
+    <div class="conditioning-branches">
+      <section class="conditioning-branch" data-image-path><div class="branch-heading"><span>01</span><h2>Image content</h2><p>One shared encoder</p></div><div class="branch-path"><div class="branch-input"><div class="branch-photos"><figure><img :src="base+'assets/fivek/original.png'" alt="Current original O0"><figcaption>O₀ · query</figcaption></figure><figure><img :src="base+pairs[0].original" alt="One of the historical originals"><figcaption>O₁…O₈</figcaption></figure></div></div><span class="branch-arrow">→</span><div class="branch-encoder"><div class="encoder-funnel"><i/><i/><i/></div><b>Shared image encoder</b><p>Conv + downsample → Eᵢ</p></div><span class="branch-arrow">→</span><div class="branch-projection"><b>FC</b><span>Ẽᵢ ∈ ℝᴰ</span></div></div></section>
+      <section class="conditioning-branch" data-edit-path><div class="branch-heading"><span>02</span><h2>Editing history</h2><p>8 original–target pairs</p></div><div class="branch-path"><div class="branch-input"><div class="branch-photos"><figure><img :src="base+pairs[0].original" alt="Historical original Oi"><figcaption>Oᵢ</figcaption></figure><figure><img :src="base+pairs[0].edited" alt="Historical target Ti"><figcaption>Tᵢ</figcaption></figure></div></div><span class="branch-arrow">→</span><div class="branch-encoder"><div class="edit-vector"><i/><i/><i/></div><b>Stage 1 edit encoder</b><p>(Oᵢ, Tᵢ, Tᵢ − Oᵢ) → zᵢ ∈ ℝ³</p></div><span class="branch-arrow">→</span><div class="branch-projection"><b>FC</b><span>z̃ᵢ ∈ ℝᴰ</span></div></div></section>
     </div>
-    <div class="token-scene">
-      <svg viewBox="0 0 1188 116" role="img" aria-label="Seventeen tokens assemble into an interleaved sequence; their connections lead to the updated query condition">
-        <g v-for="i in 17" :key="i" class="moving-token" :transform="tokenPosition(i - 1)" :data-token="i - 1">
-          <rect width="52" height="35" :fill="i === 17 ? 'var(--ink)' : i % 2 ? 'var(--pale)' : '#e1f0ee'" :stroke="i < 17 && Math.ceil(i / 2) === pair ? 'var(--blue)' : 'none'" stroke-width="2"/>
-          <text x="26" y="24" text-anchor="middle" :fill="i === 17 ? 'white' : 'var(--ink)'">{{i === 17 ? 'E₀' : (i % 2 ? 'E' : 'z') + Math.ceil(i / 2)}}</text>
-        </g>
-        <g class="context-links" :class="{hidden:sequence.step.value < 2}">
-          <path v-for="i in 16" :key="i" :d="`M${44 + (i - 1) * 68} 42 Q${44 + (i - 1) * 68} 83 1132 83`" fill="none" :stroke="Math.ceil(i / 2) === pair ? 'var(--blue)' : 'var(--line)'" :stroke-width="Math.ceil(i / 2) === pair ? 2 : 1"/>
-          <path d="M1132 42 V81" stroke="var(--blue)" stroke-width="2"/>
-          <text x="18" y="111" class="diagram-note">Historical pair {{pair}} → paired positions preserve the image–edit relationship</text>
-        </g>
-      </svg>
-    </div>
-    <div class="transformer-output">
-      <span class="layer-input">17 tokens<br><span>↓</span></span><div class="chips transformer-layers"><span v-for="i in (source ? 4 : 2)" :key="i">Layer {{i}}<small>Self-attention + FFN</small></span></div>
-      <span class="arrow">→</span><div class="condition-output" :class="{muted:sequence.step.value < 3}"><span class="condition-symbol">E′₀ = c</span><div><strong>Read query token</strong><p class="small">To the conditional flow</p></div></div>
-    </div>
-    <p class="readout" aria-live="polite">{{descriptions[sequence.step.value]}}</p>
-    <SequenceControls :sequence="sequence"/>
-    <p class="source-caption">Real FiveK pairs; connections show permitted interactions, not measured attention. Report/source layer difference is preserved.</p>
+    <div class="token-ribbon"><div class="token-heading"><h3>Pair the history, then append the query</h3><span>17 tokens · common dimension D</span></div><div class="paired-tokens"><div v-for="i in 8" :key="i" class="token-pair"><span :data-token="(i-1)*2">Ẽ{{i}}</span><span class="edit" :data-token="(i-1)*2+1">z̃{{i}}</span><small>H{{i}}</small></div><div class="query-token" data-token="16">Ẽ₀<small>QUERY</small></div></div><p>FC projections align image features and 3D edit vectors to D dimensions.</p></div>
+    <div class="condition-processing"><span class="process-arrow">↓</span><div class="transformer-module"><div class="module-heading"><b>Two-layer Transformer</b><span>Image–edit relationships via self-attention</span></div><div class="transformer-layers"><span>Layer 1<small>Self-attention + FFN</small></span><b>→</b><span>Layer 2<small>Self-attention + FFN</small></span></div></div><span class="process-arrow">→</span><div class="condition-result"><strong>c</strong><div><b>Read updated query token</b><p>Ẽ′₀ = c ∈ ℝᴰ</p><span>To the Conditional Flow</span></div></div></div>
+    <div class="conditioning-assurance"><span>Image + history inform c</span><span>Unseen users · no weight updates</span><span>No query target at inference</span></div>
   </div>
 </template>
 <style scoped>
-.transformer{gap:12px}.history-rail{display:grid;grid-template-columns:repeat(8,1fr) 105px;gap:10px}.history-rail .history-pair{padding:0 0 5px;background:none;color:var(--ink);border:0;border-bottom:2px solid transparent;font-size:14px}.history-rail .selected{border-color:var(--blue)}.pair-images{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:5px}.pair-images img{height:49px;width:100%;object-fit:cover}.query-image{display:grid;justify-items:center;gap:5px;font-size:14px}.query-image img{height:49px;width:85px;object-fit:cover}.token-scene{flex:1;min-height:116px}.token-scene svg{width:100%;height:100%;overflow:visible}.token-scene text{font-size:18px}.token-scene .diagram-note{font-size:15px}.moving-token{transition:transform .65s cubic-bezier(.22,1,.36,1)}.context-links,.query-output{transition:opacity .4s}.hidden{opacity:0}.transformer-output{display:flex;align-items:center;gap:26px;min-height:60px}.transformer-layers{flex:1;gap:10px}.transformer-layers span{background:var(--pale);flex:1;padding:11px 15px;font-size:16px}.transformer-layers small{display:block;font-size:12px;color:var(--muted);margin-top:3px}.condition-output{display:flex;gap:18px;align-items:center;min-width:265px}.condition-symbol{font-size:42px;font-style:italic;color:var(--blue)}.condition-output strong{font-size:18px;font-weight:500}.transformer .readout{min-height:48px;font-size:17px}
-</style>
-<style scoped>
-.layer-input{font-size:16px;line-height:1.2;text-align:center;min-width:80px;color:var(--muted)}.layer-input>span{font-size:25px}.transformer-output{gap:18px}.condition-output{min-width:332px;gap:14px}.condition-symbol{font-size:29px;white-space:nowrap}.transformer-layers span{font-size:18px;padding:12px}.transformer-layers small{font-size:13px}.transformer .readout{font-size:19px;min-height:52px}.history-rail .history-pair,.query-image{font-size:16px}
+.conditioning-academic{gap:17px}.conditioning-branches{display:grid;grid-template-columns:1fr 1fr;gap:25px}.conditioning-branch{border-top:2px solid var(--ink);padding:13px 0 15px;border-bottom:1px solid var(--line)}.branch-heading{display:flex;align-items:center;gap:11px;margin-bottom:17px}.branch-heading>span{font:500 18px Saira;color:var(--muted)}.branch-heading h2{font-size:24px;margin:0}.branch-heading p{font-size:14px;color:var(--muted);margin-left:auto}.branch-path{display:grid;grid-template-columns:140px 19px 1fr 19px 75px;gap:8px;align-items:center}.branch-photos{display:flex;gap:7px}.branch-photos figure{margin:0;width:66px}.branch-photos img{width:66px;height:48px;object-fit:cover}.branch-photos figcaption{font-size:14px;text-align:center;margin-top:5px}.branch-arrow{font-size:24px;color:var(--muted)}.branch-encoder{text-align:center;display:grid;gap:5px;min-width:0}.branch-encoder>b{font-size:17px;font-weight:500;white-space:nowrap}.branch-encoder>p{font-size:14px;color:var(--muted);white-space:nowrap}.encoder-funnel,.edit-vector{height:45px;display:flex;justify-content:center;align-items:center;gap:7px}.encoder-funnel i{display:block;background:var(--purple);width:21px;height:40px;transform:skewY(-10deg);border:1px solid var(--muted)}.encoder-funnel i:nth-child(2){height:30px}.encoder-funnel i:nth-child(3){height:20px}.edit-vector i{width:17px;height:29px;background:var(--pale);border:1px solid var(--ink)}.branch-projection{display:grid;gap:9px;justify-items:center}.branch-projection>b{border:1px solid var(--ink);padding:6px 16px;font-size:20px;font-weight:500;background:var(--surface)}.branch-projection>span{font-size:17px;white-space:nowrap}.token-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.token-heading h3{font-size:23px;margin:0}.token-heading>span{font-size:17px;color:var(--muted)}.paired-tokens{display:grid;grid-template-columns:repeat(8,1fr) 65px;gap:12px}.token-pair{display:grid;grid-template-columns:1fr 1fr;gap:4px}.token-pair>span{height:38px;display:flex;justify-content:center;align-items:center;font-size:19px;background:var(--pale);border:1px solid var(--line)}.token-pair>span.edit{background:var(--paper);border-color:var(--muted)}.token-pair>small{grid-column:1/-1;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:3px}.query-token{height:38px;position:relative;background:var(--signal);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600}.query-token small{position:absolute;top:46px;font-size:11px;font-weight:400;letter-spacing:1px}.token-ribbon>p{font-size:16px;color:var(--muted);margin-top:12px}.condition-processing{display:flex;align-items:center;gap:23px;flex:1;min-height:130px}.process-arrow{font-size:29px;color:var(--muted)}.transformer-module{flex:1;border:1px solid var(--line);padding:12px 19px;background:var(--surface)}.module-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.module-heading>b{font-size:21px;font-weight:500}.module-heading>span{font-size:14px;color:var(--muted)}.transformer-layers{display:flex;align-items:center;gap:22px}.transformer-layers>span{padding:8px 13px;background:var(--paper);border-left:2px solid var(--ink);font-size:21px;flex:1}.transformer-layers small{display:block;font-size:14px;color:var(--muted);margin-top:4px}.transformer-layers>b{font-size:23px;font-weight:400}.condition-result{display:flex;align-items:center;gap:17px;min-width:330px}.condition-result>strong{width:61px;height:79px;background:var(--signal);display:flex;align-items:center;justify-content:center;font:italic 48px Saira}.condition-result b{font-size:18px;font-weight:500}.condition-result p{font-size:24px;margin:6px 0}.condition-result span{font-size:15px;color:var(--muted)}.conditioning-assurance{display:flex;justify-content:space-between;border-top:1px solid var(--ink);padding-top:13px;font-size:17px}.conditioning-assurance>span:before{content:'·';margin-right:10px;color:var(--muted)}
 </style>

@@ -19,7 +19,7 @@ const tests=[
         <h3>{{test.method}}</h3><p>{{test.detail}}</p><div class="test-measure">{{test.measure}}</div>
       </article>
     </div>
-    <div class="test-boundary"><h3>Keep prediction separate from scoring</h3><p>No query target at inference. Log splits, histories and checkpoints. Ablations test dependence; Best-of-K tests coverage.</p></div>
+    <div class="test-boundary"><h3>Keep prediction separate from scoring</h3><p>Reconstruction, accuracy, unseen users, ablations, multimodality and computational performance.</p></div>
     <p class="source-caption">Report §3.1 / schematic diagrams, not measured results.</p>
   </div>
 </template>

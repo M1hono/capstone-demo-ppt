@@ -3,12 +3,6 @@ import { useSequence } from '../composables/useSequence'
 import pairs from '../data/history-pairs.json'
 const base = import.meta.env.BASE_URL
 const sequence = useSequence(['Learn the retouching space', 'Encode the user’s history', 'Predict a conditional distribution', 'Sample, select and render'])
-const descriptions = [
-  'Original + expert edit → 3D edit vector.',
-  '8 history pairs + query original → 17 tokens.',
-  'Transformer context c conditions the flow.',
-  'Sample → select five vectors → render.'
-]
 </script>
 <template>
   <div class="stack architecture">
@@ -80,8 +74,8 @@ const descriptions = [
       <text x="0" y="382" class="diagram-detail">FiveK inputs / report architecture / illustrative samples</text>
       <text x="1188" y="382" text-anchor="end" class="diagram-detail">No query target T₀ at inference</text>
     </svg>
-    <p class="sequence-caption" aria-live="polite">{{ descriptions[sequence.step.value] }}</p>
-    <SequenceControls :sequence="sequence"/>
+    <p class="sequence-caption">Stage 1: compact edit vectors. Stage 2: image + history → conditional density → candidate edits.</p>
+
   </div>
 </template>
 <style scoped>

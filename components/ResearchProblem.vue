@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from 'vue'
-const selected = ref('A')
 const users = ['A', 'B', 'C']
 const base = import.meta.env.BASE_URL + 'assets/preference-reference/'
 </script>
@@ -20,13 +18,13 @@ const base = import.meta.env.BASE_URL + 'assets/preference-reference/'
       </svg>
       <div class="user-outputs">
         <div v-for="user in users" :key="user" class="user-output" :data-user-output="user">
-          <button :aria-pressed="selected === user" @click.stop="selected = user">User {{user}}</button>
+          <span class="user-label">User {{user}}</span>
           <img :src="base + `user-${user}.jpg`" :alt="`Illustrative preferred flower edit for User ${user}`">
         </div>
       </div>
     </div>
     <div class="user-histories">
-      <article v-for="user in users" :key="user" :data-user-history="user" :class="{selected:selected === user}">
+      <article v-for="user in users" :key="user" :data-user-history="user">
         <h3>User {{user}} <span>Historical examples</span></h3>
         <div class="history-images">
           <figure v-for="scene in ['house', 'books']" :key="scene">
@@ -36,7 +34,7 @@ const base = import.meta.env.BASE_URL + 'assets/preference-reference/'
         </div>
       </article>
     </div>
-    <p class="source-caption">Supplied preference illustration; not model predictions.</p>
+    <p class="source-caption">Learn from historical edits. Adapt to unseen users without additional training. Preference illustration.</p>
   </div>
 </template>
 <style scoped>
@@ -46,7 +44,7 @@ const base = import.meta.env.BASE_URL + 'assets/preference-reference/'
 .query-photo{margin:0}.query-photo img{width:360px;height:190px;object-fit:cover;display:block}.query-photo figcaption{padding-top:8px;font-size:16px;font-weight:500}
 .preference-arrows{width:100%;height:288px;overflow:visible}.preference-arrows>path{fill:none;stroke:var(--ink);stroke-width:1.5;marker-end:url(#preference-arrow)}
 .user-outputs{height:288px;display:flex;flex-direction:column;justify-content:space-between}
-.user-output{display:grid;grid-template-columns:100px 1fr;gap:15px;align-items:center}.user-output img{width:215px;height:84px;object-fit:cover;display:block}.user-output button{font-size:17px;font-weight:600;min-height:44px}
+.user-output{display:grid;grid-template-columns:100px 1fr;gap:15px;align-items:center}.user-output img{width:215px;height:84px;object-fit:cover;display:block}.user-output .user-label{font-size:17px;font-weight:600;min-height:44px}
 .user-histories{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .user-histories article{border-top:2px solid var(--line);padding-top:9px}.user-histories article.selected{border-color:var(--ink)}
 .user-histories h3{font-size:17px;margin:0 0 9px}.user-histories h3 span{font-size:14px;color:var(--muted);font-weight:400;margin-left:8px}

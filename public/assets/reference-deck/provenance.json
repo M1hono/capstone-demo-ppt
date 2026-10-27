@@ -1,0 +1,115 @@
+{
+  "source": "User-supplied 25-slide presentation",
+  "sourceDeckSha256": "6f07c8c4ab7ca30290298873dc18c643315caeb67e4daa088c9fdf38f249f7f5",
+  "transform": "Pixel crops only; no synthetic retouching",
+  "assets": [
+    {
+      "file": "direction-grid.png",
+      "source": "slide-10-image6.png",
+      "sourceSha256": "c4c839849a333cf14804eb13b45414675b9d17cd538d99f1063da6a557495fa1",
+      "crop": [
+        0,
+        0,
+        1483,
+        510
+      ],
+      "sha256": "7368bd2eef1b20398fcb0fcb081db85cea224340d3193f3353fc0af5784cab7d"
+    },
+    {
+      "file": "magnitude-grid.png",
+      "source": "slide-10-image6.png",
+      "sourceSha256": "c4c839849a333cf14804eb13b45414675b9d17cd538d99f1063da6a557495fa1",
+      "crop": [
+        0,
+        570,
+        1483,
+        1099
+      ],
+      "sha256": "3dc65a263d848abbadec4da5a88a129428adb13664d811cdf9ee51268f571399"
+    },
+    {
+      "file": "lut-basis.png",
+      "source": "slide-9-image5.png",
+      "sourceSha256": "b9db1e90d18e212b3fba6ce327b988fe15e2cd6917a2a501bf6a813ef20127b8",
+      "crop": [
+        1193,
+        104,
+        1268,
+        181
+      ],
+      "sha256": "242a662ac8e2a8699ea19bd0d1a5815694b281c529a7d72136586dba2d9d7b62"
+    },
+    {
+      "file": "original.png",
+      "source": "slide-20-image11.png",
+      "sourceSha256": "9fc41d4ad908b56e43d0a45e3ecb966e9f357e7d2901dfc557f474361b39abc3",
+      "crop": [
+        761,
+        124,
+        901,
+        239
+      ],
+      "sha256": "3688e81c08ff8fdc6eab1d17c1e68b69846012511ab40a341f3d34a0b8020260"
+    },
+    {
+      "file": "target.png",
+      "source": "slide-20-image11.png",
+      "sourceSha256": "9fc41d4ad908b56e43d0a45e3ecb966e9f357e7d2901dfc557f474361b39abc3",
+      "crop": [
+        906,
+        124,
+        1046,
+        239
+      ],
+      "sha256": "b9b3a92858462f154b8e22acfcb49579164fc9b460bee2d259ebc9f1ded5bd22"
+    },
+    {
+      "file": "candidate-1.png",
+      "source": "slide-20-image11.png",
+      "sourceSha256": "9fc41d4ad908b56e43d0a45e3ecb966e9f357e7d2901dfc557f474361b39abc3",
+      "crop": [
+        1050,
+        124,
+        1190,
+        239
+      ],
+      "sha256": "3034a3c02d902c2a47d534abacfb7c9efa0d35c9a247c3def8e9a69c6e810612"
+    },
+    {
+      "file": "candidate-2.png",
+      "source": "slide-20-image11.png",
+      "sourceSha256": "9fc41d4ad908b56e43d0a45e3ecb966e9f357e7d2901dfc557f474361b39abc3",
+      "crop": [
+        1194,
+        124,
+        1334,
+        239
+      ],
+      "sha256": "dbe8b4a782617a5def849f57b99ae46881d2ed26ab930f0021a84dc8277867f9"
+    },
+    {
+      "file": "candidate-3.png",
+      "source": "slide-20-image11.png",
+      "sourceSha256": "9fc41d4ad908b56e43d0a45e3ecb966e9f357e7d2901dfc557f474361b39abc3",
+      "crop": [
+        1339,
+        124,
+        1479,
+        239
+      ],
+      "sha256": "e2b779b6442229d7d6b9d833646fa2847790ffacae5baaa85719276663150e7b"
+    },
+    {
+      "file": "sample-density.png",
+      "source": "slide-20-image11.png",
+      "sourceSha256": "9fc41d4ad908b56e43d0a45e3ecb966e9f357e7d2901dfc557f474361b39abc3",
+      "crop": [
+        766,
+        291,
+        1478,
+        444
+      ],
+      "sha256": "1fb6937a850483ae3831735c9d9328476af989004b3f8fa891046f28e0236496"
+    }
+  ]
+}
