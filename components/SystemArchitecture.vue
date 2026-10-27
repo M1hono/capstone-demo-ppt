@@ -4,17 +4,17 @@ import pairs from '../data/history-pairs.json'
 const base = import.meta.env.BASE_URL
 const sequence = useSequence(['Learn the retouching space', 'Encode the user’s history', 'Predict a conditional distribution', 'Sample, select and render'])
 const descriptions = [
-  'An original and its expert edit teach a three-dimensional representation of the adjustment.',
-  'Eight historical pairs supply image features E and edit vectors z. The query contributes only its original image.',
-  'The Transformer updates the query token to form c, which conditions the invertible flow.',
-  'Sample the distribution, select candidate vectors and render each with the same original image.'
+  'Original + expert edit → 3D edit vector.',
+  '8 history pairs + query original → 17 tokens.',
+  'Transformer context c conditions the flow.',
+  'Sample → select five vectors → render.'
 ]
 </script>
 <template>
   <div class="stack architecture">
     <svg class="architecture-map" viewBox="0 0 1188 390" role="img" aria-label="Two-stage architecture showing real image inputs, a three-dimensional edit representation, seventeen conditioning tokens, flow sampling and LUT rendering">
       <defs><marker id="architecture-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10" fill="var(--muted)"/></marker></defs>
-      <text x="0" y="20" class="lane-heading">Stage 1</text><text x="90" y="20" class="lane-subheading">Learn a compact edit representation</text>
+      <text x="0" y="20" class="lane-heading">Stage 1</text><text x="90" y="20" class="lane-subheading">Learn the edit space</text>
       <line x1="0" y1="38" x2="1188" y2="38" class="grid-lines"/>
       <g>
         <g v-for="(file, i) in ['original.png', 'expert-C.png', 'pair-difference.png']" :key="file" :transform="`translate(${i * 78}, 57)`">
@@ -41,7 +41,7 @@ const descriptions = [
         <text x="1119" y="151" text-anchor="middle">Reconstruction</text>
         <text x="1119" y="171" text-anchor="middle" class="diagram-detail">Loss against target T</text>
       </g>
-      <text x="0" y="214" class="lane-heading">Stage 2</text><text x="90" y="214" class="lane-subheading">Predict edits from an image and a user’s history</text>
+      <text x="0" y="214" class="lane-heading">Stage 2</text><text x="90" y="214" class="lane-subheading">Predict from image + history</text>
       <line x1="0" y1="232" x2="1188" y2="232" class="grid-lines"/>
       <g :class="{ unrevealed: sequence.step.value < 1 }" class="stage-group" data-architecture-stage="history">
         <g v-for="(p, i) in pairs.slice(0, 8)" :key="p.id" :transform="`translate(${(i % 4) * 44}, ${248 + Math.floor(i / 4) * 40})`">
@@ -77,7 +77,7 @@ const descriptions = [
         <g v-for="i in 5" :key="i" :transform="`translate(${1099 + (i - 1) * 13}, ${256 + (i - 1) * 7})`"><rect width="35" height="35" fill="var(--paper)" stroke="var(--blue)"/><path d="M6 24 L13 14 L19 20 L25 10 L30 24" fill="none" stroke="var(--blue)"/></g>
         <text x="1138" y="341" text-anchor="middle">Candidates</text>
       </g>
-      <text x="0" y="382" class="diagram-detail">Real FiveK inputs · report architecture · sample geometry is illustrative</text>
+      <text x="0" y="382" class="diagram-detail">FiveK inputs / report architecture / illustrative samples</text>
       <text x="1188" y="382" text-anchor="end" class="diagram-detail">No query target T₀ at inference</text>
     </svg>
     <p class="sequence-caption" aria-live="polite">{{ descriptions[sequence.step.value] }}</p>

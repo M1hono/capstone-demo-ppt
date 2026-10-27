@@ -1,0 +1,48 @@
+/* Modern Editorial: neutral paper, ink, restrained yellow, concise motion. */
+@font-face{font-family:Saira;src:url("/fonts/Saira.ttf") format("truetype");font-weight:100 900;font-stretch:50% 125%;font-display:swap}
+:root{--ink:#161616;--muted:#5c5c5c;--line:#d9d9d6;--paper:#f4f4f2;--surface:#eaeae6;--blue:#161616;--pale:#e4e4e0;--teal:#646464;--purple:#91918a;--amber:#5c5c5c;--signal:#fffa00;--panel:#fff;--cut:7px}
+.workbench{padding:29px 46px 22px;gap:18px;background:var(--paper)}
+.workbench header{display:flex;align-items:center;gap:19px;min-height:64px;padding-bottom:16px;border-bottom:1px solid var(--ink)}
+.slidev-layout .workbench header h1{font-family:Saira,"IBM Plex Sans",sans-serif;font-weight:650;font-size:34px;letter-spacing:-.6px;line-height:1.18}
+.page-index{font:650 20px/1 Saira,sans-serif;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:9px;flex:none}
+.page-index::before{content:"//";color:var(--muted);font-weight:400}.page-index span{background:var(--signal);padding:8px 9px}
+.workbench h2,.workbench h3,.workbench .big{font-family:Saira,"IBM Plex Sans",sans-serif}
+.workbench .big{font-weight:600;font-variant-numeric:tabular-nums}
+.workbench footer{font:450 12px/1.3 Saira,sans-serif;letter-spacing:.7px;text-transform:uppercase;border-top:1px solid var(--ink);padding-top:10px}
+.workbench footer>span:last-child{display:flex;align-items:center;gap:14px}.page-total{font-weight:650;font-variant-numeric:tabular-nums;color:var(--ink)}
+.workbench button{font-family:Saira,"IBM Plex Sans",sans-serif;clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%);padding-right:calc(14px + var(--cut));border:0;background:var(--pale);min-height:38px;transition:background 160ms cubic-bezier(.7,0,.2,1),color 160ms cubic-bezier(.7,0,.2,1)}
+.workbench button:hover,.workbench button[aria-pressed=true]{color:var(--ink);background:var(--signal);font-weight:600}
+.workbench .tabs{gap:5px}.workbench .tabs button+button{margin-left:0}
+.workbench .tabs button[aria-pressed=true]{background:var(--ink);color:var(--panel)}
+.workbench button:focus-visible{outline:2px solid currentColor;outline-offset:-4px}
+.workbench a{color:var(--ink)}.workbench a:hover{background:var(--signal);color:var(--ink)}
+.workbench .node{border:0;border-top:2px solid var(--line);background:var(--surface)}
+.workbench .node.active{border-top-color:var(--ink);background:var(--pale)}
+.workbench .node.active h3{font-weight:700}.workbench .chips span{background:var(--pale)}
+.workbench .metric{border-top:3px solid var(--ink)}
+.workbench .note.warning{color:var(--ink);border-left:5px solid var(--signal);padding-left:12px}
+.workbench .evidence-table{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font-variant-numeric:tabular-nums}
+.workbench .evidence-table th{background:transparent;color:var(--muted);font-family:Saira,sans-serif;text-transform:uppercase;letter-spacing:.8px;font-weight:500;border-bottom:1px solid var(--ink)}
+.workbench .evidence-table td{border-bottom:1px solid var(--line)}
+.workbench .evidence-table td.numeric{font-family:"IBM Plex Sans",Arial,sans-serif;font-weight:500;letter-spacing:.2px}
+.workbench .evidence-table tr.highlight{background:transparent}
+.workbench .evidence-table tr.highlight td{font-weight:600;background:#e4e4e060}
+.workbench .evidence-table tr.highlight td:first-child{border-left:3px solid var(--ink)}
+.workbench .evidence-table th:first-child,.workbench .evidence-table td:first-child{padding-left:14px}
+.workbench .evidence-table tbody tr:hover{background:var(--pale)}
+.workbench .bar-track{background:var(--pale)}
+.workbench .cover-copy h2{font:650 55px/1.08 Saira,sans-serif;letter-spacing:-1.5px}
+.workbench .cover-equation{color:var(--ink);border-left:5px solid var(--signal);padding-left:15px}
+.workbench .cover .cover-visual figcaption{background:var(--ink);color:var(--panel);font-family:Saira,sans-serif;text-transform:uppercase;font-size:12px;letter-spacing:1px}
+.workbench .cover-credits{border-color:var(--ink)}
+.workbench.entered .evidence-table tbody tr{animation:record-enter 240ms cubic-bezier(.16,1,.3,1) both}
+.workbench.entered .evidence-table tbody tr:nth-child(2){animation-delay:45ms}
+.workbench.entered .evidence-table tbody tr:nth-child(3){animation-delay:90ms}
+.workbench.entered .evidence-table tbody tr:nth-child(4){animation-delay:135ms}
+.workbench.entered .evidence-table tbody tr:nth-child(5){animation-delay:180ms}
+.workbench.entered .evidence-table tbody tr:nth-child(n+6){animation-delay:225ms}
+.workbench.entered .bar-value{transform-origin:left;animation:bar-enter 500ms cubic-bezier(.7,0,.2,1) both}
+@keyframes record-enter{from{opacity:0}to{opacity:1}}
+@keyframes bar-enter{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.workbench *{transition:none!important;animation:none!important}}
+@media print{.workbench *{animation:none!important;transition:none!important}}

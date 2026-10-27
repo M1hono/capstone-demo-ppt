@@ -1,0 +1,78 @@
+{
+  "source": "notes/2026/S2C/SOFT3888/a391a38eb37bae8c45a370f56f5ff07d.jpg",
+  "purpose": "User-supplied preference illustration; not model predictions",
+  "crops": {
+    "original": [
+      119,
+      189,
+      620,
+      450
+    ],
+    "user-A": [
+      1160,
+      11,
+      1516,
+      203
+    ],
+    "user-B": [
+      1160,
+      216,
+      1518,
+      417
+    ],
+    "user-C": [
+      1160,
+      431,
+      1519,
+      631
+    ],
+    "house-original": [
+      35,
+      732,
+      154,
+      869
+    ],
+    "house-A": [
+      164,
+      733,
+      296,
+      868
+    ],
+    "house-B": [
+      697,
+      733,
+      827,
+      868
+    ],
+    "house-C": [
+      1227,
+      733,
+      1356,
+      868
+    ],
+    "books-original": [
+      323,
+      729,
+      409,
+      869
+    ],
+    "books-A": [
+      425,
+      730,
+      524,
+      869
+    ],
+    "books-B": [
+      954,
+      730,
+      1052,
+      869
+    ],
+    "books-C": [
+      1486,
+      730,
+      1583,
+      869
+    ]
+  }
+}

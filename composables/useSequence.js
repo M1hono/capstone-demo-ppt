@@ -1,7 +1,8 @@
 import { onScopeDispose, ref } from 'vue'
-import { onSlideLeave } from '@slidev/client'
+import { onSlideEnter, onSlideLeave, useNav } from '@slidev/client'
 
 export function useSequence(labels) {
+  const { isPrintMode } = useNav()
   const step = ref(labels.length - 1)
   const playing = ref(false)
   const reduced = ref(false)
@@ -16,17 +17,26 @@ export function useSequence(labels) {
       step.value++
       if (step.value === labels.length - 1) pause()
       else tick()
-    }, 1600)
+    }, 2200)
   }
   function play() {
-    if (reduced.value) return
+    if (reduced.value || isPrintMode.value) return
     pause()
     if (step.value === labels.length - 1) step.value = 0
     playing.value = true
     tick()
   }
-  function onPreference(event) { reduced.value = event.matches; if (event.matches) pause() }
+  function enter() {
+    pause()
+    step.value = labels.length - 1
+    if (!reduced.value && !isPrintMode.value) play()
+  }
+  function onPreference(event) {
+    reduced.value = event.matches
+    if (event.matches) { pause(); step.value = labels.length - 1 }
+  }
   media?.addEventListener('change', onPreference)
+  onSlideEnter(enter)
   onSlideLeave(pause)
   onScopeDispose(() => { pause(); media?.removeEventListener('change', onPreference) })
   return { step, playing, reduced, labels, pause, play, seek }

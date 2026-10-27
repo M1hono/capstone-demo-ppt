@@ -1,7 +1,10 @@
-# Presentation design
+# Modern Editorial
 
-The supplied technical presentation direction takes precedence. Use a white 16:9 canvas, charcoal text, restrained blue emphasis, square controls, thin separators and flat surfaces. The Awesome DESIGN.md IBM reference informs spacing and typography; there is no brand affiliation or copied logo.
+Neutral paper, ink typography, restrained yellow interaction markers and thin dividers.
+Saira headings; IBM Plex Sans body; tabular numeric alignment.
 
-Use one main component per page. Preserve English report titles, experimental meanings and exact tabulated numbers. Prefer large diagrams and real photographs over prose. Do not add slogans, decorative tags or marketing copy. Animation explains state changes and has manual controls. All final states remain readable when motion is reduced.
+Tables use quiet headers, hairline row separators and weighted result rows. No colour heatmap is applied to PSNR or SSIM; exact values and protocol differences remain visible.
 
-Charts identify units, aggregation, selection protocol and provenance. Bars start at zero; line plots show explicit axes. Synthetic geometry, reported metrics, raw diagnostics and unavailable model outputs are visually and textually distinguished.
+Motion: short entry fades; mechanism sequences play once on entry and stop at the final step. Reduced motion and print display complete content. No automatic slide advance.
+
+Source references are recorded in the project verification ledger. All visible naming uses Modern Editorial.

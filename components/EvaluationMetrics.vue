@@ -4,18 +4,18 @@ const base=import.meta.env.BASE_URL
 <template>
   <div class="metrics-explained">
     <div class="fidelity">
-      <h2>How close is the image<br>to the recorded edit?</h2>
+      <h2>Does it match<br>the recorded edit?</h2>
       <div class="metric-images"><figure><img :src="base+'assets/fivek/original.png'" alt="FiveK original reference"><figcaption>Original reference</figcaption></figure><figure><img :src="base+'assets/fivek/expert-C.png'" alt="FiveK Expert C recorded target"><figcaption>Recorded target</figcaption></figure></div>
       <div class="metric-definition"><h3>PSNR</h3><p>Pixel-error fidelity.<span>10 log₁₀(MAX² / MSE)</span></p></div>
       <div class="metric-definition"><h3>SSIM</h3><p>Luminance, contrast and structure.<span>Report separately from PSNR.</span></p></div>
-      <p class="source-caption">Images illustrate the reference data, not a model prediction. Scores require consistent preprocessing and aggregation.</p>
+      <p class="source-caption">Reference images, not predictions. Use consistent preprocessing and aggregation.</p>
     </div>
-    <div class="coverage-explanation"><h2>How much of the target<br>does a candidate set cover?</h2>
+    <div class="coverage-explanation"><h2>Does the candidate set<br>cover the target?</h2>
       <div class="selection-diagram"><span v-for="i in 5" :key="i">z{{['₁','₂','₃','₄','₅'][i-1]}}</span></div>
       <p class="selection-label">Five candidate vectors (schematic)</p>
       <div class="selection-definition"><b>Top-1</b><p>Automatic ranking.<br>No query target at inference.</p></div>
       <div class="selection-definition"><b>Best-of-K</b><p>Target-assisted scoring.<br>Evaluation only.</p></div>
-      <p class="metric-limit">Neither fidelity nor coverage establishes user preference.</p>
+      <p class="metric-limit">Fidelity ≠ user preference.</p>
     </div>
   </div>
 </template>

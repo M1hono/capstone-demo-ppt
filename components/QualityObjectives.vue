@@ -1,15 +1,15 @@
 <script setup>
 const measures = [
-  {label:'Inference time', value:'39.735', unit:'ms', scope:'One query · fresh history encoding', detail:'Cached historical z, GPU-resident inputs.'},
-  {label:'Peak allocated memory', value:'115.9', unit:'MiB', scope:'Monte Carlo · batch size 1', detail:'Allocated CUDA memory, not total process VRAM.'},
-  {label:'User history', value:'8', unit:'pairs', scope:'Shared model · fixed inference weights', detail:'No user-specific training or fine-tuning.'}
+  {label:'Inference time', value:'39.735', unit:'ms', scope:'1 query / fresh image encoding', detail:'Cached z / inputs on GPU.'},
+  {label:'Peak allocated memory', value:'115.9', unit:'MiB', scope:'Monte Carlo · batch size 1', detail:'Allocated memory, not total VRAM.'},
+  {label:'User history', value:'8', unit:'pairs', scope:'Shared model / fixed weights', detail:'No per-user fine-tuning.'}
 ]
 </script>
 <template>
   <div class="stack quality-objectives">
     <div class="quality-measures"><article v-for="item in measures" :key="item.label"><h3>{{item.label}}</h3><p class="measurement">{{item.value}} <span>{{item.unit}}</span></p><p>{{item.scope}}</p><p class="small muted">{{item.detail}}</p></article></div>
-    <div class="quality-boundaries"><article><h3>Reliability</h3><p>Controlled input perturbations test dependence on image and history.</p></article><article><h3>Reproducibility</h3><p>Versioned code and a saved diagnostic are available; the final run bundle is missing.</p></article><article><h3>Usability and diversity</h3><p>Several candidate outputs are supported; subjective preference has not been tested.</p></article></div>
-    <p class="source-caption">RTX 4060 Laptop GPU · 256 × 256 inputs · 256 Monte Carlo samples · research benchmark, with no production service guarantee.</p>
+    <div class="quality-boundaries"><article><h3>Reliability</h3><p>Ablations test image and history dependence.</p></article><article><h3>Reproducibility</h3><p>Code and diagnostic saved; final run missing.</p></article><article><h3>Usability and diversity</h3><p>Multiple candidates; user preference untested.</p></article></div>
+    <p class="source-caption">RTX 4060 Laptop / 256 × 256 inputs / 256 samples / model-side benchmark.</p>
   </div>
 </template>
 <style scoped>

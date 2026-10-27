@@ -1,15 +1,15 @@
 <script setup>
 import e from '../data/report-evidence.json'
 const summaries = {
-  'Yuchen Deng':'React/FastAPI prototype; setup documentation; client and demo coordination.',
-  'Gary Xu':'Completed contributions are not specified in the supplied evidence table.',
-  'Sihan Fang':'Completed contributions are not specified in the supplied evidence table.',
-  'Yiming Chen':'Progress-report reflections; presentation assistance; web-demo review.',
-  'Yiheng Guo':'Recorded role: Doomsayer. Completed deliverables are not specified.',
-  'Lunyan Wang':'Flow5 model, training pipeline and evaluation implementation.',
-  'Weishao Su':'Team management and recorded meeting minutes.',
-  'XingTang Chen':'Interactive presentation; FiveK image preparation; report assistance.',
-  'Zihao Zhang':'Recorded role: Tracker. Completed deliverables are not specified.'
+  'Yuchen Deng':'React/FastAPI prototype; setup; client/demo coordination.',
+  'Gary Xu':'Completed work not specified in Table 6.',
+  'Sihan Fang':'Completed work not specified in Table 6.',
+  'Yiming Chen':'Progress reflections; presentation and demo review.',
+  'Yiheng Guo':'Doomsayer; deliverables not specified.',
+  'Lunyan Wang':'Flow5 model; training; evaluation.',
+  'Weishao Su':'Team management; meeting minutes.',
+  'XingTang Chen':'Interactive slides; FiveK preparation; report.',
+  'Zihao Zhang':'Tracker; deliverables not specified.'
 }
 </script>
 <template>
@@ -18,7 +18,7 @@ const summaries = {
     <div class="member-grid" role="list" aria-label="Team contribution summary">
       <article v-for="member in e.contributions" :key="member.name" class="member-card" role="listitem"><h3>{{member.name}}</h3><p>{{summaries[member.name]}}</p></article>
     </div>
-    <div class="contribution-foot"><p>Contribution scope follows report Table 6. The presentation implementation and its revision history are publicly available.</p><a href="https://github.com/M1hono/capstone-demo-ppt/commits/main/" target="_blank" rel="noopener">Presentation commit history ↗</a></div>
+    <div class="contribution-foot"><p>Contributions: report Table 6. Public presentation history linked below.</p><a href="https://github.com/M1hono/capstone-demo-ppt/commits/main/" target="_blank" rel="noopener">Presentation commit history ↗</a></div>
   </div>
 </template>
 <style scoped>

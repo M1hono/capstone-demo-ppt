@@ -3,9 +3,9 @@ const base=import.meta.env.BASE_URL
 </script>
 <template>
   <div class="conclusion">
-    <div class="conclusion-main"><div class="conclusion-argument"><h2>Learn a distribution<br>of personal edits<br>from user history.</h2><p class="formula">p(z | image, history)</p><p class="conclusion-limit">The next step is stronger history conditioning<br>and validation with real user preferences.</p></div>
+    <div class="conclusion-main"><div class="conclusion-argument"><h2>Learn a distribution<br>of personal edits<br>from user history.</h2><p class="formula">p(z | image, history)</p><p class="conclusion-limit">Personalized candidates with shared weights.<br>Coverage demonstrated; preference validation limited.</p></div>
       <div class="conclusion-model"><div class="ending-images"><img :src="base+'assets/fivek/original.png'" alt="Original FiveK scene"><img :src="base+'assets/fivek/expert-E.png'" alt="Recorded Expert E edit of the same scene"></div><p class="source-caption">Original and recorded expert edit, FiveK a0412.</p>
-        <svg viewBox="0 0 470 180" role="img" aria-label="Conditional distribution with two plausible regions, an illustration of the research objective"><line x1="20" y1="145" x2="450" y2="145" stroke="var(--line)"/><path d="M20 145 C55 145 65 28 120 28 C177 28 173 142 226 142 C280 142 270 66 330 66 C390 66 407 145 450 145" fill="var(--pale)" stroke="var(--blue)" stroke-width="3"/><text x="235" y="174" text-anchor="middle">Illustrative preference density over edits</text></svg>
+        <svg viewBox="0 0 470 180" role="img" aria-label="Conditional distribution with two plausible regions, an illustration of the research objective"><line x1="20" y1="145" x2="450" y2="145" stroke="var(--line)"/><path d="M20 145 C55 145 65 28 120 28 C177 28 173 142 226 142 C280 142 270 66 330 66 C390 66 407 145 450 145" fill="var(--pale)" stroke="var(--blue)" stroke-width="3"/><text x="235" y="174" text-anchor="middle">Illustrative preference density</text></svg>
       </div>
     </div>
     <div class="conclusion-close"><div class="closing-facts"><span><b>3D</b> retouching space</span><span><b>8</b> historical pairs</span><span><b>Fixed</b> inference weights</span></div><div class="questions">Questions?</div></div>

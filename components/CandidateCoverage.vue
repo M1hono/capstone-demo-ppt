@@ -8,7 +8,7 @@ const labels=['Top-1','Best-of-3','Best-of-5']
 </script>
 <template>
   <div class="stack coverage">
-    <div class="row spread"><label>FiveK expert <select v-model.number="expert" aria-label="Coverage expert" @keydown.stop><option v-for="(label,i) in e.fivek.experts" :key="label" :value="i">{{label}}</option></select></label><p class="coverage-takeaway">More candidates increase <b>target coverage.</b></p></div>
+    <div class="row spread"><label>FiveK expert <select v-model.number="expert" aria-label="Coverage expert" @keydown.stop><option v-for="(label,i) in e.fivek.experts" :key="label" :value="i">{{label}}</option></select></label><p class="coverage-takeaway">More candidates, greater <b>target coverage.</b></p></div>
     <div class="coverage-main">
       <svg viewBox="0 0 690 320" role="img" aria-label="PSNR for automatic Top-1 selection and offline Best-of-3 and Best-of-5 coverage">
         <rect x="270" y="33" width="395" height="225" fill="var(--surface)"/>
@@ -17,10 +17,10 @@ const labels=['Top-1','Best-of-3','Best-of-5']
         <path :d="`M360 ${y(values[1])} L575 ${y(values[2])}`" fill="none" stroke="var(--teal)" stroke-width="2"/>
         <g v-for="(v,i) in values" :key="i"><circle :cx="145+i*215" :cy="y(v)" r="8" :fill="i?'var(--teal)':'var(--blue)'"/><text :x="145+i*215" :y="y(v)-20" text-anchor="middle" class="point-value">{{v.toFixed(3)}}</text><text :x="145+i*215" y="296" text-anchor="middle" class="point-label">{{labels[i]}}</text></g>
       </svg>
-      <div class="selection-rules"><article><span class="rule-symbol automatic">1</span><div><h3>At inference</h3><p>The system ranks candidates without seeing the query target.</p></div></article><article><span class="rule-symbol oracle">K</span><div><h3>During evaluation</h3><p>Best-of-K chooses the closest candidate using the known target.</p></div></article><p class="interpretation">Coverage does not show that every candidate is preferred.</p></div>
+      <div class="selection-rules"><article><span class="rule-symbol automatic">1</span><div><h3>At inference</h3><p>Rank without the query target.</p></div></article><article><span class="rule-symbol oracle">K</span><div><h3>During evaluation</h3><p>Score the closest candidate against the target.</p></div></article><p class="interpretation">Coverage ≠ preference.</p></div>
     </div>
     <div class="candidate-pipeline"><span>Sample edit vectors</span><span>→</span><span>Select five candidates</span><span>→</span><span>Render with the same original</span></div>
-    <p class="source-caption">Detailed FiveK report values, also present in the archived diagnostic. Final-run candidate images are unavailable; the chart compares recorded scores.</p>
+    <p class="source-caption">FiveK report + diagnostic scores. Final-run candidate images unavailable.</p>
   </div>
 </template>
 <style scoped>

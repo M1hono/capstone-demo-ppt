@@ -487,28 +487,28 @@
     {
       "number": 1,
       "component": "ProjectCover",
-      "title": "Project14",
+      "title": "Final demo / Project14",
       "section": "Cover",
       "usage": "Project identity, client, tutor and group members."
     },
     {
       "number": 2,
       "component": "ResearchProblem",
-      "title": "Background and research problem",
+      "title": "One image, different preferences",
       "section": "1.1, 2.2",
       "usage": "Compare real expert edits and explain the preference-modelling hypothesis."
     },
     {
       "number": 3,
       "component": "ResearchOutcomes",
-      "title": "Goals, objectives and main outcomes",
+      "title": "Goals and outcomes",
       "section": "1.2\u20131.3, 3.5",
       "usage": "Connect the distribution objective to the reported outcomes."
     },
     {
       "number": 4,
       "component": "ArchitectureEvolution",
-      "title": "Early approaches and evolution",
+      "title": "How the approach evolved",
       "section": "1.4, 2.7",
       "usage": "Step through five research approaches and their limitations."
     },
@@ -522,21 +522,21 @@
     {
       "number": 6,
       "component": "QualityObjectives",
-      "title": "Non-functional requirements",
+      "title": "Quality targets",
       "section": "3.7.1",
       "usage": "Connect quality objectives to measured evidence and its limits."
     },
     {
       "number": 7,
       "component": "UserAcceptance",
-      "title": "User stories and acceptance criteria",
+      "title": "User needs and acceptance",
       "section": "2.1",
       "usage": "Map each user need to an observable acceptance criterion."
     },
     {
       "number": 8,
       "component": "DesignTradeoffs",
-      "title": "Technical constraints and design decisions",
+      "title": "Key design decisions",
       "section": "2.6",
       "usage": "Explain the capacity, conditioning and sampling trade-offs."
     },
@@ -550,28 +550,28 @@
     {
       "number": 10,
       "component": "TestingStrategy",
-      "title": "Testing strategy and quality objectives",
+      "title": "What we tested",
       "section": "3.1",
       "usage": "Connect each research question to its evaluation method."
     },
     {
       "number": 11,
       "component": "DatasetProtocol",
-      "title": "Datasets and experimental setup",
+      "title": "Datasets and protocol",
       "section": "3.2",
       "usage": "Inspect the reported image/user splits and history boundary."
     },
     {
       "number": 12,
       "component": "EvaluationMetrics",
-      "title": "Testing methods and metrics",
+      "title": "What the metrics measure",
       "section": "3.1\u20133.3",
       "usage": "Separate image fidelity, oracle coverage and preference validity."
     },
     {
       "number": 13,
       "component": "QuantitativeResults",
-      "title": "Main quantitative results",
+      "title": "Quantitative results",
       "section": "3.5",
       "usage": "Inspect every per-expert PSNR/SSIM value and the PPSD result."
     },
@@ -585,7 +585,7 @@
     {
       "number": 15,
       "component": "CandidateCoverage",
-      "title": "Top-1 and Top-K candidates",
+      "title": "Top-1 vs Best-of-K",
       "section": "3.5",
       "usage": "Distinguish deployable ranking from offline Best-of-K coverage."
     },
@@ -606,35 +606,35 @@
     {
       "number": 18,
       "component": "RuntimeBenchmark",
-      "title": "Latency, GPU memory and resources",
+      "title": "Inference time and resources",
       "section": "3.7",
       "usage": "Compare all six benchmark configurations and measurement limits."
     },
     {
       "number": 19,
       "component": "TechnologyChoices",
-      "title": "Technical knowledge and technology choices",
+      "title": "Technology choices",
       "section": "2.6, 3.7",
       "usage": "Explain the role of each model and engineering technology."
     },
     {
       "number": 20,
       "component": "FeedbackCycle",
-      "title": "Client feedback and iterative improvement",
+      "title": "Feedback and iteration",
       "section": "4.6 (client feedback)",
       "usage": "Trace the reported proposal\u2013review\u2013implementation loop."
     },
     {
       "number": 21,
       "component": "ContributionEvidence",
-      "title": "Team organisation and contributions",
+      "title": "Team contributions",
       "section": "4.1\u20134.3, Table 6",
       "usage": "Inspect supported contributions and individual evidence links."
     },
     {
       "number": 22,
       "component": "ChallengeResolution",
-      "title": "Issues, challenges and solutions",
+      "title": "Challenges and responses",
       "section": "4.4\u20134.5, 5.2",
       "usage": "Connect observed problems to changes and remaining gaps."
     },
@@ -647,10 +647,10 @@
     },
     {
       "number": 24,
-      "component": "ImprovementPriorities",
-      "title": "Limitations and prioritised improvements",
+      "component": "ResearchLimitations",
+      "title": "Limitations",
       "section": "5.3\u20135.4",
-      "usage": "Order next work by research impact and verification method."
+      "usage": "Explain the limits of preference learning, edit capacity and evaluation evidence."
     },
     {
       "number": 25,

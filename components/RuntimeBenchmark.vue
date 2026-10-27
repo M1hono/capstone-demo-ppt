@@ -9,8 +9,8 @@ const format=value=>value.toFixed(metric.value==='memory'?1:metric.value==='thro
   <div class="stack runtime">
     <div class="row spread"><div class="tabs"><button v-for="(label,key) in labels" :key="key" :aria-pressed="metric===key" @click.stop="metric=key">{{label}}</button></div><span class="runtime-device">RTX 4060 Laptop GPU</span></div>
     <div class="runtime-chart"><div class="runtime-axis"><span>Batch · configuration · history</span><div><span>0</span><span>{{max/2}}</span><span>{{max}}</span></div><span>{{metric==='memory'?'MiB':metric==='throughput'?'img/s':'ms'}}</span></div><div v-for="(r,i) in e.benchmark.rows" :key="i" class="bar-row"><span><b>{{r.batch}}</b> {{r.mode}} · {{r.history}}</span><div class="bar-track"><div class="bar-value" :style="{width:`${r[metric]/max*100}%`,background:r.batch===8?'var(--teal)':'var(--blue)'}"/></div><span class="bar-number">{{format(r[metric])}}</span></div></div>
-    <div class="benchmark-context"><p><b>Measured configuration</b>256 × 256 RGB · 8 history pairs<br>256 samples · 5 candidates</p><p><b>Measurement window</b>3 warm-ups · 10 repetitions<br>Model stages only, with GPU-resident inputs</p><p><b>Interpretation</b>P95 is a small-sample estimate.<br>Allocated memory is not total VRAM.</p></div>
-    <p class="source-caption">Historical z cached; “fresh” re-encodes images. Excludes I/O, checkpoint loading, transfers and spherical-grid search. Full software and precision settings are in the evidence index.</p>
+    <div class="benchmark-context"><p><b>Measured configuration</b>256 × 256 RGB · 8 history pairs<br>256 samples · 5 candidates</p><p><b>Measurement window</b>3 warm-ups · 10 repetitions<br>Model only / inputs on GPU</p><p><b>Interpretation</b>P95: only 10 repetitions.<br>Allocated memory ≠ total VRAM.</p></div>
+    <p class="source-caption">Cached historical z; “fresh” re-encodes images. Excludes I/O, loading, transfers and grid search.</p>
   </div>
 </template>
 <style scoped>

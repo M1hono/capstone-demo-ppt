@@ -2,28 +2,28 @@
   {
     "number": 1,
     "component": "ProjectCover",
-    "title": "Project14",
+    "title": "Final demo / Project14",
     "section": "Cover",
     "usage": "Project identity, client, tutor and group members."
   },
   {
     "number": 2,
     "component": "ResearchProblem",
-    "title": "Background and research problem",
+    "title": "One image, different preferences",
     "section": "1.1, 2.2",
-    "usage": "Compare real expert edits and explain the preference-modelling hypothesis."
+    "usage": "Explain three user preferences using the supplied illustration and historical editing pairs."
   },
   {
     "number": 3,
     "component": "ResearchOutcomes",
-    "title": "Goals, objectives and main outcomes",
+    "title": "Goals and outcomes",
     "section": "1.2\u20131.3, 3.5",
     "usage": "Connect the distribution objective to the reported outcomes."
   },
   {
     "number": 4,
     "component": "ArchitectureEvolution",
-    "title": "Early approaches and evolution",
+    "title": "How the approach evolved",
     "section": "1.4, 2.7",
     "usage": "Step through five research approaches and their limitations."
   },
@@ -37,21 +37,21 @@
   {
     "number": 6,
     "component": "QualityObjectives",
-    "title": "Non-functional requirements",
+    "title": "Quality targets",
     "section": "3.7.1",
     "usage": "Connect quality objectives to measured evidence and its limits."
   },
   {
     "number": 7,
     "component": "UserAcceptance",
-    "title": "User stories and acceptance criteria",
+    "title": "User needs and acceptance",
     "section": "2.1",
     "usage": "Map each user need to an observable acceptance criterion."
   },
   {
     "number": 8,
     "component": "DesignTradeoffs",
-    "title": "Technical constraints and design decisions",
+    "title": "Key design decisions",
     "section": "2.6",
     "usage": "Explain the capacity, conditioning and sampling trade-offs."
   },
@@ -65,28 +65,28 @@
   {
     "number": 10,
     "component": "TestingStrategy",
-    "title": "Testing strategy and quality objectives",
+    "title": "What we tested",
     "section": "3.1",
     "usage": "Connect each research question to its evaluation method."
   },
   {
     "number": 11,
     "component": "DatasetProtocol",
-    "title": "Datasets and experimental setup",
+    "title": "Datasets and protocol",
     "section": "3.2",
     "usage": "Inspect the reported image/user splits and history boundary."
   },
   {
     "number": 12,
     "component": "EvaluationMetrics",
-    "title": "Testing methods and metrics",
+    "title": "What the metrics measure",
     "section": "3.1\u20133.3",
     "usage": "Separate image fidelity, oracle coverage and preference validity."
   },
   {
     "number": 13,
     "component": "QuantitativeResults",
-    "title": "Main quantitative results",
+    "title": "Quantitative results",
     "section": "3.5",
     "usage": "Inspect every per-expert PSNR/SSIM value and the PPSD result."
   },
@@ -100,7 +100,7 @@
   {
     "number": 15,
     "component": "CandidateCoverage",
-    "title": "Top-1 and Top-K candidates",
+    "title": "Top-1 vs Best-of-K",
     "section": "3.5",
     "usage": "Distinguish deployable ranking from offline Best-of-K coverage."
   },
@@ -121,35 +121,35 @@
   {
     "number": 18,
     "component": "RuntimeBenchmark",
-    "title": "Latency, GPU memory and resources",
+    "title": "Inference time and resources",
     "section": "3.7",
     "usage": "Compare all six benchmark configurations and measurement limits."
   },
   {
     "number": 19,
     "component": "TechnologyChoices",
-    "title": "Technical knowledge and technology choices",
+    "title": "Technology choices",
     "section": "2.6, 3.7",
     "usage": "Explain the role of each model and engineering technology."
   },
   {
     "number": 20,
     "component": "FeedbackCycle",
-    "title": "Client feedback and iterative improvement",
+    "title": "Feedback and iteration",
     "section": "4.6 (client feedback)",
     "usage": "Trace the reported proposal\u2013review\u2013implementation loop."
   },
   {
     "number": 21,
     "component": "ContributionEvidence",
-    "title": "Team organisation and contributions",
+    "title": "Team contributions",
     "section": "4.1\u20134.3, Table 6",
     "usage": "Inspect supported contributions and individual evidence links."
   },
   {
     "number": 22,
     "component": "ChallengeResolution",
-    "title": "Issues, challenges and solutions",
+    "title": "Challenges and responses",
     "section": "4.4\u20134.5, 5.2",
     "usage": "Connect observed problems to changes and remaining gaps."
   },
@@ -162,10 +162,10 @@
   },
   {
     "number": 24,
-    "component": "ImprovementPriorities",
-    "title": "Limitations and prioritised improvements",
+    "component": "ResearchLimitations",
+    "title": "Limitations",
     "section": "5.3\u20135.4",
-    "usage": "Order next work by research impact and verification method."
+    "usage": "Explain the limits of preference learning, edit capacity and evaluation evidence."
   },
   {
     "number": 25,
@@ -173,194 +173,5 @@
     "title": "Conclusion and Q&A",
     "section": "5.5",
     "usage": "Summarise the architecture, evidence and outstanding validation."
-  },
-  {
-    "number": 26,
-    "component": "RetouchingEncoder",
-    "title": "Retouching encoder",
-    "section": "2.3",
-    "usage": "Inspect O, T and T \u2212 O as the nine-channel input."
-  },
-  {
-    "number": 27,
-    "component": "LUTAssembly",
-    "title": "Eight-basis LUT decoder",
-    "section": "2.3; audited phase1/model.py",
-    "usage": "Follow coefficients, basis combination and image-wide rendering."
-  },
-  {
-    "number": 28,
-    "component": "TransformerConditioning",
-    "title": "Transformer-based condition generation",
-    "section": "2.4; source depth discrepancy",
-    "usage": "Inspect the 17 tokens, paired positions and query condition."
-  },
-  {
-    "number": 29,
-    "component": "ConditionalFlow",
-    "title": "Conditional normalizing flow",
-    "section": "2.5",
-    "usage": "Switch between likelihood training and inverse sampling."
-  },
-  {
-    "number": 30,
-    "component": "PreferenceDistribution",
-    "title": "Retouching vectors and directional density",
-    "section": "2.2, 2.5; illustrative geometry",
-    "usage": "Rotate full vectors and their unit-direction projection."
-  },
-  {
-    "number": 31,
-    "component": "CandidateSelection",
-    "title": "Candidate selection: report and source",
-    "section": "2.5; audited mc_centers",
-    "usage": "Compare the reported ranking with the saved implementation."
-  },
-  {
-    "number": 32,
-    "component": "LatentGeometry",
-    "title": "Direction and magnitude in retouching space",
-    "section": "2.3, 3.4",
-    "usage": "Explore the geometric interpretation without inventing rendered outputs."
-  },
-  {
-    "number": 33,
-    "component": "ReconstructionEvidence",
-    "title": "Reconstruction and decoder robustness",
-    "section": "3.4, 3.7.5",
-    "usage": "Separate aggregate reconstruction, example images and a small noise diagnostic."
-  },
-  {
-    "number": 34,
-    "component": "PairingDiagnostic",
-    "title": "Historical pairing and input sensitivity",
-    "section": "3.6; archived phase2_diag.txt",
-    "usage": "Inspect literal diagnostic values and the limits of history dependence."
-  },
-  {
-    "number": 35,
-    "component": "EvidenceAudit",
-    "title": "Evidence discrepancies and provenance",
-    "section": "Report / source audit",
-    "usage": "Review unresolved claims and the presentation decision for each."
-  },
-  {
-    "number": 36,
-    "component": "VisualEvidenceGallery",
-    "title": "Visual evidence atlas",
-    "section": "Figure and candidate evidence",
-    "usage": "Inspect six populated report and diagnostic figures; open or download each source asset."
-  },
-  {
-    "number": 37,
-    "component": "ExpertStyleGallery",
-    "title": "Five expert edits of one scene",
-    "section": "2.2; real FiveK references",
-    "usage": "Compare the original with five recorded expert edits."
-  },
-  {
-    "number": 38,
-    "component": "HistoryPairExplorer",
-    "title": "Twenty historical editing pairs",
-    "section": "2.4; real FiveK references",
-    "usage": "Browse complete original/edit pairs and their scene identities."
-  },
-  {
-    "number": 39,
-    "component": "ColorHistogramCompare",
-    "title": "Colour and luma distributions",
-    "section": "Derived display-image measurements",
-    "usage": "Compare measured RGB and encoded-luma histograms."
-  },
-  {
-    "number": 40,
-    "component": "ToneMappingScatter",
-    "title": "Pixel tone correspondence",
-    "section": "Derived display-image measurements",
-    "usage": "Inspect the joint distribution of original and reference luma."
-  },
-  {
-    "number": 41,
-    "component": "ColorChannelShift",
-    "title": "Expert colour shifts",
-    "section": "Derived display-image measurements",
-    "usage": "Compare signed channel changes for the same scene."
-  },
-  {
-    "number": 42,
-    "component": "SpatialDifferenceMap",
-    "title": "Where do edits change the image?",
-    "section": "Derived display-image measurements",
-    "usage": "Explore per-pixel differences and thresholded regions."
-  },
-  {
-    "number": 43,
-    "component": "LocalEditLoupe",
-    "title": "Synchronous image detail inspection",
-    "section": "Real FiveK references",
-    "usage": "Move one crop across the original and aligned expert edit."
-  },
-  {
-    "number": 44,
-    "component": "ExpertDifferenceMatrix",
-    "title": "Pairwise reference differences",
-    "section": "Derived display-image measurements",
-    "usage": "Select any image pair and inspect its measured RGB difference."
-  },
-  {
-    "number": 45,
-    "component": "HistorySamplingWorkbench",
-    "title": "Sampling a user history",
-    "section": "2.4; protocol illustration",
-    "usage": "Resample eight complete pairs from twenty real references."
-  },
-  {
-    "number": 46,
-    "component": "TokenPairingWorkbench",
-    "title": "Does historical pairing matter?",
-    "section": "3.6; archived pairing diagnostic",
-    "usage": "Shift image/edit associations and inspect recorded sensitivity."
-  },
-  {
-    "number": 47,
-    "component": "ProtocolLeakageMap",
-    "title": "Training, inference and scoring boundaries",
-    "section": "3.2; reported evaluation protocol",
-    "usage": "Trace which images enter each stage of the reported protocol."
-  },
-  {
-    "number": 48,
-    "component": "ProbabilityLandscape",
-    "title": "A continuous multimodal preference landscape",
-    "section": "2.2; illustrative probability model",
-    "usage": "Change mixture mass and compare a density with its marginal."
-  },
-  {
-    "number": 49,
-    "component": "GaussianTransportGrid",
-    "title": "Invertibility and local volume change",
-    "section": "2.5; analytic flow illustration",
-    "usage": "Deform coordinates and inspect the exact local Jacobian."
-  },
-  {
-    "number": 50,
-    "component": "MonteCarloConvergence",
-    "title": "What more samples reveal",
-    "section": "2.5; illustrative Monte Carlo sampling",
-    "usage": "Compare nested samples with the exact synthetic density."
-  },
-  {
-    "number": 51,
-    "component": "LUTInterpolationCube",
-    "title": "Inside a LUT interpolation cell",
-    "section": "2.3; exact interpolation illustration",
-    "usage": "Change RGB coordinates and inspect all eight corner weights."
-  },
-  {
-    "number": 52,
-    "component": "LatencyThroughputMap",
-    "title": "Inference performance across configurations",
-    "section": "3.7; recorded GPU benchmark",
-    "usage": "Compare latency, throughput and allocated memory together."
   }
 ]

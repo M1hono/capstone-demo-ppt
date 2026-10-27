@@ -1,30 +1,55 @@
 <script setup>
 import { ref } from 'vue'
-const expert = ref('C')
-const reveal = ref(50)
-const base = import.meta.env.BASE_URL
+const selected = ref('A')
+const users = ['A', 'B', 'C']
+const base = import.meta.env.BASE_URL + 'assets/preference-reference/'
 </script>
 <template>
-  <div class="split wide-left problem">
-    <div class="col">
-      <div class="row spread"><div class="tabs" role="group" aria-label="Expert selection"><button v-for="e in ['A','B','C','D','E']" :key="e" :aria-pressed="expert===e" @click.stop="expert=e">Expert {{e}}</button></div><span class="small muted">Same original, five experts</span></div>
-      <div class="image-comparison">
-        <img :src="base+'assets/fivek/original.png'" alt="Original FiveK photograph"/>
-        <img class="comparison-target" :src="base+`assets/fivek/expert-${expert}.png`" :alt="`Real Expert ${expert} edit of the same photograph`" :style="{clipPath:`inset(0 0 0 ${reveal}%)`}"/>
-        <div class="comparison-divider" :style="{left:reveal+'%'}"><span>↔</span></div>
-        <span class="image-label original-label">Original</span><span class="image-label target-label">Expert {{expert}}</span>
+  <div class="preference-example">
+    <p class="preference-lead">One image. Three users. Three preferences.</p>
+    <div class="preference-branches">
+      <figure class="query-photo">
+        <img :src="base + 'original.jpg'" alt="Original photograph of white and yellow flowers">
+        <figcaption>Original image</figcaption>
+      </figure>
+      <svg class="preference-arrows" viewBox="0 0 390 288" aria-hidden="true">
+        <defs><marker id="preference-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--ink)"/></marker></defs>
+        <path d="M12 119 C125 119 148 42 374 42" />
+        <path d="M12 144 H374" />
+        <path d="M12 169 C125 169 148 246 374 246" />
+      </svg>
+      <div class="user-outputs">
+        <div v-for="user in users" :key="user" class="user-output" :data-user-output="user">
+          <button :aria-pressed="selected === user" @click.stop="selected = user">User {{user}}</button>
+          <img :src="base + `user-${user}.jpg`" :alt="`Illustrative preferred flower edit for User ${user}`">
+        </div>
       </div>
-      <label class="compare-control"><span>Original</span><input v-model.number="reveal" type="range" min="0" max="100" aria-label="Original versus expert comparison" @keydown.stop/><span>Recorded edit</span></label>
-      <p class="source-caption">Real FiveK photographs · a0412-_DGW6297. Cross-expert differences illustrate personalization.</p>
     </div>
-    <div class="col problem-explanation">
-      <p class="statement">The desired edit depends on the image and the user.</p>
-      <article><h3>Learn from a small history</h3><p>A shared model adapts to a new user without updating its weights.</p></article>
-      <article><h3>Allow several plausible edits</h3><p>Predict a continuous distribution rather than a single fixed style.</p></article>
-      <p class="source-caption">The report’s ≈30% similarity-retrieval accuracy motivates this formulation. Multiple valid preferences for one user remain a hypothesis.</p>
+    <div class="user-histories">
+      <article v-for="user in users" :key="user" :data-user-history="user" :class="{selected:selected === user}">
+        <h3>User {{user}} <span>Historical examples</span></h3>
+        <div class="history-images">
+          <figure v-for="scene in ['house', 'books']" :key="scene">
+            <div><img :src="base + `${scene}-original.jpg`" :alt="`Original ${scene} photograph`"><img :src="base + `${scene}-${user}.jpg`" :alt="`${scene} edited by User ${user} in the supplied illustration`"></div>
+            <figcaption><span>Original</span><span>User {{user}} edit</span></figcaption>
+          </figure>
+        </div>
+      </article>
     </div>
+    <p class="source-caption">Supplied preference illustration; not model predictions.</p>
   </div>
 </template>
 <style scoped>
-.problem{grid-template-columns:1.65fr 1fr;gap:42px}.problem .col{gap:13px}.image-comparison{position:relative;flex:1;min-height:275px;overflow:hidden;background:var(--surface)}.image-comparison img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.comparison-divider{position:absolute;top:0;bottom:0;width:2px;background:white;pointer-events:none}.comparison-divider span{position:absolute;top:50%;left:-17px;width:36px;height:36px;display:grid;place-items:center;color:var(--ink);background:white;border:1px solid var(--line);font-size:22px}.image-label{position:absolute;top:14px;background:var(--paper);font-size:14px;padding:5px 10px}.original-label{left:14px}.target-label{right:14px}.compare-control{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--muted)}.compare-control input{flex:1}.problem-explanation{padding-top:16px;justify-content:space-between}.problem-explanation article{border-top:1px solid var(--line);padding-top:18px}.problem-explanation .statement{font-size:34px;font-weight:400}.problem-explanation article p{font-size:18px;line-height:1.45}
+.preference-example{display:flex;flex-direction:column;gap:13px}
+.preference-lead{font-size:23px;font-weight:500;line-height:1.25!important}
+.preference-branches{display:grid;grid-template-columns:360px 1fr 330px;gap:12px;height:288px;align-items:center}
+.query-photo{margin:0}.query-photo img{width:360px;height:190px;object-fit:cover;display:block}.query-photo figcaption{padding-top:8px;font-size:16px;font-weight:500}
+.preference-arrows{width:100%;height:288px;overflow:visible}.preference-arrows>path{fill:none;stroke:var(--ink);stroke-width:1.5;marker-end:url(#preference-arrow)}
+.user-outputs{height:288px;display:flex;flex-direction:column;justify-content:space-between}
+.user-output{display:grid;grid-template-columns:100px 1fr;gap:15px;align-items:center}.user-output img{width:215px;height:84px;object-fit:cover;display:block}.user-output button{font-size:17px;font-weight:600;min-height:44px}
+.user-histories{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.user-histories article{border-top:2px solid var(--line);padding-top:9px}.user-histories article.selected{border-color:var(--ink)}
+.user-histories h3{font-size:17px;margin:0 0 9px}.user-histories h3 span{font-size:14px;color:var(--muted);font-weight:400;margin-left:8px}
+.history-images{display:grid;grid-template-columns:1fr 1fr;gap:14px}.history-images figure{margin:0}.history-images figure>div{display:grid;grid-template-columns:1fr 1fr;gap:6px}.history-images img{width:100%;height:76px;object-fit:cover;display:block}.history-images figcaption{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;margin-top:4px}
+.preference-example>.source-caption{margin-top:auto}
 </style>

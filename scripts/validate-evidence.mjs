@@ -12,7 +12,7 @@ const a=JSON.parse(await read('data/model-artifacts.json'))
 const slides=await read('slides.md')
 assert.equal(e.language,'en')
 assert.deepEqual(e.topics.map(t=>t.number),Array.from({length:25},(_,i)=>i+1))
-assert.equal(index.length,52)
+assert.equal(index.length,25)
 assert.deepEqual([...slides.matchAll(/:number="(\d+)"/g)].map(m=>Number(m[1])),index.map(t=>t.number))
 for(const t of index)await access(resolve(root,`components/${t.component}.vue`))
 for(const obsolete of ['PartialEdit','RenderMechanism','HistoryRetrieval','BoundaryWorkbench','DecisionMechanism','PreferenceMemory'])
@@ -69,7 +69,7 @@ for(const dir of ['components','data','docs'])for(const file of await readdir(re
 }
 for(const name of ['fivek-psnr','fivek-ssim','ppsd-comparison','conditioning-ablations','inference-benchmark','decoder-robustness'])
   for(const ext of ['svg','png','pdf'])await access(resolve(publicRoot,`figures/${name}.${ext}`))
-console.log('PASS: 25 ordered topics; 52 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.')
+console.log('PASS: 25 ordered topics; 25 pages; English content; diagnostic PSNR agreement; benchmark arithmetic; real-image hashes; output provenance; six figure sets.')
 console.log(`Model evidence: ${hasOutput?'exported with run identity':'not supplied; availability recorded without empty image frames'}.`)
 
 // Personal achievement excerpts must stay byte-linked to the pinned source files.

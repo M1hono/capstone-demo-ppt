@@ -1,15 +1,15 @@
 <script setup>
 const stories = [
-  {id:'US-01 / FR-01', need:'“I do not know which edits to request.”', input:'Current image + editing history', result:'Automatic personalized candidates', check:'No parameters or text instructions required.'},
-  {id:'US-02 / FR-02', need:'“I have limited data and compute.”', input:'Eight previous original/edit pairs', result:'Adaptation with fixed model weights', check:'No per-user training or fine-tuning.'},
-  {id:'US-03 / FR-03', need:'“I may prefer several different results.”', input:'One query with multiple requested outputs', result:'Distinct samples from p(z | O, H)', check:'Several possible edits for the same image.'}
+  {id:'US-01 / FR-01', need:'“Choose edits for me.”', input:'Image + editing history', result:'Automatic personalized candidates', check:'No parameters or prompts.'},
+  {id:'US-02 / FR-02', need:'“Learn from a few examples.”', input:'8 original/edit pairs', result:'Adaptation with fixed model weights', check:'No per-user training.'},
+  {id:'US-03 / FR-03', need:'“Give me several options.”', input:'1 query / multiple outputs', result:'Distinct samples from p(z | O, H)', check:'Several edits of one image.'}
 ]
 </script>
 <template>
   <div class="stack acceptance">
     <div class="acceptance-head"><span>User need</span><span>What the user provides</span><span>Observable acceptance</span></div>
     <article v-for="story in stories" :key="story.id" class="acceptance-row"><div><p class="small blue">{{story.id}}</p><h2>{{story.need}}</h2></div><p class="given">{{story.input}}</p><div><h3>{{story.result}}</h3><p>{{story.check}}</p></div></article>
-    <p class="source-caption">Stories are taken from the report, not user-study quotations. Image fidelity and candidate coverage do not establish user satisfaction.</p>
+    <p class="source-caption">Report-derived stories, not user-study quotes. User satisfaction remains untested.</p>
   </div>
 </template>
 <style scoped>

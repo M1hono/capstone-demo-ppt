@@ -1,9 +1,9 @@
 <script setup>
 const tests=[
-  {id:'01',question:'Can the edit be represented?',method:'Encoder–decoder reconstruction',measure:'PSNR · SSIM · latent continuity',detail:'Establish the capacity of the 3D retouching space.',points:[38,75,63,104,130]},
-  {id:'02',question:'Does prediction generalise?',method:'FiveK and PPSD evaluation',measure:'Fidelity · held-out expert / users',detail:'Evaluate personalization with fixed inference weights.',points:[42,65,87,93,123]},
-  {id:'03',question:'What drives the prediction?',method:'Input ablations and Top-K coverage',measure:'PSNR changes · candidate coverage',detail:'Replace image or history; compare Top-1 with Best-of-K.',points:[110,70,42,80,130]},
-  {id:'04',question:'What does inference cost?',method:'Controlled GPU benchmark',measure:'Latency · throughput · memory',detail:'Measure the candidate-generation stages and scope.',points:[30,48,66,98,128]}
+  {id:'01',question:'Can the edit be represented?',method:'Encoder–decoder reconstruction',measure:'PSNR · SSIM · latent continuity',detail:'Test 3D representation capacity.',points:[38,75,63,104,130]},
+  {id:'02',question:'Does prediction generalise?',method:'FiveK and PPSD evaluation',measure:'Fidelity · held-out expert / users',detail:'Test with fixed model weights.',points:[42,65,87,93,123]},
+  {id:'03',question:'What drives the prediction?',method:'Input ablations and Top-K coverage',measure:'PSNR changes · candidate coverage',detail:'Swap conditions; compare Top-1 / Best-of-K.',points:[110,70,42,80,130]},
+  {id:'04',question:'What does inference cost?',method:'Controlled GPU benchmark',measure:'Latency · throughput · memory',detail:'Measure candidate generation.',points:[30,48,66,98,128]}
 ]
 </script>
 <template>
@@ -19,8 +19,8 @@ const tests=[
         <h3>{{test.method}}</h3><p>{{test.detail}}</p><div class="test-measure">{{test.measure}}</div>
       </article>
     </div>
-    <div class="test-boundary"><h3>Keep prediction separate from scoring</h3><p>Query targets are excluded at inference. Record training splits, history selection and checkpoints. Ablations establish input dependence; Best-of-K establishes coverage.</p></div>
-    <p class="source-caption">Evaluation plan from report §3.1. Diagrams above describe test categories; bars are schematic, not measured results.</p>
+    <div class="test-boundary"><h3>Keep prediction separate from scoring</h3><p>No query target at inference. Log splits, histories and checkpoints. Ablations test dependence; Best-of-K tests coverage.</p></div>
+    <p class="source-caption">Report §3.1 / schematic diagrams, not measured results.</p>
   </div>
 </template>
 <style scoped>

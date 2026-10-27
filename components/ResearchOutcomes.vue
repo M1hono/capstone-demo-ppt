@@ -6,10 +6,10 @@ const base = import.meta.env.BASE_URL
 <template>
   <div class="outcomes">
     <div class="objective">
-      <h2>Predict the range of edits<br>a user may prefer.</h2>
+      <h2>Learn a user’s<br>range of preferences.</h2>
       <div class="input-pair"><figure><img :src="base+'assets/fivek/original.png'" alt="Current FiveK original"><figcaption>Current image</figcaption></figure><span>+</span><div class="history"><img v-for="pair in pairs.slice(0,4)" :key="pair.id" :src="base+pair.edited" :alt="'Historical expert edit '+pair.id"><p>Editing history</p></div></div>
       <p class="density-formula">p(z | image, history)</p>
-      <p class="objective-detail">A 3D edit space. Eight historical pairs.<br>Shared weights at inference.</p>
+      <p class="objective-detail">3D edits / 8 history pairs / fixed weights</p>
     </div>
     <div class="outcome-results">
       <h3>Reported image fidelity</h3>
@@ -22,8 +22,8 @@ const base = import.meta.env.BASE_URL
         <text x="0" y="106">FiveK</text><text x="285" y="137" text-anchor="middle">Top-1</text><text x="438" y="137" text-anchor="middle">Best-of-5*</text>
         <text x="0" y="194">PPSD</text><path d="M339 180 L347 188 L339 196 L331 188 Z" fill="var(--ink)"/><text x="360" y="195" class="result-value">24.500</text>
       </svg>
-      <div class="result-reading"><p><b>Top-1</b> Automatic selection.</p><p><b>Best-of-5*</b> Target-assisted coverage, evaluated offline.</p></div>
-      <p class="source-caption">FiveK: detailed report table and archived diagnostic. PPSD: report only. The final run bundle remains unavailable.</p>
+      <div class="result-reading"><p><b>Top-1</b> Automatic selection.</p><p><b>Best-of-5*</b> Offline, target-assisted coverage.</p></div>
+      <p class="source-caption">FiveK: report + archived diagnostic. PPSD: report only. Final run unavailable.</p>
     </div>
   </div>
 </template>

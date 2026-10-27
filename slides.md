@@ -15,7 +15,7 @@ transition: fade
 wakeLock: false
 drawings:
   enabled: false
-exportFilename: Personalized-Image-Retouching-Final
+exportFilename: Personalized-Image-Retouching-Final-25
 ---
 
 <WorkbenchPage :number="1">
@@ -34,7 +34,7 @@ Evidence: supplied report Cover. Consult the evidence index for protocol limits 
 </WorkbenchPage>
 
 <!--
-Compare real expert edits and explain the preference-modelling hypothesis.
+Explain three user preferences using the supplied illustration and historical editing pairs.
 Evidence: supplied report 1.1, 2.2. Consult the evidence index for protocol limits and missing final-run assets.
 -->
 
@@ -272,11 +272,11 @@ Evidence: supplied report 5.1–5.2. Consult the evidence index for protocol lim
 ---
 
 <WorkbenchPage :number="24">
-  <ImprovementPriorities />
+  <ResearchLimitations />
 </WorkbenchPage>
 
 <!--
-Order next work by research impact and verification method.
+Explain current limitations in preference learning, edit capacity and evaluation evidence.
 Evidence: supplied report 5.3–5.4. Consult the evidence index for protocol limits and missing final-run assets.
 -->
 
@@ -290,165 +290,3 @@ Evidence: supplied report 5.3–5.4. Consult the evidence index for protocol lim
 Summarise the architecture, evidence and outstanding validation.
 Evidence: supplied report 5.5. Consult the evidence index for protocol limits and missing final-run assets.
 -->
-
----
-
-<WorkbenchPage :number="26" title="Retouching encoder" component="RetouchingEncoder" section="2.3" usage="Inspect O, T and T − O as the nine-channel input.">
-  <RetouchingEncoder />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="27" title="Eight-basis LUT decoder" component="LUTAssembly" section="2.3; audited phase1/model.py" usage="Follow coefficients, basis combination and image-wide rendering.">
-  <LUTAssembly />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="28" title="Transformer-based condition generation" component="TransformerConditioning" section="2.4; source depth discrepancy" usage="Inspect the 17 tokens, paired positions and query condition.">
-  <TransformerConditioning />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="29" title="Conditional normalizing flow" component="ConditionalFlow" section="2.5" usage="Switch between likelihood training and inverse sampling.">
-  <ConditionalFlow />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="30" title="Retouching vectors and directional density" component="PreferenceDistribution" section="2.2, 2.5; illustrative geometry" usage="Rotate full vectors and their unit-direction projection.">
-  <PreferenceDistribution />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="31" title="Candidate selection: report and source" component="CandidateSelection" section="2.5; audited mc_centers" usage="Compare the reported ranking with the saved implementation.">
-  <CandidateSelection />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="32" title="Direction and magnitude in retouching space" component="LatentGeometry" section="2.3, 3.4" usage="Explore the geometric interpretation without inventing rendered outputs.">
-  <LatentGeometry />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="33" title="Reconstruction and decoder robustness" component="ReconstructionEvidence" section="3.4, 3.7.5" usage="Separate aggregate reconstruction, example images and a small noise diagnostic.">
-  <ReconstructionEvidence />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="34" title="Historical pairing and input sensitivity" component="PairingDiagnostic" section="3.6; archived phase2_diag.txt" usage="Inspect literal diagnostic values and the limits of history dependence.">
-  <PairingDiagnostic />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="35" title="Evidence discrepancies and provenance" component="EvidenceAudit" section="Report / source audit" usage="Review unresolved claims and the presentation decision for each.">
-  <EvidenceAudit />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="36" title="Visual evidence atlas" component="VisualEvidenceGallery" section="Figure and candidate evidence" usage="Inspect six populated report and diagnostic figures; open or download each source asset.">
-  <VisualEvidenceGallery />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="37" title="Five expert edits of one scene" component="ExpertStyleGallery" section="2.2; real FiveK references" usage="Compare the original with five recorded expert edits.">
-  <ExpertStyleGallery />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="38" title="Twenty historical editing pairs" component="HistoryPairExplorer" section="2.4; real FiveK references" usage="Browse complete original/edit pairs and their scene identities.">
-  <HistoryPairExplorer />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="39" title="Colour and luma distributions" component="ColorHistogramCompare" section="Derived display-image measurements" usage="Compare measured RGB and encoded-luma histograms.">
-  <ColorHistogramCompare />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="40" title="Pixel tone correspondence" component="ToneMappingScatter" section="Derived display-image measurements" usage="Inspect the joint distribution of original and reference luma.">
-  <ToneMappingScatter />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="41" title="Expert colour shifts" component="ColorChannelShift" section="Derived display-image measurements" usage="Compare signed channel changes for the same scene.">
-  <ColorChannelShift />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="42" title="Where do edits change the image?" component="SpatialDifferenceMap" section="Derived display-image measurements" usage="Explore per-pixel differences and thresholded regions.">
-  <SpatialDifferenceMap />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="43" title="Synchronous image detail inspection" component="LocalEditLoupe" section="Real FiveK references" usage="Move one crop across the original and aligned expert edit.">
-  <LocalEditLoupe />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="44" title="Pairwise reference differences" component="ExpertDifferenceMatrix" section="Derived display-image measurements" usage="Select any image pair and inspect its measured RGB difference.">
-  <ExpertDifferenceMatrix />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="45" title="Sampling a user history" component="HistorySamplingWorkbench" section="2.4; protocol illustration" usage="Resample eight complete pairs from twenty real references.">
-  <HistorySamplingWorkbench />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="46" title="Does historical pairing matter?" component="TokenPairingWorkbench" section="3.6; archived pairing diagnostic" usage="Shift image/edit associations and inspect recorded sensitivity.">
-  <TokenPairingWorkbench />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="47" title="Training, inference and scoring boundaries" component="ProtocolLeakageMap" section="3.2; reported evaluation protocol" usage="Trace which images enter each stage of the reported protocol.">
-  <ProtocolLeakageMap />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="48" title="A continuous multimodal preference landscape" component="ProbabilityLandscape" section="2.2; illustrative probability model" usage="Change mixture mass and compare a density with its marginal.">
-  <ProbabilityLandscape />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="49" title="Invertibility and local volume change" component="GaussianTransportGrid" section="2.5; analytic flow illustration" usage="Deform coordinates and inspect the exact local Jacobian.">
-  <GaussianTransportGrid />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="50" title="What more samples reveal" component="MonteCarloConvergence" section="2.5; illustrative Monte Carlo sampling" usage="Compare nested samples with the exact synthetic density.">
-  <MonteCarloConvergence />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="51" title="Inside a LUT interpolation cell" component="LUTInterpolationCube" section="2.3; exact interpolation illustration" usage="Change RGB coordinates and inspect all eight corner weights.">
-  <LUTInterpolationCube />
-</WorkbenchPage>
-
----
-
-<WorkbenchPage :number="52" title="Inference performance across configurations" component="LatencyThroughputMap" section="3.7; recorded GPU benchmark" usage="Compare latency, throughput and allocated memory together.">
-  <LatencyThroughputMap />
-</WorkbenchPage>
