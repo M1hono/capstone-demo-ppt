@@ -2,6 +2,7 @@
 from pathlib import Path
 import hashlib
 import json
+import posixpath
 import re
 import xml.etree.ElementTree as ET
 import zipfile
@@ -13,6 +14,8 @@ pdf = root / "exports/Personalized-Image-Retouching-Final-25.pdf"
 pptx = root / "exports/output.pptx"
 titles = json.loads((root / "data/title-order.json").read_text())["titles"]
 required = {
+    7: ["30%", "Similarity alone", "P(z | image, history)", "z = (x, y)",
+        "Each point is a possible retouching solution", "Conceptual density"],
     9: ["9 input channels", "Flatten", "FC", "3D edit vector", "8 learnable basis LUTs",
         "Reconstruction loss", "Backpropagation", "Jointly update encoder"],
     10: ["Direction", "editing type", "Magnitude", "editing strength", "14 directions", "2, 4, 6, 8"],
@@ -52,8 +55,11 @@ for n, page in enumerate(reader.pages, 1):
 assert len(reader.pages[9].images) == 2, "PDF slide 10 must embed both reference figures"
 
 ns = {"a": "http://schemas.openxmlformats.org/drawingml/2006/main",
-      "p": "http://schemas.openxmlformats.org/presentationml/2006/main"}
+      "p": "http://schemas.openxmlformats.org/presentationml/2006/main",
+      "c": "http://schemas.openxmlformats.org/drawingml/2006/chart",
+      "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships"}
 pptx_pages = []
+chart_checks = []
 with zipfile.ZipFile(pptx) as archive:
     assert archive.testzip() is None
     names = [name for name in archive.namelist() if re.fullmatch(r"ppt/slides/slide\d+\.xml", name)]
@@ -78,6 +84,26 @@ with zipfile.ZipFile(pptx) as archive:
             assert timing is None and transition is None, f"Static PPTX slide {n} has animation"
         if transition is not None:
             assert transition.get("advTm") is None
+        if n in {18, 19}:
+            relation_id = slide.find(".//c:chart", ns).get(f"{{{ns['r']}}}id")
+            relations = ET.fromstring(archive.read(f"ppt/slides/_rels/slide{n}.xml.rels"))
+            target = next(r.get("Target") for r in relations if r.get("Id") == relation_id)
+            chart_path = posixpath.normpath(posixpath.join("ppt/slides", target)).lstrip("/")
+            chart = ET.fromstring(archive.read(chart_path))
+            series = chart.find(".//c:barChart/c:ser", ns)
+            values = [float(v.text) for v in series.findall("c:val/c:numLit/c:pt/c:v", ns)]
+            expected_values = [20.540, 21.940, 23.562] if n == 18 else [18.3, 22.1, 20.2, 22.3, 23.5]
+            assert values == expected_values, f"PPTX slide {n} chart data changed"
+            fills = {}
+            for point in series.findall("c:dPt", ns):
+                fill = point.find("c:spPr/a:solidFill/a:srgbClr", ns)
+                assert fill is not None and fill.find("a:alpha", ns) is None
+                fills[int(point.find("c:idx", ns).get("val"))] = fill.get("val").upper()
+            expected_fills = {i: "20272D" if i == len(values) - 1 else "806D83"
+                              for i in range(len(values))}
+            assert fills == expected_fills, f"PPTX slide {n} lost static bar colors: {fills}"
+            chart_checks.append({"slide": n, "values": values, "bar_fills": fills,
+                                 "static": timing is None and transition is None})
         pptx_pages.append({"slide": n, "static": timing is None, "title_verified": True})
     assert len(ET.fromstring(archive.read("ppt/slides/slide10.xml")).findall(".//p:pic", ns)) == 2
 
@@ -85,6 +111,7 @@ record = {
     "pdf": {"pages": len(reader.pages), "slide10_images": 2, "playback_controls": 0,
             "complete_content_checks": pdf_pages},
     "pptx": {"slides": len(names), "native_charts": len(chart_names),
+             "static_chart_colors": chart_checks,
              "static_slides": [n for n in range(1, 26) if n != 12], "checks": pptx_pages},
     "artifacts": {p.name: {"path": str(p), "sha256": hashlib.sha256(p.read_bytes()).hexdigest(),
                           "bytes": p.stat().st_size} for p in [pdf, pptx]},
@@ -93,3 +120,4 @@ record = {
 (root / "exports/static-export-verification.json").write_text(json.dumps(record, indent=2) + "\n")
 print("PASS: PDF 25 pages, no playback controls; slide 10 has both figures; all required multi-stage text present.")
 print("PASS: PPTX 25 slides, 2 native charts; only slide 12 contains animation timing; all other slides are static.")
+print("PASS: PPTX slides 18/19 retain opaque per-bar colors and exact data, with no animation or transition.")

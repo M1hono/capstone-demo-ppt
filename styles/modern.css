@@ -1,6 +1,6 @@
-/* Modern Editorial: neutral paper, ink, restrained yellow, concise motion. */
+/* Modern Editorial: warm paper, disciplined color, restrained motion. */
 @font-face{font-family:Saira;src:url("/fonts/Saira.ttf") format("truetype");font-weight:100 900;font-stretch:50% 125%;font-display:swap}
-:root{--ink:#161616;--muted:#5c5c5c;--line:#d9d9d6;--paper:#f4f4f2;--surface:#eaeae6;--blue:#161616;--pale:#e4e4e0;--teal:#646464;--purple:#91918a;--amber:#5c5c5c;--signal:#fffa00;--panel:#fff;--cut:7px}
+:root{--ink:#20272d;--muted:#68727a;--line:#d6dcd9;--paper:#f7f7f3;--surface:#ecefeb;--blue:#315d73;--pale:#e4efed;--teal:#4d8178;--purple:#806d83;--amber:#a8793d;--signal:#f3df4f;--panel:#fffef9;--cut:7px}
 .workbench{padding:29px 46px 22px;gap:18px;background:var(--paper)}
 .workbench header{display:flex;align-items:center;gap:19px;min-height:64px;padding-bottom:16px;border-bottom:1px solid var(--ink)}
 .slidev-layout .workbench header h1{font-family:Saira,"IBM Plex Sans",sans-serif;font-weight:650;font-size:34px;letter-spacing:-.6px;line-height:1.18}
@@ -16,7 +16,7 @@
 .workbench .tabs button[aria-pressed=true]{background:var(--ink);color:var(--panel)}
 .workbench button:focus-visible{outline:2px solid currentColor;outline-offset:-4px}
 .workbench a{color:var(--ink)}.workbench a:hover{background:var(--signal);color:var(--ink)}
-.workbench .node{border:0;border-top:2px solid var(--line);background:var(--surface)}
+.workbench .node{border:0;border-top:2px solid var(--line);background:var(--surface);box-shadow:inset 0 1px 0 rgba(255,255,255,.55)}
 .workbench .node.active{border-top-color:var(--ink);background:var(--pale)}
 .workbench .node.active h3{font-weight:700}.workbench .chips span{background:var(--pale)}
 .workbench .metric{border-top:3px solid var(--ink)}
@@ -26,7 +26,7 @@
 .workbench .evidence-table td{border-bottom:1px solid var(--line)}
 .workbench .evidence-table td.numeric{font-family:"IBM Plex Sans",Arial,sans-serif;font-weight:500;letter-spacing:.2px}
 .workbench .evidence-table tr.highlight{background:transparent}
-.workbench .evidence-table tr.highlight td{font-weight:600;background:#e4e4e060}
+.workbench .evidence-table tr.highlight td{font-weight:600;background:#e4efed80}
 .workbench .evidence-table tr.highlight td:first-child{border-left:3px solid var(--ink)}
 .workbench .evidence-table th:first-child,.workbench .evidence-table td:first-child{padding-left:14px}
 .workbench .evidence-table tbody tr:hover{background:var(--pale)}

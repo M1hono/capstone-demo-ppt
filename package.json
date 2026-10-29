@@ -19,6 +19,7 @@
     "preview": "vite preview --host 127.0.0.1 --strictPort",
     "qa": "node qa-show.mjs",
     "test:slides": "node qa-show.mjs",
+    "test:density": "node scripts/verify-density.mjs",
     "prebuild": "node scripts/sync-evidence.mjs && node scripts/validate-evidence.mjs",
     "test:data": "node scripts/validate-evidence.mjs",
     "figures": "python3 scripts/make-figures.py",

@@ -19,11 +19,21 @@ try {
     await slide.locator('img').evaluateAll(images => Promise.all(images.map(img => img.decode())))
     const chartSelector = { 18: '.comparison-chart', 19: '.ablation-chart' }[n]
     if (chartSelector) await slide.locator(chartSelector).evaluate(el => el.dataset.nativeChart = 'true')
+    const composite = slide.locator('.density-art')
+    if (await composite.count()) {
+      const file = `diagram-${n}-density.png`
+      await composite.screenshot({ path: fileURLToPath(new URL(file, scratch)) })
+      await composite.evaluate((e, file) => {
+        e.dataset.exportImage = file
+        e.dataset.compositeDiagram = 'true'
+      }, file)
+    }
     const svgs = slide.locator('svg:not([data-native-chart]):not([data-native-chart] svg)')
     const svgFiles = []
     for (let i = 0; i < await svgs.count(); i++) {
       const el = svgs.nth(i)
       if (await el.evaluate(e => !!e.closest('[data-native-chart]'))) continue
+      if (await el.evaluate(e => !!e.closest('[data-composite-diagram]'))) continue
       const file = `diagram-${n}-${i}.png`
       await el.screenshot({ path: fileURLToPath(new URL(file, scratch)), omitBackground: true })
       await el.evaluate((e, file) => e.dataset.exportImage = file, file)
@@ -39,6 +49,10 @@ try {
         const style = getComputedStyle(el)
         const b = el.getBoundingClientRect()
         if (b.width < 1 || b.height < 1) return
+        if (el.dataset.exportImage) {
+          objects.push({ kind: 'diagram', ...rect(b), file: el.dataset.exportImage })
+          return
+        }
         if (el instanceof SVGElement) {
           if (el.dataset.exportImage) objects.push({ kind: 'diagram', ...rect(b), file: el.dataset.exportImage })
           return

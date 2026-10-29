@@ -137,7 +137,7 @@ try{
   report.push({page:'evidence',state:'local-links',problems:[]})
   for(const viewport of [{width:375,height:667},{width:667,height:375},{width:1920,height:1080}]){
     await page.setViewportSize(viewport)
-    for(const number of [2,9,11,12,17,20,25]){
+    for(const number of [2,7,9,11,12,17,20,25]){
       await visit(number);await checkLayout(number,`resized-${viewport.width}`)
       const staleLabels=await section(number).locator('svg text').evaluateAll(labels=>labels.flatMap(label=>{
         if(!label.getClientRects().length||!label.textContent.trim())return []

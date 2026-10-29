@@ -15,6 +15,7 @@ baseline = roles / "ENDFIELD_BASELINE"
 expected = json.loads((roles / "endfield-baseline-hashes.json").read_text())
 excluded = {"node_modules", ".git", "tmp", "dist", "exports", "__pycache__"}
 role_names = ["MODIFIED_FILE.zip", "DIFF_FILE.patch", "VERIFICATION.txt", "ROLLBACK.sh"]
+previous_verification = json.loads((roles / "VERIFICATION.txt").read_text())
 commands = []
 
 
@@ -26,6 +27,7 @@ def files(directory):
     return {str(p.relative_to(directory)): p
             for p in directory.rglob("*")
             if p.is_file() and not p.is_symlink()
+            and p.name not in {".DS_Store", "Personalized-Image-Retouching-Final-25.pdf"}
             and not any(part in excluded for part in p.relative_to(directory).parts)}
 
 
@@ -136,19 +138,24 @@ write_archive(reconstructed)
 
 qa = json.loads((root / "exports/qa-show.json").read_text())
 assert qa["pages"] == 25 and qa["problems"] == 0
-reference = root.parents[2] / "13汇报.pptx"
+reference = root.parents[6] / "notes/2026/S2C/SOFT3888/13汇报.pptx"
 assert digest(reference) == "6f07c8c4ab7ca30290298873dc18c643315caeb67e4daa088c9fdf38f249f7f5"
 record = {
+    **previous_verification,
     "TARGET": str(root),
     "REFERENCE": str(reference),
-    "GOAL": "25 reference-ordered slides aligned with the speech; complete academic diagrams on pages 9/11/12; clearer, more engaging page 11/12 layouts; restored reference results; static pages except 12; no playback controls; complete static PDF",
+    "GOAL": "25 reference-ordered slides aligned with the speech; page 7 shader canvas and overlay remain aligned under browser resizing, navigation and print, with readable formula; neutral component borders; complete academic diagrams; static pages except 12; PPTX charts on pages 18/19 retain opaque per-bar colors without animation; no playback controls; complete static PDF",
     "changed_sites": ["slides.md", "data/component-index.json", "composables/useSequence.js: enter/tick",
                       "components/WorkbenchPage.vue: no-motion/static-view",
                       "components/RetouchingEncoder.vue",
                       "components/TransformerConditioning.vue: paired tokens and query readout",
                       "components/ConditionalFlow.vue: training/inference layout and persistent content",
+                      "components/PreferenceDensity.vue: Vue-owned absolute canvas, resize using clientWidth/clientHeight, formula grid",
+                      "scripts/verify-density.mjs", "qa-show.mjs: include page 7 in resized layouts",
                       "components/LatentGeometry.vue", "public/assets/reference-deck",
                       "scripts/capture-pptx.mjs", "scripts/add-pptx-playback.py",
+                      "scripts/build-pptx.mjs: nativeChart point.fill",
+                      "scripts/verify-static-exports.py: static chart colors and data",
                       "scripts/extract-reference-results.py", "docs/reference-coverage.md"],
     "baseline_slides_sha256": expected["slides.md"],
     "modified_slides_sha256": manifest["slides.md"],
@@ -158,6 +165,8 @@ record = {
     "rollback_hashes_match": True,
     "patch_reconstruction_matches": True,
     "browser_qa": qa,
+    "density_resize_regression": json.loads((root / "tmp/slides/density-fix/production/report.json").read_text()),
+    "density_before_fix": json.loads((root / "tmp/slides/density-fix/baseline/report.json").read_text()),
     "static_export_verification": json.loads((root / "exports/static-export-verification.json").read_text()),
     "reference_coverage": {
         "path": str(root / "docs/reference-coverage.md"),
@@ -168,7 +177,7 @@ record = {
     "background_removal": json.loads((root / "public/assets/reference-deck/transparency-provenance.json").read_text()),
     "pptx_playback_structure": json.loads((root / "tmp/slides/final-25/pptx-playback.json").read_text()),
     "native_animation_limitation": "Open XML timing, target IDs and manual slide advancement verified; playback not exercised in desktop PowerPoint.",
-    "commands": commands,
+    "commands": previous_verification.get("commands", []) + commands,
     "exports": {name: {"path": str(root / "exports" / name), "sha256": digest(root / "exports" / name)}
                 for name in ["output.pptx", "Personalized-Image-Retouching-Final-25.pdf"]},
     "checkpoint_remote_sha": "f5b1a4feb28b925e113af846e62f7aedb84d465b",
@@ -184,6 +193,7 @@ record = {
     ],
 }
 run(["sh", "-n", str(roles / "ROLLBACK.sh")], root, "ROLLBACK_SYNTAX")
+record["commands"] = previous_verification.get("commands", []) + commands
 (roles / "final-source-hashes.json").write_text(json.dumps(manifest, indent=2) + "\n")
 (roles / "VERIFICATION.txt").write_text(json.dumps(record, indent=2) + "\n")
 with zipfile.ZipFile(archive) as source:

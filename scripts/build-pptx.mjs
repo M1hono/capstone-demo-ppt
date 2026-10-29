@@ -12,7 +12,7 @@ const evidence = JSON.parse(await readFile(new URL('data/report-evidence.json', 
 const notes = (await readFile(new URL('slides.md', root), 'utf8')).match(/<!--[\s\S]*?-->/g)
 const presentation = Presentation.create({ slideSize: { width: 1280, height: 720 } })
 const inspect = []
-const palette = ['#161616', '#62625B', '#A5A59A']
+const chartColors = { comparison: '#806D83', model: '#20272D' }
 
 function color(css) {
   if (css.startsWith('#')) return css
@@ -54,12 +54,17 @@ function nativeChart(slide, snapshot) {
       : [{ name: 'PSNR', values: evidence.ablations.map(row => row.psnr) }]
   chart.categories = snapshot.number === 18 ? ['PieNet', 'RefRetouch', 'Our model']
       : ['Original image', 'Expert-average z', 'Wrong image', 'Wrong history', 'Complete model']
-  sets.forEach((data, i) => {
+  sets.forEach(data => {
     const series = chart.series.add(data.name)
     series.values = data.values
     series.categories = chart.categories
-    series.fill = palette[i]
-    series.stroke = { fill: palette[i], width: 0, style: 'solid' }
+    series.fill = chartColors.comparison
+    series.stroke = { fill: chartColors.comparison, width: 0, style: 'solid' }
+    data.values.forEach((_, index) => {
+      const point = series.points.add(index)
+      point.fill = index === data.values.length - 1 ? chartColors.model : chartColors.comparison
+      point.stroke = { fill: point.fill, width: 0, style: 'solid' }
+    })
   })
   chart.hasLegend = false
   chart.xAxis.visible = true

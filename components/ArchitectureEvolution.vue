@@ -31,8 +31,18 @@ const sequence=useSequence(stages.map(s=>s[0]), { intervalMs:3000 })
   </div>
 </template>
 <style scoped>
-.evolution{gap:22px}.evolution-heading{display:flex;justify-content:space-between;align-items:center;gap:20px}.evolution-heading h2{font-size:29px;margin:0}.evolution-heading p{font-size:18px;color:var(--muted)}.evolution-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;align-items:stretch}.evolution-stage{min-width:0;border-top:3px solid var(--line);background:var(--surface);padding:17px 15px;transition:background 300ms,border-color 300ms}.evolution-stage.active{border-top-color:var(--ink);background:var(--pale)}.stage-number{display:flex;justify-content:space-between;font:500 28px Saira;color:var(--muted)}.evolution-stage.active .stage-number{color:var(--ink)}.evolution-stage h3{font-size:23px;line-height:1.2;min-height:58px;margin:12px 0 10px}.evolution-stage svg{display:block;width:100%;height:106px;margin:10px 0 17px}.stage-mechanism{font-size:17px;line-height:1.35;min-height:46px;padding-bottom:10px;border-bottom:1px solid var(--line)}.stage-finding{font-size:18px;line-height:1.4;margin-top:13px;color:var(--muted)}
-</style>
-<style scoped>
-.evolution-stage{padding:12px 15px}.evolution-stage h3{min-height:52px;margin:8px 0}.evolution-stage svg{height:82px;margin:8px 0 10px}.stage-finding{font-size:17px}
+.evolution{gap:18px}
+.evolution-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.evolution-heading h2{font-size:29px;margin:0;letter-spacing:-.3px}
+.evolution-heading p{font-size:16px;color:var(--muted)}
+.evolution-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch}
+.evolution-stage{position:relative;min-width:0;border:1px solid var(--line);border-top:1px solid var(--ink);background:var(--panel);padding:12px 13px;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.55);transition:background 300ms,border-color 300ms,transform 300ms}
+.evolution-stage:nth-child(2),.evolution-stage:nth-child(3),.evolution-stage:nth-child(4),.evolution-stage:nth-child(5){border-top-color:var(--ink);background:var(--panel)}
+.evolution-stage.active{border-color:var(--ink);border-top-color:var(--ink);background:var(--pale);transform:translateY(-2px)}
+.stage-number{display:flex;justify-content:space-between;font:650 25px Saira;color:var(--muted)}
+.evolution-stage.active .stage-number{color:var(--ink)}
+.evolution-stage h3{font-size:20px;line-height:1.18;min-height:48px;margin:9px 0 5px}
+.evolution-stage svg{display:block;width:100%;height:78px;margin:5px 0 8px}
+.stage-mechanism{font-size:15px;line-height:1.3;min-height:40px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.stage-finding{font-size:15px;line-height:1.35;margin-top:10px;color:var(--muted)}
 </style>
