@@ -37,6 +37,13 @@ async function inspect(page, state) {
       footerClearance: (footer.top - area.bottom) / scale,
       controls: section.querySelectorAll('button,input,select,.controls').length,
       animations: section.getAnimations({ subtree: true }).length,
+      axisLabels: [...art.querySelectorAll('.density-axes text')].map(label => {
+        const range = document.createRange()
+        range.selectNodeContents(label)
+        const glyph = range.getBoundingClientRect()
+        const element = label.getBoundingClientRect()
+        return { text: label.textContent, xDelta: glyph.x - element.x, widthDelta: glyph.width - element.width }
+      }),
       leftPeak: pixel(183, 202), rightPeak: pixel(361, 260), lowDensity: pixel(285, 112),
     }
   })
@@ -54,6 +61,8 @@ async function inspect(page, state) {
   }
   assert.equal(result.controls, 0)
   assert.equal(result.animations, 0)
+  for (const label of result.axisLabels)
+    assert(Math.abs(label.xDelta) <= 2 && Math.abs(label.widthDelta) <= 2, `${state}: axis glyph layout differs for ${label.text}`)
   await slide.screenshot({ path: `${directory}/${state}.png` })
 }
 

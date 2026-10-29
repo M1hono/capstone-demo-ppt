@@ -314,7 +314,7 @@ onScopeDispose(() => {
 .density-subtitle{font-size:13px;font-weight:600;fill:var(--ink)!important}
 .density-plot-frame{fill:transparent;stroke:#b8cbd5;stroke-width:1}
 .density-axes path{fill:none;stroke:var(--ink);stroke-width:1.5}
-.density-axes text{font-size:14px;font-style:italic;fill:var(--ink)!important}
+.density-axes text{font-size:14px;font-style:normal;fill:var(--ink)!important}
 .density-samples circle{fill:var(--ink)}
 .density-samples text{font-size:16px;font-weight:700;fill:var(--ink)!important}
 .density-annotations path{fill:none;stroke:var(--ink);stroke-width:1.3}
